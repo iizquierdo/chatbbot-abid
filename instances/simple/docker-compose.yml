@@ -1,0 +1,68 @@
+services:
+  postgres-simple:
+    image: postgres:16.1-alpine
+    container_name: powerchat-postgres-simple
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: simple_db
+      POSTGRES_USER: powerchat
+      POSTGRES_PASSWORD: IoQketgiRmQD0Zs6
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
+    volumes:
+      - postgres_data_simple:/var/lib/postgresql/data
+      - ../../init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U powerchat -d simple_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app-simple:
+    build:
+      context: ../../
+      dockerfile: Dockerfile.simple
+    container_name: powerchat-app-simple
+    restart: unless-stopped
+    depends_on:
+      postgres-simple:
+        condition: service_healthy
+    env_file:
+      - .env
+    ports:
+      - "9000:9000"
+    volumes:
+      - app_uploads_simple:/app/uploads
+      - app_public_simple:/app/public/media
+      - app_logs_simple:/app/logs
+      - app_backups_simple:/app/backups
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+# Use shared network to avoid subnet exhaustion
+networks:
+  default:
+    external: true
+    name: powerchat-shared-network
+
+volumes:
+  postgres_data_simple:
+    driver: local
+    name: powerchat-postgres-data-simple
+  app_uploads_simple:
+    driver: local
+    name: powerchat-app-uploads-simple
+  app_public_simple:
+    driver: local
+    name: powerchat-app-public-simple
+  app_logs_simple:
+    driver: local
+    name: powerchat-app-logs-simple
+  app_backups_simple:
+    driver: local
+    name: powerchat-app-backups-simple

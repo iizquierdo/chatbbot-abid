@@ -1,0 +1,18774 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 16.1
+-- Dumped by pg_dump version 16.1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+ALTER TABLE ONLY public.zoho_calendar_tokens DROP CONSTRAINT zoho_calendar_tokens_user_id_fkey;
+ALTER TABLE ONLY public.zoho_calendar_tokens DROP CONSTRAINT zoho_calendar_tokens_company_id_fkey;
+ALTER TABLE ONLY public.whatsapp_proxy_servers DROP CONSTRAINT whatsapp_proxy_servers_company_id_fkey;
+ALTER TABLE ONLY public.whatsapp_accounts DROP CONSTRAINT whatsapp_accounts_company_id_fkey;
+ALTER TABLE ONLY public.whatsapp_accounts DROP CONSTRAINT whatsapp_accounts_channel_id_fkey;
+ALTER TABLE ONLY public.whatsapp_account_logs DROP CONSTRAINT whatsapp_account_logs_account_id_fkey;
+ALTER TABLE ONLY public.websites DROP CONSTRAINT websites_template_id_fkey;
+ALTER TABLE ONLY public.websites DROP CONSTRAINT websites_created_by_id_fkey;
+ALTER TABLE ONLY public.website_templates DROP CONSTRAINT website_templates_created_by_id_fkey;
+ALTER TABLE ONLY public.website_assets DROP CONSTRAINT website_assets_website_id_fkey;
+ALTER TABLE ONLY public.users DROP CONSTRAINT users_company_id_fkey;
+ALTER TABLE ONLY public.user_social_accounts DROP CONSTRAINT user_social_accounts_user_id_fkey;
+ALTER TABLE ONLY public.translations DROP CONSTRAINT translations_language_id_fkey;
+ALTER TABLE ONLY public.translations DROP CONSTRAINT translations_key_id_fkey;
+ALTER TABLE ONLY public.translation_keys DROP CONSTRAINT translation_keys_namespace_id_fkey;
+ALTER TABLE ONLY public.team_invitations DROP CONSTRAINT team_invitations_invited_by_user_id_fkey;
+ALTER TABLE ONLY public.team_invitations DROP CONSTRAINT team_invitations_company_id_fkey;
+ALTER TABLE ONLY public.task_categories DROP CONSTRAINT task_categories_created_by_fkey;
+ALTER TABLE ONLY public.task_categories DROP CONSTRAINT task_categories_company_id_fkey;
+ALTER TABLE ONLY public.subscription_usage_tracking DROP CONSTRAINT subscription_usage_tracking_company_id_fkey;
+ALTER TABLE ONLY public.subscription_plan_changes DROP CONSTRAINT subscription_plan_changes_to_plan_id_fkey;
+ALTER TABLE ONLY public.subscription_plan_changes DROP CONSTRAINT subscription_plan_changes_from_plan_id_fkey;
+ALTER TABLE ONLY public.subscription_plan_changes DROP CONSTRAINT subscription_plan_changes_company_id_fkey;
+ALTER TABLE ONLY public.subscription_notifications DROP CONSTRAINT subscription_notifications_company_id_fkey;
+ALTER TABLE ONLY public.subscription_events DROP CONSTRAINT subscription_events_company_id_fkey;
+ALTER TABLE ONLY public.role_permissions DROP CONSTRAINT role_permissions_company_id_fkey;
+ALTER TABLE ONLY public.quick_reply_templates DROP CONSTRAINT quick_reply_templates_created_by_id_fkey;
+ALTER TABLE ONLY public.quick_reply_templates DROP CONSTRAINT quick_reply_templates_company_id_fkey;
+ALTER TABLE ONLY public.plan_ai_usage_tracking DROP CONSTRAINT plan_ai_usage_tracking_plan_id_fkey;
+ALTER TABLE ONLY public.plan_ai_usage_tracking DROP CONSTRAINT plan_ai_usage_tracking_company_id_fkey;
+ALTER TABLE ONLY public.plan_ai_provider_configs DROP CONSTRAINT plan_ai_provider_configs_plan_id_fkey;
+ALTER TABLE ONLY public.plan_ai_billing_events DROP CONSTRAINT plan_ai_billing_events_plan_id_fkey;
+ALTER TABLE ONLY public.plan_ai_billing_events DROP CONSTRAINT plan_ai_billing_events_company_id_fkey;
+ALTER TABLE ONLY public.pipeline_stages DROP CONSTRAINT pipeline_stages_company_id_fkey;
+ALTER TABLE ONLY public.payment_transactions DROP CONSTRAINT payment_transactions_plan_id_fkey;
+ALTER TABLE ONLY public.payment_transactions DROP CONSTRAINT payment_transactions_coupon_code_id_fkey;
+ALTER TABLE ONLY public.payment_transactions DROP CONSTRAINT payment_transactions_company_id_fkey;
+ALTER TABLE ONLY public.password_reset_tokens DROP CONSTRAINT password_reset_tokens_user_id_fkey;
+ALTER TABLE ONLY public.notes DROP CONSTRAINT notes_created_by_id_fkey;
+ALTER TABLE ONLY public.notes DROP CONSTRAINT notes_contact_id_fkey;
+ALTER TABLE ONLY public.meta_whatsapp_phone_numbers DROP CONSTRAINT meta_whatsapp_phone_numbers_client_id_fkey;
+ALTER TABLE ONLY public.meta_whatsapp_clients DROP CONSTRAINT meta_whatsapp_clients_company_id_fkey;
+ALTER TABLE ONLY public.messages DROP CONSTRAINT messages_conversation_id_fkey;
+ALTER TABLE ONLY public.knowledge_base_usage DROP CONSTRAINT knowledge_base_usage_document_id_fkey;
+ALTER TABLE ONLY public.knowledge_base_usage DROP CONSTRAINT knowledge_base_usage_company_id_fkey;
+ALTER TABLE ONLY public.knowledge_base_documents DROP CONSTRAINT knowledge_base_documents_company_id_fkey;
+ALTER TABLE ONLY public.knowledge_base_document_nodes DROP CONSTRAINT knowledge_base_document_nodes_flow_id_fkey;
+ALTER TABLE ONLY public.knowledge_base_document_nodes DROP CONSTRAINT knowledge_base_document_nodes_document_id_fkey;
+ALTER TABLE ONLY public.knowledge_base_document_nodes DROP CONSTRAINT knowledge_base_document_nodes_company_id_fkey;
+ALTER TABLE ONLY public.knowledge_base_configs DROP CONSTRAINT knowledge_base_configs_flow_id_fkey;
+ALTER TABLE ONLY public.knowledge_base_configs DROP CONSTRAINT knowledge_base_configs_company_id_fkey;
+ALTER TABLE ONLY public.knowledge_base_chunks DROP CONSTRAINT knowledge_base_chunks_document_id_fkey;
+ALTER TABLE ONLY public.inbox_restores DROP CONSTRAINT inbox_restores_restored_by_user_id_fkey;
+ALTER TABLE ONLY public.inbox_restores DROP CONSTRAINT inbox_restores_company_id_fkey;
+ALTER TABLE ONLY public.inbox_restores DROP CONSTRAINT inbox_restores_backup_id_fkey;
+ALTER TABLE ONLY public.inbox_backups DROP CONSTRAINT inbox_backups_created_by_user_id_fkey;
+ALTER TABLE ONLY public.inbox_backups DROP CONSTRAINT inbox_backups_company_id_fkey;
+ALTER TABLE ONLY public.history_sync_batches DROP CONSTRAINT history_sync_batches_connection_id_fkey;
+ALTER TABLE ONLY public.history_sync_batches DROP CONSTRAINT history_sync_batches_company_id_fkey;
+ALTER TABLE ONLY public.group_participants DROP CONSTRAINT group_participants_conversation_id_fkey;
+ALTER TABLE ONLY public.group_participants DROP CONSTRAINT group_participants_contact_id_fkey;
+ALTER TABLE ONLY public.google_calendar_tokens DROP CONSTRAINT google_calendar_tokens_user_id_fkey;
+ALTER TABLE ONLY public.google_calendar_tokens DROP CONSTRAINT google_calendar_tokens_company_id_fkey;
+ALTER TABLE ONLY public.follow_up_templates DROP CONSTRAINT follow_up_templates_created_by_fkey;
+ALTER TABLE ONLY public.follow_up_templates DROP CONSTRAINT follow_up_templates_company_id_fkey;
+ALTER TABLE ONLY public.follow_up_schedules DROP CONSTRAINT follow_up_schedules_session_id_fkey;
+ALTER TABLE ONLY public.follow_up_schedules DROP CONSTRAINT follow_up_schedules_flow_id_fkey;
+ALTER TABLE ONLY public.follow_up_schedules DROP CONSTRAINT follow_up_schedules_conversation_id_fkey;
+ALTER TABLE ONLY public.follow_up_schedules DROP CONSTRAINT follow_up_schedules_contact_id_fkey;
+ALTER TABLE ONLY public.follow_up_schedules DROP CONSTRAINT follow_up_schedules_company_id_fkey;
+ALTER TABLE ONLY public.follow_up_schedules DROP CONSTRAINT follow_up_schedules_channel_connection_id_fkey;
+ALTER TABLE ONLY public.follow_up_execution_log DROP CONSTRAINT follow_up_execution_log_schedule_id_fkey;
+ALTER TABLE ONLY public.flows DROP CONSTRAINT flows_user_id_fkey;
+ALTER TABLE ONLY public.flows DROP CONSTRAINT flows_company_id_fkey;
+ALTER TABLE ONLY public.flow_step_executions DROP CONSTRAINT flow_step_executions_session_id_fkey;
+ALTER TABLE ONLY public.flow_step_executions DROP CONSTRAINT flow_step_executions_flow_execution_id_fkey;
+ALTER TABLE ONLY public.flow_sessions DROP CONSTRAINT flow_sessions_flow_id_fkey;
+ALTER TABLE ONLY public.flow_sessions DROP CONSTRAINT flow_sessions_conversation_id_fkey;
+ALTER TABLE ONLY public.flow_sessions DROP CONSTRAINT flow_sessions_contact_id_fkey;
+ALTER TABLE ONLY public.flow_sessions DROP CONSTRAINT flow_sessions_company_id_fkey;
+ALTER TABLE ONLY public.flow_session_variables DROP CONSTRAINT flow_session_variables_session_id_fkey;
+ALTER TABLE ONLY public.flow_session_cursors DROP CONSTRAINT flow_session_cursors_session_id_fkey;
+ALTER TABLE ONLY public.flow_executions DROP CONSTRAINT flow_executions_flow_id_fkey;
+ALTER TABLE ONLY public.flow_executions DROP CONSTRAINT flow_executions_conversation_id_fkey;
+ALTER TABLE ONLY public.flow_executions DROP CONSTRAINT flow_executions_contact_id_fkey;
+ALTER TABLE ONLY public.flow_executions DROP CONSTRAINT flow_executions_company_id_fkey;
+ALTER TABLE ONLY public.flow_assignments DROP CONSTRAINT flow_assignments_flow_id_fkey;
+ALTER TABLE ONLY public.flow_assignments DROP CONSTRAINT flow_assignments_channel_id_fkey;
+ALTER TABLE ONLY public.scheduled_messages DROP CONSTRAINT fk_scheduled_messages_created_by;
+ALTER TABLE ONLY public.scheduled_messages DROP CONSTRAINT fk_scheduled_messages_conversation_id;
+ALTER TABLE ONLY public.scheduled_messages DROP CONSTRAINT fk_scheduled_messages_company_id;
+ALTER TABLE ONLY public.scheduled_messages DROP CONSTRAINT fk_scheduled_messages_channel_id;
+ALTER TABLE ONLY public.email_configs DROP CONSTRAINT email_configs_channel_connection_id_fkey;
+ALTER TABLE ONLY public.email_attachments DROP CONSTRAINT email_attachments_message_id_fkey;
+ALTER TABLE ONLY public.dunning_management DROP CONSTRAINT dunning_management_payment_transaction_id_fkey;
+ALTER TABLE ONLY public.dunning_management DROP CONSTRAINT dunning_management_company_id_fkey;
+ALTER TABLE ONLY public.dialog_360_clients DROP CONSTRAINT dialog_360_clients_company_id_fkey;
+ALTER TABLE ONLY public.dialog_360_channels DROP CONSTRAINT dialog_360_channels_client_id_fkey;
+ALTER TABLE ONLY public.deals DROP CONSTRAINT deals_stage_id_fkey;
+ALTER TABLE ONLY public.deals DROP CONSTRAINT deals_contact_id_fkey;
+ALTER TABLE ONLY public.deals DROP CONSTRAINT deals_company_id_fkey;
+ALTER TABLE ONLY public.deals DROP CONSTRAINT deals_assigned_to_user_id_fkey;
+ALTER TABLE ONLY public.deal_activities DROP CONSTRAINT deal_activities_user_id_fkey;
+ALTER TABLE ONLY public.deal_activities DROP CONSTRAINT deal_activities_deal_id_fkey;
+ALTER TABLE ONLY public.coupon_usage DROP CONSTRAINT coupon_usage_user_id_fkey;
+ALTER TABLE ONLY public.coupon_usage DROP CONSTRAINT coupon_usage_plan_id_fkey;
+ALTER TABLE ONLY public.coupon_usage DROP CONSTRAINT coupon_usage_payment_transaction_id_fkey;
+ALTER TABLE ONLY public.coupon_usage DROP CONSTRAINT coupon_usage_coupon_id_fkey;
+ALTER TABLE ONLY public.coupon_usage DROP CONSTRAINT coupon_usage_company_id_fkey;
+ALTER TABLE ONLY public.coupon_codes DROP CONSTRAINT coupon_codes_created_by_fkey;
+ALTER TABLE ONLY public.coupon_codes DROP CONSTRAINT coupon_codes_company_id_fkey;
+ALTER TABLE ONLY public.conversations DROP CONSTRAINT conversations_contact_id_fkey;
+ALTER TABLE ONLY public.conversations DROP CONSTRAINT conversations_company_id_fkey;
+ALTER TABLE ONLY public.conversations DROP CONSTRAINT conversations_channel_id_fkey;
+ALTER TABLE ONLY public.conversations DROP CONSTRAINT conversations_assigned_to_user_id_fkey;
+ALTER TABLE ONLY public.contacts DROP CONSTRAINT contacts_company_id_fkey;
+ALTER TABLE ONLY public.contact_tasks DROP CONSTRAINT contact_tasks_updated_by_fkey;
+ALTER TABLE ONLY public.contact_tasks DROP CONSTRAINT contact_tasks_created_by_fkey;
+ALTER TABLE ONLY public.contact_tasks DROP CONSTRAINT contact_tasks_contact_id_fkey;
+ALTER TABLE ONLY public.contact_tasks DROP CONSTRAINT contact_tasks_company_id_fkey;
+ALTER TABLE ONLY public.contact_segments DROP CONSTRAINT contact_segments_created_by_id_fkey;
+ALTER TABLE ONLY public.contact_segments DROP CONSTRAINT contact_segments_company_id_fkey;
+ALTER TABLE ONLY public.contact_documents DROP CONSTRAINT contact_documents_uploaded_by_fkey;
+ALTER TABLE ONLY public.contact_documents DROP CONSTRAINT contact_documents_contact_id_fkey;
+ALTER TABLE ONLY public.contact_audit_logs DROP CONSTRAINT contact_audit_logs_user_id_fkey;
+ALTER TABLE ONLY public.contact_audit_logs DROP CONSTRAINT contact_audit_logs_contact_id_fkey;
+ALTER TABLE ONLY public.contact_audit_logs DROP CONSTRAINT contact_audit_logs_company_id_fkey;
+ALTER TABLE ONLY public.contact_appointments DROP CONSTRAINT contact_appointments_created_by_fkey;
+ALTER TABLE ONLY public.contact_appointments DROP CONSTRAINT contact_appointments_contact_id_fkey;
+ALTER TABLE ONLY public.company_settings DROP CONSTRAINT company_settings_company_id_fkey;
+ALTER TABLE ONLY public.company_pages DROP CONSTRAINT company_pages_company_id_fkey;
+ALTER TABLE ONLY public.company_pages DROP CONSTRAINT company_pages_author_id_fkey;
+ALTER TABLE ONLY public.company_ai_preferences DROP CONSTRAINT company_ai_preferences_company_id_fkey;
+ALTER TABLE ONLY public.company_ai_credentials DROP CONSTRAINT company_ai_credentials_company_id_fkey;
+ALTER TABLE ONLY public.companies DROP CONSTRAINT companies_plan_id_fkey;
+ALTER TABLE ONLY public.channel_connections DROP CONSTRAINT channel_connections_user_id_fkey;
+ALTER TABLE ONLY public.channel_connections DROP CONSTRAINT channel_connections_proxy_server_id_fkey;
+ALTER TABLE ONLY public.channel_connections DROP CONSTRAINT channel_connections_company_id_fkey;
+ALTER TABLE ONLY public.campaigns DROP CONSTRAINT campaigns_template_id_fkey;
+ALTER TABLE ONLY public.campaigns DROP CONSTRAINT campaigns_segment_id_fkey;
+ALTER TABLE ONLY public.campaigns DROP CONSTRAINT campaigns_created_by_id_fkey;
+ALTER TABLE ONLY public.campaigns DROP CONSTRAINT campaigns_company_id_fkey;
+ALTER TABLE ONLY public.campaigns DROP CONSTRAINT campaigns_channel_id_fkey;
+ALTER TABLE ONLY public.campaign_templates DROP CONSTRAINT campaign_templates_created_by_id_fkey;
+ALTER TABLE ONLY public.campaign_templates DROP CONSTRAINT campaign_templates_connection_id_fkey;
+ALTER TABLE ONLY public.campaign_templates DROP CONSTRAINT campaign_templates_company_id_fkey;
+ALTER TABLE ONLY public.campaign_recipients DROP CONSTRAINT campaign_recipients_conversation_id_fkey;
+ALTER TABLE ONLY public.campaign_recipients DROP CONSTRAINT campaign_recipients_contact_id_fkey;
+ALTER TABLE ONLY public.campaign_recipients DROP CONSTRAINT campaign_recipients_campaign_id_fkey;
+ALTER TABLE ONLY public.campaign_queue DROP CONSTRAINT campaign_queue_recipient_id_fkey;
+ALTER TABLE ONLY public.campaign_queue DROP CONSTRAINT campaign_queue_campaign_id_fkey;
+ALTER TABLE ONLY public.campaign_queue DROP CONSTRAINT campaign_queue_account_id_fkey;
+ALTER TABLE ONLY public.campaign_messages DROP CONSTRAINT campaign_messages_recipient_id_fkey;
+ALTER TABLE ONLY public.campaign_messages DROP CONSTRAINT campaign_messages_message_id_fkey;
+ALTER TABLE ONLY public.campaign_messages DROP CONSTRAINT campaign_messages_campaign_id_fkey;
+ALTER TABLE ONLY public.campaign_analytics DROP CONSTRAINT campaign_analytics_campaign_id_fkey;
+ALTER TABLE ONLY public.calls DROP CONSTRAINT calls_conversation_id_fkey;
+ALTER TABLE ONLY public.calls DROP CONSTRAINT calls_contact_id_fkey;
+ALTER TABLE ONLY public.calls DROP CONSTRAINT calls_company_id_fkey;
+ALTER TABLE ONLY public.calls DROP CONSTRAINT calls_channel_id_fkey;
+ALTER TABLE ONLY public.calendly_calendar_tokens DROP CONSTRAINT calendly_calendar_tokens_user_id_fkey;
+ALTER TABLE ONLY public.calendly_calendar_tokens DROP CONSTRAINT calendly_calendar_tokens_company_id_fkey;
+ALTER TABLE ONLY public.backup_schedules DROP CONSTRAINT backup_schedules_created_by_user_id_fkey;
+ALTER TABLE ONLY public.backup_schedules DROP CONSTRAINT backup_schedules_company_id_fkey;
+ALTER TABLE ONLY public.backup_audit_logs DROP CONSTRAINT backup_audit_logs_user_id_fkey;
+ALTER TABLE ONLY public.backup_audit_logs DROP CONSTRAINT backup_audit_logs_company_id_fkey;
+ALTER TABLE ONLY public.api_usage DROP CONSTRAINT api_usage_company_id_fkey;
+ALTER TABLE ONLY public.api_usage DROP CONSTRAINT api_usage_api_key_id_fkey;
+ALTER TABLE ONLY public.api_rate_limits DROP CONSTRAINT api_rate_limits_api_key_id_fkey;
+ALTER TABLE ONLY public.api_keys DROP CONSTRAINT api_keys_user_id_fkey;
+ALTER TABLE ONLY public.api_keys DROP CONSTRAINT api_keys_company_id_fkey;
+ALTER TABLE ONLY public.ai_credential_usage DROP CONSTRAINT ai_credential_usage_flow_id_fkey;
+ALTER TABLE ONLY public.ai_credential_usage DROP CONSTRAINT ai_credential_usage_conversation_id_fkey;
+ALTER TABLE ONLY public.ai_credential_usage DROP CONSTRAINT ai_credential_usage_company_id_fkey;
+ALTER TABLE ONLY public.affiliates DROP CONSTRAINT affiliates_user_id_fkey;
+ALTER TABLE ONLY public.affiliates DROP CONSTRAINT affiliates_company_id_fkey;
+ALTER TABLE ONLY public.affiliates DROP CONSTRAINT affiliates_approved_by_fkey;
+ALTER TABLE ONLY public.affiliate_relationships DROP CONSTRAINT affiliate_relationships_parent_affiliate_id_fkey;
+ALTER TABLE ONLY public.affiliate_relationships DROP CONSTRAINT affiliate_relationships_company_id_fkey;
+ALTER TABLE ONLY public.affiliate_relationships DROP CONSTRAINT affiliate_relationships_child_affiliate_id_fkey;
+ALTER TABLE ONLY public.affiliate_referrals DROP CONSTRAINT affiliate_referrals_referred_user_id_fkey;
+ALTER TABLE ONLY public.affiliate_referrals DROP CONSTRAINT affiliate_referrals_referred_company_id_fkey;
+ALTER TABLE ONLY public.affiliate_referrals DROP CONSTRAINT affiliate_referrals_company_id_fkey;
+ALTER TABLE ONLY public.affiliate_referrals DROP CONSTRAINT affiliate_referrals_commission_structure_id_fkey;
+ALTER TABLE ONLY public.affiliate_referrals DROP CONSTRAINT affiliate_referrals_affiliate_id_fkey;
+ALTER TABLE ONLY public.affiliate_payouts DROP CONSTRAINT affiliate_payouts_processed_by_fkey;
+ALTER TABLE ONLY public.affiliate_payouts DROP CONSTRAINT affiliate_payouts_company_id_fkey;
+ALTER TABLE ONLY public.affiliate_payouts DROP CONSTRAINT affiliate_payouts_affiliate_id_fkey;
+ALTER TABLE ONLY public.affiliate_earnings_transactions DROP CONSTRAINT affiliate_earnings_transactions_referral_id_fkey;
+ALTER TABLE ONLY public.affiliate_earnings_transactions DROP CONSTRAINT affiliate_earnings_transactions_payout_id_fkey;
+ALTER TABLE ONLY public.affiliate_earnings_transactions DROP CONSTRAINT affiliate_earnings_transactions_payment_transaction_id_fkey;
+ALTER TABLE ONLY public.affiliate_earnings_transactions DROP CONSTRAINT affiliate_earnings_transactions_company_id_fkey;
+ALTER TABLE ONLY public.affiliate_earnings_transactions DROP CONSTRAINT affiliate_earnings_transactions_affiliate_id_fkey;
+ALTER TABLE ONLY public.affiliate_earnings_balance DROP CONSTRAINT affiliate_earnings_balance_company_id_fkey;
+ALTER TABLE ONLY public.affiliate_earnings_balance DROP CONSTRAINT affiliate_earnings_balance_affiliate_id_fkey;
+ALTER TABLE ONLY public.affiliate_commission_structures DROP CONSTRAINT affiliate_commission_structures_plan_id_fkey;
+ALTER TABLE ONLY public.affiliate_commission_structures DROP CONSTRAINT affiliate_commission_structures_company_id_fkey;
+ALTER TABLE ONLY public.affiliate_commission_structures DROP CONSTRAINT affiliate_commission_structures_affiliate_id_fkey;
+ALTER TABLE ONLY public.affiliate_clicks DROP CONSTRAINT affiliate_clicks_referral_id_fkey;
+ALTER TABLE ONLY public.affiliate_clicks DROP CONSTRAINT affiliate_clicks_company_id_fkey;
+ALTER TABLE ONLY public.affiliate_clicks DROP CONSTRAINT affiliate_clicks_affiliate_id_fkey;
+ALTER TABLE ONLY public.affiliate_applications DROP CONSTRAINT affiliate_applications_reviewed_by_fkey;
+ALTER TABLE ONLY public.affiliate_analytics DROP CONSTRAINT affiliate_analytics_company_id_fkey;
+ALTER TABLE ONLY public.affiliate_analytics DROP CONSTRAINT affiliate_analytics_affiliate_id_fkey;
+DROP TRIGGER update_system_updates_updated_at ON public.system_updates;
+DROP TRIGGER update_system_ai_credentials_updated_at ON public.system_ai_credentials;
+DROP TRIGGER update_inbox_restores_updated_at ON public.inbox_restores;
+DROP TRIGGER update_inbox_backups_updated_at ON public.inbox_backups;
+DROP TRIGGER update_coupon_codes_updated_at ON public.coupon_codes;
+DROP TRIGGER update_company_ai_preferences_updated_at ON public.company_ai_preferences;
+DROP TRIGGER update_company_ai_credentials_updated_at ON public.company_ai_credentials;
+DROP TRIGGER update_backup_schedules_updated_at ON public.backup_schedules;
+DROP TRIGGER trigger_whatsapp_accounts_updated_at ON public.whatsapp_accounts;
+DROP TRIGGER trigger_update_whatsapp_account_health ON public.whatsapp_accounts;
+DROP TRIGGER trigger_update_user_social_accounts_updated_at ON public.user_social_accounts;
+DROP TRIGGER trigger_update_usage_timestamp ON public.companies;
+DROP TRIGGER trigger_update_template_usage ON public.campaigns;
+DROP TRIGGER trigger_update_segment_count ON public.contacts;
+DROP TRIGGER trigger_update_company_pages_updated_at ON public.company_pages;
+DROP TRIGGER trigger_update_campaign_stats ON public.campaign_recipients;
+DROP TRIGGER trigger_update_affiliate_earnings_balance ON public.affiliate_earnings_transactions;
+DROP TRIGGER trigger_set_company_pages_published_at ON public.company_pages;
+DROP TRIGGER trigger_messages_unread_count ON public.messages;
+DROP TRIGGER trigger_log_coupon_usage ON public.coupon_usage;
+DROP TRIGGER trigger_create_company_role_permissions ON public.companies;
+DROP TRIGGER trigger_create_company_pipeline_stages ON public.companies;
+DROP TRIGGER trigger_contact_segments_updated_at ON public.contact_segments;
+DROP TRIGGER trigger_check_deal_stage_company_match ON public.deals;
+DROP TRIGGER trigger_campaigns_updated_at ON public.campaigns;
+DROP TRIGGER trigger_campaign_templates_updated_at ON public.campaign_templates;
+DROP TRIGGER trigger_campaign_recipients_updated_at ON public.campaign_recipients;
+DROP TRIGGER trigger_campaign_queue_updated_at ON public.campaign_queue;
+DROP TRIGGER subscription_consistency_trigger ON public.companies;
+DROP INDEX public.idx_zoho_calendar_tokens_user_company;
+DROP INDEX public.idx_zoho_calendar_tokens_company;
+DROP INDEX public.idx_whatsapp_proxy_servers_enabled;
+DROP INDEX public.idx_whatsapp_proxy_servers_company;
+DROP INDEX public.idx_whatsapp_accounts_rotation_group;
+DROP INDEX public.idx_whatsapp_accounts_message_counts;
+DROP INDEX public.idx_whatsapp_accounts_health_score;
+DROP INDEX public.idx_whatsapp_accounts_health_activity;
+DROP INDEX public.idx_whatsapp_accounts_connection_status;
+DROP INDEX public.idx_whatsapp_accounts_company_id;
+DROP INDEX public.idx_whatsapp_accounts_company_active;
+DROP INDEX public.idx_whatsapp_account_logs_severity;
+DROP INDEX public.idx_whatsapp_account_logs_event_type;
+DROP INDEX public.idx_whatsapp_account_logs_created_at;
+DROP INDEX public.idx_whatsapp_account_logs_account_id;
+DROP INDEX public.idx_websites_status;
+DROP INDEX public.idx_websites_slug;
+DROP INDEX public.idx_websites_published_at;
+DROP INDEX public.idx_websites_created_by;
+DROP INDEX public.idx_website_templates_created_by;
+DROP INDEX public.idx_website_templates_category;
+DROP INDEX public.idx_website_templates_active;
+DROP INDEX public.idx_website_assets_website_id;
+DROP INDEX public.idx_website_assets_type;
+DROP INDEX public.idx_users_username_active;
+DROP INDEX public.idx_users_role;
+DROP INDEX public.idx_users_language_preference;
+DROP INDEX public.idx_users_email;
+DROP INDEX public.idx_users_company_role;
+DROP INDEX public.idx_users_company_id;
+DROP INDEX public.idx_users_active;
+DROP INDEX public.idx_user_social_accounts_user_id;
+DROP INDEX public.idx_user_social_accounts_provider_user_id;
+DROP INDEX public.idx_user_social_accounts_provider_email;
+DROP INDEX public.idx_user_social_accounts_provider;
+DROP INDEX public.idx_usage_tracking_soft_limit;
+DROP INDEX public.idx_usage_tracking_metric_name;
+DROP INDEX public.idx_usage_tracking_hard_limit;
+DROP INDEX public.idx_usage_tracking_company_id;
+DROP INDEX public.idx_unique_active_contact_deal;
+DROP INDEX public.idx_translations_language_id;
+DROP INDEX public.idx_translations_key_id;
+DROP INDEX public.idx_translation_keys_namespace;
+DROP INDEX public.idx_team_invitations_token;
+DROP INDEX public.idx_team_invitations_status;
+DROP INDEX public.idx_team_invitations_email;
+DROP INDEX public.idx_team_invitations_company_id;
+DROP INDEX public.idx_task_categories_company_id;
+DROP INDEX public.idx_system_updates_version;
+DROP INDEX public.idx_system_updates_status;
+DROP INDEX public.idx_system_updates_created_at;
+DROP INDEX public.idx_system_ai_credentials_provider;
+DROP INDEX public.idx_system_ai_credentials_default;
+DROP INDEX public.idx_subscription_events_event_type;
+DROP INDEX public.idx_subscription_events_created_at;
+DROP INDEX public.idx_subscription_events_company_id;
+DROP INDEX public.idx_scheduled_messages_status;
+DROP INDEX public.idx_scheduled_messages_scheduled_for;
+DROP INDEX public.idx_scheduled_messages_created_by;
+DROP INDEX public.idx_scheduled_messages_conversation_id;
+DROP INDEX public.idx_scheduled_messages_company_id;
+DROP INDEX public.idx_scheduled_messages_channel_id;
+DROP INDEX public.idx_quick_reply_templates_usage_count;
+DROP INDEX public.idx_quick_reply_templates_sort_order;
+DROP INDEX public.idx_quick_reply_templates_created_by;
+DROP INDEX public.idx_quick_reply_templates_company_id;
+DROP INDEX public.idx_quick_reply_templates_company_active;
+DROP INDEX public.idx_quick_reply_templates_category;
+DROP INDEX public.idx_quick_reply_templates_active;
+DROP INDEX public.idx_plans_billing_interval;
+DROP INDEX public.idx_plan_changes_processed;
+DROP INDEX public.idx_plan_changes_effective_date;
+DROP INDEX public.idx_plan_changes_company_id;
+DROP INDEX public.idx_plan_ai_usage_tracking_provider;
+DROP INDEX public.idx_plan_ai_usage_tracking_plan_id;
+DROP INDEX public.idx_plan_ai_usage_tracking_month_year;
+DROP INDEX public.idx_plan_ai_usage_tracking_date;
+DROP INDEX public.idx_plan_ai_usage_tracking_company_id;
+DROP INDEX public.idx_plan_ai_provider_configs_provider;
+DROP INDEX public.idx_plan_ai_provider_configs_plan_id;
+DROP INDEX public.idx_plan_ai_billing_events_type;
+DROP INDEX public.idx_plan_ai_billing_events_processed;
+DROP INDEX public.idx_plan_ai_billing_events_plan_id;
+DROP INDEX public.idx_plan_ai_billing_events_created_at;
+DROP INDEX public.idx_plan_ai_billing_events_company_id;
+DROP INDEX public.idx_pipeline_stages_order;
+DROP INDEX public.idx_pipeline_stages_company_id;
+DROP INDEX public.idx_payment_transactions_status;
+DROP INDEX public.idx_payment_transactions_recurring;
+DROP INDEX public.idx_payment_transactions_period;
+DROP INDEX public.idx_payment_transactions_payment_method;
+DROP INDEX public.idx_payment_transactions_created_at;
+DROP INDEX public.idx_payment_transactions_company_status;
+DROP INDEX public.idx_payment_transactions_company_id;
+DROP INDEX public.idx_password_reset_tokens_user_id;
+DROP INDEX public.idx_password_reset_tokens_token;
+DROP INDEX public.idx_password_reset_tokens_expires_at;
+DROP INDEX public.idx_partner_configurations_provider;
+DROP INDEX public.idx_partner_configurations_active;
+DROP INDEX public.idx_notifications_status;
+DROP INDEX public.idx_notifications_scheduled_for;
+DROP INDEX public.idx_notifications_company_id;
+DROP INDEX public.idx_notes_contact_created;
+DROP INDEX public.idx_meta_whatsapp_phone_numbers_status;
+DROP INDEX public.idx_meta_whatsapp_phone_numbers_phone_number_id;
+DROP INDEX public.idx_meta_whatsapp_phone_numbers_phone_number;
+DROP INDEX public.idx_meta_whatsapp_phone_numbers_client_id;
+DROP INDEX public.idx_meta_whatsapp_clients_status;
+DROP INDEX public.idx_meta_whatsapp_clients_company_id;
+DROP INDEX public.idx_meta_whatsapp_clients_business_account_id;
+DROP INDEX public.idx_messages_type_reaction;
+DROP INDEX public.idx_messages_sender;
+DROP INDEX public.idx_messages_read_status;
+DROP INDEX public.idx_messages_reaction_conversation;
+DROP INDEX public.idx_messages_outbound_recent;
+DROP INDEX public.idx_messages_metadata_message_id;
+DROP INDEX public.idx_messages_history_sync;
+DROP INDEX public.idx_messages_group_participant;
+DROP INDEX public.idx_messages_external_id;
+DROP INDEX public.idx_messages_email_message_id;
+DROP INDEX public.idx_messages_email_in_reply_to;
+DROP INDEX public.idx_messages_direction_status;
+DROP INDEX public.idx_messages_direction;
+DROP INDEX public.idx_messages_created_at;
+DROP INDEX public.idx_messages_conversation_unread;
+DROP INDEX public.idx_messages_conversation_timestamp;
+DROP INDEX public.idx_messages_conversation_sent;
+DROP INDEX public.idx_messages_conversation_id;
+DROP INDEX public.idx_messages_conversation_direction_created;
+DROP INDEX public.idx_messages_conversation_direction;
+DROP INDEX public.idx_messages_conversation_created;
+DROP INDEX public.idx_messages_content_search;
+DROP INDEX public.idx_knowledge_base_usage_node_id;
+DROP INDEX public.idx_knowledge_base_usage_created_at;
+DROP INDEX public.idx_knowledge_base_usage_company_id;
+DROP INDEX public.idx_knowledge_base_documents_status;
+DROP INDEX public.idx_knowledge_base_documents_node_id;
+DROP INDEX public.idx_knowledge_base_documents_company_id;
+DROP INDEX public.idx_knowledge_base_document_nodes_node_id;
+DROP INDEX public.idx_knowledge_base_document_nodes_document_id;
+DROP INDEX public.idx_knowledge_base_document_nodes_company_id;
+DROP INDEX public.idx_knowledge_base_configs_node_id;
+DROP INDEX public.idx_knowledge_base_configs_company_id;
+DROP INDEX public.idx_knowledge_base_chunks_document_id;
+DROP INDEX public.idx_knowledge_base_chunks_chunk_index;
+DROP INDEX public.idx_inbox_restores_status;
+DROP INDEX public.idx_inbox_restores_created_at;
+DROP INDEX public.idx_inbox_restores_company_id;
+DROP INDEX public.idx_inbox_restores_backup_id;
+DROP INDEX public.idx_inbox_backups_type;
+DROP INDEX public.idx_inbox_backups_status;
+DROP INDEX public.idx_inbox_backups_created_at;
+DROP INDEX public.idx_inbox_backups_company_id;
+DROP INDEX public.idx_history_sync_batches_status;
+DROP INDEX public.idx_history_sync_batches_connection;
+DROP INDEX public.idx_history_sync_batches_company;
+DROP INDEX public.idx_history_sync_batches_batch_id;
+DROP INDEX public.idx_group_participants_jid;
+DROP INDEX public.idx_group_participants_conversation;
+DROP INDEX public.idx_group_participants_contact;
+DROP INDEX public.idx_group_participants_admin;
+DROP INDEX public.idx_group_participants_active;
+DROP INDEX public.idx_follow_up_templates_is_active;
+DROP INDEX public.idx_follow_up_templates_company_id;
+DROP INDEX public.idx_follow_up_templates_category;
+DROP INDEX public.idx_follow_up_templates_active;
+DROP INDEX public.idx_follow_up_schedules_trigger_event;
+DROP INDEX public.idx_follow_up_schedules_timezone;
+DROP INDEX public.idx_follow_up_schedules_status;
+DROP INDEX public.idx_follow_up_schedules_session_id;
+DROP INDEX public.idx_follow_up_schedules_scheduled_for;
+DROP INDEX public.idx_follow_up_schedules_expires_at;
+DROP INDEX public.idx_follow_up_schedules_execution;
+DROP INDEX public.idx_follow_up_schedules_conversation_id;
+DROP INDEX public.idx_follow_up_schedules_contact_id;
+DROP INDEX public.idx_follow_up_schedules_company_id;
+DROP INDEX public.idx_follow_up_schedules_company_execution;
+DROP INDEX public.idx_follow_up_execution_log_status;
+DROP INDEX public.idx_follow_up_execution_log_schedule_id;
+DROP INDEX public.idx_follow_up_execution_log_schedule;
+DROP INDEX public.idx_follow_up_execution_log_executed_at;
+DROP INDEX public.idx_flows_user_id;
+DROP INDEX public.idx_flows_status;
+DROP INDEX public.idx_flows_company_status;
+DROP INDEX public.idx_flows_company_id;
+DROP INDEX public.idx_flow_step_executions_session_id;
+DROP INDEX public.idx_flow_step_executions_node_id;
+DROP INDEX public.idx_flow_step_executions_flow_execution_id;
+DROP INDEX public.idx_flow_sessions_status;
+DROP INDEX public.idx_flow_sessions_last_activity;
+DROP INDEX public.idx_flow_sessions_expires_at;
+DROP INDEX public.idx_flow_sessions_conversation_status;
+DROP INDEX public.idx_flow_sessions_contact_id;
+DROP INDEX public.idx_flow_sessions_company_id;
+DROP INDEX public.idx_flow_session_variables_session_id;
+DROP INDEX public.idx_flow_session_variables_scope;
+DROP INDEX public.idx_flow_session_variables_expires_at;
+DROP INDEX public.idx_flow_session_cursors_waiting;
+DROP INDEX public.idx_flow_session_cursors_timeout;
+DROP INDEX public.idx_flow_session_cursors_session_id;
+DROP INDEX public.idx_flow_executions_started_at;
+DROP INDEX public.idx_flow_executions_flow_id;
+DROP INDEX public.idx_flow_executions_execution_id;
+DROP INDEX public.idx_flow_executions_conversation_id;
+DROP INDEX public.idx_flow_executions_company_status;
+DROP INDEX public.idx_flow_assignments_channel_active;
+DROP INDEX public.idx_email_configs_unique_channel;
+DROP INDEX public.idx_email_configs_status;
+DROP INDEX public.idx_email_configs_email_address;
+DROP INDEX public.idx_email_configs_channel_connection_id;
+DROP INDEX public.idx_email_attachments_message_id;
+DROP INDEX public.idx_email_attachments_content_id;
+DROP INDEX public.idx_dunning_status;
+DROP INDEX public.idx_dunning_next_attempt;
+DROP INDEX public.idx_dunning_company_id;
+DROP INDEX public.idx_dialog_360_clients_status;
+DROP INDEX public.idx_dialog_360_clients_company_id;
+DROP INDEX public.idx_dialog_360_clients_client_id;
+DROP INDEX public.idx_dialog_360_channels_status;
+DROP INDEX public.idx_dialog_360_channels_phone_number;
+DROP INDEX public.idx_dialog_360_channels_client_id;
+DROP INDEX public.idx_dialog_360_channels_channel_id;
+DROP INDEX public.idx_deals_status;
+DROP INDEX public.idx_deals_stage_id;
+DROP INDEX public.idx_deals_contact_status_company;
+DROP INDEX public.idx_deals_contact_phone_lookup;
+DROP INDEX public.idx_deals_contact_id;
+DROP INDEX public.idx_deals_company_id;
+DROP INDEX public.idx_deals_assigned_to_user_id;
+DROP INDEX public.idx_deal_activities_deal_created;
+DROP INDEX public.idx_coupon_usage_coupon_id;
+DROP INDEX public.idx_coupon_usage_company_user;
+DROP INDEX public.idx_coupon_codes_code;
+DROP INDEX public.idx_coupon_codes_active;
+DROP INDEX public.idx_conversations_webchat;
+DROP INDEX public.idx_conversations_unread_count;
+DROP INDEX public.idx_conversations_unread_company;
+DROP INDEX public.idx_conversations_status_company;
+DROP INDEX public.idx_conversations_status;
+DROP INDEX public.idx_conversations_starred;
+DROP INDEX public.idx_conversations_last_message_at;
+DROP INDEX public.idx_conversations_is_group;
+DROP INDEX public.idx_conversations_history_sync;
+DROP INDEX public.idx_conversations_group_jid;
+DROP INDEX public.idx_conversations_group_company;
+DROP INDEX public.idx_conversations_contact_id;
+DROP INDEX public.idx_conversations_contact_channel;
+DROP INDEX public.idx_conversations_contact;
+DROP INDEX public.idx_conversations_company_last_message;
+DROP INDEX public.idx_conversations_company_id;
+DROP INDEX public.idx_conversations_company_channel_type;
+DROP INDEX public.idx_conversations_channel_unread;
+DROP INDEX public.idx_conversations_channel_type;
+DROP INDEX public.idx_conversations_channel_starred;
+DROP INDEX public.idx_conversations_channel_last_message;
+DROP INDEX public.idx_conversations_channel_company;
+DROP INDEX public.idx_conversations_assigned_to_user_id;
+DROP INDEX public.idx_conversations_archived;
+DROP INDEX public.idx_conversations_active_non_archived;
+DROP INDEX public.idx_conversations_active;
+DROP INDEX public.idx_contacts_without_conversations;
+DROP INDEX public.idx_contacts_webchat_identifier;
+DROP INDEX public.idx_contacts_unique_phone_company;
+DROP INDEX public.idx_contacts_unique_identifier_company;
+DROP INDEX public.idx_contacts_unique_email_company;
+DROP INDEX public.idx_contacts_phone_company;
+DROP INDEX public.idx_contacts_phone;
+DROP INDEX public.idx_contacts_normalized_phone;
+DROP INDEX public.idx_contacts_name_lower;
+DROP INDEX public.idx_contacts_is_archived;
+DROP INDEX public.idx_contacts_identifier_type;
+DROP INDEX public.idx_contacts_identifier;
+DROP INDEX public.idx_contacts_history_sync;
+DROP INDEX public.idx_contacts_email_lower;
+DROP INDEX public.idx_contacts_email;
+DROP INDEX public.idx_contacts_company_lower;
+DROP INDEX public.idx_contacts_company_id;
+DROP INDEX public.idx_contacts_company_archived;
+DROP INDEX public.idx_contacts_company_active;
+DROP INDEX public.idx_contacts_active_company;
+DROP INDEX public.idx_contact_tasks_status_priority;
+DROP INDEX public.idx_contact_tasks_status;
+DROP INDEX public.idx_contact_tasks_priority;
+DROP INDEX public.idx_contact_tasks_due_date;
+DROP INDEX public.idx_contact_tasks_created_at;
+DROP INDEX public.idx_contact_tasks_contact_id;
+DROP INDEX public.idx_contact_tasks_contact_company;
+DROP INDEX public.idx_contact_tasks_company_status;
+DROP INDEX public.idx_contact_tasks_company_id;
+DROP INDEX public.idx_contact_segments_company_id;
+DROP INDEX public.idx_contact_documents_created_at;
+DROP INDEX public.idx_contact_documents_contact_id;
+DROP INDEX public.idx_contact_documents_category;
+DROP INDEX public.idx_contact_audit_logs_user_id;
+DROP INDEX public.idx_contact_audit_logs_created_at;
+DROP INDEX public.idx_contact_audit_logs_contact_id;
+DROP INDEX public.idx_contact_audit_logs_contact_created;
+DROP INDEX public.idx_contact_audit_logs_company_id;
+DROP INDEX public.idx_contact_audit_logs_action_type;
+DROP INDEX public.idx_contact_audit_logs_action_category;
+DROP INDEX public.idx_contact_appointments_type;
+DROP INDEX public.idx_contact_appointments_status;
+DROP INDEX public.idx_contact_appointments_scheduled_at;
+DROP INDEX public.idx_contact_appointments_contact_id;
+DROP INDEX public.idx_company_settings_key;
+DROP INDEX public.idx_company_settings_company_id;
+DROP INDEX public.idx_company_pages_slug;
+DROP INDEX public.idx_company_pages_published_at;
+DROP INDEX public.idx_company_pages_published;
+DROP INDEX public.idx_company_pages_featured;
+DROP INDEX public.idx_company_pages_company_id;
+DROP INDEX public.idx_company_ai_credentials_company;
+DROP INDEX public.idx_companies_usage;
+DROP INDEX public.idx_companies_subscription_status;
+DROP INDEX public.idx_companies_subscription_end_date;
+DROP INDEX public.idx_companies_subdomain;
+DROP INDEX public.idx_companies_stripe_subscription_id;
+DROP INDEX public.idx_companies_stripe_customer_id;
+DROP INDEX public.idx_companies_plan_id;
+DROP INDEX public.idx_companies_last_usage_update;
+DROP INDEX public.idx_companies_grace_period_end;
+DROP INDEX public.idx_channel_connections_webchat;
+DROP INDEX public.idx_channel_connections_user_type;
+DROP INDEX public.idx_channel_connections_user_id;
+DROP INDEX public.idx_channel_connections_type_status;
+DROP INDEX public.idx_channel_connections_type;
+DROP INDEX public.idx_channel_connections_proxy_server;
+DROP INDEX public.idx_channel_connections_proxy;
+DROP INDEX public.idx_channel_connections_history_sync;
+DROP INDEX public.idx_channel_connections_company_status;
+DROP INDEX public.idx_channel_connections_company_id;
+DROP INDEX public.idx_campaigns_whatsapp_channel_type;
+DROP INDEX public.idx_campaigns_status;
+DROP INDEX public.idx_campaigns_scheduled_at;
+DROP INDEX public.idx_campaigns_running;
+DROP INDEX public.idx_campaigns_created_by_id;
+DROP INDEX public.idx_campaigns_created_at;
+DROP INDEX public.idx_campaigns_company_status;
+DROP INDEX public.idx_campaigns_company_id;
+DROP INDEX public.idx_campaigns_channel_type;
+DROP INDEX public.idx_campaign_templates_whatsapp_template_status;
+DROP INDEX public.idx_campaign_templates_whatsapp_template_category;
+DROP INDEX public.idx_campaign_templates_whatsapp_channel_type;
+DROP INDEX public.idx_campaign_templates_connection_id;
+DROP INDEX public.idx_campaign_templates_company_id;
+DROP INDEX public.idx_campaign_templates_channel_type;
+DROP INDEX public.idx_campaign_templates_category;
+DROP INDEX public.idx_campaign_recipients_status;
+DROP INDEX public.idx_campaign_recipients_scheduled_at;
+DROP INDEX public.idx_campaign_recipients_contact_id;
+DROP INDEX public.idx_campaign_recipients_campaign_status;
+DROP INDEX public.idx_campaign_recipients_campaign_id;
+DROP INDEX public.idx_campaign_queue_status_scheduled;
+DROP INDEX public.idx_campaign_queue_status;
+DROP INDEX public.idx_campaign_queue_scheduled_for;
+DROP INDEX public.idx_campaign_queue_processing;
+DROP INDEX public.idx_campaign_queue_priority;
+DROP INDEX public.idx_campaign_queue_campaign_status;
+DROP INDEX public.idx_campaign_queue_campaign_id;
+DROP INDEX public.idx_campaign_queue_account_id;
+DROP INDEX public.idx_campaign_messages_whatsapp_message_id;
+DROP INDEX public.idx_campaign_messages_status;
+DROP INDEX public.idx_campaign_messages_recipient_id;
+DROP INDEX public.idx_campaign_messages_campaign_id;
+DROP INDEX public.idx_campaign_analytics_recorded_at;
+DROP INDEX public.idx_campaign_analytics_campaign_id;
+DROP INDEX public.idx_calendly_calendar_tokens_user_company;
+DROP INDEX public.idx_calendly_calendar_tokens_company;
+DROP INDEX public.idx_backup_schedules_next_run_at;
+DROP INDEX public.idx_backup_schedules_is_active;
+DROP INDEX public.idx_backup_schedules_company_id;
+DROP INDEX public.idx_backup_logs_timestamp;
+DROP INDEX public.idx_backup_logs_status;
+DROP INDEX public.idx_backup_audit_logs_user_id;
+DROP INDEX public.idx_backup_audit_logs_created_at;
+DROP INDEX public.idx_backup_audit_logs_company_id;
+DROP INDEX public.idx_backup_audit_logs_action;
+DROP INDEX public.idx_api_usage_status_code;
+DROP INDEX public.idx_api_usage_request_id;
+DROP INDEX public.idx_api_usage_endpoint;
+DROP INDEX public.idx_api_usage_created_at;
+DROP INDEX public.idx_api_usage_company_id;
+DROP INDEX public.idx_api_usage_api_key_id;
+DROP INDEX public.idx_api_rate_limits_window_type;
+DROP INDEX public.idx_api_rate_limits_window_start;
+DROP INDEX public.idx_api_rate_limits_unique;
+DROP INDEX public.idx_api_rate_limits_api_key_id;
+DROP INDEX public.idx_api_keys_user_id;
+DROP INDEX public.idx_api_keys_key_hash;
+DROP INDEX public.idx_api_keys_is_active;
+DROP INDEX public.idx_api_keys_expires_at;
+DROP INDEX public.idx_api_keys_company_id;
+DROP INDEX public.idx_ai_usage_provider;
+DROP INDEX public.idx_ai_usage_monthly;
+DROP INDEX public.idx_ai_usage_credential;
+DROP INDEX public.idx_ai_usage_company_date;
+DROP INDEX public.idx_affiliates_status;
+DROP INDEX public.idx_affiliates_email;
+DROP INDEX public.idx_affiliates_created_at;
+DROP INDEX public.idx_affiliates_company_id;
+DROP INDEX public.idx_affiliates_affiliate_code;
+DROP INDEX public.idx_affiliate_relationships_parent_affiliate_id;
+DROP INDEX public.idx_affiliate_relationships_level;
+DROP INDEX public.idx_affiliate_relationships_company_id;
+DROP INDEX public.idx_affiliate_relationships_child_affiliate_id;
+DROP INDEX public.idx_affiliate_referrals_status;
+DROP INDEX public.idx_affiliate_referrals_referred_company_id;
+DROP INDEX public.idx_affiliate_referrals_referral_code;
+DROP INDEX public.idx_affiliate_referrals_created_at;
+DROP INDEX public.idx_affiliate_referrals_company_id;
+DROP INDEX public.idx_affiliate_referrals_affiliate_id;
+DROP INDEX public.idx_affiliate_payouts_status;
+DROP INDEX public.idx_affiliate_payouts_created_at;
+DROP INDEX public.idx_affiliate_payouts_company_id;
+DROP INDEX public.idx_affiliate_payouts_affiliate_id;
+DROP INDEX public.idx_affiliate_earnings_transactions_type;
+DROP INDEX public.idx_affiliate_earnings_transactions_affiliate;
+DROP INDEX public.idx_affiliate_earnings_balance_company_affiliate;
+DROP INDEX public.idx_affiliate_commission_structures_plan_id;
+DROP INDEX public.idx_affiliate_commission_structures_company_id;
+DROP INDEX public.idx_affiliate_commission_structures_affiliate_id;
+DROP INDEX public.idx_affiliate_commission_structures_active;
+DROP INDEX public.idx_affiliate_clicks_ip_address;
+DROP INDEX public.idx_affiliate_clicks_created_at;
+DROP INDEX public.idx_affiliate_clicks_converted;
+DROP INDEX public.idx_affiliate_clicks_company_id;
+DROP INDEX public.idx_affiliate_clicks_affiliate_id;
+DROP INDEX public.idx_affiliate_applications_submitted_at;
+DROP INDEX public.idx_affiliate_applications_status;
+DROP INDEX public.idx_affiliate_applications_email;
+DROP INDEX public.idx_affiliate_analytics_period_type;
+DROP INDEX public.idx_affiliate_analytics_date;
+DROP INDEX public.idx_affiliate_analytics_company_id;
+DROP INDEX public.idx_affiliate_analytics_affiliate_id;
+DROP INDEX public."IDX_session_expire";
+ALTER TABLE ONLY public.zoho_calendar_tokens DROP CONSTRAINT zoho_calendar_tokens_user_id_company_id_key;
+ALTER TABLE ONLY public.zoho_calendar_tokens DROP CONSTRAINT zoho_calendar_tokens_pkey;
+ALTER TABLE ONLY public.whatsapp_proxy_servers DROP CONSTRAINT whatsapp_proxy_servers_pkey;
+ALTER TABLE ONLY public.whatsapp_accounts DROP CONSTRAINT whatsapp_accounts_pkey;
+ALTER TABLE ONLY public.whatsapp_accounts DROP CONSTRAINT whatsapp_accounts_company_id_phone_number_key;
+ALTER TABLE ONLY public.whatsapp_account_logs DROP CONSTRAINT whatsapp_account_logs_pkey;
+ALTER TABLE ONLY public.websites DROP CONSTRAINT websites_slug_key;
+ALTER TABLE ONLY public.websites DROP CONSTRAINT websites_pkey;
+ALTER TABLE ONLY public.website_templates DROP CONSTRAINT website_templates_pkey;
+ALTER TABLE ONLY public.website_assets DROP CONSTRAINT website_assets_pkey;
+ALTER TABLE ONLY public.users DROP CONSTRAINT users_username_key;
+ALTER TABLE ONLY public.users DROP CONSTRAINT users_pkey;
+ALTER TABLE ONLY public.user_social_accounts DROP CONSTRAINT user_social_accounts_user_id_provider_key;
+ALTER TABLE ONLY public.user_social_accounts DROP CONSTRAINT user_social_accounts_provider_provider_user_id_key;
+ALTER TABLE ONLY public.user_social_accounts DROP CONSTRAINT user_social_accounts_pkey;
+ALTER TABLE ONLY public.company_pages DROP CONSTRAINT unique_company_page_slug;
+ALTER TABLE ONLY public.translations DROP CONSTRAINT translations_pkey;
+ALTER TABLE ONLY public.translations DROP CONSTRAINT translations_key_id_language_id_key;
+ALTER TABLE ONLY public.translation_namespaces DROP CONSTRAINT translation_namespaces_pkey;
+ALTER TABLE ONLY public.translation_namespaces DROP CONSTRAINT translation_namespaces_name_key;
+ALTER TABLE ONLY public.translation_keys DROP CONSTRAINT translation_keys_pkey;
+ALTER TABLE ONLY public.translation_keys DROP CONSTRAINT translation_keys_namespace_id_key_key;
+ALTER TABLE ONLY public.team_invitations DROP CONSTRAINT team_invitations_token_key;
+ALTER TABLE ONLY public.team_invitations DROP CONSTRAINT team_invitations_pkey;
+ALTER TABLE ONLY public.task_categories DROP CONSTRAINT task_categories_pkey;
+ALTER TABLE ONLY public.system_updates DROP CONSTRAINT system_updates_pkey;
+ALTER TABLE ONLY public.system_ai_credentials DROP CONSTRAINT system_ai_credentials_provider_is_default_key;
+ALTER TABLE ONLY public.system_ai_credentials DROP CONSTRAINT system_ai_credentials_pkey;
+ALTER TABLE ONLY public.subscription_usage_tracking DROP CONSTRAINT subscription_usage_tracking_pkey;
+ALTER TABLE ONLY public.subscription_usage_tracking DROP CONSTRAINT subscription_usage_tracking_company_id_metric_name_key;
+ALTER TABLE ONLY public.subscription_plan_changes DROP CONSTRAINT subscription_plan_changes_pkey;
+ALTER TABLE ONLY public.subscription_notifications DROP CONSTRAINT subscription_notifications_pkey;
+ALTER TABLE ONLY public.subscription_events DROP CONSTRAINT subscription_events_pkey;
+ALTER TABLE ONLY public.session DROP CONSTRAINT session_pkey;
+ALTER TABLE ONLY public.scheduled_messages DROP CONSTRAINT scheduled_messages_pkey;
+ALTER TABLE ONLY public.role_permissions DROP CONSTRAINT role_permissions_pkey;
+ALTER TABLE ONLY public.role_permissions DROP CONSTRAINT role_permissions_company_id_role_key;
+ALTER TABLE ONLY public.quick_reply_templates DROP CONSTRAINT quick_reply_templates_pkey;
+ALTER TABLE ONLY public.plans DROP CONSTRAINT plans_pkey;
+ALTER TABLE ONLY public.plan_ai_usage_tracking DROP CONSTRAINT plan_ai_usage_tracking_pkey;
+ALTER TABLE ONLY public.plan_ai_usage_tracking DROP CONSTRAINT plan_ai_usage_tracking_company_id_plan_id_provider_usage_ye_key;
+ALTER TABLE ONLY public.plan_ai_provider_configs DROP CONSTRAINT plan_ai_provider_configs_plan_id_provider_key;
+ALTER TABLE ONLY public.plan_ai_provider_configs DROP CONSTRAINT plan_ai_provider_configs_pkey;
+ALTER TABLE ONLY public.plan_ai_billing_events DROP CONSTRAINT plan_ai_billing_events_pkey;
+ALTER TABLE ONLY public.pipeline_stages DROP CONSTRAINT pipeline_stages_pkey;
+ALTER TABLE ONLY public.payment_transactions DROP CONSTRAINT payment_transactions_pkey;
+ALTER TABLE ONLY public.password_reset_tokens DROP CONSTRAINT password_reset_tokens_token_key;
+ALTER TABLE ONLY public.password_reset_tokens DROP CONSTRAINT password_reset_tokens_pkey;
+ALTER TABLE ONLY public.partner_configurations DROP CONSTRAINT partner_configurations_provider_key;
+ALTER TABLE ONLY public.partner_configurations DROP CONSTRAINT partner_configurations_pkey;
+ALTER TABLE ONLY public.notes DROP CONSTRAINT notes_pkey;
+ALTER TABLE ONLY public.migrations DROP CONSTRAINT migrations_pkey;
+ALTER TABLE ONLY public.migrations DROP CONSTRAINT migrations_filename_key;
+ALTER TABLE ONLY public.migration_log DROP CONSTRAINT migration_log_pkey;
+ALTER TABLE ONLY public.meta_whatsapp_phone_numbers DROP CONSTRAINT meta_whatsapp_phone_numbers_pkey;
+ALTER TABLE ONLY public.meta_whatsapp_phone_numbers DROP CONSTRAINT meta_whatsapp_phone_numbers_phone_number_id_key;
+ALTER TABLE ONLY public.meta_whatsapp_clients DROP CONSTRAINT meta_whatsapp_clients_pkey;
+ALTER TABLE ONLY public.meta_whatsapp_clients DROP CONSTRAINT meta_whatsapp_clients_business_account_id_key;
+ALTER TABLE ONLY public.messages DROP CONSTRAINT messages_pkey;
+ALTER TABLE ONLY public.languages DROP CONSTRAINT languages_pkey;
+ALTER TABLE ONLY public.languages DROP CONSTRAINT languages_code_key;
+ALTER TABLE ONLY public.knowledge_base_usage DROP CONSTRAINT knowledge_base_usage_pkey;
+ALTER TABLE ONLY public.knowledge_base_documents DROP CONSTRAINT knowledge_base_documents_pkey;
+ALTER TABLE ONLY public.knowledge_base_document_nodes DROP CONSTRAINT knowledge_base_document_nodes_pkey;
+ALTER TABLE ONLY public.knowledge_base_document_nodes DROP CONSTRAINT knowledge_base_document_nodes_document_id_node_id_key;
+ALTER TABLE ONLY public.knowledge_base_configs DROP CONSTRAINT knowledge_base_configs_pkey;
+ALTER TABLE ONLY public.knowledge_base_configs DROP CONSTRAINT knowledge_base_configs_company_id_node_id_key;
+ALTER TABLE ONLY public.knowledge_base_chunks DROP CONSTRAINT knowledge_base_chunks_pkey;
+ALTER TABLE ONLY public.inbox_restores DROP CONSTRAINT inbox_restores_pkey;
+ALTER TABLE ONLY public.inbox_backups DROP CONSTRAINT inbox_backups_pkey;
+ALTER TABLE ONLY public.history_sync_batches DROP CONSTRAINT history_sync_batches_pkey;
+ALTER TABLE ONLY public.history_sync_batches DROP CONSTRAINT history_sync_batches_batch_id_key;
+ALTER TABLE ONLY public.group_participants DROP CONSTRAINT group_participants_pkey;
+ALTER TABLE ONLY public.group_participants DROP CONSTRAINT group_participants_conversation_id_participant_jid_key;
+ALTER TABLE ONLY public.google_calendar_tokens DROP CONSTRAINT google_calendar_tokens_user_id_company_id_key;
+ALTER TABLE ONLY public.google_calendar_tokens DROP CONSTRAINT google_calendar_tokens_pkey;
+ALTER TABLE ONLY public.follow_up_templates DROP CONSTRAINT follow_up_templates_pkey;
+ALTER TABLE ONLY public.follow_up_templates DROP CONSTRAINT follow_up_templates_company_id_name_key;
+ALTER TABLE ONLY public.follow_up_schedules DROP CONSTRAINT follow_up_schedules_schedule_id_key;
+ALTER TABLE ONLY public.follow_up_schedules DROP CONSTRAINT follow_up_schedules_pkey;
+ALTER TABLE ONLY public.follow_up_execution_log DROP CONSTRAINT follow_up_execution_log_pkey;
+ALTER TABLE ONLY public.flows DROP CONSTRAINT flows_pkey;
+ALTER TABLE ONLY public.flow_step_executions DROP CONSTRAINT flow_step_executions_pkey;
+ALTER TABLE ONLY public.flow_sessions DROP CONSTRAINT flow_sessions_session_id_key;
+ALTER TABLE ONLY public.flow_sessions DROP CONSTRAINT flow_sessions_pkey;
+ALTER TABLE ONLY public.flow_session_variables DROP CONSTRAINT flow_session_variables_session_id_variable_key_key;
+ALTER TABLE ONLY public.flow_session_variables DROP CONSTRAINT flow_session_variables_pkey;
+ALTER TABLE ONLY public.flow_session_cursors DROP CONSTRAINT flow_session_cursors_session_id_key;
+ALTER TABLE ONLY public.flow_session_cursors DROP CONSTRAINT flow_session_cursors_pkey;
+ALTER TABLE ONLY public.flow_executions DROP CONSTRAINT flow_executions_pkey;
+ALTER TABLE ONLY public.flow_executions DROP CONSTRAINT flow_executions_execution_id_key;
+ALTER TABLE ONLY public.flow_assignments DROP CONSTRAINT flow_assignments_pkey;
+ALTER TABLE ONLY public.email_configs DROP CONSTRAINT email_configs_pkey;
+ALTER TABLE ONLY public.email_attachments DROP CONSTRAINT email_attachments_pkey;
+ALTER TABLE ONLY public.dunning_management DROP CONSTRAINT dunning_management_pkey;
+ALTER TABLE ONLY public.dialog_360_clients DROP CONSTRAINT dialog_360_clients_pkey;
+ALTER TABLE ONLY public.dialog_360_clients DROP CONSTRAINT dialog_360_clients_client_id_key;
+ALTER TABLE ONLY public.dialog_360_channels DROP CONSTRAINT dialog_360_channels_pkey;
+ALTER TABLE ONLY public.dialog_360_channels DROP CONSTRAINT dialog_360_channels_channel_id_key;
+ALTER TABLE ONLY public.deals DROP CONSTRAINT deals_pkey;
+ALTER TABLE ONLY public.deal_activities DROP CONSTRAINT deal_activities_pkey;
+ALTER TABLE ONLY public.coupon_usage DROP CONSTRAINT coupon_usage_pkey;
+ALTER TABLE ONLY public.coupon_codes DROP CONSTRAINT coupon_codes_pkey;
+ALTER TABLE ONLY public.coupon_codes DROP CONSTRAINT coupon_codes_code_key;
+ALTER TABLE ONLY public.conversations DROP CONSTRAINT conversations_pkey;
+ALTER TABLE ONLY public.contacts DROP CONSTRAINT contacts_pkey;
+ALTER TABLE ONLY public.contact_tasks DROP CONSTRAINT contact_tasks_pkey;
+ALTER TABLE ONLY public.contact_segments DROP CONSTRAINT contact_segments_pkey;
+ALTER TABLE ONLY public.contact_documents DROP CONSTRAINT contact_documents_pkey;
+ALTER TABLE ONLY public.contact_audit_logs DROP CONSTRAINT contact_audit_logs_pkey;
+ALTER TABLE ONLY public.contact_appointments DROP CONSTRAINT contact_appointments_pkey;
+ALTER TABLE ONLY public.company_settings DROP CONSTRAINT company_settings_pkey;
+ALTER TABLE ONLY public.company_settings DROP CONSTRAINT company_settings_company_id_key_key;
+ALTER TABLE ONLY public.company_pages DROP CONSTRAINT company_pages_pkey;
+ALTER TABLE ONLY public.company_ai_preferences DROP CONSTRAINT company_ai_preferences_pkey;
+ALTER TABLE ONLY public.company_ai_preferences DROP CONSTRAINT company_ai_preferences_company_id_key;
+ALTER TABLE ONLY public.company_ai_credentials DROP CONSTRAINT company_ai_credentials_pkey;
+ALTER TABLE ONLY public.company_ai_credentials DROP CONSTRAINT company_ai_credentials_company_id_provider_key;
+ALTER TABLE ONLY public.companies DROP CONSTRAINT companies_subdomain_key;
+ALTER TABLE ONLY public.companies DROP CONSTRAINT companies_slug_key;
+ALTER TABLE ONLY public.companies DROP CONSTRAINT companies_pkey;
+ALTER TABLE ONLY public.channel_connections DROP CONSTRAINT channel_connections_pkey;
+ALTER TABLE ONLY public.campaigns DROP CONSTRAINT campaigns_pkey;
+ALTER TABLE ONLY public.campaign_templates DROP CONSTRAINT campaign_templates_pkey;
+ALTER TABLE ONLY public.campaign_recipients DROP CONSTRAINT campaign_recipients_pkey;
+ALTER TABLE ONLY public.campaign_recipients DROP CONSTRAINT campaign_recipients_campaign_id_contact_id_key;
+ALTER TABLE ONLY public.campaign_queue DROP CONSTRAINT campaign_queue_pkey;
+ALTER TABLE ONLY public.campaign_messages DROP CONSTRAINT campaign_messages_pkey;
+ALTER TABLE ONLY public.campaign_analytics DROP CONSTRAINT campaign_analytics_pkey;
+ALTER TABLE ONLY public.calls DROP CONSTRAINT calls_pkey;
+ALTER TABLE ONLY public.calendly_calendar_tokens DROP CONSTRAINT calendly_calendar_tokens_user_id_company_id_key;
+ALTER TABLE ONLY public.calendly_calendar_tokens DROP CONSTRAINT calendly_calendar_tokens_pkey;
+ALTER TABLE ONLY public.backup_schedules DROP CONSTRAINT backup_schedules_pkey;
+ALTER TABLE ONLY public.backup_logs DROP CONSTRAINT backup_logs_pkey;
+ALTER TABLE ONLY public.backup_logs DROP CONSTRAINT backup_logs_log_id_key;
+ALTER TABLE ONLY public.backup_audit_logs DROP CONSTRAINT backup_audit_logs_pkey;
+ALTER TABLE ONLY public.app_settings DROP CONSTRAINT app_settings_pkey;
+ALTER TABLE ONLY public.app_settings DROP CONSTRAINT app_settings_key_key;
+ALTER TABLE ONLY public.api_usage DROP CONSTRAINT api_usage_request_id_key;
+ALTER TABLE ONLY public.api_usage DROP CONSTRAINT api_usage_pkey;
+ALTER TABLE ONLY public.api_rate_limits DROP CONSTRAINT api_rate_limits_pkey;
+ALTER TABLE ONLY public.api_keys DROP CONSTRAINT api_keys_pkey;
+ALTER TABLE ONLY public.api_keys DROP CONSTRAINT api_keys_key_hash_key;
+ALTER TABLE ONLY public.ai_credential_usage DROP CONSTRAINT ai_credential_usage_pkey;
+ALTER TABLE ONLY public.affiliates DROP CONSTRAINT affiliates_pkey;
+ALTER TABLE ONLY public.affiliates DROP CONSTRAINT affiliates_affiliate_code_key;
+ALTER TABLE ONLY public.affiliate_relationships DROP CONSTRAINT affiliate_relationships_pkey;
+ALTER TABLE ONLY public.affiliate_relationships DROP CONSTRAINT affiliate_relationships_company_id_parent_affiliate_id_chil_key;
+ALTER TABLE ONLY public.affiliate_referrals DROP CONSTRAINT affiliate_referrals_pkey;
+ALTER TABLE ONLY public.affiliate_payouts DROP CONSTRAINT affiliate_payouts_pkey;
+ALTER TABLE ONLY public.affiliate_earnings_transactions DROP CONSTRAINT affiliate_earnings_transactions_pkey;
+ALTER TABLE ONLY public.affiliate_earnings_balance DROP CONSTRAINT affiliate_earnings_balance_pkey;
+ALTER TABLE ONLY public.affiliate_earnings_balance DROP CONSTRAINT affiliate_earnings_balance_company_id_affiliate_id_key;
+ALTER TABLE ONLY public.affiliate_commission_structures DROP CONSTRAINT affiliate_commission_structures_pkey;
+ALTER TABLE ONLY public.affiliate_clicks DROP CONSTRAINT affiliate_clicks_pkey;
+ALTER TABLE ONLY public.affiliate_applications DROP CONSTRAINT affiliate_applications_pkey;
+ALTER TABLE ONLY public.affiliate_applications DROP CONSTRAINT affiliate_applications_email_key;
+ALTER TABLE ONLY public.affiliate_analytics DROP CONSTRAINT affiliate_analytics_pkey;
+ALTER TABLE ONLY public.affiliate_analytics DROP CONSTRAINT affiliate_analytics_company_id_affiliate_id_date_period_typ_key;
+ALTER TABLE public.zoho_calendar_tokens ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.whatsapp_proxy_servers ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.whatsapp_accounts ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.whatsapp_account_logs ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.websites ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.website_templates ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.website_assets ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.users ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.user_social_accounts ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.translations ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.translation_namespaces ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.translation_keys ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.team_invitations ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.task_categories ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.system_updates ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.system_ai_credentials ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.subscription_usage_tracking ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.subscription_plan_changes ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.subscription_notifications ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.subscription_events ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.scheduled_messages ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.role_permissions ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.quick_reply_templates ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.plans ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.plan_ai_usage_tracking ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.plan_ai_provider_configs ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.plan_ai_billing_events ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.pipeline_stages ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.payment_transactions ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.password_reset_tokens ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.partner_configurations ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.notes ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.migrations ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.migration_log ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.meta_whatsapp_phone_numbers ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.meta_whatsapp_clients ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.messages ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.languages ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.knowledge_base_usage ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.knowledge_base_documents ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.knowledge_base_document_nodes ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.knowledge_base_configs ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.knowledge_base_chunks ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.inbox_restores ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.inbox_backups ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.history_sync_batches ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.group_participants ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.google_calendar_tokens ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.follow_up_templates ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.follow_up_schedules ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.follow_up_execution_log ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.flows ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.flow_step_executions ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.flow_sessions ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.flow_session_variables ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.flow_session_cursors ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.flow_executions ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.flow_assignments ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.email_configs ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.email_attachments ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.dunning_management ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.dialog_360_clients ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.dialog_360_channels ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.deals ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.deal_activities ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.coupon_usage ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.coupon_codes ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.conversations ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.contacts ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.contact_tasks ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.contact_segments ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.contact_documents ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.contact_audit_logs ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.contact_appointments ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.company_settings ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.company_pages ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.company_ai_preferences ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.company_ai_credentials ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.companies ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.channel_connections ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.campaigns ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.campaign_templates ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.campaign_recipients ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.campaign_queue ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.campaign_messages ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.campaign_analytics ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.calls ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.calendly_calendar_tokens ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.backup_schedules ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.backup_logs ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.backup_audit_logs ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.app_settings ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.api_usage ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.api_rate_limits ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.api_keys ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.ai_credential_usage ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.affiliates ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.affiliate_relationships ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.affiliate_referrals ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.affiliate_payouts ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.affiliate_earnings_transactions ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.affiliate_earnings_balance ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.affiliate_commission_structures ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.affiliate_clicks ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.affiliate_applications ALTER COLUMN id DROP DEFAULT;
+ALTER TABLE public.affiliate_analytics ALTER COLUMN id DROP DEFAULT;
+DROP SEQUENCE public.zoho_calendar_tokens_id_seq;
+DROP TABLE public.zoho_calendar_tokens;
+DROP SEQUENCE public.whatsapp_proxy_servers_id_seq;
+DROP TABLE public.whatsapp_proxy_servers;
+DROP SEQUENCE public.whatsapp_accounts_id_seq;
+DROP TABLE public.whatsapp_accounts;
+DROP SEQUENCE public.whatsapp_account_logs_id_seq;
+DROP TABLE public.whatsapp_account_logs;
+DROP SEQUENCE public.websites_id_seq;
+DROP TABLE public.websites;
+DROP SEQUENCE public.website_templates_id_seq;
+DROP TABLE public.website_templates;
+DROP SEQUENCE public.website_assets_id_seq;
+DROP TABLE public.website_assets;
+DROP SEQUENCE public.users_id_seq;
+DROP TABLE public.users;
+DROP SEQUENCE public.user_social_accounts_id_seq;
+DROP TABLE public.user_social_accounts;
+DROP SEQUENCE public.translations_id_seq;
+DROP TABLE public.translations;
+DROP SEQUENCE public.translation_namespaces_id_seq;
+DROP TABLE public.translation_namespaces;
+DROP SEQUENCE public.translation_keys_id_seq;
+DROP TABLE public.translation_keys;
+DROP SEQUENCE public.team_invitations_id_seq;
+DROP TABLE public.team_invitations;
+DROP SEQUENCE public.task_categories_id_seq;
+DROP TABLE public.task_categories;
+DROP SEQUENCE public.system_updates_id_seq;
+DROP TABLE public.system_updates;
+DROP SEQUENCE public.system_ai_credentials_id_seq;
+DROP TABLE public.system_ai_credentials;
+DROP SEQUENCE public.subscription_usage_tracking_id_seq;
+DROP TABLE public.subscription_usage_tracking;
+DROP SEQUENCE public.subscription_plan_changes_id_seq;
+DROP TABLE public.subscription_plan_changes;
+DROP SEQUENCE public.subscription_notifications_id_seq;
+DROP TABLE public.subscription_notifications;
+DROP SEQUENCE public.subscription_events_id_seq;
+DROP TABLE public.subscription_events;
+DROP TABLE public.session;
+DROP SEQUENCE public.scheduled_messages_id_seq;
+DROP TABLE public.scheduled_messages;
+DROP SEQUENCE public.role_permissions_id_seq;
+DROP TABLE public.role_permissions;
+DROP SEQUENCE public.quick_reply_templates_id_seq;
+DROP TABLE public.quick_reply_templates;
+DROP SEQUENCE public.plans_id_seq;
+DROP SEQUENCE public.plan_ai_usage_tracking_id_seq;
+DROP TABLE public.plan_ai_usage_tracking;
+DROP SEQUENCE public.plan_ai_provider_configs_id_seq;
+DROP TABLE public.plan_ai_provider_configs;
+DROP SEQUENCE public.plan_ai_billing_events_id_seq;
+DROP TABLE public.plan_ai_billing_events;
+DROP SEQUENCE public.pipeline_stages_id_seq;
+DROP TABLE public.pipeline_stages;
+DROP SEQUENCE public.payment_transactions_id_seq;
+DROP TABLE public.payment_transactions;
+DROP SEQUENCE public.password_reset_tokens_id_seq;
+DROP TABLE public.password_reset_tokens;
+DROP SEQUENCE public.partner_configurations_id_seq;
+DROP TABLE public.partner_configurations;
+DROP SEQUENCE public.notes_id_seq;
+DROP TABLE public.notes;
+DROP SEQUENCE public.migrations_id_seq;
+DROP TABLE public.migrations;
+DROP SEQUENCE public.migration_log_id_seq;
+DROP TABLE public.migration_log;
+DROP SEQUENCE public.meta_whatsapp_phone_numbers_id_seq;
+DROP TABLE public.meta_whatsapp_phone_numbers;
+DROP SEQUENCE public.meta_whatsapp_clients_id_seq;
+DROP TABLE public.meta_whatsapp_clients;
+DROP SEQUENCE public.messages_id_seq;
+DROP TABLE public.messages;
+DROP SEQUENCE public.languages_id_seq;
+DROP TABLE public.languages;
+DROP SEQUENCE public.knowledge_base_usage_id_seq;
+DROP TABLE public.knowledge_base_usage;
+DROP SEQUENCE public.knowledge_base_documents_id_seq;
+DROP TABLE public.knowledge_base_documents;
+DROP SEQUENCE public.knowledge_base_document_nodes_id_seq;
+DROP TABLE public.knowledge_base_document_nodes;
+DROP SEQUENCE public.knowledge_base_configs_id_seq;
+DROP TABLE public.knowledge_base_configs;
+DROP SEQUENCE public.knowledge_base_chunks_id_seq;
+DROP TABLE public.knowledge_base_chunks;
+DROP SEQUENCE public.inbox_restores_id_seq;
+DROP TABLE public.inbox_restores;
+DROP SEQUENCE public.inbox_backups_id_seq;
+DROP TABLE public.inbox_backups;
+DROP SEQUENCE public.history_sync_batches_id_seq;
+DROP TABLE public.history_sync_batches;
+DROP SEQUENCE public.group_participants_id_seq;
+DROP TABLE public.group_participants;
+DROP SEQUENCE public.google_calendar_tokens_id_seq;
+DROP TABLE public.google_calendar_tokens;
+DROP SEQUENCE public.follow_up_templates_id_seq;
+DROP TABLE public.follow_up_templates;
+DROP SEQUENCE public.follow_up_schedules_id_seq;
+DROP TABLE public.follow_up_schedules;
+DROP SEQUENCE public.follow_up_execution_log_id_seq;
+DROP TABLE public.follow_up_execution_log;
+DROP SEQUENCE public.flows_id_seq;
+DROP TABLE public.flows;
+DROP SEQUENCE public.flow_step_executions_id_seq;
+DROP TABLE public.flow_step_executions;
+DROP SEQUENCE public.flow_sessions_id_seq;
+DROP TABLE public.flow_sessions;
+DROP SEQUENCE public.flow_session_variables_id_seq;
+DROP TABLE public.flow_session_variables;
+DROP SEQUENCE public.flow_session_cursors_id_seq;
+DROP TABLE public.flow_session_cursors;
+DROP SEQUENCE public.flow_executions_id_seq;
+DROP TABLE public.flow_executions;
+DROP SEQUENCE public.flow_assignments_id_seq;
+DROP TABLE public.flow_assignments;
+DROP SEQUENCE public.email_configs_id_seq;
+DROP TABLE public.email_configs;
+DROP SEQUENCE public.email_attachments_id_seq;
+DROP TABLE public.email_attachments;
+DROP SEQUENCE public.dunning_management_id_seq;
+DROP TABLE public.dunning_management;
+DROP SEQUENCE public.dialog_360_clients_id_seq;
+DROP TABLE public.dialog_360_clients;
+DROP SEQUENCE public.dialog_360_channels_id_seq;
+DROP TABLE public.dialog_360_channels;
+DROP SEQUENCE public.deals_id_seq;
+DROP TABLE public.deals;
+DROP SEQUENCE public.deal_activities_id_seq;
+DROP TABLE public.deal_activities;
+DROP SEQUENCE public.coupon_usage_id_seq;
+DROP TABLE public.coupon_usage;
+DROP SEQUENCE public.coupon_codes_id_seq;
+DROP TABLE public.coupon_codes;
+DROP SEQUENCE public.conversations_id_seq;
+DROP TABLE public.conversations;
+DROP SEQUENCE public.contacts_id_seq;
+DROP TABLE public.contacts;
+DROP SEQUENCE public.contact_tasks_id_seq;
+DROP TABLE public.contact_tasks;
+DROP SEQUENCE public.contact_segments_id_seq;
+DROP TABLE public.contact_segments;
+DROP SEQUENCE public.contact_documents_id_seq;
+DROP TABLE public.contact_documents;
+DROP SEQUENCE public.contact_audit_logs_id_seq;
+DROP TABLE public.contact_audit_logs;
+DROP SEQUENCE public.contact_appointments_id_seq;
+DROP TABLE public.contact_appointments;
+DROP VIEW public.company_usage_overview;
+DROP TABLE public.plans;
+DROP SEQUENCE public.company_settings_id_seq;
+DROP TABLE public.company_settings;
+DROP SEQUENCE public.company_pages_id_seq;
+DROP TABLE public.company_pages;
+DROP SEQUENCE public.company_ai_preferences_id_seq;
+DROP TABLE public.company_ai_preferences;
+DROP SEQUENCE public.company_ai_credentials_id_seq;
+DROP TABLE public.company_ai_credentials;
+DROP SEQUENCE public.companies_id_seq;
+DROP TABLE public.companies;
+DROP SEQUENCE public.channel_connections_id_seq;
+DROP TABLE public.channel_connections;
+DROP SEQUENCE public.campaigns_id_seq;
+DROP TABLE public.campaigns;
+DROP SEQUENCE public.campaign_templates_id_seq;
+DROP TABLE public.campaign_templates;
+DROP SEQUENCE public.campaign_recipients_id_seq;
+DROP TABLE public.campaign_recipients;
+DROP SEQUENCE public.campaign_queue_id_seq;
+DROP TABLE public.campaign_queue;
+DROP SEQUENCE public.campaign_messages_id_seq;
+DROP TABLE public.campaign_messages;
+DROP SEQUENCE public.campaign_analytics_id_seq;
+DROP TABLE public.campaign_analytics;
+DROP SEQUENCE public.calls_id_seq;
+DROP TABLE public.calls;
+DROP SEQUENCE public.calendly_calendar_tokens_id_seq;
+DROP TABLE public.calendly_calendar_tokens;
+DROP SEQUENCE public.backup_schedules_id_seq;
+DROP TABLE public.backup_schedules;
+DROP SEQUENCE public.backup_logs_id_seq;
+DROP TABLE public.backup_logs;
+DROP SEQUENCE public.backup_audit_logs_id_seq;
+DROP TABLE public.backup_audit_logs;
+DROP SEQUENCE public.app_settings_id_seq;
+DROP TABLE public.app_settings;
+DROP SEQUENCE public.api_usage_id_seq;
+DROP TABLE public.api_usage;
+DROP SEQUENCE public.api_rate_limits_id_seq;
+DROP TABLE public.api_rate_limits;
+DROP SEQUENCE public.api_keys_id_seq;
+DROP TABLE public.api_keys;
+DROP SEQUENCE public.ai_credential_usage_id_seq;
+DROP TABLE public.ai_credential_usage;
+DROP SEQUENCE public.affiliates_id_seq;
+DROP TABLE public.affiliates;
+DROP SEQUENCE public.affiliate_relationships_id_seq;
+DROP TABLE public.affiliate_relationships;
+DROP SEQUENCE public.affiliate_referrals_id_seq;
+DROP TABLE public.affiliate_referrals;
+DROP SEQUENCE public.affiliate_payouts_id_seq;
+DROP TABLE public.affiliate_payouts;
+DROP SEQUENCE public.affiliate_earnings_transactions_id_seq;
+DROP TABLE public.affiliate_earnings_transactions;
+DROP SEQUENCE public.affiliate_earnings_balance_id_seq;
+DROP TABLE public.affiliate_earnings_balance;
+DROP SEQUENCE public.affiliate_commission_structures_id_seq;
+DROP TABLE public.affiliate_commission_structures;
+DROP SEQUENCE public.affiliate_clicks_id_seq;
+DROP TABLE public.affiliate_clicks;
+DROP SEQUENCE public.affiliate_applications_id_seq;
+DROP TABLE public.affiliate_applications;
+DROP SEQUENCE public.affiliate_analytics_id_seq;
+DROP TABLE public.affiliate_analytics;
+DROP FUNCTION public.validate_subscription_consistency();
+DROP FUNCTION public.update_whatsapp_account_health();
+DROP FUNCTION public.update_user_social_accounts_updated_at();
+DROP FUNCTION public.update_usage_timestamp();
+DROP FUNCTION public.update_updated_at_column();
+DROP FUNCTION public.update_template_usage();
+DROP FUNCTION public.update_segment_count();
+DROP FUNCTION public.update_conversation_unread_count(conversation_id_param integer);
+DROP FUNCTION public.update_company_pages_updated_at();
+DROP FUNCTION public.update_campaign_stats();
+DROP FUNCTION public.update_backup_schedule_timestamp();
+DROP FUNCTION public.update_affiliate_earnings_balance();
+DROP FUNCTION public.trigger_update_unread_count();
+DROP FUNCTION public.set_company_pages_published_at();
+DROP FUNCTION public.log_coupon_usage();
+DROP FUNCTION public.get_whatsapp_message_id(metadata_json jsonb);
+DROP FUNCTION public.create_default_role_permissions(company_id_param integer);
+DROP FUNCTION public.create_default_pipeline_stages(company_id_param integer);
+DROP FUNCTION public.create_company_role_permissions();
+DROP FUNCTION public.create_company_pipeline_stages();
+DROP FUNCTION public.check_deal_stage_company_match();
+DROP FUNCTION public.calculate_unread_count(conversation_id_param integer);
+DROP TYPE public.user_role;
+DROP TYPE public.update_status;
+DROP TYPE public.subscription_status;
+DROP TYPE public.scheduled_message_status;
+DROP TYPE public.restore_status;
+DROP TYPE public.referral_status;
+DROP TYPE public.payout_status;
+DROP TYPE public.commission_type;
+DROP TYPE public.backup_type;
+DROP TYPE public.backup_status;
+DROP TYPE public.affiliate_status;
+DROP TYPE public.affiliate_application_status;
+--
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
+--
+
+COMMENT ON SCHEMA public IS 'Removed maintenance_mode table and related functionality';
+
+
+--
+-- Name: affiliate_application_status; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.affiliate_application_status AS ENUM (
+    'pending',
+    'approved',
+    'rejected',
+    'under_review'
+);
+
+
+ALTER TYPE public.affiliate_application_status OWNER TO postgres;
+
+--
+-- Name: affiliate_status; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.affiliate_status AS ENUM (
+    'pending',
+    'active',
+    'suspended',
+    'rejected'
+);
+
+
+ALTER TYPE public.affiliate_status OWNER TO postgres;
+
+--
+-- Name: backup_status; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.backup_status AS ENUM (
+    'pending',
+    'in_progress',
+    'completed',
+    'failed',
+    'cancelled'
+);
+
+
+ALTER TYPE public.backup_status OWNER TO postgres;
+
+--
+-- Name: backup_type; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.backup_type AS ENUM (
+    'manual',
+    'scheduled'
+);
+
+
+ALTER TYPE public.backup_type OWNER TO postgres;
+
+--
+-- Name: commission_type; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.commission_type AS ENUM (
+    'percentage',
+    'fixed',
+    'tiered'
+);
+
+
+ALTER TYPE public.commission_type OWNER TO postgres;
+
+--
+-- Name: payout_status; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.payout_status AS ENUM (
+    'pending',
+    'processing',
+    'completed',
+    'failed',
+    'cancelled'
+);
+
+
+ALTER TYPE public.payout_status OWNER TO postgres;
+
+--
+-- Name: referral_status; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.referral_status AS ENUM (
+    'pending',
+    'converted',
+    'expired',
+    'cancelled'
+);
+
+
+ALTER TYPE public.referral_status OWNER TO postgres;
+
+--
+-- Name: restore_status; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.restore_status AS ENUM (
+    'pending',
+    'in_progress',
+    'completed',
+    'failed',
+    'cancelled'
+);
+
+
+ALTER TYPE public.restore_status OWNER TO postgres;
+
+--
+-- Name: scheduled_message_status; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.scheduled_message_status AS ENUM (
+    'pending',
+    'scheduled',
+    'processing',
+    'sent',
+    'failed',
+    'cancelled'
+);
+
+
+ALTER TYPE public.scheduled_message_status OWNER TO postgres;
+
+--
+-- Name: subscription_status; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.subscription_status AS ENUM (
+    'active',
+    'inactive',
+    'pending',
+    'cancelled',
+    'overdue',
+    'trial',
+    'grace_period',
+    'paused',
+    'past_due'
+);
+
+
+ALTER TYPE public.subscription_status OWNER TO postgres;
+
+--
+-- Name: update_status; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.update_status AS ENUM (
+    'pending',
+    'downloading',
+    'validating',
+    'applying',
+    'completed',
+    'failed',
+    'rolled_back'
+);
+
+
+ALTER TYPE public.update_status OWNER TO postgres;
+
+--
+-- Name: user_role; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.user_role AS ENUM (
+    'super_admin',
+    'admin',
+    'agent'
+);
+
+
+ALTER TYPE public.user_role OWNER TO postgres;
+
+--
+-- Name: calculate_unread_count(integer); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.calculate_unread_count(conversation_id_param integer) RETURNS integer
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  RETURN (
+    SELECT COUNT(*)
+    FROM messages
+    WHERE conversation_id = conversation_id_param
+    AND direction = 'inbound'
+    AND read_at IS NULL
+  );
+END;
+$$;
+
+
+ALTER FUNCTION public.calculate_unread_count(conversation_id_param integer) OWNER TO postgres;
+
+--
+-- Name: check_deal_stage_company_match(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.check_deal_stage_company_match() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  IF NEW.stage_id IS NOT NULL THEN
+    IF NOT EXISTS (
+      SELECT 1 FROM pipeline_stages
+      WHERE id = NEW.stage_id
+      AND company_id = NEW.company_id
+    ) THEN
+      RAISE EXCEPTION 'Pipeline stage must belong to the same company as the deal';
+    END IF;
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.check_deal_stage_company_match() OWNER TO postgres;
+
+--
+-- Name: create_company_pipeline_stages(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.create_company_pipeline_stages() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  PERFORM create_default_pipeline_stages(NEW.id);
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.create_company_pipeline_stages() OWNER TO postgres;
+
+--
+-- Name: create_company_role_permissions(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.create_company_role_permissions() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  PERFORM create_default_role_permissions(NEW.id);
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.create_company_role_permissions() OWNER TO postgres;
+
+--
+-- Name: create_default_pipeline_stages(integer); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.create_default_pipeline_stages(company_id_param integer) RETURNS void
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pipeline_stages WHERE company_id = company_id_param LIMIT 1) THEN
+    INSERT INTO pipeline_stages (company_id, name, color, order_num)
+    VALUES
+      (company_id_param, 'Lead', '#333235', 1),
+      (company_id_param, 'Qualified', '#8B5CF6', 2),
+      (company_id_param, 'Contacted', '#EC4899', 3),
+      (company_id_param, 'Demo Scheduled', '#F59E0B', 4),
+      (company_id_param, 'Proposal', '#10B981', 5),
+      (company_id_param, 'Negotiation', '#3B82F6', 6),
+      (company_id_param, 'Closed Won', '#059669', 7),
+      (company_id_param, 'Closed Lost', '#DC2626', 8);
+  END IF;
+END;
+$$;
+
+
+ALTER FUNCTION public.create_default_pipeline_stages(company_id_param integer) OWNER TO postgres;
+
+--
+-- Name: create_default_role_permissions(integer); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.create_default_role_permissions(company_id_param integer) RETURNS void
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  -- Insert admin role permissions with task permissions enabled
+  INSERT INTO role_permissions (company_id, role, permissions)
+  VALUES (
+    company_id_param,
+    'admin',
+    '{
+      "view_all_conversations": true,
+      "view_assigned_conversations": true,
+      "assign_conversations": true,
+      "manage_conversations": true,
+      "view_contacts": true,
+      "manage_contacts": true,
+      "view_channels": true,
+      "manage_channels": true,
+      "view_flows": true,
+      "manage_flows": true,
+      "view_analytics": true,
+      "view_detailed_analytics": true,
+      "view_team": true,
+      "manage_team": true,
+      "view_settings": true,
+      "manage_settings": true,
+      "view_pipeline": true,
+      "manage_pipeline": true,
+      "view_calendar": true,
+      "manage_calendar": true,
+      "view_tasks": true,
+      "manage_tasks": true,
+      "view_campaigns": true,
+      "create_campaigns": true,
+      "edit_campaigns": true,
+      "delete_campaigns": true,
+      "manage_templates": true,
+      "manage_segments": true,
+      "view_campaign_analytics": true,
+      "manage_whatsapp_accounts": true,
+      "configure_channels": true
+    }'::jsonb
+  )
+  ON CONFLICT (company_id, role) DO NOTHING;
+
+  -- Insert agent role permissions with view_tasks enabled
+  INSERT INTO role_permissions (company_id, role, permissions)
+  VALUES (
+    company_id_param,
+    'agent',
+    '{
+      "view_all_conversations": false,
+      "view_assigned_conversations": true,
+      "assign_conversations": false,
+      "manage_conversations": true,
+      "view_contacts": true,
+      "manage_contacts": false,
+      "view_channels": false,
+      "manage_channels": false,
+      "view_flows": false,
+      "manage_flows": false,
+      "view_analytics": false,
+      "view_detailed_analytics": false,
+      "view_team": false,
+      "manage_team": false,
+      "view_settings": false,
+      "manage_settings": false,
+      "view_pipeline": false,
+      "manage_pipeline": false,
+      "view_calendar": true,
+      "manage_calendar": false,
+      "view_tasks": true,
+      "manage_tasks": false,
+      "view_campaigns": true,
+      "create_campaigns": false,
+      "edit_campaigns": false,
+      "delete_campaigns": false,
+      "manage_templates": false,
+      "manage_segments": false,
+      "view_campaign_analytics": true,
+      "manage_whatsapp_accounts": false,
+      "configure_channels": false
+    }'::jsonb
+  )
+  ON CONFLICT (company_id, role) DO NOTHING;
+END;
+$$;
+
+
+ALTER FUNCTION public.create_default_role_permissions(company_id_param integer) OWNER TO postgres;
+
+--
+-- Name: get_whatsapp_message_id(jsonb); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.get_whatsapp_message_id(metadata_json jsonb) RETURNS text
+    LANGUAGE plpgsql IMMUTABLE
+    AS $$
+BEGIN
+  RETURN metadata_json->>'messageId';
+END;
+$$;
+
+
+ALTER FUNCTION public.get_whatsapp_message_id(metadata_json jsonb) OWNER TO postgres;
+
+--
+-- Name: log_coupon_usage(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.log_coupon_usage() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    -- Update coupon usage count
+    UPDATE coupon_codes 
+    SET current_usage_count = current_usage_count + 1,
+        updated_at = NOW()
+    WHERE id = NEW.coupon_id;
+    
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.log_coupon_usage() OWNER TO postgres;
+
+--
+-- Name: set_company_pages_published_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.set_company_pages_published_at() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  -- If is_published is being set to true and published_at is null, set it to now
+  IF NEW.is_published = true AND OLD.is_published = false AND NEW.published_at IS NULL THEN
+    NEW.published_at = NOW();
+  END IF;
+  
+  -- If is_published is being set to false, keep the original published_at
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.set_company_pages_published_at() OWNER TO postgres;
+
+--
+-- Name: trigger_update_unread_count(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.trigger_update_unread_count() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  IF TG_OP = 'INSERT' AND NEW.direction = 'inbound' THEN
+    PERFORM update_conversation_unread_count(NEW.conversation_id);
+    RETURN NEW;
+  END IF;
+
+  IF TG_OP = 'UPDATE' AND OLD.direction = 'inbound' THEN
+    IF (OLD.read_at IS NULL AND NEW.read_at IS NOT NULL) OR
+       (OLD.read_at IS NOT NULL AND NEW.read_at IS NULL) THEN
+      PERFORM update_conversation_unread_count(NEW.conversation_id);
+    END IF;
+    RETURN NEW;
+  END IF;
+
+  IF TG_OP = 'DELETE' AND OLD.direction = 'inbound' THEN
+    PERFORM update_conversation_unread_count(OLD.conversation_id);
+    RETURN OLD;
+  END IF;
+
+  RETURN COALESCE(NEW, OLD);
+END;
+$$;
+
+
+ALTER FUNCTION public.trigger_update_unread_count() OWNER TO postgres;
+
+--
+-- Name: update_affiliate_earnings_balance(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.update_affiliate_earnings_balance() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    -- Insert or update affiliate earnings balance
+    INSERT INTO affiliate_earnings_balance (company_id, affiliate_id, total_earned, available_balance, last_updated)
+    VALUES (NEW.company_id, NEW.affiliate_id, NEW.amount, NEW.amount, NOW())
+    ON CONFLICT (company_id, affiliate_id) 
+    DO UPDATE SET
+        total_earned = affiliate_earnings_balance.total_earned + NEW.amount,
+        available_balance = CASE 
+            WHEN NEW.transaction_type = 'earned' THEN affiliate_earnings_balance.available_balance + NEW.amount
+            WHEN NEW.transaction_type = 'applied_to_plan' THEN affiliate_earnings_balance.available_balance - NEW.amount
+            WHEN NEW.transaction_type = 'payout' THEN affiliate_earnings_balance.available_balance - NEW.amount
+            ELSE affiliate_earnings_balance.available_balance
+        END,
+        applied_to_plans = CASE 
+            WHEN NEW.transaction_type = 'applied_to_plan' THEN affiliate_earnings_balance.applied_to_plans + NEW.amount
+            ELSE affiliate_earnings_balance.applied_to_plans
+        END,
+        paid_out = CASE 
+            WHEN NEW.transaction_type = 'payout' THEN affiliate_earnings_balance.paid_out + NEW.amount
+            ELSE affiliate_earnings_balance.paid_out
+        END,
+        last_updated = NOW();
+    
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.update_affiliate_earnings_balance() OWNER TO postgres;
+
+--
+-- Name: update_backup_schedule_timestamp(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.update_backup_schedule_timestamp() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.update_backup_schedule_timestamp() OWNER TO postgres;
+
+--
+-- Name: update_campaign_stats(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.update_campaign_stats() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  
+  IF TG_TABLE_NAME = 'campaign_recipients' THEN
+    UPDATE campaigns
+    SET
+      processed_recipients = (
+        SELECT COUNT(*) FROM campaign_recipients
+        WHERE campaign_id = COALESCE(NEW.campaign_id, OLD.campaign_id)
+        AND status != 'pending'
+      ),
+      successful_sends = (
+        SELECT COUNT(*) FROM campaign_recipients
+        WHERE campaign_id = COALESCE(NEW.campaign_id, OLD.campaign_id)
+        AND status IN ('sent', 'delivered', 'read')
+      ),
+      failed_sends = (
+        SELECT COUNT(*) FROM campaign_recipients
+        WHERE campaign_id = COALESCE(NEW.campaign_id, OLD.campaign_id)
+        AND status = 'failed'
+      ),
+      updated_at = NOW()
+    WHERE id = COALESCE(NEW.campaign_id, OLD.campaign_id);
+  END IF;
+
+  RETURN COALESCE(NEW, OLD);
+END;
+$$;
+
+
+ALTER FUNCTION public.update_campaign_stats() OWNER TO postgres;
+
+--
+-- Name: update_company_pages_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.update_company_pages_updated_at() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.update_company_pages_updated_at() OWNER TO postgres;
+
+--
+-- Name: update_conversation_unread_count(integer); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.update_conversation_unread_count(conversation_id_param integer) RETURNS void
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  new_count INTEGER;
+BEGIN
+  new_count := calculate_unread_count(conversation_id_param);
+
+  UPDATE conversations
+  SET unread_count = new_count,
+      updated_at = NOW()
+  WHERE id = conversation_id_param;
+END;
+$$;
+
+
+ALTER FUNCTION public.update_conversation_unread_count(conversation_id_param integer) OWNER TO postgres;
+
+--
+-- Name: update_segment_count(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.update_segment_count() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  segment_record RECORD;
+  calculated_contact_count INTEGER;
+BEGIN
+  
+  FOR segment_record IN
+    SELECT id, criteria FROM contact_segments
+    WHERE company_id = COALESCE(NEW.company_id, OLD.company_id)
+  LOOP
+    
+    
+    SELECT COUNT(*) INTO calculated_contact_count
+    FROM contacts
+    WHERE company_id = COALESCE(NEW.company_id, OLD.company_id)
+    AND is_active = true;
+
+    UPDATE contact_segments
+    SET contact_count = calculated_contact_count,
+        last_updated_at = NOW(),
+        updated_at = NOW()
+    WHERE id = segment_record.id;
+  END LOOP;
+
+  RETURN COALESCE(NEW, OLD);
+END;
+$$;
+
+
+ALTER FUNCTION public.update_segment_count() OWNER TO postgres;
+
+--
+-- Name: update_template_usage(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.update_template_usage() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  IF NEW.template_id IS NOT NULL THEN
+    UPDATE campaign_templates
+    SET usage_count = usage_count + 1,
+        updated_at = NOW()
+    WHERE id = NEW.template_id;
+  END IF;
+
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.update_template_usage() OWNER TO postgres;
+
+--
+-- Name: update_updated_at_column(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.update_updated_at_column() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    NEW.updated_at = NOW();
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.update_updated_at_column() OWNER TO postgres;
+
+--
+-- Name: update_usage_timestamp(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.update_usage_timestamp() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  IF (OLD.current_storage_used IS DISTINCT FROM NEW.current_storage_used OR
+      OLD.current_bandwidth_used IS DISTINCT FROM NEW.current_bandwidth_used OR
+      OLD.files_count IS DISTINCT FROM NEW.files_count) THEN
+    NEW.last_usage_update = CURRENT_TIMESTAMP;
+  END IF;
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.update_usage_timestamp() OWNER TO postgres;
+
+--
+-- Name: update_user_social_accounts_updated_at(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.update_user_social_accounts_updated_at() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.update_user_social_accounts_updated_at() OWNER TO postgres;
+
+--
+-- Name: update_whatsapp_account_health(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.update_whatsapp_account_health() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+  current_health INTEGER;
+  warning_penalty INTEGER := 10;
+  restriction_penalty INTEGER := 25;
+BEGIN
+  
+  current_health := 100 - (NEW.warning_count * warning_penalty) - (NEW.restriction_count * restriction_penalty);
+  current_health := GREATEST(0, LEAST(100, current_health));
+
+  
+  UPDATE whatsapp_accounts
+  SET health_score = current_health,
+      last_health_check = NOW(),
+      updated_at = NOW()
+  WHERE id = NEW.id;
+
+  
+  INSERT INTO whatsapp_account_logs (account_id, event_type, event_data, message, severity, health_score)
+  VALUES (
+    NEW.id,
+    'health_check',
+    jsonb_build_object(
+      'previous_health', OLD.health_score,
+      'new_health', current_health,
+      'warnings', NEW.warning_count,
+      'restrictions', NEW.restriction_count
+    ),
+    'Health score updated',
+    CASE
+      WHEN current_health < 30 THEN 'critical'
+      WHEN current_health < 60 THEN 'warning'
+      ELSE 'info'
+    END,
+    current_health
+  );
+
+  RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.update_whatsapp_account_health() OWNER TO postgres;
+
+--
+-- Name: validate_subscription_consistency(); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION public.validate_subscription_consistency() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+BEGIN
+    -- Ensure subscription_status is never NULL
+    IF NEW.subscription_status IS NULL THEN
+        NEW.subscription_status := 'inactive';
+    END IF;
+    
+    -- Ensure auto_renewal is never NULL
+    IF NEW.auto_renewal IS NULL THEN
+        NEW.auto_renewal := true;
+    END IF;
+    
+    -- Ensure subscription_metadata is never NULL
+    IF NEW.subscription_metadata IS NULL THEN
+        NEW.subscription_metadata := '{}'::jsonb;
+    END IF;
+    
+    -- Auto-set grace period for expired subscriptions
+    IF NEW.subscription_end_date IS NOT NULL 
+       AND NEW.subscription_end_date <= NOW() 
+       AND OLD.subscription_end_date IS DISTINCT FROM NEW.subscription_end_date
+       AND NEW.grace_period_end IS NULL THEN
+        NEW.grace_period_end := NEW.subscription_end_date + INTERVAL '15 days';
+        NEW.subscription_status := 'grace_period';
+    END IF;
+    
+    RETURN NEW;
+END;
+$$;
+
+
+ALTER FUNCTION public.validate_subscription_consistency() OWNER TO postgres;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: affiliate_analytics; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.affiliate_analytics (
+    id integer NOT NULL,
+    company_id integer,
+    affiliate_id integer,
+    date date NOT NULL,
+    period_type text DEFAULT 'daily'::text NOT NULL,
+    clicks integer DEFAULT 0,
+    unique_clicks integer DEFAULT 0,
+    impressions integer DEFAULT 0,
+    referrals integer DEFAULT 0,
+    conversions integer DEFAULT 0,
+    conversion_rate numeric(5,2) DEFAULT 0.00,
+    revenue numeric(12,2) DEFAULT 0.00,
+    commission_earned numeric(12,2) DEFAULT 0.00,
+    average_order_value numeric(10,2) DEFAULT 0.00,
+    top_countries jsonb DEFAULT '[]'::jsonb,
+    top_sources jsonb DEFAULT '[]'::jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.affiliate_analytics OWNER TO postgres;
+
+--
+-- Name: affiliate_analytics_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.affiliate_analytics_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.affiliate_analytics_id_seq OWNER TO postgres;
+
+--
+-- Name: affiliate_analytics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.affiliate_analytics_id_seq OWNED BY public.affiliate_analytics.id;
+
+
+--
+-- Name: affiliate_applications; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.affiliate_applications (
+    id integer NOT NULL,
+    first_name text NOT NULL,
+    last_name text NOT NULL,
+    email text NOT NULL,
+    phone text,
+    company text,
+    website text,
+    country text NOT NULL,
+    marketing_channels text[] NOT NULL,
+    expected_monthly_referrals text NOT NULL,
+    experience text NOT NULL,
+    motivation text NOT NULL,
+    status public.affiliate_application_status DEFAULT 'pending'::public.affiliate_application_status NOT NULL,
+    agree_to_terms boolean DEFAULT false NOT NULL,
+    reviewed_by integer,
+    reviewed_at timestamp without time zone,
+    review_notes text,
+    rejection_reason text,
+    submitted_at timestamp without time zone DEFAULT now() NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.affiliate_applications OWNER TO postgres;
+
+--
+-- Name: affiliate_applications_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.affiliate_applications_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.affiliate_applications_id_seq OWNER TO postgres;
+
+--
+-- Name: affiliate_applications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.affiliate_applications_id_seq OWNED BY public.affiliate_applications.id;
+
+
+--
+-- Name: affiliate_clicks; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.affiliate_clicks (
+    id integer NOT NULL,
+    company_id integer,
+    affiliate_id integer,
+    referral_id integer,
+    clicked_url text NOT NULL,
+    landing_page text,
+    session_id text,
+    user_agent text,
+    ip_address inet,
+    country_code text,
+    city text,
+    utm_source text,
+    utm_medium text,
+    utm_campaign text,
+    utm_content text,
+    utm_term text,
+    referrer_url text,
+    referrer_domain text,
+    device_type text,
+    browser text,
+    os text,
+    converted boolean DEFAULT false,
+    converted_at timestamp without time zone,
+    created_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.affiliate_clicks OWNER TO postgres;
+
+--
+-- Name: affiliate_clicks_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.affiliate_clicks_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.affiliate_clicks_id_seq OWNER TO postgres;
+
+--
+-- Name: affiliate_clicks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.affiliate_clicks_id_seq OWNED BY public.affiliate_clicks.id;
+
+
+--
+-- Name: affiliate_commission_structures; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.affiliate_commission_structures (
+    id integer NOT NULL,
+    company_id integer,
+    affiliate_id integer,
+    plan_id integer,
+    name text NOT NULL,
+    commission_type public.commission_type DEFAULT 'percentage'::public.commission_type NOT NULL,
+    commission_value numeric(10,2) NOT NULL,
+    tier_rules jsonb,
+    minimum_payout numeric(10,2) DEFAULT 0.00,
+    maximum_payout numeric(10,2),
+    recurring_commission boolean DEFAULT false,
+    recurring_months integer DEFAULT 0,
+    valid_from timestamp without time zone DEFAULT now(),
+    valid_until timestamp without time zone,
+    is_active boolean DEFAULT true,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.affiliate_commission_structures OWNER TO postgres;
+
+--
+-- Name: affiliate_commission_structures_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.affiliate_commission_structures_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.affiliate_commission_structures_id_seq OWNER TO postgres;
+
+--
+-- Name: affiliate_commission_structures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.affiliate_commission_structures_id_seq OWNED BY public.affiliate_commission_structures.id;
+
+
+--
+-- Name: affiliate_earnings_balance; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.affiliate_earnings_balance (
+    id integer NOT NULL,
+    company_id integer,
+    affiliate_id integer,
+    total_earned numeric(12,2) DEFAULT 0.00,
+    available_balance numeric(12,2) DEFAULT 0.00,
+    applied_to_plans numeric(12,2) DEFAULT 0.00,
+    pending_payout numeric(12,2) DEFAULT 0.00,
+    paid_out numeric(12,2) DEFAULT 0.00,
+    last_updated timestamp without time zone DEFAULT now() NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.affiliate_earnings_balance OWNER TO postgres;
+
+--
+-- Name: affiliate_earnings_balance_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.affiliate_earnings_balance_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.affiliate_earnings_balance_id_seq OWNER TO postgres;
+
+--
+-- Name: affiliate_earnings_balance_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.affiliate_earnings_balance_id_seq OWNED BY public.affiliate_earnings_balance.id;
+
+
+--
+-- Name: affiliate_earnings_transactions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.affiliate_earnings_transactions (
+    id integer NOT NULL,
+    company_id integer,
+    affiliate_id integer,
+    transaction_type text NOT NULL,
+    amount numeric(12,2) NOT NULL,
+    balance_after numeric(12,2) NOT NULL,
+    referral_id integer,
+    payment_transaction_id integer,
+    payout_id integer,
+    description text,
+    metadata jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT affiliate_earnings_transactions_transaction_type_check CHECK ((transaction_type = ANY (ARRAY['earned'::text, 'applied_to_plan'::text, 'payout'::text, 'adjustment'::text])))
+);
+
+
+ALTER TABLE public.affiliate_earnings_transactions OWNER TO postgres;
+
+--
+-- Name: affiliate_earnings_transactions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.affiliate_earnings_transactions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.affiliate_earnings_transactions_id_seq OWNER TO postgres;
+
+--
+-- Name: affiliate_earnings_transactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.affiliate_earnings_transactions_id_seq OWNED BY public.affiliate_earnings_transactions.id;
+
+
+--
+-- Name: affiliate_payouts; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.affiliate_payouts (
+    id integer NOT NULL,
+    company_id integer,
+    affiliate_id integer,
+    amount numeric(12,2) NOT NULL,
+    currency text DEFAULT 'USD'::text NOT NULL,
+    status public.payout_status DEFAULT 'pending'::public.payout_status NOT NULL,
+    payment_method text,
+    payment_reference text,
+    external_transaction_id text,
+    period_start timestamp without time zone NOT NULL,
+    period_end timestamp without time zone NOT NULL,
+    processed_by integer,
+    processed_at timestamp without time zone,
+    failure_reason text,
+    referral_ids integer[],
+    notes text,
+    metadata jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.affiliate_payouts OWNER TO postgres;
+
+--
+-- Name: affiliate_payouts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.affiliate_payouts_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.affiliate_payouts_id_seq OWNER TO postgres;
+
+--
+-- Name: affiliate_payouts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.affiliate_payouts_id_seq OWNED BY public.affiliate_payouts.id;
+
+
+--
+-- Name: affiliate_referrals; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.affiliate_referrals (
+    id integer NOT NULL,
+    company_id integer,
+    affiliate_id integer,
+    referral_code text NOT NULL,
+    referred_company_id integer,
+    referred_user_id integer,
+    referred_email text,
+    status public.referral_status DEFAULT 'pending'::public.referral_status NOT NULL,
+    converted_at timestamp without time zone,
+    conversion_value numeric(12,2) DEFAULT 0.00,
+    commission_structure_id integer,
+    commission_amount numeric(12,2) DEFAULT 0.00,
+    commission_rate numeric(5,2) DEFAULT 0.00,
+    source_url text,
+    utm_source text,
+    utm_medium text,
+    utm_campaign text,
+    utm_content text,
+    utm_term text,
+    user_agent text,
+    ip_address inet,
+    country_code text,
+    expires_at timestamp without time zone,
+    metadata jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.affiliate_referrals OWNER TO postgres;
+
+--
+-- Name: affiliate_referrals_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.affiliate_referrals_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.affiliate_referrals_id_seq OWNER TO postgres;
+
+--
+-- Name: affiliate_referrals_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.affiliate_referrals_id_seq OWNED BY public.affiliate_referrals.id;
+
+
+--
+-- Name: affiliate_relationships; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.affiliate_relationships (
+    id integer NOT NULL,
+    company_id integer,
+    parent_affiliate_id integer,
+    child_affiliate_id integer,
+    level integer DEFAULT 1 NOT NULL,
+    commission_percentage numeric(5,2) DEFAULT 0.00,
+    is_active boolean DEFAULT true,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.affiliate_relationships OWNER TO postgres;
+
+--
+-- Name: affiliate_relationships_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.affiliate_relationships_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.affiliate_relationships_id_seq OWNER TO postgres;
+
+--
+-- Name: affiliate_relationships_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.affiliate_relationships_id_seq OWNED BY public.affiliate_relationships.id;
+
+
+--
+-- Name: affiliates; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.affiliates (
+    id integer NOT NULL,
+    company_id integer,
+    user_id integer,
+    affiliate_code text NOT NULL,
+    name text NOT NULL,
+    email text NOT NULL,
+    phone text,
+    website text,
+    status public.affiliate_status DEFAULT 'pending'::public.affiliate_status NOT NULL,
+    approved_by integer,
+    approved_at timestamp without time zone,
+    rejection_reason text,
+    default_commission_rate numeric(5,2) DEFAULT 0.00,
+    commission_type public.commission_type DEFAULT 'percentage'::public.commission_type,
+    business_name text,
+    tax_id text,
+    address jsonb,
+    payment_details jsonb,
+    total_referrals integer DEFAULT 0,
+    successful_referrals integer DEFAULT 0,
+    total_earnings numeric(12,2) DEFAULT 0.00,
+    pending_earnings numeric(12,2) DEFAULT 0.00,
+    paid_earnings numeric(12,2) DEFAULT 0.00,
+    notes text,
+    metadata jsonb DEFAULT '{}'::jsonb,
+    is_active boolean DEFAULT true,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.affiliates OWNER TO postgres;
+
+--
+-- Name: affiliates_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.affiliates_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.affiliates_id_seq OWNER TO postgres;
+
+--
+-- Name: affiliates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.affiliates_id_seq OWNED BY public.affiliates.id;
+
+
+--
+-- Name: ai_credential_usage; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.ai_credential_usage (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    credential_type character varying(20) NOT NULL,
+    credential_id integer,
+    provider character varying(50) NOT NULL,
+    model character varying(100),
+    tokens_input integer DEFAULT 0,
+    tokens_output integer DEFAULT 0,
+    tokens_total integer DEFAULT 0,
+    cost_estimated numeric(10,6) DEFAULT 0.00,
+    request_count integer DEFAULT 1,
+    conversation_id integer,
+    flow_id integer,
+    node_id character varying(100),
+    usage_date date DEFAULT CURRENT_DATE NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT ai_credential_usage_credential_type_check CHECK (((credential_type)::text = ANY (ARRAY[('system'::character varying)::text, ('company'::character varying)::text, ('environment'::character varying)::text])))
+);
+
+
+ALTER TABLE public.ai_credential_usage OWNER TO postgres;
+
+--
+-- Name: TABLE ai_credential_usage; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.ai_credential_usage IS 'Tracks AI API usage for billing and analytics';
+
+
+--
+-- Name: COLUMN ai_credential_usage.credential_type; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.ai_credential_usage.credential_type IS 'Source of credentials: system, company, or environment variable';
+
+
+--
+-- Name: ai_credential_usage_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.ai_credential_usage_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.ai_credential_usage_id_seq OWNER TO postgres;
+
+--
+-- Name: ai_credential_usage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.ai_credential_usage_id_seq OWNED BY public.ai_credential_usage.id;
+
+
+--
+-- Name: api_keys; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.api_keys (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    user_id integer NOT NULL,
+    name text NOT NULL,
+    key_hash text NOT NULL,
+    key_prefix text NOT NULL,
+    permissions jsonb DEFAULT '["messages:send", "channels:read"]'::jsonb,
+    is_active boolean DEFAULT true NOT NULL,
+    last_used_at timestamp without time zone,
+    expires_at timestamp without time zone,
+    rate_limit_per_minute integer DEFAULT 60,
+    rate_limit_per_hour integer DEFAULT 1000,
+    rate_limit_per_day integer DEFAULT 10000,
+    allowed_ips jsonb DEFAULT '[]'::jsonb,
+    webhook_url text,
+    metadata jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.api_keys OWNER TO postgres;
+
+--
+-- Name: TABLE api_keys; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.api_keys IS 'API keys for programmatic access to messaging endpoints';
+
+
+--
+-- Name: COLUMN api_keys.company_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_keys.company_id IS 'Reference to the company that owns this API key';
+
+
+--
+-- Name: COLUMN api_keys.user_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_keys.user_id IS 'Reference to the user who created this API key';
+
+
+--
+-- Name: COLUMN api_keys.name; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_keys.name IS 'User-friendly name for the API key';
+
+
+--
+-- Name: COLUMN api_keys.key_hash; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_keys.key_hash IS 'SHA-256 hash of the API key for secure storage';
+
+
+--
+-- Name: COLUMN api_keys.key_prefix; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_keys.key_prefix IS 'First 8 characters of the API key for display purposes';
+
+
+--
+-- Name: COLUMN api_keys.permissions; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_keys.permissions IS 'JSON array of permissions granted to this API key';
+
+
+--
+-- Name: COLUMN api_keys.is_active; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_keys.is_active IS 'Whether this API key is currently active';
+
+
+--
+-- Name: COLUMN api_keys.last_used_at; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_keys.last_used_at IS 'Timestamp of when this API key was last used';
+
+
+--
+-- Name: COLUMN api_keys.expires_at; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_keys.expires_at IS 'Optional expiration timestamp for the API key';
+
+
+--
+-- Name: COLUMN api_keys.rate_limit_per_minute; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_keys.rate_limit_per_minute IS 'Maximum requests per minute for this API key';
+
+
+--
+-- Name: COLUMN api_keys.rate_limit_per_hour; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_keys.rate_limit_per_hour IS 'Maximum requests per hour for this API key';
+
+
+--
+-- Name: COLUMN api_keys.rate_limit_per_day; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_keys.rate_limit_per_day IS 'Maximum requests per day for this API key';
+
+
+--
+-- Name: COLUMN api_keys.allowed_ips; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_keys.allowed_ips IS 'JSON array of IP addresses allowed to use this API key';
+
+
+--
+-- Name: COLUMN api_keys.webhook_url; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_keys.webhook_url IS 'Optional webhook URL for status updates';
+
+
+--
+-- Name: COLUMN api_keys.metadata; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_keys.metadata IS 'Additional metadata for the API key';
+
+
+--
+-- Name: api_keys_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.api_keys_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.api_keys_id_seq OWNER TO postgres;
+
+--
+-- Name: api_keys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.api_keys_id_seq OWNED BY public.api_keys.id;
+
+
+--
+-- Name: api_rate_limits; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.api_rate_limits (
+    id integer NOT NULL,
+    api_key_id integer NOT NULL,
+    window_type text NOT NULL,
+    window_start timestamp without time zone NOT NULL,
+    request_count integer DEFAULT 0 NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT api_rate_limits_window_type_check CHECK ((window_type = ANY (ARRAY['minute'::text, 'hour'::text, 'day'::text])))
+);
+
+
+ALTER TABLE public.api_rate_limits OWNER TO postgres;
+
+--
+-- Name: TABLE api_rate_limits; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.api_rate_limits IS 'Rate limiting tracking for API keys';
+
+
+--
+-- Name: COLUMN api_rate_limits.api_key_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_rate_limits.api_key_id IS 'Reference to the API key being rate limited';
+
+
+--
+-- Name: COLUMN api_rate_limits.window_type; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_rate_limits.window_type IS 'Type of time window (minute, hour, day)';
+
+
+--
+-- Name: COLUMN api_rate_limits.window_start; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_rate_limits.window_start IS 'Start timestamp of the time window';
+
+
+--
+-- Name: COLUMN api_rate_limits.request_count; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_rate_limits.request_count IS 'Number of requests made in this time window';
+
+
+--
+-- Name: api_rate_limits_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.api_rate_limits_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.api_rate_limits_id_seq OWNER TO postgres;
+
+--
+-- Name: api_rate_limits_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.api_rate_limits_id_seq OWNED BY public.api_rate_limits.id;
+
+
+--
+-- Name: api_usage; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.api_usage (
+    id integer NOT NULL,
+    api_key_id integer NOT NULL,
+    company_id integer NOT NULL,
+    endpoint text NOT NULL,
+    method text NOT NULL,
+    status_code integer NOT NULL,
+    request_size integer,
+    response_size integer,
+    duration integer,
+    ip_address text,
+    user_agent text,
+    request_id text,
+    error_message text,
+    metadata jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.api_usage OWNER TO postgres;
+
+--
+-- Name: TABLE api_usage; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.api_usage IS 'Usage tracking for API requests';
+
+
+--
+-- Name: COLUMN api_usage.api_key_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_usage.api_key_id IS 'Reference to the API key used for this request';
+
+
+--
+-- Name: COLUMN api_usage.company_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_usage.company_id IS 'Reference to the company that made this request';
+
+
+--
+-- Name: COLUMN api_usage.endpoint; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_usage.endpoint IS 'API endpoint that was called';
+
+
+--
+-- Name: COLUMN api_usage.method; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_usage.method IS 'HTTP method used (GET, POST, etc.)';
+
+
+--
+-- Name: COLUMN api_usage.status_code; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_usage.status_code IS 'HTTP response status code';
+
+
+--
+-- Name: COLUMN api_usage.request_size; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_usage.request_size IS 'Size of the request in bytes';
+
+
+--
+-- Name: COLUMN api_usage.response_size; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_usage.response_size IS 'Size of the response in bytes';
+
+
+--
+-- Name: COLUMN api_usage.duration; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_usage.duration IS 'Request processing duration in milliseconds';
+
+
+--
+-- Name: COLUMN api_usage.ip_address; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_usage.ip_address IS 'IP address of the client making the request';
+
+
+--
+-- Name: COLUMN api_usage.user_agent; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_usage.user_agent IS 'User agent string of the client';
+
+
+--
+-- Name: COLUMN api_usage.request_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_usage.request_id IS 'Unique identifier for this request';
+
+
+--
+-- Name: COLUMN api_usage.error_message; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_usage.error_message IS 'Error message if the request failed';
+
+
+--
+-- Name: COLUMN api_usage.metadata; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.api_usage.metadata IS 'Additional request metadata';
+
+
+--
+-- Name: api_usage_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.api_usage_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.api_usage_id_seq OWNER TO postgres;
+
+--
+-- Name: api_usage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.api_usage_id_seq OWNED BY public.api_usage.id;
+
+
+--
+-- Name: app_settings; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.app_settings (
+    id integer NOT NULL,
+    key text NOT NULL,
+    value jsonb NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.app_settings OWNER TO postgres;
+
+--
+-- Name: TABLE app_settings; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.app_settings IS 'Global application settings including feature toggles';
+
+
+--
+-- Name: app_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.app_settings_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.app_settings_id_seq OWNER TO postgres;
+
+--
+-- Name: app_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.app_settings_id_seq OWNED BY public.app_settings.id;
+
+
+--
+-- Name: backup_audit_logs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.backup_audit_logs (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    user_id integer NOT NULL,
+    action text NOT NULL,
+    entity_type text NOT NULL,
+    entity_id integer,
+    details jsonb DEFAULT '{}'::jsonb,
+    ip_address text,
+    user_agent text,
+    created_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.backup_audit_logs OWNER TO postgres;
+
+--
+-- Name: TABLE backup_audit_logs; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.backup_audit_logs IS 'Stores audit trail for all backup and restore operations';
+
+
+--
+-- Name: COLUMN backup_audit_logs.action; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.backup_audit_logs.action IS 'Action performed: backup_created, backup_downloaded, restore_started, etc.';
+
+
+--
+-- Name: COLUMN backup_audit_logs.entity_type; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.backup_audit_logs.entity_type IS 'Type of entity: backup, restore, or schedule';
+
+
+--
+-- Name: COLUMN backup_audit_logs.details; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.backup_audit_logs.details IS 'Additional details about the action in JSON format';
+
+
+--
+-- Name: backup_audit_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.backup_audit_logs_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.backup_audit_logs_id_seq OWNER TO postgres;
+
+--
+-- Name: backup_audit_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.backup_audit_logs_id_seq OWNED BY public.backup_audit_logs.id;
+
+
+--
+-- Name: backup_logs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.backup_logs (
+    id integer NOT NULL,
+    log_id text NOT NULL,
+    schedule_id text,
+    backup_id text,
+    status text NOT NULL,
+    "timestamp" timestamp without time zone DEFAULT now(),
+    error_message text,
+    metadata jsonb,
+    CONSTRAINT backup_logs_status_check CHECK ((status = ANY (ARRAY['success'::text, 'failed'::text])))
+);
+
+
+ALTER TABLE public.backup_logs OWNER TO postgres;
+
+--
+-- Name: backup_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.backup_logs_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.backup_logs_id_seq OWNER TO postgres;
+
+--
+-- Name: backup_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.backup_logs_id_seq OWNED BY public.backup_logs.id;
+
+
+--
+-- Name: backup_schedules; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.backup_schedules (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    created_by_user_id integer NOT NULL,
+    name text NOT NULL,
+    description text,
+    is_active boolean DEFAULT true,
+    frequency text NOT NULL,
+    cron_expression text,
+    retention_days integer DEFAULT 30,
+    include_contacts boolean DEFAULT true,
+    include_conversations boolean DEFAULT true,
+    include_messages boolean DEFAULT true,
+    last_run_at timestamp without time zone,
+    next_run_at timestamp without time zone,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.backup_schedules OWNER TO postgres;
+
+--
+-- Name: TABLE backup_schedules; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.backup_schedules IS 'Stores automated backup schedule configurations';
+
+
+--
+-- Name: COLUMN backup_schedules.frequency; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.backup_schedules.frequency IS 'Backup frequency: daily, weekly, or monthly';
+
+
+--
+-- Name: COLUMN backup_schedules.cron_expression; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.backup_schedules.cron_expression IS 'Custom cron expression for advanced scheduling';
+
+
+--
+-- Name: COLUMN backup_schedules.retention_days; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.backup_schedules.retention_days IS 'Number of days to retain scheduled backups before automatic cleanup';
+
+
+--
+-- Name: backup_schedules_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.backup_schedules_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.backup_schedules_id_seq OWNER TO postgres;
+
+--
+-- Name: backup_schedules_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.backup_schedules_id_seq OWNED BY public.backup_schedules.id;
+
+
+--
+-- Name: calendly_calendar_tokens; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.calendly_calendar_tokens (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    company_id integer NOT NULL,
+    access_token text NOT NULL,
+    refresh_token text,
+    token_type text,
+    expires_in integer,
+    scope text,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.calendly_calendar_tokens OWNER TO postgres;
+
+--
+-- Name: TABLE calendly_calendar_tokens; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.calendly_calendar_tokens IS 'Stores OAuth tokens for Calendly Calendar integration per user and company';
+
+
+--
+-- Name: COLUMN calendly_calendar_tokens.user_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.calendly_calendar_tokens.user_id IS 'Reference to the user who authenticated with Calendly Calendar';
+
+
+--
+-- Name: COLUMN calendly_calendar_tokens.company_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.calendly_calendar_tokens.company_id IS 'Reference to the company the user belongs to';
+
+
+--
+-- Name: COLUMN calendly_calendar_tokens.access_token; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.calendly_calendar_tokens.access_token IS 'Calendly OAuth access token for API calls';
+
+
+--
+-- Name: COLUMN calendly_calendar_tokens.refresh_token; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.calendly_calendar_tokens.refresh_token IS 'Calendly OAuth refresh token for token renewal';
+
+
+--
+-- Name: COLUMN calendly_calendar_tokens.token_type; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.calendly_calendar_tokens.token_type IS 'Type of token (usually "bearer")';
+
+
+--
+-- Name: COLUMN calendly_calendar_tokens.expires_in; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.calendly_calendar_tokens.expires_in IS 'Token expiry time in seconds';
+
+
+--
+-- Name: COLUMN calendly_calendar_tokens.scope; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.calendly_calendar_tokens.scope IS 'OAuth scopes granted for this token';
+
+
+--
+-- Name: calendly_calendar_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.calendly_calendar_tokens_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.calendly_calendar_tokens_id_seq OWNER TO postgres;
+
+--
+-- Name: calendly_calendar_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.calendly_calendar_tokens_id_seq OWNED BY public.calendly_calendar_tokens.id;
+
+
+--
+-- Name: calls; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.calls (
+    id integer NOT NULL,
+    company_id integer,
+    channel_id integer,
+    contact_id integer,
+    conversation_id integer,
+    direction text,
+    status text,
+    "from" text,
+    "to" text,
+    duration_sec integer,
+    started_at timestamp without time zone,
+    ended_at timestamp without time zone,
+    recording_url text,
+    recording_sid text,
+    twilio_call_sid text,
+    metadata jsonb,
+    created_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.calls OWNER TO postgres;
+
+--
+-- Name: calls_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.calls_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.calls_id_seq OWNER TO postgres;
+
+--
+-- Name: calls_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.calls_id_seq OWNED BY public.calls.id;
+
+
+--
+-- Name: campaign_analytics; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.campaign_analytics (
+    id integer NOT NULL,
+    campaign_id integer NOT NULL,
+    recorded_at timestamp without time zone DEFAULT now() NOT NULL,
+    total_recipients integer DEFAULT 0,
+    messages_sent integer DEFAULT 0,
+    messages_delivered integer DEFAULT 0,
+    messages_read integer DEFAULT 0,
+    messages_failed integer DEFAULT 0,
+    delivery_rate numeric(5,2) DEFAULT 0.00,
+    read_rate numeric(5,2) DEFAULT 0.00,
+    failure_rate numeric(5,2) DEFAULT 0.00,
+    avg_delivery_time integer,
+    avg_read_time integer,
+    estimated_cost numeric(10,4) DEFAULT 0.0000,
+    metrics_data jsonb DEFAULT '{}'::jsonb
+);
+
+
+ALTER TABLE public.campaign_analytics OWNER TO postgres;
+
+--
+-- Name: campaign_analytics_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.campaign_analytics_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.campaign_analytics_id_seq OWNER TO postgres;
+
+--
+-- Name: campaign_analytics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.campaign_analytics_id_seq OWNED BY public.campaign_analytics.id;
+
+
+--
+-- Name: campaign_messages; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.campaign_messages (
+    id integer NOT NULL,
+    campaign_id integer NOT NULL,
+    recipient_id integer NOT NULL,
+    message_id integer,
+    content text NOT NULL,
+    media_urls jsonb DEFAULT '[]'::jsonb,
+    message_type text DEFAULT 'text'::text,
+    status text DEFAULT 'pending'::text NOT NULL,
+    sent_at timestamp without time zone,
+    delivered_at timestamp without time zone,
+    read_at timestamp without time zone,
+    failed_at timestamp without time zone,
+    whatsapp_message_id text,
+    whatsapp_status text,
+    error_code text,
+    error_message text,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT campaign_messages_status_check CHECK ((status = ANY (ARRAY['pending'::text, 'sent'::text, 'delivered'::text, 'read'::text, 'failed'::text])))
+);
+
+
+ALTER TABLE public.campaign_messages OWNER TO postgres;
+
+--
+-- Name: campaign_messages_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.campaign_messages_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.campaign_messages_id_seq OWNER TO postgres;
+
+--
+-- Name: campaign_messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.campaign_messages_id_seq OWNED BY public.campaign_messages.id;
+
+
+--
+-- Name: campaign_queue; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.campaign_queue (
+    id integer NOT NULL,
+    campaign_id integer NOT NULL,
+    recipient_id integer NOT NULL,
+    account_id integer,
+    priority integer DEFAULT 1,
+    scheduled_for timestamp without time zone NOT NULL,
+    attempts integer DEFAULT 0,
+    max_attempts integer DEFAULT 3,
+    status text DEFAULT 'pending'::text NOT NULL,
+    started_at timestamp without time zone,
+    completed_at timestamp without time zone,
+    error_message text,
+    last_error_at timestamp without time zone,
+    metadata jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT campaign_queue_status_check CHECK ((status = ANY (ARRAY['pending'::text, 'processing'::text, 'completed'::text, 'failed'::text, 'cancelled'::text])))
+);
+
+
+ALTER TABLE public.campaign_queue OWNER TO postgres;
+
+--
+-- Name: COLUMN campaign_queue.account_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.campaign_queue.account_id IS 'References channel_connections.id - the WhatsApp connection to use for this queue item';
+
+
+--
+-- Name: campaign_queue_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.campaign_queue_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.campaign_queue_id_seq OWNER TO postgres;
+
+--
+-- Name: campaign_queue_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.campaign_queue_id_seq OWNED BY public.campaign_queue.id;
+
+
+--
+-- Name: campaign_recipients; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.campaign_recipients (
+    id integer NOT NULL,
+    campaign_id integer NOT NULL,
+    contact_id integer NOT NULL,
+    personalized_content text,
+    variables jsonb DEFAULT '{}'::jsonb,
+    status text DEFAULT 'pending'::text NOT NULL,
+    scheduled_at timestamp without time zone,
+    sent_at timestamp without time zone,
+    delivered_at timestamp without time zone,
+    read_at timestamp without time zone,
+    failed_at timestamp without time zone,
+    error_message text,
+    retry_count integer DEFAULT 0,
+    max_retries integer DEFAULT 3,
+    external_message_id text,
+    conversation_id integer,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT campaign_recipients_status_check CHECK ((status = ANY (ARRAY['pending'::text, 'processing'::text, 'sent'::text, 'delivered'::text, 'read'::text, 'failed'::text, 'skipped'::text])))
+);
+
+
+ALTER TABLE public.campaign_recipients OWNER TO postgres;
+
+--
+-- Name: campaign_recipients_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.campaign_recipients_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.campaign_recipients_id_seq OWNER TO postgres;
+
+--
+-- Name: campaign_recipients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.campaign_recipients_id_seq OWNED BY public.campaign_recipients.id;
+
+
+--
+-- Name: campaign_templates; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.campaign_templates (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    created_by_id integer NOT NULL,
+    name text NOT NULL,
+    description text,
+    category text DEFAULT 'general'::text,
+    content text NOT NULL,
+    content_type text DEFAULT 'text'::text,
+    media_urls jsonb DEFAULT '[]'::jsonb,
+    media_metadata jsonb DEFAULT '{}'::jsonb,
+    variables jsonb DEFAULT '[]'::jsonb,
+    channel_type text DEFAULT 'whatsapp'::text NOT NULL,
+    is_active boolean DEFAULT true,
+    usage_count integer DEFAULT 0,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    whatsapp_channel_type text DEFAULT 'unofficial'::text,
+    whatsapp_template_category text,
+    whatsapp_template_status text DEFAULT 'pending'::text,
+    whatsapp_template_id text,
+    whatsapp_template_name text,
+    whatsapp_template_language text DEFAULT 'en'::text,
+    connection_id integer,
+    media_handle text,
+    CONSTRAINT campaign_templates_whatsapp_channel_type_check CHECK ((whatsapp_channel_type = ANY (ARRAY['official'::text, 'unofficial'::text]))),
+    CONSTRAINT campaign_templates_whatsapp_template_category_check CHECK ((whatsapp_template_category = ANY (ARRAY['marketing'::text, 'utility'::text, 'authentication'::text]))),
+    CONSTRAINT campaign_templates_whatsapp_template_status_check CHECK ((whatsapp_template_status = ANY (ARRAY['pending'::text, 'approved'::text, 'rejected'::text, 'disabled'::text])))
+);
+
+
+ALTER TABLE public.campaign_templates OWNER TO postgres;
+
+--
+-- Name: COLUMN campaign_templates.connection_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.campaign_templates.connection_id IS 'WhatsApp connection used to create and submit this template';
+
+
+--
+-- Name: COLUMN campaign_templates.media_handle; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.campaign_templates.media_handle IS 'WhatsApp media handle for template media (uploaded during template creation)';
+
+
+--
+-- Name: campaign_templates_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.campaign_templates_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.campaign_templates_id_seq OWNER TO postgres;
+
+--
+-- Name: campaign_templates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.campaign_templates_id_seq OWNED BY public.campaign_templates.id;
+
+
+--
+-- Name: campaigns; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.campaigns (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    created_by_id integer NOT NULL,
+    template_id integer,
+    segment_id integer,
+    name text NOT NULL,
+    description text,
+    channel_type text DEFAULT 'whatsapp'::text NOT NULL,
+    channel_id integer,
+    channel_ids jsonb DEFAULT '[]'::jsonb,
+    content text NOT NULL,
+    media_urls jsonb DEFAULT '[]'::jsonb,
+    variables jsonb DEFAULT '{}'::jsonb,
+    campaign_type text DEFAULT 'immediate'::text NOT NULL,
+    scheduled_at timestamp without time zone,
+    timezone text DEFAULT 'UTC'::text,
+    drip_settings jsonb,
+    status text DEFAULT 'draft'::text NOT NULL,
+    started_at timestamp without time zone,
+    completed_at timestamp without time zone,
+    paused_at timestamp without time zone,
+    total_recipients integer DEFAULT 0,
+    processed_recipients integer DEFAULT 0,
+    successful_sends integer DEFAULT 0,
+    failed_sends integer DEFAULT 0,
+    rate_limit_settings jsonb DEFAULT '{"messages_per_day": 1000, "messages_per_hour": 200, "random_delay_range": [3, 10], "messages_per_minute": 10, "humanization_enabled": true, "delay_between_messages": 6}'::jsonb,
+    compliance_settings jsonb DEFAULT '{"require_opt_out": true, "spam_check_enabled": true, "content_filter_enabled": true}'::jsonb,
+    anti_ban_settings jsonb DEFAULT '{"mode": "moderate", "enabled": true, "maxDelay": 15, "minDelay": 3, "cooldownPeriod": 30, "randomizeDelay": true, "accountRotation": true, "respectWeekends": false, "messageVariation": false, "businessHoursOnly": false}'::jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    whatsapp_channel_type text DEFAULT 'unofficial'::text NOT NULL,
+    CONSTRAINT campaigns_campaign_type_check CHECK ((campaign_type = ANY (ARRAY['immediate'::text, 'scheduled'::text, 'drip'::text]))),
+    CONSTRAINT campaigns_status_check CHECK ((status = ANY (ARRAY['draft'::text, 'scheduled'::text, 'running'::text, 'paused'::text, 'completed'::text, 'cancelled'::text, 'failed'::text]))),
+    CONSTRAINT campaigns_whatsapp_channel_type_check CHECK ((whatsapp_channel_type = ANY (ARRAY['official'::text, 'unofficial'::text])))
+);
+
+
+ALTER TABLE public.campaigns OWNER TO postgres;
+
+--
+-- Name: campaigns_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.campaigns_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.campaigns_id_seq OWNER TO postgres;
+
+--
+-- Name: campaigns_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.campaigns_id_seq OWNED BY public.campaigns.id;
+
+
+--
+-- Name: channel_connections; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.channel_connections (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    company_id integer,
+    channel_type text NOT NULL,
+    account_id text NOT NULL,
+    account_name text NOT NULL,
+    access_token text,
+    status text DEFAULT 'active'::text,
+    connection_data jsonb,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now(),
+    history_sync_enabled boolean DEFAULT false,
+    history_sync_status text DEFAULT 'pending'::text,
+    history_sync_progress integer DEFAULT 0,
+    history_sync_total integer DEFAULT 0,
+    last_history_sync_at timestamp without time zone,
+    history_sync_error text,
+    proxy_enabled boolean DEFAULT false,
+    proxy_type text,
+    proxy_host text,
+    proxy_port integer,
+    proxy_username text,
+    proxy_password text,
+    proxy_test_status text DEFAULT 'untested'::text,
+    proxy_last_tested timestamp without time zone,
+    proxy_server_id integer,
+    CONSTRAINT channel_connections_history_sync_status_check CHECK ((history_sync_status = ANY (ARRAY['pending'::text, 'syncing'::text, 'completed'::text, 'failed'::text, 'disabled'::text]))),
+    CONSTRAINT channel_connections_proxy_test_status_check CHECK ((proxy_test_status = ANY (ARRAY['untested'::text, 'working'::text, 'failed'::text]))),
+    CONSTRAINT channel_connections_proxy_type_check CHECK ((proxy_type = ANY (ARRAY['http'::text, 'https'::text, 'socks5'::text]))),
+    CONSTRAINT chk_proxy_enabled_requires_fields CHECK (((proxy_enabled = false) OR ((proxy_enabled = true) AND (proxy_type IS NOT NULL) AND (proxy_host IS NOT NULL) AND (proxy_port IS NOT NULL) AND (proxy_port >= 1) AND (proxy_port <= 65535))))
+);
+
+
+ALTER TABLE public.channel_connections OWNER TO postgres;
+
+--
+-- Name: COLUMN channel_connections.history_sync_enabled; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.channel_connections.history_sync_enabled IS 'Whether history sync is enabled for this WhatsApp connection';
+
+
+--
+-- Name: COLUMN channel_connections.history_sync_status; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.channel_connections.history_sync_status IS 'Current status of history sync: pending, syncing, completed, failed, disabled';
+
+
+--
+-- Name: COLUMN channel_connections.history_sync_progress; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.channel_connections.history_sync_progress IS 'Number of items processed during history sync';
+
+
+--
+-- Name: COLUMN channel_connections.history_sync_total; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.channel_connections.history_sync_total IS 'Total number of items to process during history sync';
+
+
+--
+-- Name: COLUMN channel_connections.last_history_sync_at; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.channel_connections.last_history_sync_at IS 'Timestamp of last successful history sync';
+
+
+--
+-- Name: COLUMN channel_connections.history_sync_error; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.channel_connections.history_sync_error IS 'Error message if history sync failed';
+
+
+--
+-- Name: COLUMN channel_connections.proxy_enabled; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.channel_connections.proxy_enabled IS 'Whether proxy routing is enabled for this connection';
+
+
+--
+-- Name: COLUMN channel_connections.proxy_type; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.channel_connections.proxy_type IS 'Type of proxy protocol: http, https, or socks5';
+
+
+--
+-- Name: COLUMN channel_connections.proxy_host; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.channel_connections.proxy_host IS 'Proxy server hostname or IP address';
+
+
+--
+-- Name: COLUMN channel_connections.proxy_port; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.channel_connections.proxy_port IS 'Proxy server port number';
+
+
+--
+-- Name: COLUMN channel_connections.proxy_username; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.channel_connections.proxy_username IS 'Optional proxy authentication username';
+
+
+--
+-- Name: COLUMN channel_connections.proxy_password; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.channel_connections.proxy_password IS 'Optional proxy authentication password (should be encrypted)';
+
+
+--
+-- Name: COLUMN channel_connections.proxy_test_status; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.channel_connections.proxy_test_status IS 'Result of last proxy connectivity test: untested, working, or failed';
+
+
+--
+-- Name: COLUMN channel_connections.proxy_last_tested; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.channel_connections.proxy_last_tested IS 'Timestamp when proxy connectivity was last tested';
+
+
+--
+-- Name: COLUMN channel_connections.proxy_server_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.channel_connections.proxy_server_id IS 'Reference to the selected proxy server for this connection';
+
+
+--
+-- Name: channel_connections_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.channel_connections_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.channel_connections_id_seq OWNER TO postgres;
+
+--
+-- Name: channel_connections_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.channel_connections_id_seq OWNED BY public.channel_connections.id;
+
+
+--
+-- Name: companies; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.companies (
+    id integer NOT NULL,
+    name text NOT NULL,
+    slug text NOT NULL,
+    subdomain text,
+    logo text,
+    primary_color text DEFAULT '#363636'::text,
+    active boolean DEFAULT true,
+    plan text DEFAULT 'free'::text,
+    plan_id integer,
+    subscription_status text DEFAULT 'inactive'::text NOT NULL,
+    subscription_start_date timestamp without time zone,
+    subscription_end_date timestamp without time zone,
+    trial_start_date timestamp without time zone,
+    trial_end_date timestamp without time zone,
+    is_in_trial boolean DEFAULT false,
+    max_users integer DEFAULT 5,
+    register_number text,
+    company_email text,
+    contact_person text,
+    iban text,
+    stripe_customer_id text,
+    stripe_subscription_id text,
+    billing_cycle_anchor timestamp without time zone,
+    grace_period_end timestamp without time zone,
+    pause_start_date timestamp without time zone,
+    pause_end_date timestamp without time zone,
+    auto_renewal boolean DEFAULT true NOT NULL,
+    dunning_attempts integer DEFAULT 0,
+    last_dunning_attempt timestamp without time zone,
+    subscription_metadata jsonb DEFAULT '{}'::jsonb NOT NULL,
+    current_storage_used integer DEFAULT 0,
+    current_bandwidth_used integer DEFAULT 0,
+    files_count integer DEFAULT 0,
+    last_usage_update timestamp without time zone DEFAULT now(),
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now(),
+    CONSTRAINT companies_subscription_status_check CHECK ((subscription_status = ANY (ARRAY['active'::text, 'inactive'::text, 'pending'::text, 'cancelled'::text, 'overdue'::text, 'trial'::text, 'grace_period'::text, 'paused'::text, 'past_due'::text])))
+);
+
+
+ALTER TABLE public.companies OWNER TO postgres;
+
+--
+-- Name: COLUMN companies.subdomain; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.companies.subdomain IS 'Unique subdomain for company-specific page access (e.g., company.powerchat.net)';
+
+
+--
+-- Name: COLUMN companies.register_number; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.companies.register_number IS 'Company registration number';
+
+
+--
+-- Name: COLUMN companies.company_email; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.companies.company_email IS 'Official company email address';
+
+
+--
+-- Name: COLUMN companies.contact_person; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.companies.contact_person IS 'Primary contact person for the company';
+
+
+--
+-- Name: COLUMN companies.iban; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.companies.iban IS 'International Bank Account Number for billing';
+
+
+--
+-- Name: COLUMN companies.stripe_customer_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.companies.stripe_customer_id IS 'Stripe customer ID for recurring billing';
+
+
+--
+-- Name: COLUMN companies.stripe_subscription_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.companies.stripe_subscription_id IS 'Stripe subscription ID for automatic renewals';
+
+
+--
+-- Name: COLUMN companies.billing_cycle_anchor; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.companies.billing_cycle_anchor IS 'Fixed date for billing cycle alignment';
+
+
+--
+-- Name: COLUMN companies.grace_period_end; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.companies.grace_period_end IS 'End date for grace period after subscription expiry';
+
+
+--
+-- Name: COLUMN companies.auto_renewal; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.companies.auto_renewal IS 'Whether subscription should auto-renew';
+
+
+--
+-- Name: COLUMN companies.dunning_attempts; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.companies.dunning_attempts IS 'Number of failed payment retry attempts';
+
+
+--
+-- Name: COLUMN companies.current_storage_used; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.companies.current_storage_used IS 'Current storage usage in MB';
+
+
+--
+-- Name: COLUMN companies.current_bandwidth_used; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.companies.current_bandwidth_used IS 'Monthly bandwidth usage in MB';
+
+
+--
+-- Name: COLUMN companies.files_count; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.companies.files_count IS 'Current number of files stored';
+
+
+--
+-- Name: COLUMN companies.last_usage_update; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.companies.last_usage_update IS 'Last time usage was updated';
+
+
+--
+-- Name: companies_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.companies_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.companies_id_seq OWNER TO postgres;
+
+--
+-- Name: companies_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.companies_id_seq OWNED BY public.companies.id;
+
+
+--
+-- Name: company_ai_credentials; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.company_ai_credentials (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    provider character varying(50) NOT NULL,
+    api_key_encrypted text NOT NULL,
+    display_name character varying(100),
+    description text,
+    is_active boolean DEFAULT true NOT NULL,
+    usage_limit_monthly integer,
+    usage_count_current integer DEFAULT 0,
+    last_validated_at timestamp without time zone,
+    validation_status character varying(20) DEFAULT 'pending'::character varying,
+    validation_error text,
+    metadata jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT company_ai_credentials_provider_check CHECK (((provider)::text = ANY (ARRAY[('openai'::character varying)::text, ('openrouter'::character varying)::text]))),
+    CONSTRAINT company_ai_credentials_validation_status_check CHECK (((validation_status)::text = ANY (ARRAY[('pending'::character varying)::text, ('valid'::character varying)::text, ('invalid'::character varying)::text, ('expired'::character varying)::text])))
+);
+
+
+ALTER TABLE public.company_ai_credentials OWNER TO postgres;
+
+--
+-- Name: TABLE company_ai_credentials; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.company_ai_credentials IS 'Company-specific AI provider credentials managed by company admins';
+
+
+--
+-- Name: COLUMN company_ai_credentials.api_key_encrypted; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.company_ai_credentials.api_key_encrypted IS 'Encrypted API key using application encryption key';
+
+
+--
+-- Name: CONSTRAINT company_ai_credentials_provider_check ON company_ai_credentials; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON CONSTRAINT company_ai_credentials_provider_check ON public.company_ai_credentials IS 'Ensures only OpenAI and OpenRouter providers are allowed in the streamlined AI system';
+
+
+--
+-- Name: company_ai_credentials_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.company_ai_credentials_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.company_ai_credentials_id_seq OWNER TO postgres;
+
+--
+-- Name: company_ai_credentials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.company_ai_credentials_id_seq OWNED BY public.company_ai_credentials.id;
+
+
+--
+-- Name: company_ai_preferences; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.company_ai_preferences (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    default_provider character varying(50) DEFAULT 'gemini'::character varying,
+    credential_preference character varying(20) DEFAULT 'system'::character varying,
+    fallback_enabled boolean DEFAULT true,
+    usage_alerts_enabled boolean DEFAULT true,
+    usage_alert_threshold integer DEFAULT 80,
+    metadata jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT company_ai_preferences_credential_preference_check CHECK (((credential_preference)::text = ANY (ARRAY[('company'::character varying)::text, ('system'::character varying)::text, ('auto'::character varying)::text])))
+);
+
+
+ALTER TABLE public.company_ai_preferences OWNER TO postgres;
+
+--
+-- Name: TABLE company_ai_preferences; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.company_ai_preferences IS 'Company preferences for AI credential usage and fallback behavior';
+
+
+--
+-- Name: COLUMN company_ai_preferences.credential_preference; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.company_ai_preferences.credential_preference IS 'Preferred credential source for this company';
+
+
+--
+-- Name: company_ai_preferences_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.company_ai_preferences_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.company_ai_preferences_id_seq OWNER TO postgres;
+
+--
+-- Name: company_ai_preferences_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.company_ai_preferences_id_seq OWNED BY public.company_ai_preferences.id;
+
+
+--
+-- Name: company_pages; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.company_pages (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    title character varying(255) NOT NULL,
+    slug character varying(255) NOT NULL,
+    content text NOT NULL,
+    meta_title character varying(255),
+    meta_description text,
+    meta_keywords text,
+    is_published boolean DEFAULT true,
+    is_featured boolean DEFAULT false,
+    template character varying(100) DEFAULT 'default'::character varying,
+    custom_css text,
+    custom_js text,
+    author_id integer,
+    published_at timestamp without time zone,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.company_pages OWNER TO postgres;
+
+--
+-- Name: TABLE company_pages; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.company_pages IS 'Company-specific pages for public access (Terms, Privacy Policy, etc.)';
+
+
+--
+-- Name: COLUMN company_pages.company_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.company_pages.company_id IS 'Reference to the company that owns this page';
+
+
+--
+-- Name: COLUMN company_pages.title; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.company_pages.title IS 'Display title of the page';
+
+
+--
+-- Name: COLUMN company_pages.slug; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.company_pages.slug IS 'URL-friendly identifier for the page';
+
+
+--
+-- Name: COLUMN company_pages.content; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.company_pages.content IS 'HTML content of the page (from WYSIWYG editor)';
+
+
+--
+-- Name: COLUMN company_pages.meta_title; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.company_pages.meta_title IS 'SEO meta title';
+
+
+--
+-- Name: COLUMN company_pages.meta_description; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.company_pages.meta_description IS 'SEO meta description';
+
+
+--
+-- Name: COLUMN company_pages.meta_keywords; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.company_pages.meta_keywords IS 'SEO meta keywords';
+
+
+--
+-- Name: COLUMN company_pages.is_published; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.company_pages.is_published IS 'Whether the page is publicly accessible';
+
+
+--
+-- Name: COLUMN company_pages.is_featured; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.company_pages.is_featured IS 'Whether the page should be featured/highlighted';
+
+
+--
+-- Name: COLUMN company_pages.template; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.company_pages.template IS 'Template to use for rendering the page';
+
+
+--
+-- Name: COLUMN company_pages.custom_css; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.company_pages.custom_css IS 'Custom CSS for the page';
+
+
+--
+-- Name: COLUMN company_pages.custom_js; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.company_pages.custom_js IS 'Custom JavaScript for the page';
+
+
+--
+-- Name: COLUMN company_pages.author_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.company_pages.author_id IS 'User who created/last modified the page';
+
+
+--
+-- Name: COLUMN company_pages.published_at; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.company_pages.published_at IS 'When the page was first published';
+
+
+--
+-- Name: company_pages_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.company_pages_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.company_pages_id_seq OWNER TO postgres;
+
+--
+-- Name: company_pages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.company_pages_id_seq OWNED BY public.company_pages.id;
+
+
+--
+-- Name: company_settings; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.company_settings (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    key text NOT NULL,
+    value jsonb NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.company_settings OWNER TO postgres;
+
+--
+-- Name: company_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.company_settings_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.company_settings_id_seq OWNER TO postgres;
+
+--
+-- Name: company_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.company_settings_id_seq OWNED BY public.company_settings.id;
+
+
+--
+-- Name: plans; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.plans (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text,
+    price numeric(10,2) DEFAULT 0 NOT NULL,
+    max_users integer DEFAULT 5 NOT NULL,
+    max_contacts integer DEFAULT 1000 NOT NULL,
+    max_channels integer DEFAULT 3 NOT NULL,
+    max_flows integer DEFAULT 1 NOT NULL,
+    max_campaigns integer DEFAULT 5 NOT NULL,
+    max_campaign_recipients integer DEFAULT 1000 NOT NULL,
+    campaign_features jsonb DEFAULT '["basic_campaigns"]'::jsonb NOT NULL,
+    is_active boolean DEFAULT true NOT NULL,
+    is_free boolean DEFAULT false NOT NULL,
+    has_trial_period boolean DEFAULT false NOT NULL,
+    trial_days integer DEFAULT 0,
+    features jsonb DEFAULT '[]'::jsonb NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    discount_type text DEFAULT 'none'::text,
+    discount_value numeric(10,2) DEFAULT 0,
+    discount_duration text DEFAULT 'permanent'::text,
+    discount_start_date timestamp without time zone,
+    discount_end_date timestamp without time zone,
+    original_price numeric(10,2),
+    ai_tokens_included integer DEFAULT 0,
+    ai_tokens_monthly_limit integer,
+    ai_tokens_daily_limit integer,
+    ai_overage_enabled boolean DEFAULT false,
+    ai_overage_rate numeric(10,6) DEFAULT 0.000000,
+    ai_overage_block_enabled boolean DEFAULT false,
+    ai_billing_enabled boolean DEFAULT false,
+    billing_interval text DEFAULT 'month'::text,
+    grace_period_days integer DEFAULT 3,
+    max_dunning_attempts integer DEFAULT 3,
+    soft_limit_percentage integer DEFAULT 80,
+    allow_pausing boolean DEFAULT true,
+    pause_max_days integer DEFAULT 90,
+    storage_limit integer DEFAULT 1024,
+    bandwidth_limit integer DEFAULT 10240,
+    file_upload_limit integer DEFAULT 25,
+    total_files_limit integer DEFAULT 1000,
+    custom_duration_days integer,
+    CONSTRAINT plans_billing_interval_check CHECK ((billing_interval = ANY (ARRAY['lifetime'::text, 'daily'::text, 'weekly'::text, 'biweekly'::text, 'monthly'::text, 'quarterly'::text, 'semi_annual'::text, 'annual'::text, 'biennial'::text, 'custom'::text]))),
+    CONSTRAINT plans_discount_duration_check CHECK ((discount_duration = ANY (ARRAY['permanent'::text, 'first_month'::text, 'first_year'::text, 'limited_time'::text]))),
+    CONSTRAINT plans_discount_type_check CHECK ((discount_type = ANY (ARRAY['none'::text, 'percentage'::text, 'fixed_amount'::text])))
+);
+
+
+ALTER TABLE public.plans OWNER TO postgres;
+
+--
+-- Name: COLUMN plans.ai_tokens_included; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.ai_tokens_included IS 'Number of AI tokens included in the base plan price';
+
+
+--
+-- Name: COLUMN plans.ai_tokens_monthly_limit; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.ai_tokens_monthly_limit IS 'Maximum AI tokens allowed per month (NULL = unlimited)';
+
+
+--
+-- Name: COLUMN plans.ai_tokens_daily_limit; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.ai_tokens_daily_limit IS 'Maximum AI tokens allowed per day (NULL = unlimited)';
+
+
+--
+-- Name: COLUMN plans.ai_overage_enabled; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.ai_overage_enabled IS 'Whether overage billing is enabled for this plan';
+
+
+--
+-- Name: COLUMN plans.ai_overage_rate; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.ai_overage_rate IS 'Cost per token for usage beyond included tokens';
+
+
+--
+-- Name: COLUMN plans.ai_overage_block_enabled; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.ai_overage_block_enabled IS 'Whether to block AI usage when limits are exceeded';
+
+
+--
+-- Name: COLUMN plans.ai_billing_enabled; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.ai_billing_enabled IS 'Whether AI billing features are enabled for this plan';
+
+
+--
+-- Name: COLUMN plans.billing_interval; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.billing_interval IS 'Billing frequency: month, year, or quarter';
+
+
+--
+-- Name: COLUMN plans.grace_period_days; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.grace_period_days IS 'Days of grace period after subscription expires';
+
+
+--
+-- Name: COLUMN plans.max_dunning_attempts; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.max_dunning_attempts IS 'Maximum failed payment retry attempts';
+
+
+--
+-- Name: COLUMN plans.soft_limit_percentage; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.soft_limit_percentage IS 'Percentage of limit to trigger soft warnings';
+
+
+--
+-- Name: COLUMN plans.allow_pausing; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.allow_pausing IS 'Whether this plan allows subscription pausing';
+
+
+--
+-- Name: COLUMN plans.pause_max_days; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.pause_max_days IS 'Maximum days a subscription can be paused';
+
+
+--
+-- Name: COLUMN plans.storage_limit; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.storage_limit IS 'Storage limit in MB';
+
+
+--
+-- Name: COLUMN plans.bandwidth_limit; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.bandwidth_limit IS 'Monthly bandwidth limit in MB';
+
+
+--
+-- Name: COLUMN plans.file_upload_limit; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.file_upload_limit IS 'Maximum file size per upload in MB';
+
+
+--
+-- Name: COLUMN plans.total_files_limit; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.plans.total_files_limit IS 'Maximum number of files allowed';
+
+
+--
+-- Name: company_usage_overview; Type: VIEW; Schema: public; Owner: postgres
+--
+
+CREATE VIEW public.company_usage_overview AS
+ SELECT c.id AS company_id,
+    c.name AS company_name,
+    c.current_storage_used,
+    c.current_bandwidth_used,
+    c.files_count,
+    c.last_usage_update,
+    p.name AS plan_name,
+    p.storage_limit,
+    p.bandwidth_limit,
+    p.file_upload_limit,
+    p.total_files_limit,
+        CASE
+            WHEN (p.storage_limit > 0) THEN round((((c.current_storage_used)::numeric / (p.storage_limit)::numeric) * (100)::numeric), 2)
+            ELSE (0)::numeric
+        END AS storage_percentage,
+        CASE
+            WHEN (p.bandwidth_limit > 0) THEN round((((c.current_bandwidth_used)::numeric / (p.bandwidth_limit)::numeric) * (100)::numeric), 2)
+            ELSE (0)::numeric
+        END AS bandwidth_percentage,
+        CASE
+            WHEN (p.total_files_limit > 0) THEN round((((c.files_count)::numeric / (p.total_files_limit)::numeric) * (100)::numeric), 2)
+            ELSE (0)::numeric
+        END AS files_percentage,
+        CASE
+            WHEN ((p.storage_limit > 0) AND (((c.current_storage_used)::numeric / (p.storage_limit)::numeric) >= 0.8)) THEN true
+            ELSE false
+        END AS storage_near_limit,
+        CASE
+            WHEN ((p.bandwidth_limit > 0) AND (((c.current_bandwidth_used)::numeric / (p.bandwidth_limit)::numeric) >= 0.8)) THEN true
+            ELSE false
+        END AS bandwidth_near_limit,
+        CASE
+            WHEN ((p.total_files_limit > 0) AND (((c.files_count)::numeric / (p.total_files_limit)::numeric) >= 0.8)) THEN true
+            ELSE false
+        END AS files_near_limit,
+        CASE
+            WHEN ((p.storage_limit > 0) AND (c.current_storage_used >= p.storage_limit)) THEN true
+            ELSE false
+        END AS storage_exceeded,
+        CASE
+            WHEN ((p.bandwidth_limit > 0) AND (c.current_bandwidth_used >= p.bandwidth_limit)) THEN true
+            ELSE false
+        END AS bandwidth_exceeded,
+        CASE
+            WHEN ((p.total_files_limit > 0) AND (c.files_count >= p.total_files_limit)) THEN true
+            ELSE false
+        END AS files_exceeded
+   FROM (public.companies c
+     LEFT JOIN public.plans p ON ((c.plan_id = p.id)))
+  WHERE (c.active = true);
+
+
+ALTER VIEW public.company_usage_overview OWNER TO postgres;
+
+--
+-- Name: contact_appointments; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.contact_appointments (
+    id integer NOT NULL,
+    contact_id integer NOT NULL,
+    title text NOT NULL,
+    description text,
+    location text,
+    scheduled_at timestamp without time zone NOT NULL,
+    duration_minutes integer DEFAULT 60,
+    type text DEFAULT 'meeting'::text NOT NULL,
+    status text DEFAULT 'scheduled'::text NOT NULL,
+    created_by integer,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now(),
+    CONSTRAINT contact_appointments_status_check CHECK ((status = ANY (ARRAY['scheduled'::text, 'confirmed'::text, 'completed'::text, 'cancelled'::text, 'rescheduled'::text])))
+);
+
+
+ALTER TABLE public.contact_appointments OWNER TO postgres;
+
+--
+-- Name: TABLE contact_appointments; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.contact_appointments IS 'Stores appointments and meetings scheduled with contacts';
+
+
+--
+-- Name: COLUMN contact_appointments.type; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.contact_appointments.type IS 'Appointment type: meeting, property_viewing, phone_call, document_review, etc.';
+
+
+--
+-- Name: contact_appointments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.contact_appointments_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.contact_appointments_id_seq OWNER TO postgres;
+
+--
+-- Name: contact_appointments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.contact_appointments_id_seq OWNED BY public.contact_appointments.id;
+
+
+--
+-- Name: contact_audit_logs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.contact_audit_logs (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    contact_id integer NOT NULL,
+    user_id integer,
+    action_type character varying(50) NOT NULL,
+    action_category character varying(30) DEFAULT 'contact'::character varying NOT NULL,
+    description text NOT NULL,
+    old_values jsonb,
+    new_values jsonb,
+    metadata jsonb,
+    ip_address inet,
+    user_agent text,
+    created_at timestamp with time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.contact_audit_logs OWNER TO postgres;
+
+--
+-- Name: TABLE contact_audit_logs; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.contact_audit_logs IS 'Audit trail for all contact-related actions and changes';
+
+
+--
+-- Name: COLUMN contact_audit_logs.action_type; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.contact_audit_logs.action_type IS 'Specific action performed (e.g., created, updated, deleted, document_uploaded, agent_assigned)';
+
+
+--
+-- Name: COLUMN contact_audit_logs.action_category; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.contact_audit_logs.action_category IS 'Category of action (contact, document, appointment, agent, tag)';
+
+
+--
+-- Name: COLUMN contact_audit_logs.description; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.contact_audit_logs.description IS 'Human-readable description of the action';
+
+
+--
+-- Name: COLUMN contact_audit_logs.old_values; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.contact_audit_logs.old_values IS 'Previous values before the change (for updates)';
+
+
+--
+-- Name: COLUMN contact_audit_logs.new_values; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.contact_audit_logs.new_values IS 'New values after the change';
+
+
+--
+-- Name: COLUMN contact_audit_logs.metadata; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.contact_audit_logs.metadata IS 'Additional context data (e.g., document info, appointment details)';
+
+
+--
+-- Name: contact_audit_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.contact_audit_logs_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.contact_audit_logs_id_seq OWNER TO postgres;
+
+--
+-- Name: contact_audit_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.contact_audit_logs_id_seq OWNED BY public.contact_audit_logs.id;
+
+
+--
+-- Name: contact_documents; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.contact_documents (
+    id integer NOT NULL,
+    contact_id integer NOT NULL,
+    filename text NOT NULL,
+    original_name text NOT NULL,
+    mime_type text NOT NULL,
+    file_size integer NOT NULL,
+    file_path text NOT NULL,
+    file_url text NOT NULL,
+    category text DEFAULT 'general'::text NOT NULL,
+    description text,
+    uploaded_by integer,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.contact_documents OWNER TO postgres;
+
+--
+-- Name: TABLE contact_documents; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.contact_documents IS 'Stores document attachments for contacts';
+
+
+--
+-- Name: COLUMN contact_documents.category; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.contact_documents.category IS 'Document category: identity, address_proof, income, general, etc.';
+
+
+--
+-- Name: contact_documents_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.contact_documents_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.contact_documents_id_seq OWNER TO postgres;
+
+--
+-- Name: contact_documents_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.contact_documents_id_seq OWNED BY public.contact_documents.id;
+
+
+--
+-- Name: contact_segments; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.contact_segments (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    created_by_id integer NOT NULL,
+    name text NOT NULL,
+    description text,
+    criteria jsonb NOT NULL,
+    contact_count integer DEFAULT 0,
+    last_updated_at timestamp without time zone DEFAULT now(),
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.contact_segments OWNER TO postgres;
+
+--
+-- Name: contact_segments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.contact_segments_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.contact_segments_id_seq OWNER TO postgres;
+
+--
+-- Name: contact_segments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.contact_segments_id_seq OWNED BY public.contact_segments.id;
+
+
+--
+-- Name: contact_tasks; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.contact_tasks (
+    id integer NOT NULL,
+    contact_id integer NOT NULL,
+    company_id integer NOT NULL,
+    title text NOT NULL,
+    description text,
+    priority text DEFAULT 'medium'::text NOT NULL,
+    status text DEFAULT 'not_started'::text NOT NULL,
+    due_date timestamp without time zone,
+    completed_at timestamp without time zone,
+    assigned_to text,
+    category text,
+    tags text[],
+    created_by integer,
+    updated_by integer,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    background_color character varying(7) DEFAULT '#ffffff'::character varying,
+    CONSTRAINT contact_tasks_priority_check CHECK ((priority = ANY (ARRAY['low'::text, 'medium'::text, 'high'::text, 'urgent'::text]))),
+    CONSTRAINT contact_tasks_status_check CHECK ((status = ANY (ARRAY['not_started'::text, 'in_progress'::text, 'completed'::text, 'cancelled'::text])))
+);
+
+
+ALTER TABLE public.contact_tasks OWNER TO postgres;
+
+--
+-- Name: COLUMN contact_tasks.background_color; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.contact_tasks.background_color IS 'Hex color code for task background (e.g., #ffffff, #ff0000)';
+
+
+--
+-- Name: contact_tasks_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.contact_tasks_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.contact_tasks_id_seq OWNER TO postgres;
+
+--
+-- Name: contact_tasks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.contact_tasks_id_seq OWNED BY public.contact_tasks.id;
+
+
+--
+-- Name: contacts; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.contacts (
+    id integer NOT NULL,
+    company_id integer,
+    name text NOT NULL,
+    avatar_url text,
+    email text,
+    phone text,
+    company text,
+    tags text[],
+    is_active boolean DEFAULT true,
+    identifier text,
+    identifier_type text,
+    source text,
+    notes text,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now(),
+    is_history_sync boolean DEFAULT false,
+    history_sync_batch_id text,
+    is_archived boolean DEFAULT false NOT NULL
+);
+
+
+ALTER TABLE public.contacts OWNER TO postgres;
+
+--
+-- Name: COLUMN contacts.is_archived; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.contacts.is_archived IS 'Indicates if the contact is archived (hidden from main view but data preserved)';
+
+
+--
+-- Name: contacts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.contacts_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.contacts_id_seq OWNER TO postgres;
+
+--
+-- Name: contacts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.contacts_id_seq OWNED BY public.contacts.id;
+
+
+--
+-- Name: conversations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.conversations (
+    id integer NOT NULL,
+    company_id integer,
+    contact_id integer,
+    channel_type text NOT NULL,
+    channel_id integer NOT NULL,
+    status text DEFAULT 'open'::text,
+    assigned_to_user_id integer,
+    last_message_at timestamp without time zone DEFAULT now(),
+    unread_count integer DEFAULT 0,
+    bot_disabled boolean DEFAULT false,
+    disabled_at timestamp without time zone,
+    disable_duration integer,
+    disable_reason text,
+    is_group boolean DEFAULT false,
+    group_jid text,
+    group_name text,
+    group_description text,
+    group_participant_count integer DEFAULT 0,
+    group_created_at timestamp without time zone,
+    group_metadata jsonb,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now(),
+    is_history_sync boolean DEFAULT false,
+    history_sync_batch_id text,
+    is_starred boolean DEFAULT false,
+    is_archived boolean DEFAULT false,
+    archived_at timestamp without time zone,
+    starred_at timestamp without time zone,
+    CONSTRAINT check_conversation_type CHECK ((((is_group = false) AND (contact_id IS NOT NULL) AND (group_jid IS NULL)) OR ((is_group = true) AND (contact_id IS NULL) AND (group_jid IS NOT NULL))))
+);
+
+
+ALTER TABLE public.conversations OWNER TO postgres;
+
+--
+-- Name: COLUMN conversations.unread_count; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.conversations.unread_count IS 'Cached count of unread inbound messages for performance';
+
+
+--
+-- Name: conversations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.conversations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.conversations_id_seq OWNER TO postgres;
+
+--
+-- Name: conversations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.conversations_id_seq OWNED BY public.conversations.id;
+
+
+--
+-- Name: coupon_codes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.coupon_codes (
+    id integer NOT NULL,
+    company_id integer,
+    code text NOT NULL,
+    name text NOT NULL,
+    description text,
+    discount_type text NOT NULL,
+    discount_value numeric(10,2) NOT NULL,
+    usage_limit integer,
+    usage_limit_per_user integer DEFAULT 1,
+    current_usage_count integer DEFAULT 0,
+    start_date timestamp without time zone DEFAULT now() NOT NULL,
+    end_date timestamp without time zone,
+    applicable_plan_ids integer[],
+    minimum_plan_value numeric(10,2),
+    is_active boolean DEFAULT true,
+    created_by integer,
+    metadata jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT coupon_codes_discount_type_check CHECK ((discount_type = ANY (ARRAY['percentage'::text, 'fixed_amount'::text])))
+);
+
+
+ALTER TABLE public.coupon_codes OWNER TO postgres;
+
+--
+-- Name: coupon_codes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.coupon_codes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.coupon_codes_id_seq OWNER TO postgres;
+
+--
+-- Name: coupon_codes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.coupon_codes_id_seq OWNED BY public.coupon_codes.id;
+
+
+--
+-- Name: coupon_usage; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.coupon_usage (
+    id integer NOT NULL,
+    coupon_id integer,
+    company_id integer,
+    user_id integer,
+    plan_id integer,
+    original_amount numeric(10,2) NOT NULL,
+    discount_amount numeric(10,2) NOT NULL,
+    final_amount numeric(10,2) NOT NULL,
+    payment_transaction_id integer,
+    usage_context jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.coupon_usage OWNER TO postgres;
+
+--
+-- Name: coupon_usage_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.coupon_usage_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.coupon_usage_id_seq OWNER TO postgres;
+
+--
+-- Name: coupon_usage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.coupon_usage_id_seq OWNED BY public.coupon_usage.id;
+
+
+--
+-- Name: deal_activities; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.deal_activities (
+    id integer NOT NULL,
+    deal_id integer NOT NULL,
+    user_id integer NOT NULL,
+    type text NOT NULL,
+    content text NOT NULL,
+    metadata jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.deal_activities OWNER TO postgres;
+
+--
+-- Name: deal_activities_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.deal_activities_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.deal_activities_id_seq OWNER TO postgres;
+
+--
+-- Name: deal_activities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.deal_activities_id_seq OWNED BY public.deal_activities.id;
+
+
+--
+-- Name: deals; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.deals (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    contact_id integer NOT NULL,
+    title text NOT NULL,
+    stage_id integer,
+    stage text DEFAULT 'lead'::text NOT NULL,
+    value integer,
+    priority text DEFAULT 'medium'::text,
+    due_date timestamp without time zone,
+    assigned_to_user_id integer,
+    description text,
+    tags text[],
+    status text DEFAULT 'active'::text,
+    last_activity_at timestamp without time zone DEFAULT now(),
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT deals_priority_check CHECK ((priority = ANY (ARRAY['low'::text, 'medium'::text, 'high'::text]))),
+    CONSTRAINT deals_stage_check CHECK ((stage = ANY (ARRAY['lead'::text, 'qualified'::text, 'contacted'::text, 'demo_scheduled'::text, 'proposal'::text, 'negotiation'::text, 'closed_won'::text, 'closed_lost'::text]))),
+    CONSTRAINT deals_status_check CHECK ((status = ANY (ARRAY['active'::text, 'archived'::text])))
+);
+
+
+ALTER TABLE public.deals OWNER TO postgres;
+
+--
+-- Name: TABLE deals; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.deals IS 'Stores deal information with unique constraint preventing multiple active deals per contact per company';
+
+
+--
+-- Name: deals_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.deals_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.deals_id_seq OWNER TO postgres;
+
+--
+-- Name: deals_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.deals_id_seq OWNED BY public.deals.id;
+
+
+--
+-- Name: dialog_360_channels; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.dialog_360_channels (
+    id integer NOT NULL,
+    client_id integer NOT NULL,
+    channel_id text NOT NULL,
+    phone_number text NOT NULL,
+    display_name text,
+    status text DEFAULT 'pending'::text NOT NULL,
+    api_key text,
+    webhook_url text,
+    quality_rating text,
+    messaging_limit integer,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT dialog_360_channels_quality_rating_check CHECK ((quality_rating = ANY (ARRAY['green'::text, 'yellow'::text, 'red'::text]))),
+    CONSTRAINT dialog_360_channels_status_check CHECK ((status = ANY (ARRAY['pending'::text, 'running'::text, 'suspended'::text, 'failed'::text])))
+);
+
+
+ALTER TABLE public.dialog_360_channels OWNER TO postgres;
+
+--
+-- Name: TABLE dialog_360_channels; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.dialog_360_channels IS 'WhatsApp channels/phone numbers under 360Dialog client accounts';
+
+
+--
+-- Name: COLUMN dialog_360_channels.client_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.dialog_360_channels.client_id IS 'Reference to the parent 360Dialog client';
+
+
+--
+-- Name: COLUMN dialog_360_channels.channel_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.dialog_360_channels.channel_id IS 'Unique 360Dialog channel ID';
+
+
+--
+-- Name: COLUMN dialog_360_channels.phone_number; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.dialog_360_channels.phone_number IS 'WhatsApp phone number for this channel';
+
+
+--
+-- Name: COLUMN dialog_360_channels.display_name; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.dialog_360_channels.display_name IS 'Display name for the phone number';
+
+
+--
+-- Name: COLUMN dialog_360_channels.status; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.dialog_360_channels.status IS 'Current status of the channel';
+
+
+--
+-- Name: COLUMN dialog_360_channels.api_key; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.dialog_360_channels.api_key IS 'Channel-specific API key for messaging';
+
+
+--
+-- Name: COLUMN dialog_360_channels.webhook_url; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.dialog_360_channels.webhook_url IS 'Channel-specific webhook URL';
+
+
+--
+-- Name: COLUMN dialog_360_channels.quality_rating; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.dialog_360_channels.quality_rating IS 'WhatsApp quality rating (green/yellow/red)';
+
+
+--
+-- Name: COLUMN dialog_360_channels.messaging_limit; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.dialog_360_channels.messaging_limit IS 'Current messaging limit for this channel';
+
+
+--
+-- Name: dialog_360_channels_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.dialog_360_channels_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.dialog_360_channels_id_seq OWNER TO postgres;
+
+--
+-- Name: dialog_360_channels_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.dialog_360_channels_id_seq OWNED BY public.dialog_360_channels.id;
+
+
+--
+-- Name: dialog_360_clients; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.dialog_360_clients (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    client_id text NOT NULL,
+    client_name text NOT NULL,
+    status text DEFAULT 'active'::text NOT NULL,
+    onboarded_at timestamp without time zone DEFAULT now(),
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT dialog_360_clients_status_check CHECK ((status = ANY (ARRAY['active'::text, 'suspended'::text, 'pending'::text])))
+);
+
+
+ALTER TABLE public.dialog_360_clients OWNER TO postgres;
+
+--
+-- Name: TABLE dialog_360_clients; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.dialog_360_clients IS 'Company client accounts managed through 360Dialog Partner API';
+
+
+--
+-- Name: COLUMN dialog_360_clients.company_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.dialog_360_clients.company_id IS 'Reference to the company that owns this client account';
+
+
+--
+-- Name: COLUMN dialog_360_clients.client_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.dialog_360_clients.client_id IS 'Unique 360Dialog client ID';
+
+
+--
+-- Name: COLUMN dialog_360_clients.client_name; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.dialog_360_clients.client_name IS 'Display name for the client account';
+
+
+--
+-- Name: COLUMN dialog_360_clients.status; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.dialog_360_clients.status IS 'Current status of the client account';
+
+
+--
+-- Name: COLUMN dialog_360_clients.onboarded_at; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.dialog_360_clients.onboarded_at IS 'When the client was onboarded through Partner API';
+
+
+--
+-- Name: dialog_360_clients_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.dialog_360_clients_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.dialog_360_clients_id_seq OWNER TO postgres;
+
+--
+-- Name: dialog_360_clients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.dialog_360_clients_id_seq OWNED BY public.dialog_360_clients.id;
+
+
+--
+-- Name: dunning_management; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.dunning_management (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    payment_transaction_id integer,
+    attempt_number integer DEFAULT 1 NOT NULL,
+    attempt_date timestamp without time zone DEFAULT now() NOT NULL,
+    attempt_type text NOT NULL,
+    status text DEFAULT 'pending'::text NOT NULL,
+    response_data jsonb,
+    next_attempt_date timestamp without time zone,
+    created_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.dunning_management OWNER TO postgres;
+
+--
+-- Name: TABLE dunning_management; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.dunning_management IS 'Failed payment retry and recovery management';
+
+
+--
+-- Name: dunning_management_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.dunning_management_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.dunning_management_id_seq OWNER TO postgres;
+
+--
+-- Name: dunning_management_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.dunning_management_id_seq OWNED BY public.dunning_management.id;
+
+
+--
+-- Name: email_attachments; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.email_attachments (
+    id integer NOT NULL,
+    message_id integer NOT NULL,
+    filename text NOT NULL,
+    content_type text NOT NULL,
+    size integer NOT NULL,
+    content_id text,
+    is_inline boolean DEFAULT false,
+    file_path text NOT NULL,
+    download_url text,
+    created_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.email_attachments OWNER TO postgres;
+
+--
+-- Name: TABLE email_attachments; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.email_attachments IS 'Stores email attachments linked to messages';
+
+
+--
+-- Name: COLUMN email_attachments.content_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.email_attachments.content_id IS 'Content-ID for inline attachments (cid:)';
+
+
+--
+-- Name: COLUMN email_attachments.is_inline; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.email_attachments.is_inline IS 'Whether attachment is inline (embedded in HTML)';
+
+
+--
+-- Name: COLUMN email_attachments.file_path; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.email_attachments.file_path IS 'Server file path where attachment is stored';
+
+
+--
+-- Name: COLUMN email_attachments.download_url; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.email_attachments.download_url IS 'Public URL for downloading attachment';
+
+
+--
+-- Name: email_attachments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.email_attachments_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.email_attachments_id_seq OWNER TO postgres;
+
+--
+-- Name: email_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.email_attachments_id_seq OWNED BY public.email_attachments.id;
+
+
+--
+-- Name: email_configs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.email_configs (
+    id integer NOT NULL,
+    channel_connection_id integer NOT NULL,
+    imap_host text NOT NULL,
+    imap_port integer DEFAULT 993 NOT NULL,
+    imap_secure boolean DEFAULT true,
+    imap_username text NOT NULL,
+    imap_password text,
+    smtp_host text NOT NULL,
+    smtp_port integer DEFAULT 465 NOT NULL,
+    smtp_secure boolean DEFAULT false,
+    smtp_username text NOT NULL,
+    smtp_password text,
+    oauth_provider text,
+    oauth_client_id text,
+    oauth_client_secret text,
+    oauth_refresh_token text,
+    oauth_access_token text,
+    oauth_token_expiry timestamp without time zone,
+    email_address text NOT NULL,
+    display_name text,
+    signature text,
+    sync_folder text DEFAULT 'INBOX'::text,
+    sync_frequency integer DEFAULT 60,
+    max_sync_messages integer DEFAULT 100,
+    status text DEFAULT 'active'::text NOT NULL,
+    last_sync_at timestamp without time zone,
+    last_error text,
+    connection_data jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT email_configs_status_check CHECK ((status = ANY (ARRAY['active'::text, 'inactive'::text, 'error'::text])))
+);
+
+
+ALTER TABLE public.email_configs OWNER TO postgres;
+
+--
+-- Name: TABLE email_configs; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.email_configs IS 'Email channel configuration including IMAP/SMTP and OAuth2 settings';
+
+
+--
+-- Name: COLUMN email_configs.imap_password; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.email_configs.imap_password IS 'Encrypted IMAP password';
+
+
+--
+-- Name: COLUMN email_configs.smtp_password; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.email_configs.smtp_password IS 'Encrypted SMTP password';
+
+
+--
+-- Name: COLUMN email_configs.oauth_client_secret; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.email_configs.oauth_client_secret IS 'Encrypted OAuth2 client secret';
+
+
+--
+-- Name: COLUMN email_configs.oauth_refresh_token; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.email_configs.oauth_refresh_token IS 'Encrypted OAuth2 refresh token';
+
+
+--
+-- Name: COLUMN email_configs.oauth_access_token; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.email_configs.oauth_access_token IS 'Encrypted OAuth2 access token';
+
+
+--
+-- Name: COLUMN email_configs.sync_folder; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.email_configs.sync_folder IS 'Email folder to sync (default: INBOX)';
+
+
+--
+-- Name: COLUMN email_configs.sync_frequency; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.email_configs.sync_frequency IS 'How often to check for new emails (seconds)';
+
+
+--
+-- Name: COLUMN email_configs.max_sync_messages; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.email_configs.max_sync_messages IS 'Maximum messages to sync per check';
+
+
+--
+-- Name: COLUMN email_configs.connection_data; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.email_configs.connection_data IS 'Provider-specific configuration data';
+
+
+--
+-- Name: email_configs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.email_configs_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.email_configs_id_seq OWNER TO postgres;
+
+--
+-- Name: email_configs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.email_configs_id_seq OWNED BY public.email_configs.id;
+
+
+--
+-- Name: flow_assignments; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.flow_assignments (
+    id integer NOT NULL,
+    flow_id integer NOT NULL,
+    channel_id integer NOT NULL,
+    is_active boolean DEFAULT false NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.flow_assignments OWNER TO postgres;
+
+--
+-- Name: flow_assignments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.flow_assignments_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.flow_assignments_id_seq OWNER TO postgres;
+
+--
+-- Name: flow_assignments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.flow_assignments_id_seq OWNED BY public.flow_assignments.id;
+
+
+--
+-- Name: flow_executions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.flow_executions (
+    id integer NOT NULL,
+    execution_id text NOT NULL,
+    flow_id integer NOT NULL,
+    conversation_id integer NOT NULL,
+    contact_id integer NOT NULL,
+    company_id integer,
+    status text DEFAULT 'running'::text NOT NULL,
+    trigger_node_id text NOT NULL,
+    current_node_id text,
+    execution_path jsonb DEFAULT '[]'::jsonb NOT NULL,
+    context_data jsonb DEFAULT '{}'::jsonb NOT NULL,
+    started_at timestamp without time zone DEFAULT now() NOT NULL,
+    completed_at timestamp without time zone,
+    last_activity_at timestamp without time zone DEFAULT now() NOT NULL,
+    total_duration_ms integer,
+    completion_rate numeric(5,2),
+    error_message text,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT flow_executions_status_check CHECK ((status = ANY (ARRAY['running'::text, 'waiting'::text, 'completed'::text, 'failed'::text, 'abandoned'::text])))
+);
+
+
+ALTER TABLE public.flow_executions OWNER TO postgres;
+
+--
+-- Name: flow_executions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.flow_executions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.flow_executions_id_seq OWNER TO postgres;
+
+--
+-- Name: flow_executions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.flow_executions_id_seq OWNED BY public.flow_executions.id;
+
+
+--
+-- Name: flow_session_cursors; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.flow_session_cursors (
+    id integer NOT NULL,
+    session_id text NOT NULL,
+    current_node_id text NOT NULL,
+    previous_node_id text,
+    next_possible_nodes jsonb DEFAULT '[]'::jsonb NOT NULL,
+    branch_conditions jsonb DEFAULT '{}'::jsonb NOT NULL,
+    loop_state jsonb,
+    waiting_for_input boolean DEFAULT false,
+    input_expected_type text,
+    input_validation_rules jsonb,
+    timeout_at timestamp without time zone,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.flow_session_cursors OWNER TO postgres;
+
+--
+-- Name: TABLE flow_session_cursors; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.flow_session_cursors IS 'Advanced cursor positioning for flow navigation';
+
+
+--
+-- Name: COLUMN flow_session_cursors.next_possible_nodes; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.flow_session_cursors.next_possible_nodes IS 'Array of possible next node IDs';
+
+
+--
+-- Name: COLUMN flow_session_cursors.branch_conditions; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.flow_session_cursors.branch_conditions IS 'Conditions for conditional branching';
+
+
+--
+-- Name: COLUMN flow_session_cursors.loop_state; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.flow_session_cursors.loop_state IS 'State information for loop nodes';
+
+
+--
+-- Name: COLUMN flow_session_cursors.waiting_for_input; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.flow_session_cursors.waiting_for_input IS 'Whether cursor is waiting for user input';
+
+
+--
+-- Name: COLUMN flow_session_cursors.input_validation_rules; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.flow_session_cursors.input_validation_rules IS 'Validation rules for expected input';
+
+
+--
+-- Name: flow_session_cursors_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.flow_session_cursors_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.flow_session_cursors_id_seq OWNER TO postgres;
+
+--
+-- Name: flow_session_cursors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.flow_session_cursors_id_seq OWNED BY public.flow_session_cursors.id;
+
+
+--
+-- Name: flow_session_variables; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.flow_session_variables (
+    id integer NOT NULL,
+    session_id text NOT NULL,
+    variable_key text NOT NULL,
+    variable_value jsonb NOT NULL,
+    variable_type text DEFAULT 'string'::text NOT NULL,
+    scope text DEFAULT 'session'::text NOT NULL,
+    node_id text,
+    is_encrypted boolean DEFAULT false,
+    expires_at timestamp without time zone,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT flow_session_variables_scope_check CHECK ((scope = ANY (ARRAY['global'::text, 'flow'::text, 'node'::text, 'user'::text, 'session'::text]))),
+    CONSTRAINT flow_session_variables_variable_type_check CHECK ((variable_type = ANY (ARRAY['string'::text, 'number'::text, 'boolean'::text, 'object'::text, 'array'::text])))
+);
+
+
+ALTER TABLE public.flow_session_variables OWNER TO postgres;
+
+--
+-- Name: TABLE flow_session_variables; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.flow_session_variables IS 'Hierarchical variable management for flow sessions';
+
+
+--
+-- Name: COLUMN flow_session_variables.scope; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.flow_session_variables.scope IS 'Variable scope: global, flow, node, user, or session';
+
+
+--
+-- Name: COLUMN flow_session_variables.is_encrypted; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.flow_session_variables.is_encrypted IS 'Whether the variable value is encrypted';
+
+
+--
+-- Name: COLUMN flow_session_variables.expires_at; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.flow_session_variables.expires_at IS 'Variable expiration timestamp';
+
+
+--
+-- Name: flow_session_variables_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.flow_session_variables_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.flow_session_variables_id_seq OWNER TO postgres;
+
+--
+-- Name: flow_session_variables_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.flow_session_variables_id_seq OWNED BY public.flow_session_variables.id;
+
+
+--
+-- Name: flow_sessions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.flow_sessions (
+    id integer NOT NULL,
+    session_id text NOT NULL,
+    flow_id integer NOT NULL,
+    conversation_id integer NOT NULL,
+    contact_id integer NOT NULL,
+    company_id integer,
+    status text DEFAULT 'active'::text NOT NULL,
+    current_node_id text,
+    trigger_node_id text NOT NULL,
+    execution_path jsonb DEFAULT '[]'::jsonb NOT NULL,
+    branching_history jsonb DEFAULT '[]'::jsonb NOT NULL,
+    session_data jsonb DEFAULT '{}'::jsonb NOT NULL,
+    node_states jsonb DEFAULT '{}'::jsonb NOT NULL,
+    waiting_context jsonb,
+    started_at timestamp without time zone DEFAULT now() NOT NULL,
+    last_activity_at timestamp without time zone DEFAULT now() NOT NULL,
+    paused_at timestamp without time zone,
+    resumed_at timestamp without time zone,
+    completed_at timestamp without time zone,
+    expires_at timestamp without time zone,
+    total_duration_ms integer,
+    node_execution_count integer DEFAULT 0,
+    user_interaction_count integer DEFAULT 0,
+    error_count integer DEFAULT 0,
+    last_error_message text,
+    checkpoint_data jsonb,
+    debug_info jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT flow_sessions_status_check CHECK ((status = ANY (ARRAY['active'::text, 'waiting'::text, 'paused'::text, 'completed'::text, 'failed'::text, 'abandoned'::text, 'timeout'::text])))
+);
+
+
+ALTER TABLE public.flow_sessions OWNER TO postgres;
+
+--
+-- Name: TABLE flow_sessions; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.flow_sessions IS 'Enhanced persistent flow execution sessions with state management';
+
+
+--
+-- Name: COLUMN flow_sessions.session_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.flow_sessions.session_id IS 'Unique session identifier for tracking flow state';
+
+
+--
+-- Name: COLUMN flow_sessions.execution_path; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.flow_sessions.execution_path IS 'Array of node IDs representing the execution path';
+
+
+--
+-- Name: COLUMN flow_sessions.branching_history; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.flow_sessions.branching_history IS 'History of conditional branching decisions';
+
+
+--
+-- Name: COLUMN flow_sessions.session_data; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.flow_sessions.session_data IS 'Persistent session variables and context data';
+
+
+--
+-- Name: COLUMN flow_sessions.node_states; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.flow_sessions.node_states IS 'Per-node execution state snapshots';
+
+
+--
+-- Name: COLUMN flow_sessions.waiting_context; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.flow_sessions.waiting_context IS 'Context data for nodes waiting for user input';
+
+
+--
+-- Name: COLUMN flow_sessions.expires_at; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.flow_sessions.expires_at IS 'Session expiration timestamp for cleanup';
+
+
+--
+-- Name: flow_sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.flow_sessions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.flow_sessions_id_seq OWNER TO postgres;
+
+--
+-- Name: flow_sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.flow_sessions_id_seq OWNED BY public.flow_sessions.id;
+
+
+--
+-- Name: flow_step_executions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.flow_step_executions (
+    id integer NOT NULL,
+    flow_execution_id integer NOT NULL,
+    node_id text NOT NULL,
+    node_type text NOT NULL,
+    step_order integer NOT NULL,
+    started_at timestamp without time zone DEFAULT now() NOT NULL,
+    completed_at timestamp without time zone,
+    duration_ms integer,
+    status text DEFAULT 'running'::text NOT NULL,
+    input_data jsonb,
+    output_data jsonb,
+    error_message text,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    session_id text,
+    retry_count integer DEFAULT 0,
+    max_retries integer DEFAULT 0,
+    CONSTRAINT flow_step_executions_status_check CHECK ((status = ANY (ARRAY['running'::text, 'completed'::text, 'failed'::text, 'skipped'::text, 'waiting'::text, 'timeout'::text])))
+);
+
+
+ALTER TABLE public.flow_step_executions OWNER TO postgres;
+
+--
+-- Name: flow_step_executions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.flow_step_executions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.flow_step_executions_id_seq OWNER TO postgres;
+
+--
+-- Name: flow_step_executions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.flow_step_executions_id_seq OWNED BY public.flow_step_executions.id;
+
+
+--
+-- Name: flows; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.flows (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    company_id integer,
+    name text NOT NULL,
+    description text,
+    status text DEFAULT 'draft'::text NOT NULL,
+    nodes jsonb DEFAULT '[]'::jsonb NOT NULL,
+    edges jsonb DEFAULT '[]'::jsonb NOT NULL,
+    version integer DEFAULT 1 NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT flows_status_check CHECK ((status = ANY (ARRAY['draft'::text, 'active'::text, 'inactive'::text, 'archived'::text])))
+);
+
+
+ALTER TABLE public.flows OWNER TO postgres;
+
+--
+-- Name: TABLE flows; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.flows IS 'Enhanced with multi-channel trigger support. Trigger nodes now support channelTypes array for cross-channel compatibility.';
+
+
+--
+-- Name: flows_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.flows_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.flows_id_seq OWNER TO postgres;
+
+--
+-- Name: flows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.flows_id_seq OWNED BY public.flows.id;
+
+
+--
+-- Name: follow_up_execution_log; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.follow_up_execution_log (
+    id integer NOT NULL,
+    schedule_id text NOT NULL,
+    execution_attempt integer DEFAULT 1 NOT NULL,
+    status text NOT NULL,
+    message_id text,
+    error_message text,
+    execution_duration_ms integer,
+    executed_at timestamp without time zone DEFAULT now() NOT NULL,
+    response_received boolean DEFAULT false,
+    response_at timestamp without time zone,
+    response_content text,
+    CONSTRAINT follow_up_execution_log_status_check CHECK ((status = ANY (ARRAY['success'::text, 'failed'::text, 'retry'::text, 'expired'::text])))
+);
+
+
+ALTER TABLE public.follow_up_execution_log OWNER TO postgres;
+
+--
+-- Name: TABLE follow_up_execution_log; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.follow_up_execution_log IS 'Logs all follow-up execution attempts and results';
+
+
+--
+-- Name: COLUMN follow_up_execution_log.execution_attempt; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.follow_up_execution_log.execution_attempt IS 'Attempt number for retry tracking';
+
+
+--
+-- Name: COLUMN follow_up_execution_log.response_received; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.follow_up_execution_log.response_received IS 'Whether recipient responded to follow-up';
+
+
+--
+-- Name: follow_up_execution_log_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.follow_up_execution_log_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.follow_up_execution_log_id_seq OWNER TO postgres;
+
+--
+-- Name: follow_up_execution_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.follow_up_execution_log_id_seq OWNED BY public.follow_up_execution_log.id;
+
+
+--
+-- Name: follow_up_schedules; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.follow_up_schedules (
+    id integer NOT NULL,
+    schedule_id text NOT NULL,
+    session_id text,
+    flow_id integer NOT NULL,
+    conversation_id integer NOT NULL,
+    contact_id integer NOT NULL,
+    company_id integer,
+    node_id text NOT NULL,
+    message_type text DEFAULT 'text'::text NOT NULL,
+    message_content text,
+    media_url text,
+    caption text,
+    template_id integer,
+    trigger_event text DEFAULT 'conversation_start'::text NOT NULL,
+    trigger_node_id text,
+    delay_amount integer,
+    delay_unit text,
+    scheduled_for timestamp without time zone,
+    specific_datetime timestamp without time zone,
+    status text DEFAULT 'scheduled'::text NOT NULL,
+    sent_at timestamp without time zone,
+    failed_reason text,
+    retry_count integer DEFAULT 0,
+    max_retries integer DEFAULT 3,
+    channel_type text NOT NULL,
+    channel_connection_id integer,
+    variables jsonb DEFAULT '{}'::jsonb,
+    execution_context jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    expires_at timestamp without time zone,
+    timezone text DEFAULT 'UTC'::text,
+    CONSTRAINT follow_up_schedules_delay_unit_check CHECK ((delay_unit = ANY (ARRAY['minutes'::text, 'hours'::text, 'days'::text, 'weeks'::text]))),
+    CONSTRAINT follow_up_schedules_message_type_check CHECK ((message_type = ANY (ARRAY['text'::text, 'image'::text, 'video'::text, 'audio'::text, 'document'::text, 'reaction'::text]))),
+    CONSTRAINT follow_up_schedules_status_check CHECK ((status = ANY (ARRAY['scheduled'::text, 'sent'::text, 'failed'::text, 'cancelled'::text, 'expired'::text]))),
+    CONSTRAINT follow_up_schedules_trigger_event_check CHECK ((trigger_event = ANY (ARRAY['conversation_start'::text, 'node_execution'::text, 'specific_datetime'::text, 'relative_delay'::text])))
+);
+
+
+ALTER TABLE public.follow_up_schedules OWNER TO postgres;
+
+--
+-- Name: TABLE follow_up_schedules; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.follow_up_schedules IS 'Stores scheduled follow-up messages with timing and execution details';
+
+
+--
+-- Name: COLUMN follow_up_schedules.schedule_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.follow_up_schedules.schedule_id IS 'Unique identifier for the follow-up schedule';
+
+
+--
+-- Name: COLUMN follow_up_schedules.trigger_event; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.follow_up_schedules.trigger_event IS 'Event that triggers the follow-up timer';
+
+
+--
+-- Name: COLUMN follow_up_schedules.delay_amount; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.follow_up_schedules.delay_amount IS 'Delay amount in specified units';
+
+
+--
+-- Name: COLUMN follow_up_schedules.scheduled_for; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.follow_up_schedules.scheduled_for IS 'UTC timestamp for when the follow-up should execute. Always stored in UTC regardless of user timezone.';
+
+
+--
+-- Name: COLUMN follow_up_schedules.variables; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.follow_up_schedules.variables IS 'Variables for message content replacement';
+
+
+--
+-- Name: COLUMN follow_up_schedules.execution_context; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.follow_up_schedules.execution_context IS 'Flow execution context at time of scheduling';
+
+
+--
+-- Name: COLUMN follow_up_schedules.timezone; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.follow_up_schedules.timezone IS 'IANA timezone identifier (e.g., America/New_York) used for display and specific datetime conversion.';
+
+
+--
+-- Name: follow_up_schedules_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.follow_up_schedules_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.follow_up_schedules_id_seq OWNER TO postgres;
+
+--
+-- Name: follow_up_schedules_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.follow_up_schedules_id_seq OWNED BY public.follow_up_schedules.id;
+
+
+--
+-- Name: follow_up_templates; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.follow_up_templates (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    name text NOT NULL,
+    description text,
+    message_type text DEFAULT 'text'::text NOT NULL,
+    content text NOT NULL,
+    media_url text,
+    caption text,
+    default_delay_amount integer DEFAULT 24,
+    default_delay_unit text DEFAULT 'hours'::text,
+    variables jsonb DEFAULT '[]'::jsonb,
+    category text DEFAULT 'general'::text,
+    is_active boolean DEFAULT true,
+    usage_count integer DEFAULT 0,
+    created_by integer,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT follow_up_templates_default_delay_unit_check CHECK ((default_delay_unit = ANY (ARRAY['minutes'::text, 'hours'::text, 'days'::text, 'weeks'::text]))),
+    CONSTRAINT follow_up_templates_message_type_check CHECK ((message_type = ANY (ARRAY['text'::text, 'image'::text, 'video'::text, 'audio'::text, 'document'::text, 'reaction'::text])))
+);
+
+
+ALTER TABLE public.follow_up_templates OWNER TO postgres;
+
+--
+-- Name: TABLE follow_up_templates; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.follow_up_templates IS 'Reusable templates for follow-up messages';
+
+
+--
+-- Name: COLUMN follow_up_templates.default_delay_amount; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.follow_up_templates.default_delay_amount IS 'Default delay amount for this template';
+
+
+--
+-- Name: COLUMN follow_up_templates.default_delay_unit; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.follow_up_templates.default_delay_unit IS 'Default delay unit (minutes, hours, days, weeks) for this template';
+
+
+--
+-- Name: COLUMN follow_up_templates.variables; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.follow_up_templates.variables IS 'Array of variable names used in template content';
+
+
+--
+-- Name: COLUMN follow_up_templates.usage_count; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.follow_up_templates.usage_count IS 'Number of times template has been used';
+
+
+--
+-- Name: follow_up_templates_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.follow_up_templates_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.follow_up_templates_id_seq OWNER TO postgres;
+
+--
+-- Name: follow_up_templates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.follow_up_templates_id_seq OWNED BY public.follow_up_templates.id;
+
+
+--
+-- Name: google_calendar_tokens; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.google_calendar_tokens (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    company_id integer NOT NULL,
+    access_token text NOT NULL,
+    refresh_token text,
+    id_token text,
+    token_type text,
+    expiry_date timestamp without time zone,
+    scope text,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.google_calendar_tokens OWNER TO postgres;
+
+--
+-- Name: google_calendar_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.google_calendar_tokens_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.google_calendar_tokens_id_seq OWNER TO postgres;
+
+--
+-- Name: google_calendar_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.google_calendar_tokens_id_seq OWNED BY public.google_calendar_tokens.id;
+
+
+--
+-- Name: group_participants; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.group_participants (
+    id integer NOT NULL,
+    conversation_id integer NOT NULL,
+    contact_id integer,
+    participant_jid text NOT NULL,
+    participant_name text,
+    is_admin boolean DEFAULT false,
+    is_super_admin boolean DEFAULT false,
+    joined_at timestamp without time zone DEFAULT now(),
+    left_at timestamp without time zone,
+    is_active boolean DEFAULT true,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.group_participants OWNER TO postgres;
+
+--
+-- Name: group_participants_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.group_participants_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.group_participants_id_seq OWNER TO postgres;
+
+--
+-- Name: group_participants_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.group_participants_id_seq OWNED BY public.group_participants.id;
+
+
+--
+-- Name: history_sync_batches; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.history_sync_batches (
+    id integer NOT NULL,
+    connection_id integer NOT NULL,
+    company_id integer NOT NULL,
+    batch_id text NOT NULL,
+    sync_type text NOT NULL,
+    status text DEFAULT 'pending'::text NOT NULL,
+    total_chats integer DEFAULT 0,
+    processed_chats integer DEFAULT 0,
+    total_messages integer DEFAULT 0,
+    processed_messages integer DEFAULT 0,
+    total_contacts integer DEFAULT 0,
+    processed_contacts integer DEFAULT 0,
+    error_message text,
+    started_at timestamp without time zone DEFAULT now(),
+    completed_at timestamp without time zone,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now(),
+    CONSTRAINT history_sync_batches_status_check CHECK ((status = ANY (ARRAY['pending'::text, 'processing'::text, 'completed'::text, 'failed'::text]))),
+    CONSTRAINT history_sync_batches_sync_type_check CHECK ((sync_type = ANY (ARRAY['initial'::text, 'manual'::text, 'incremental'::text])))
+);
+
+
+ALTER TABLE public.history_sync_batches OWNER TO postgres;
+
+--
+-- Name: TABLE history_sync_batches; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.history_sync_batches IS 'Tracks WhatsApp history sync operations and their progress';
+
+
+--
+-- Name: COLUMN history_sync_batches.batch_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.history_sync_batches.batch_id IS 'Unique identifier for the sync batch';
+
+
+--
+-- Name: COLUMN history_sync_batches.sync_type; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.history_sync_batches.sync_type IS 'Type of sync: initial (first time), manual (user triggered), incremental (automatic)';
+
+
+--
+-- Name: history_sync_batches_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.history_sync_batches_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.history_sync_batches_id_seq OWNER TO postgres;
+
+--
+-- Name: history_sync_batches_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.history_sync_batches_id_seq OWNED BY public.history_sync_batches.id;
+
+
+--
+-- Name: inbox_backups; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.inbox_backups (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    created_by_user_id integer NOT NULL,
+    name text NOT NULL,
+    description text,
+    type public.backup_type DEFAULT 'manual'::public.backup_type NOT NULL,
+    status public.backup_status DEFAULT 'pending'::public.backup_status NOT NULL,
+    file_path text,
+    file_name text,
+    file_size integer,
+    compressed_size integer,
+    checksum text,
+    metadata jsonb DEFAULT '{}'::jsonb,
+    include_contacts boolean DEFAULT true,
+    include_conversations boolean DEFAULT true,
+    include_messages boolean DEFAULT true,
+    date_range_start timestamp without time zone,
+    date_range_end timestamp without time zone,
+    total_contacts integer DEFAULT 0,
+    total_conversations integer DEFAULT 0,
+    total_messages integer DEFAULT 0,
+    error_message text,
+    started_at timestamp without time zone,
+    completed_at timestamp without time zone,
+    expires_at timestamp without time zone,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.inbox_backups OWNER TO postgres;
+
+--
+-- Name: TABLE inbox_backups; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.inbox_backups IS 'Stores metadata and status for inbox backup operations';
+
+
+--
+-- Name: COLUMN inbox_backups.file_size; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.inbox_backups.file_size IS 'Original uncompressed backup file size in bytes';
+
+
+--
+-- Name: COLUMN inbox_backups.compressed_size; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.inbox_backups.compressed_size IS 'Compressed backup file size in bytes';
+
+
+--
+-- Name: COLUMN inbox_backups.checksum; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.inbox_backups.checksum IS 'SHA-256 checksum for backup file integrity verification';
+
+
+--
+-- Name: COLUMN inbox_backups.metadata; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.inbox_backups.metadata IS 'JSON metadata including backup version, item counts, and other details';
+
+
+--
+-- Name: inbox_backups_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.inbox_backups_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.inbox_backups_id_seq OWNER TO postgres;
+
+--
+-- Name: inbox_backups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.inbox_backups_id_seq OWNED BY public.inbox_backups.id;
+
+
+--
+-- Name: inbox_restores; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.inbox_restores (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    backup_id integer,
+    restored_by_user_id integer NOT NULL,
+    status public.restore_status DEFAULT 'pending'::public.restore_status NOT NULL,
+    restore_type text NOT NULL,
+    conflict_resolution text DEFAULT 'merge'::text,
+    date_range_start timestamp without time zone,
+    date_range_end timestamp without time zone,
+    restore_contacts boolean DEFAULT true,
+    restore_conversations boolean DEFAULT true,
+    restore_messages boolean DEFAULT true,
+    total_items_to_restore integer DEFAULT 0,
+    items_restored integer DEFAULT 0,
+    items_skipped integer DEFAULT 0,
+    items_errored integer DEFAULT 0,
+    error_message text,
+    started_at timestamp without time zone,
+    completed_at timestamp without time zone,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.inbox_restores OWNER TO postgres;
+
+--
+-- Name: TABLE inbox_restores; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.inbox_restores IS 'Stores metadata and status for inbox restore operations';
+
+
+--
+-- Name: COLUMN inbox_restores.restore_type; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.inbox_restores.restore_type IS 'Type of restore: full (all data) or selective (filtered data)';
+
+
+--
+-- Name: COLUMN inbox_restores.conflict_resolution; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.inbox_restores.conflict_resolution IS 'How to handle conflicts: merge, overwrite, or skip existing data';
+
+
+--
+-- Name: inbox_restores_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.inbox_restores_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.inbox_restores_id_seq OWNER TO postgres;
+
+--
+-- Name: inbox_restores_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.inbox_restores_id_seq OWNED BY public.inbox_restores.id;
+
+
+--
+-- Name: knowledge_base_chunks; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.knowledge_base_chunks (
+    id integer NOT NULL,
+    document_id integer NOT NULL,
+    content text NOT NULL,
+    chunk_index integer NOT NULL,
+    token_count integer,
+    start_position integer,
+    end_position integer,
+    created_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.knowledge_base_chunks OWNER TO postgres;
+
+--
+-- Name: TABLE knowledge_base_chunks; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.knowledge_base_chunks IS 'Stores processed text chunks with embeddings from documents';
+
+
+--
+-- Name: knowledge_base_chunks_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.knowledge_base_chunks_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.knowledge_base_chunks_id_seq OWNER TO postgres;
+
+--
+-- Name: knowledge_base_chunks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.knowledge_base_chunks_id_seq OWNED BY public.knowledge_base_chunks.id;
+
+
+--
+-- Name: knowledge_base_configs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.knowledge_base_configs (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    node_id text NOT NULL,
+    flow_id integer,
+    enabled boolean DEFAULT true,
+    max_retrieved_chunks integer DEFAULT 3,
+    similarity_threshold real DEFAULT 0.7,
+    embedding_model text DEFAULT 'text-embedding-3-small'::text,
+    context_position text DEFAULT 'before_system'::text,
+    context_template text DEFAULT 'Based on the following knowledge base information:
+
+{context}
+
+Please answer the user''s question using this information when relevant.'::text,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT knowledge_base_configs_context_position_check CHECK ((context_position = ANY (ARRAY['before_system'::text, 'after_system'::text, 'before_user'::text])))
+);
+
+
+ALTER TABLE public.knowledge_base_configs OWNER TO postgres;
+
+--
+-- Name: TABLE knowledge_base_configs; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.knowledge_base_configs IS 'Stores RAG configuration per AI Assistant node';
+
+
+--
+-- Name: COLUMN knowledge_base_configs.similarity_threshold; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.knowledge_base_configs.similarity_threshold IS 'Minimum cosine similarity score (0-1) for chunk retrieval';
+
+
+--
+-- Name: COLUMN knowledge_base_configs.context_template; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.knowledge_base_configs.context_template IS 'Template for injecting context. Use {context} placeholder for retrieved chunks.';
+
+
+--
+-- Name: knowledge_base_configs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.knowledge_base_configs_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.knowledge_base_configs_id_seq OWNER TO postgres;
+
+--
+-- Name: knowledge_base_configs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.knowledge_base_configs_id_seq OWNED BY public.knowledge_base_configs.id;
+
+
+--
+-- Name: knowledge_base_document_nodes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.knowledge_base_document_nodes (
+    id integer NOT NULL,
+    document_id integer NOT NULL,
+    company_id integer NOT NULL,
+    node_id text NOT NULL,
+    flow_id integer,
+    created_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.knowledge_base_document_nodes OWNER TO postgres;
+
+--
+-- Name: TABLE knowledge_base_document_nodes; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.knowledge_base_document_nodes IS 'Associates documents with specific AI Assistant nodes';
+
+
+--
+-- Name: knowledge_base_document_nodes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.knowledge_base_document_nodes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.knowledge_base_document_nodes_id_seq OWNER TO postgres;
+
+--
+-- Name: knowledge_base_document_nodes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.knowledge_base_document_nodes_id_seq OWNED BY public.knowledge_base_document_nodes.id;
+
+
+--
+-- Name: knowledge_base_documents; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.knowledge_base_documents (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    node_id text,
+    filename text NOT NULL,
+    original_name text NOT NULL,
+    mime_type text NOT NULL,
+    file_size integer NOT NULL,
+    status text DEFAULT 'uploading'::text NOT NULL,
+    file_path text NOT NULL,
+    file_url text,
+    extracted_text text,
+    chunk_count integer DEFAULT 0,
+    embedding_model text DEFAULT 'text-embedding-3-small'::text,
+    processing_error text,
+    processing_duration_ms integer,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT knowledge_base_documents_status_check CHECK ((status = ANY (ARRAY['uploading'::text, 'processing'::text, 'completed'::text, 'failed'::text])))
+);
+
+
+ALTER TABLE public.knowledge_base_documents OWNER TO postgres;
+
+--
+-- Name: TABLE knowledge_base_documents; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.knowledge_base_documents IS 'Stores uploaded documents for knowledge base processing';
+
+
+--
+-- Name: knowledge_base_documents_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.knowledge_base_documents_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.knowledge_base_documents_id_seq OWNER TO postgres;
+
+--
+-- Name: knowledge_base_documents_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.knowledge_base_documents_id_seq OWNED BY public.knowledge_base_documents.id;
+
+
+--
+-- Name: knowledge_base_usage; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.knowledge_base_usage (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    node_id text NOT NULL,
+    document_id integer,
+    query_text text NOT NULL,
+    query_embedding text,
+    chunks_retrieved integer DEFAULT 0,
+    chunks_used integer DEFAULT 0,
+    similarity_scores jsonb DEFAULT '[]'::jsonb,
+    retrieval_duration_ms integer,
+    embedding_duration_ms integer,
+    context_injected boolean DEFAULT false,
+    context_length integer,
+    created_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.knowledge_base_usage OWNER TO postgres;
+
+--
+-- Name: TABLE knowledge_base_usage; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.knowledge_base_usage IS 'Tracks knowledge base usage and performance metrics';
+
+
+--
+-- Name: knowledge_base_usage_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.knowledge_base_usage_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.knowledge_base_usage_id_seq OWNER TO postgres;
+
+--
+-- Name: knowledge_base_usage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.knowledge_base_usage_id_seq OWNED BY public.knowledge_base_usage.id;
+
+
+--
+-- Name: languages; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.languages (
+    id integer NOT NULL,
+    code text NOT NULL,
+    name text NOT NULL,
+    native_name text NOT NULL,
+    flag_icon text,
+    is_active boolean DEFAULT true,
+    is_default boolean DEFAULT false,
+    direction text DEFAULT 'ltr'::text,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now(),
+    CONSTRAINT languages_direction_check CHECK ((direction = ANY (ARRAY['ltr'::text, 'rtl'::text])))
+);
+
+
+ALTER TABLE public.languages OWNER TO postgres;
+
+--
+-- Name: languages_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.languages_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.languages_id_seq OWNER TO postgres;
+
+--
+-- Name: languages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.languages_id_seq OWNED BY public.languages.id;
+
+
+--
+-- Name: messages; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.messages (
+    id integer NOT NULL,
+    conversation_id integer NOT NULL,
+    external_id text,
+    direction text NOT NULL,
+    type text DEFAULT 'text'::text,
+    content text NOT NULL,
+    metadata jsonb,
+    sender_id integer,
+    sender_type text,
+    status text DEFAULT 'sent'::text,
+    sent_at timestamp without time zone,
+    read_at timestamp without time zone,
+    is_from_bot boolean DEFAULT false,
+    media_url text,
+    group_participant_jid text,
+    group_participant_name text,
+    created_at timestamp without time zone DEFAULT now(),
+    email_message_id text,
+    email_in_reply_to text,
+    email_references text,
+    email_subject text,
+    email_from text,
+    email_to text,
+    email_cc text,
+    email_bcc text,
+    email_html text,
+    email_plain_text text,
+    email_headers jsonb,
+    is_history_sync boolean DEFAULT false,
+    history_sync_batch_id text,
+    CONSTRAINT messages_direction_check CHECK ((direction = ANY (ARRAY['inbound'::text, 'outbound'::text]))),
+    CONSTRAINT messages_sender_type_check CHECK ((sender_type = ANY (ARRAY['user'::text, 'contact'::text])))
+);
+
+
+ALTER TABLE public.messages OWNER TO postgres;
+
+--
+-- Name: COLUMN messages.read_at; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.messages.read_at IS 'Timestamp when the message was read by the user (only for inbound messages)';
+
+
+--
+-- Name: COLUMN messages.email_message_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.messages.email_message_id IS 'Email Message-ID header for threading';
+
+
+--
+-- Name: COLUMN messages.email_in_reply_to; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.messages.email_in_reply_to IS 'In-Reply-To header for email threading';
+
+
+--
+-- Name: COLUMN messages.email_references; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.messages.email_references IS 'References header for email threading';
+
+
+--
+-- Name: COLUMN messages.email_subject; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.messages.email_subject IS 'Email subject line';
+
+
+--
+-- Name: COLUMN messages.email_from; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.messages.email_from IS 'From email address';
+
+
+--
+-- Name: COLUMN messages.email_to; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.messages.email_to IS 'To email addresses (JSON array)';
+
+
+--
+-- Name: COLUMN messages.email_cc; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.messages.email_cc IS 'CC email addresses (JSON array)';
+
+
+--
+-- Name: COLUMN messages.email_bcc; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.messages.email_bcc IS 'BCC email addresses (JSON array)';
+
+
+--
+-- Name: COLUMN messages.email_html; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.messages.email_html IS 'HTML content for emails';
+
+
+--
+-- Name: COLUMN messages.email_plain_text; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.messages.email_plain_text IS 'Plain text content for emails';
+
+
+--
+-- Name: COLUMN messages.email_headers; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.messages.email_headers IS 'Full email headers as JSON';
+
+
+--
+-- Name: messages_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.messages_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.messages_id_seq OWNER TO postgres;
+
+--
+-- Name: messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.messages_id_seq OWNED BY public.messages.id;
+
+
+--
+-- Name: meta_whatsapp_clients; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.meta_whatsapp_clients (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    business_account_id text NOT NULL,
+    business_account_name text,
+    status text DEFAULT 'active'::text NOT NULL,
+    onboarded_at timestamp without time zone DEFAULT now(),
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT meta_whatsapp_clients_status_check CHECK ((status = ANY (ARRAY['active'::text, 'suspended'::text, 'pending'::text])))
+);
+
+
+ALTER TABLE public.meta_whatsapp_clients OWNER TO postgres;
+
+--
+-- Name: TABLE meta_whatsapp_clients; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.meta_whatsapp_clients IS 'Company business accounts managed through Meta WhatsApp Business API Tech Provider';
+
+
+--
+-- Name: COLUMN meta_whatsapp_clients.company_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.meta_whatsapp_clients.company_id IS 'Reference to the company that owns this business account';
+
+
+--
+-- Name: COLUMN meta_whatsapp_clients.business_account_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.meta_whatsapp_clients.business_account_id IS 'Unique Meta Business Account ID';
+
+
+--
+-- Name: COLUMN meta_whatsapp_clients.business_account_name; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.meta_whatsapp_clients.business_account_name IS 'Display name for the business account';
+
+
+--
+-- Name: COLUMN meta_whatsapp_clients.status; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.meta_whatsapp_clients.status IS 'Current status of the business account';
+
+
+--
+-- Name: COLUMN meta_whatsapp_clients.onboarded_at; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.meta_whatsapp_clients.onboarded_at IS 'When the business account was onboarded through embedded signup';
+
+
+--
+-- Name: meta_whatsapp_clients_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.meta_whatsapp_clients_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.meta_whatsapp_clients_id_seq OWNER TO postgres;
+
+--
+-- Name: meta_whatsapp_clients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.meta_whatsapp_clients_id_seq OWNED BY public.meta_whatsapp_clients.id;
+
+
+--
+-- Name: meta_whatsapp_phone_numbers; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.meta_whatsapp_phone_numbers (
+    id integer NOT NULL,
+    client_id integer NOT NULL,
+    phone_number_id text NOT NULL,
+    phone_number text NOT NULL,
+    display_name text,
+    status text DEFAULT 'pending'::text NOT NULL,
+    quality_rating text,
+    messaging_limit integer,
+    access_token text,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT meta_whatsapp_phone_numbers_quality_rating_check CHECK ((quality_rating = ANY (ARRAY['green'::text, 'yellow'::text, 'red'::text]))),
+    CONSTRAINT meta_whatsapp_phone_numbers_status_check CHECK ((status = ANY (ARRAY['pending'::text, 'verified'::text, 'unverified'::text, 'suspended'::text])))
+);
+
+
+ALTER TABLE public.meta_whatsapp_phone_numbers OWNER TO postgres;
+
+--
+-- Name: TABLE meta_whatsapp_phone_numbers; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.meta_whatsapp_phone_numbers IS 'WhatsApp phone numbers under Meta business accounts';
+
+
+--
+-- Name: COLUMN meta_whatsapp_phone_numbers.client_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.meta_whatsapp_phone_numbers.client_id IS 'Reference to the parent Meta WhatsApp client';
+
+
+--
+-- Name: COLUMN meta_whatsapp_phone_numbers.phone_number_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.meta_whatsapp_phone_numbers.phone_number_id IS 'Unique Meta Phone Number ID';
+
+
+--
+-- Name: COLUMN meta_whatsapp_phone_numbers.phone_number; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.meta_whatsapp_phone_numbers.phone_number IS 'WhatsApp phone number';
+
+
+--
+-- Name: COLUMN meta_whatsapp_phone_numbers.display_name; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.meta_whatsapp_phone_numbers.display_name IS 'Display name for the phone number';
+
+
+--
+-- Name: COLUMN meta_whatsapp_phone_numbers.status; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.meta_whatsapp_phone_numbers.status IS 'Current verification status of the phone number';
+
+
+--
+-- Name: COLUMN meta_whatsapp_phone_numbers.quality_rating; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.meta_whatsapp_phone_numbers.quality_rating IS 'WhatsApp quality rating (green/yellow/red)';
+
+
+--
+-- Name: COLUMN meta_whatsapp_phone_numbers.messaging_limit; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.meta_whatsapp_phone_numbers.messaging_limit IS 'Current messaging limit for this phone number';
+
+
+--
+-- Name: COLUMN meta_whatsapp_phone_numbers.access_token; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.meta_whatsapp_phone_numbers.access_token IS 'Phone number specific access token for API calls';
+
+
+--
+-- Name: meta_whatsapp_phone_numbers_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.meta_whatsapp_phone_numbers_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.meta_whatsapp_phone_numbers_id_seq OWNER TO postgres;
+
+--
+-- Name: meta_whatsapp_phone_numbers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.meta_whatsapp_phone_numbers_id_seq OWNED BY public.meta_whatsapp_phone_numbers.id;
+
+
+--
+-- Name: migration_log; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.migration_log (
+    id integer NOT NULL,
+    migration_name text NOT NULL,
+    executed_at timestamp without time zone DEFAULT now(),
+    description text
+);
+
+
+ALTER TABLE public.migration_log OWNER TO postgres;
+
+--
+-- Name: migration_log_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.migration_log_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.migration_log_id_seq OWNER TO postgres;
+
+--
+-- Name: migration_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.migration_log_id_seq OWNED BY public.migration_log.id;
+
+
+--
+-- Name: migrations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.migrations (
+    id integer NOT NULL,
+    filename character varying(255) NOT NULL,
+    executed_at timestamp without time zone DEFAULT now(),
+    checksum character varying(64) NOT NULL,
+    execution_time_ms integer,
+    success boolean DEFAULT true
+);
+
+
+ALTER TABLE public.migrations OWNER TO postgres;
+
+--
+-- Name: migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.migrations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.migrations_id_seq OWNER TO postgres;
+
+--
+-- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.migrations_id_seq OWNED BY public.migrations.id;
+
+
+--
+-- Name: notes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.notes (
+    id integer NOT NULL,
+    contact_id integer NOT NULL,
+    created_by_id integer NOT NULL,
+    content text NOT NULL,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.notes OWNER TO postgres;
+
+--
+-- Name: notes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.notes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.notes_id_seq OWNER TO postgres;
+
+--
+-- Name: notes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.notes_id_seq OWNED BY public.notes.id;
+
+
+--
+-- Name: partner_configurations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.partner_configurations (
+    id integer NOT NULL,
+    provider text NOT NULL,
+    partner_api_key text NOT NULL,
+    partner_secret text,
+    partner_id text NOT NULL,
+    webhook_verify_token text,
+    access_token text,
+    partner_webhook_url text NOT NULL,
+    redirect_url text NOT NULL,
+    public_profile jsonb DEFAULT '{}'::jsonb,
+    is_active boolean DEFAULT true NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    config_id text,
+    CONSTRAINT partner_configurations_provider_check CHECK ((provider = ANY (ARRAY['360dialog'::text, 'meta'::text, 'twilio'::text, 'tiktok'::text])))
+);
+
+
+ALTER TABLE public.partner_configurations OWNER TO postgres;
+
+--
+-- Name: TABLE partner_configurations; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.partner_configurations IS 'Platform-wide partner API configurations for SaaS integrations';
+
+
+--
+-- Name: COLUMN partner_configurations.provider; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.partner_configurations.provider IS 'Partner provider name (360dialog, meta, twilio, tiktok)';
+
+
+--
+-- Name: COLUMN partner_configurations.partner_api_key; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.partner_configurations.partner_api_key IS 'Encrypted partner API key or App ID';
+
+
+--
+-- Name: COLUMN partner_configurations.partner_secret; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.partner_configurations.partner_secret IS 'Encrypted partner secret (e.g., Meta App Secret)';
+
+
+--
+-- Name: COLUMN partner_configurations.partner_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.partner_configurations.partner_id IS 'Partner ID or Business Manager ID';
+
+
+--
+-- Name: COLUMN partner_configurations.webhook_verify_token; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.partner_configurations.webhook_verify_token IS 'Webhook verification token for Meta webhooks';
+
+
+--
+-- Name: COLUMN partner_configurations.access_token; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.partner_configurations.access_token IS 'System user access token for Meta API calls';
+
+
+--
+-- Name: COLUMN partner_configurations.partner_webhook_url; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.partner_configurations.partner_webhook_url IS 'Partner-level webhook URL for events';
+
+
+--
+-- Name: COLUMN partner_configurations.redirect_url; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.partner_configurations.redirect_url IS 'Callback/redirect URL for onboarding flows';
+
+
+--
+-- Name: COLUMN partner_configurations.public_profile; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.partner_configurations.public_profile IS 'JSON object with company name, logo, etc. for onboarding';
+
+
+--
+-- Name: COLUMN partner_configurations.is_active; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.partner_configurations.is_active IS 'Whether this partner configuration is active';
+
+
+--
+-- Name: COLUMN partner_configurations.config_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.partner_configurations.config_id IS 'WhatsApp Configuration ID for embedded signup';
+
+
+--
+-- Name: partner_configurations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.partner_configurations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.partner_configurations_id_seq OWNER TO postgres;
+
+--
+-- Name: partner_configurations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.partner_configurations_id_seq OWNED BY public.partner_configurations.id;
+
+
+--
+-- Name: password_reset_tokens; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.password_reset_tokens (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    token character varying(255) NOT NULL,
+    expires_at timestamp without time zone NOT NULL,
+    used_at timestamp without time zone,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    ip_address inet,
+    user_agent text
+);
+
+
+ALTER TABLE public.password_reset_tokens OWNER TO postgres;
+
+--
+-- Name: TABLE password_reset_tokens; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.password_reset_tokens IS 'Stores secure tokens for password reset functionality';
+
+
+--
+-- Name: COLUMN password_reset_tokens.token; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.password_reset_tokens.token IS 'Hashed token for security - original token is sent via email';
+
+
+--
+-- Name: COLUMN password_reset_tokens.expires_at; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.password_reset_tokens.expires_at IS 'Token expiration time (typically 1 hour from creation)';
+
+
+--
+-- Name: COLUMN password_reset_tokens.used_at; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.password_reset_tokens.used_at IS 'Timestamp when token was used (prevents reuse)';
+
+
+--
+-- Name: COLUMN password_reset_tokens.ip_address; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.password_reset_tokens.ip_address IS 'IP address of the request for security logging';
+
+
+--
+-- Name: COLUMN password_reset_tokens.user_agent; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.password_reset_tokens.user_agent IS 'User agent string for security logging';
+
+
+--
+-- Name: password_reset_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.password_reset_tokens_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.password_reset_tokens_id_seq OWNER TO postgres;
+
+--
+-- Name: password_reset_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.password_reset_tokens_id_seq OWNED BY public.password_reset_tokens.id;
+
+
+--
+-- Name: payment_transactions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.payment_transactions (
+    id integer NOT NULL,
+    company_id integer,
+    plan_id integer,
+    amount numeric(10,2) NOT NULL,
+    currency text DEFAULT 'USD'::text NOT NULL,
+    status text DEFAULT 'pending'::text NOT NULL,
+    payment_method text NOT NULL,
+    payment_intent_id text,
+    external_transaction_id text,
+    receipt_url text,
+    metadata jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    original_amount numeric(10,2),
+    discount_amount numeric(10,2) DEFAULT 0,
+    coupon_code_id integer,
+    affiliate_credit_applied numeric(10,2) DEFAULT 0,
+    discount_details jsonb DEFAULT '{}'::jsonb,
+    is_recurring boolean DEFAULT false,
+    subscription_period_start timestamp without time zone,
+    subscription_period_end timestamp without time zone,
+    proration_amount numeric(10,2) DEFAULT 0,
+    dunning_attempt integer DEFAULT 0,
+    CONSTRAINT payment_transactions_payment_method_check CHECK ((payment_method = ANY (ARRAY['stripe'::text, 'mercadopago'::text, 'paypal'::text, 'moyasar'::text, 'mpesa'::text, 'bank_transfer'::text, 'other'::text]))),
+    CONSTRAINT payment_transactions_status_check CHECK ((status = ANY (ARRAY['pending'::text, 'completed'::text, 'failed'::text, 'refunded'::text, 'cancelled'::text])))
+);
+
+
+ALTER TABLE public.payment_transactions OWNER TO postgres;
+
+--
+-- Name: payment_transactions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.payment_transactions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.payment_transactions_id_seq OWNER TO postgres;
+
+--
+-- Name: payment_transactions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.payment_transactions_id_seq OWNED BY public.payment_transactions.id;
+
+
+--
+-- Name: pipeline_stages; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.pipeline_stages (
+    id integer NOT NULL,
+    company_id integer,
+    name text NOT NULL,
+    color text NOT NULL,
+    order_num integer NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.pipeline_stages OWNER TO postgres;
+
+--
+-- Name: pipeline_stages_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.pipeline_stages_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.pipeline_stages_id_seq OWNER TO postgres;
+
+--
+-- Name: pipeline_stages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.pipeline_stages_id_seq OWNED BY public.pipeline_stages.id;
+
+
+--
+-- Name: plan_ai_billing_events; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.plan_ai_billing_events (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    plan_id integer NOT NULL,
+    provider character varying(50) NOT NULL,
+    event_type character varying(50) NOT NULL,
+    event_data jsonb DEFAULT '{}'::jsonb NOT NULL,
+    tokens_consumed integer DEFAULT 0,
+    cost_amount numeric(10,6) DEFAULT 0.000000,
+    billing_period_start date,
+    billing_period_end date,
+    processed boolean DEFAULT false,
+    processed_at timestamp without time zone,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    metadata jsonb DEFAULT '{}'::jsonb
+);
+
+
+ALTER TABLE public.plan_ai_billing_events OWNER TO postgres;
+
+--
+-- Name: TABLE plan_ai_billing_events; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.plan_ai_billing_events IS 'Records AI billing events and overage charges';
+
+
+--
+-- Name: plan_ai_billing_events_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.plan_ai_billing_events_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.plan_ai_billing_events_id_seq OWNER TO postgres;
+
+--
+-- Name: plan_ai_billing_events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.plan_ai_billing_events_id_seq OWNED BY public.plan_ai_billing_events.id;
+
+
+--
+-- Name: plan_ai_provider_configs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.plan_ai_provider_configs (
+    id integer NOT NULL,
+    plan_id integer NOT NULL,
+    provider character varying(50) NOT NULL,
+    tokens_monthly_limit integer,
+    tokens_daily_limit integer,
+    custom_pricing_enabled boolean DEFAULT false,
+    input_token_rate numeric(10,8) DEFAULT NULL::numeric,
+    output_token_rate numeric(10,8) DEFAULT NULL::numeric,
+    enabled boolean DEFAULT true,
+    priority integer DEFAULT 0,
+    metadata jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.plan_ai_provider_configs OWNER TO postgres;
+
+--
+-- Name: TABLE plan_ai_provider_configs; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.plan_ai_provider_configs IS 'Provider-specific AI configuration and pricing for plans';
+
+
+--
+-- Name: plan_ai_provider_configs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.plan_ai_provider_configs_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.plan_ai_provider_configs_id_seq OWNER TO postgres;
+
+--
+-- Name: plan_ai_provider_configs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.plan_ai_provider_configs_id_seq OWNED BY public.plan_ai_provider_configs.id;
+
+
+--
+-- Name: plan_ai_usage_tracking; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.plan_ai_usage_tracking (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    plan_id integer NOT NULL,
+    provider character varying(50) NOT NULL,
+    tokens_used_monthly integer DEFAULT 0,
+    tokens_used_daily integer DEFAULT 0,
+    requests_monthly integer DEFAULT 0,
+    requests_daily integer DEFAULT 0,
+    cost_monthly numeric(10,6) DEFAULT 0.000000,
+    cost_daily numeric(10,6) DEFAULT 0.000000,
+    overage_tokens_monthly integer DEFAULT 0,
+    overage_cost_monthly numeric(10,6) DEFAULT 0.000000,
+    usage_month integer NOT NULL,
+    usage_year integer NOT NULL,
+    usage_date date NOT NULL,
+    monthly_limit_reached boolean DEFAULT false,
+    daily_limit_reached boolean DEFAULT false,
+    monthly_warning_sent boolean DEFAULT false,
+    daily_warning_sent boolean DEFAULT false,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.plan_ai_usage_tracking OWNER TO postgres;
+
+--
+-- Name: TABLE plan_ai_usage_tracking; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.plan_ai_usage_tracking IS 'Tracks AI token usage against plan limits for billing';
+
+
+--
+-- Name: plan_ai_usage_tracking_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.plan_ai_usage_tracking_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.plan_ai_usage_tracking_id_seq OWNER TO postgres;
+
+--
+-- Name: plan_ai_usage_tracking_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.plan_ai_usage_tracking_id_seq OWNED BY public.plan_ai_usage_tracking.id;
+
+
+--
+-- Name: plans_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.plans_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.plans_id_seq OWNER TO postgres;
+
+--
+-- Name: plans_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.plans_id_seq OWNED BY public.plans.id;
+
+
+--
+-- Name: quick_reply_templates; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.quick_reply_templates (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    created_by_id integer NOT NULL,
+    name text NOT NULL,
+    content text NOT NULL,
+    category text DEFAULT 'general'::text,
+    variables jsonb DEFAULT '[]'::jsonb,
+    is_active boolean DEFAULT true,
+    usage_count integer DEFAULT 0,
+    sort_order integer DEFAULT 0,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.quick_reply_templates OWNER TO postgres;
+
+--
+-- Name: TABLE quick_reply_templates; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.quick_reply_templates IS 'Quick reply templates for faster message responses with variable substitution';
+
+
+--
+-- Name: COLUMN quick_reply_templates.content; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.quick_reply_templates.content IS 'Template content with variables in {{variable}} format';
+
+
+--
+-- Name: COLUMN quick_reply_templates.category; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.quick_reply_templates.category IS 'Template category for organization (e.g., greeting, follow-up, information)';
+
+
+--
+-- Name: COLUMN quick_reply_templates.variables; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.quick_reply_templates.variables IS 'Array of variable names used in the template content (e.g., ["contact.name", "date.today"])';
+
+
+--
+-- Name: COLUMN quick_reply_templates.usage_count; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.quick_reply_templates.usage_count IS 'Number of times this template has been used';
+
+
+--
+-- Name: COLUMN quick_reply_templates.sort_order; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.quick_reply_templates.sort_order IS 'Display order for templates within a company';
+
+
+--
+-- Name: quick_reply_templates_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.quick_reply_templates_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.quick_reply_templates_id_seq OWNER TO postgres;
+
+--
+-- Name: quick_reply_templates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.quick_reply_templates_id_seq OWNED BY public.quick_reply_templates.id;
+
+
+--
+-- Name: role_permissions; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.role_permissions (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    role public.user_role NOT NULL,
+    permissions jsonb DEFAULT '{}'::jsonb NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.role_permissions OWNER TO postgres;
+
+--
+-- Name: role_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.role_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.role_permissions_id_seq OWNER TO postgres;
+
+--
+-- Name: role_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.role_permissions_id_seq OWNED BY public.role_permissions.id;
+
+
+--
+-- Name: scheduled_messages; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.scheduled_messages (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    conversation_id integer NOT NULL,
+    channel_id integer NOT NULL,
+    channel_type text NOT NULL,
+    content text NOT NULL,
+    message_type text DEFAULT 'text'::text NOT NULL,
+    media_url text,
+    media_type text,
+    caption text,
+    scheduled_for timestamp without time zone NOT NULL,
+    timezone text DEFAULT 'UTC'::text,
+    status public.scheduled_message_status DEFAULT 'pending'::public.scheduled_message_status,
+    attempts integer DEFAULT 0,
+    max_attempts integer DEFAULT 3,
+    last_attempt_at timestamp without time zone,
+    sent_at timestamp without time zone,
+    failed_at timestamp without time zone,
+    error_message text,
+    metadata jsonb DEFAULT '{}'::jsonb,
+    created_by integer NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    media_file_path text
+);
+
+
+ALTER TABLE public.scheduled_messages OWNER TO postgres;
+
+--
+-- Name: COLUMN scheduled_messages.media_file_path; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.scheduled_messages.media_file_path IS 'Local file path for scheduled media messages stored in uploads/scheduled-media/';
+
+
+--
+-- Name: scheduled_messages_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.scheduled_messages_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.scheduled_messages_id_seq OWNER TO postgres;
+
+--
+-- Name: scheduled_messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.scheduled_messages_id_seq OWNED BY public.scheduled_messages.id;
+
+
+--
+-- Name: session; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.session (
+    sid character varying NOT NULL,
+    sess json NOT NULL,
+    expire timestamp(6) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.session OWNER TO postgres;
+
+--
+-- Name: subscription_events; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.subscription_events (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    event_type text NOT NULL,
+    event_data jsonb DEFAULT '{}'::jsonb NOT NULL,
+    previous_status text,
+    new_status text,
+    triggered_by text,
+    created_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.subscription_events OWNER TO postgres;
+
+--
+-- Name: TABLE subscription_events; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.subscription_events IS 'Audit trail for all subscription-related events';
+
+
+--
+-- Name: subscription_events_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.subscription_events_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.subscription_events_id_seq OWNER TO postgres;
+
+--
+-- Name: subscription_events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.subscription_events_id_seq OWNED BY public.subscription_events.id;
+
+
+--
+-- Name: subscription_notifications; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.subscription_notifications (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    notification_type text NOT NULL,
+    status text DEFAULT 'pending'::text NOT NULL,
+    scheduled_for timestamp without time zone NOT NULL,
+    sent_at timestamp without time zone,
+    notification_data jsonb DEFAULT '{}'::jsonb NOT NULL,
+    delivery_method text DEFAULT 'email'::text,
+    retry_count integer DEFAULT 0,
+    max_retries integer DEFAULT 3,
+    created_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.subscription_notifications OWNER TO postgres;
+
+--
+-- Name: TABLE subscription_notifications; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.subscription_notifications IS 'Scheduled notification system for subscription events';
+
+
+--
+-- Name: subscription_notifications_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.subscription_notifications_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.subscription_notifications_id_seq OWNER TO postgres;
+
+--
+-- Name: subscription_notifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.subscription_notifications_id_seq OWNED BY public.subscription_notifications.id;
+
+
+--
+-- Name: subscription_plan_changes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.subscription_plan_changes (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    from_plan_id integer,
+    to_plan_id integer NOT NULL,
+    change_type text NOT NULL,
+    effective_date timestamp without time zone DEFAULT now() NOT NULL,
+    proration_amount numeric(10,2) DEFAULT 0,
+    proration_days integer DEFAULT 0,
+    billing_cycle_reset boolean DEFAULT false,
+    change_reason text,
+    processed boolean DEFAULT false,
+    created_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.subscription_plan_changes OWNER TO postgres;
+
+--
+-- Name: TABLE subscription_plan_changes; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.subscription_plan_changes IS 'Plan change history with proration calculations';
+
+
+--
+-- Name: subscription_plan_changes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.subscription_plan_changes_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.subscription_plan_changes_id_seq OWNER TO postgres;
+
+--
+-- Name: subscription_plan_changes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.subscription_plan_changes_id_seq OWNED BY public.subscription_plan_changes.id;
+
+
+--
+-- Name: subscription_usage_tracking; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.subscription_usage_tracking (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    metric_name text NOT NULL,
+    current_usage integer DEFAULT 0 NOT NULL,
+    limit_value integer NOT NULL,
+    soft_limit_reached boolean DEFAULT false,
+    hard_limit_reached boolean DEFAULT false,
+    last_warning_sent timestamp without time zone,
+    reset_period text DEFAULT 'monthly'::text,
+    last_reset timestamp without time zone DEFAULT now(),
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.subscription_usage_tracking OWNER TO postgres;
+
+--
+-- Name: TABLE subscription_usage_tracking; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.subscription_usage_tracking IS 'Real-time usage tracking with soft/hard limits';
+
+
+--
+-- Name: subscription_usage_tracking_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.subscription_usage_tracking_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.subscription_usage_tracking_id_seq OWNER TO postgres;
+
+--
+-- Name: subscription_usage_tracking_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.subscription_usage_tracking_id_seq OWNED BY public.subscription_usage_tracking.id;
+
+
+--
+-- Name: system_ai_credentials; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.system_ai_credentials (
+    id integer NOT NULL,
+    provider character varying(50) NOT NULL,
+    api_key_encrypted text NOT NULL,
+    display_name character varying(100),
+    description text,
+    is_active boolean DEFAULT true NOT NULL,
+    is_default boolean DEFAULT false NOT NULL,
+    usage_limit_monthly integer,
+    usage_count_current integer DEFAULT 0,
+    last_validated_at timestamp without time zone,
+    validation_status character varying(20) DEFAULT 'pending'::character varying,
+    validation_error text,
+    metadata jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT system_ai_credentials_provider_check CHECK (((provider)::text = ANY (ARRAY[('openai'::character varying)::text, ('openrouter'::character varying)::text]))),
+    CONSTRAINT system_ai_credentials_validation_status_check CHECK (((validation_status)::text = ANY (ARRAY[('pending'::character varying)::text, ('valid'::character varying)::text, ('invalid'::character varying)::text, ('expired'::character varying)::text])))
+);
+
+
+ALTER TABLE public.system_ai_credentials OWNER TO postgres;
+
+--
+-- Name: TABLE system_ai_credentials; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.system_ai_credentials IS 'System-wide AI provider credentials managed by super admin';
+
+
+--
+-- Name: COLUMN system_ai_credentials.api_key_encrypted; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.system_ai_credentials.api_key_encrypted IS 'Encrypted API key using application encryption key';
+
+
+--
+-- Name: CONSTRAINT system_ai_credentials_provider_check ON system_ai_credentials; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON CONSTRAINT system_ai_credentials_provider_check ON public.system_ai_credentials IS 'Ensures only OpenAI and OpenRouter providers are allowed in the streamlined AI system';
+
+
+--
+-- Name: system_ai_credentials_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.system_ai_credentials_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.system_ai_credentials_id_seq OWNER TO postgres;
+
+--
+-- Name: system_ai_credentials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.system_ai_credentials_id_seq OWNED BY public.system_ai_credentials.id;
+
+
+--
+-- Name: system_updates; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.system_updates (
+    id integer NOT NULL,
+    version text NOT NULL,
+    release_notes text,
+    download_url text NOT NULL,
+    package_hash text,
+    package_size integer,
+    status public.update_status DEFAULT 'pending'::public.update_status NOT NULL,
+    scheduled_at timestamp without time zone,
+    started_at timestamp without time zone,
+    completed_at timestamp without time zone,
+    error_message text,
+    rollback_data jsonb,
+    migration_scripts jsonb DEFAULT '[]'::jsonb,
+    backup_path text,
+    progress_percentage integer DEFAULT 0,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.system_updates OWNER TO postgres;
+
+--
+-- Name: TABLE system_updates; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.system_updates IS 'Tracks system update history and progress';
+
+
+--
+-- Name: COLUMN system_updates.version; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.system_updates.version IS 'Version number of the update (e.g., 1.2.0)';
+
+
+--
+-- Name: COLUMN system_updates.release_notes; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.system_updates.release_notes IS 'Human-readable description of changes';
+
+
+--
+-- Name: COLUMN system_updates.download_url; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.system_updates.download_url IS 'URL to download the update package';
+
+
+--
+-- Name: COLUMN system_updates.package_hash; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.system_updates.package_hash IS 'SHA256 hash for package verification';
+
+
+--
+-- Name: COLUMN system_updates.package_size; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.system_updates.package_size IS 'Size of update package in bytes';
+
+
+--
+-- Name: COLUMN system_updates.status; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.system_updates.status IS 'Current status of the update process';
+
+
+--
+-- Name: COLUMN system_updates.migration_scripts; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.system_updates.migration_scripts IS 'Array of database migration scripts to run';
+
+
+--
+-- Name: COLUMN system_updates.backup_path; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.system_updates.backup_path IS 'Path to backup created before update';
+
+
+--
+-- Name: COLUMN system_updates.progress_percentage; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.system_updates.progress_percentage IS 'Update progress from 0-100';
+
+
+--
+-- Name: system_updates_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.system_updates_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.system_updates_id_seq OWNER TO postgres;
+
+--
+-- Name: system_updates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.system_updates_id_seq OWNED BY public.system_updates.id;
+
+
+--
+-- Name: task_categories; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.task_categories (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    name text NOT NULL,
+    color text,
+    icon text,
+    created_by integer,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.task_categories OWNER TO postgres;
+
+--
+-- Name: task_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.task_categories_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.task_categories_id_seq OWNER TO postgres;
+
+--
+-- Name: task_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.task_categories_id_seq OWNED BY public.task_categories.id;
+
+
+--
+-- Name: team_invitations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.team_invitations (
+    id integer NOT NULL,
+    email text NOT NULL,
+    invited_by_user_id integer NOT NULL,
+    company_id integer NOT NULL,
+    role text DEFAULT 'agent'::text NOT NULL,
+    token text NOT NULL,
+    status text DEFAULT 'pending'::text NOT NULL,
+    expires_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT team_invitations_status_check CHECK ((status = ANY (ARRAY['pending'::text, 'accepted'::text, 'expired'::text, 'revoked'::text])))
+);
+
+
+ALTER TABLE public.team_invitations OWNER TO postgres;
+
+--
+-- Name: team_invitations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.team_invitations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.team_invitations_id_seq OWNER TO postgres;
+
+--
+-- Name: team_invitations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.team_invitations_id_seq OWNED BY public.team_invitations.id;
+
+
+--
+-- Name: translation_keys; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.translation_keys (
+    id integer NOT NULL,
+    namespace_id integer NOT NULL,
+    key text NOT NULL,
+    description text,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.translation_keys OWNER TO postgres;
+
+--
+-- Name: translation_keys_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.translation_keys_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.translation_keys_id_seq OWNER TO postgres;
+
+--
+-- Name: translation_keys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.translation_keys_id_seq OWNED BY public.translation_keys.id;
+
+
+--
+-- Name: translation_namespaces; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.translation_namespaces (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.translation_namespaces OWNER TO postgres;
+
+--
+-- Name: translation_namespaces_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.translation_namespaces_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.translation_namespaces_id_seq OWNER TO postgres;
+
+--
+-- Name: translation_namespaces_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.translation_namespaces_id_seq OWNED BY public.translation_namespaces.id;
+
+
+--
+-- Name: translations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.translations (
+    id integer NOT NULL,
+    key_id integer NOT NULL,
+    language_id integer NOT NULL,
+    value text NOT NULL,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.translations OWNER TO postgres;
+
+--
+-- Name: translations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.translations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.translations_id_seq OWNER TO postgres;
+
+--
+-- Name: translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
+
+
+--
+-- Name: user_social_accounts; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.user_social_accounts (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    provider text NOT NULL,
+    provider_user_id text NOT NULL,
+    provider_email text,
+    provider_name text,
+    provider_avatar_url text,
+    access_token text,
+    refresh_token text,
+    token_expires_at timestamp without time zone,
+    provider_data jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT user_social_accounts_provider_check CHECK ((provider = ANY (ARRAY['google'::text, 'facebook'::text, 'apple'::text])))
+);
+
+
+ALTER TABLE public.user_social_accounts OWNER TO postgres;
+
+--
+-- Name: user_social_accounts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.user_social_accounts_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.user_social_accounts_id_seq OWNER TO postgres;
+
+--
+-- Name: user_social_accounts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.user_social_accounts_id_seq OWNED BY public.user_social_accounts.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    username text NOT NULL,
+    password text NOT NULL,
+    full_name text NOT NULL,
+    email text NOT NULL,
+    avatar_url text,
+    role public.user_role DEFAULT 'agent'::public.user_role,
+    company_id integer,
+    is_super_admin boolean DEFAULT false,
+    active boolean DEFAULT true,
+    language_preference text DEFAULT 'en'::text,
+    permissions jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone DEFAULT now(),
+    updated_at timestamp without time zone DEFAULT now()
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- Name: COLUMN users.active; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.users.active IS 'Whether the user account is active and can log in';
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.users_id_seq OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: website_assets; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.website_assets (
+    id integer NOT NULL,
+    website_id integer NOT NULL,
+    filename text NOT NULL,
+    original_name text NOT NULL,
+    mime_type text NOT NULL,
+    size integer NOT NULL,
+    path text NOT NULL,
+    url text NOT NULL,
+    alt text,
+    title text,
+    asset_type text NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT website_assets_asset_type_check CHECK ((asset_type = ANY (ARRAY['image'::text, 'video'::text, 'audio'::text, 'document'::text, 'font'::text, 'icon'::text])))
+);
+
+
+ALTER TABLE public.website_assets OWNER TO postgres;
+
+--
+-- Name: TABLE website_assets; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.website_assets IS 'Assets (images, files, etc.) associated with websites';
+
+
+--
+-- Name: website_assets_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.website_assets_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.website_assets_id_seq OWNER TO postgres;
+
+--
+-- Name: website_assets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.website_assets_id_seq OWNED BY public.website_assets.id;
+
+
+--
+-- Name: website_templates; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.website_templates (
+    id integer NOT NULL,
+    name text NOT NULL,
+    description text,
+    category text DEFAULT 'general'::text,
+    preview_image text,
+    preview_url text,
+    grapes_data jsonb DEFAULT '{}'::jsonb NOT NULL,
+    grapes_html text,
+    grapes_css text,
+    grapes_js text,
+    is_active boolean DEFAULT true,
+    is_premium boolean DEFAULT false,
+    tags text[],
+    usage_count integer DEFAULT 0,
+    created_by_id integer NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.website_templates OWNER TO postgres;
+
+--
+-- Name: TABLE website_templates; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.website_templates IS 'Reusable website templates for quick website creation';
+
+
+--
+-- Name: website_templates_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.website_templates_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.website_templates_id_seq OWNER TO postgres;
+
+--
+-- Name: website_templates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.website_templates_id_seq OWNED BY public.website_templates.id;
+
+
+--
+-- Name: websites; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.websites (
+    id integer NOT NULL,
+    title text NOT NULL,
+    slug text NOT NULL,
+    description text,
+    meta_title text,
+    meta_description text,
+    meta_keywords text,
+    grapes_data jsonb DEFAULT '{}'::jsonb NOT NULL,
+    grapes_html text,
+    grapes_css text,
+    grapes_js text,
+    favicon text,
+    custom_css text,
+    custom_js text,
+    custom_head text,
+    status text DEFAULT 'draft'::text NOT NULL,
+    published_at timestamp without time zone,
+    google_analytics_id text,
+    facebook_pixel_id text,
+    template_id integer,
+    theme text DEFAULT 'default'::text,
+    created_by_id integer NOT NULL,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT websites_status_check CHECK ((status = ANY (ARRAY['draft'::text, 'published'::text, 'archived'::text])))
+);
+
+
+ALTER TABLE public.websites OWNER TO postgres;
+
+--
+-- Name: TABLE websites; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.websites IS 'Main websites table for website builder functionality';
+
+
+--
+-- Name: COLUMN websites.grapes_data; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.websites.grapes_data IS 'GrapeJS editor data in JSON format';
+
+
+--
+-- Name: COLUMN websites.grapes_html; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.websites.grapes_html IS 'Generated HTML from GrapeJS editor';
+
+
+--
+-- Name: COLUMN websites.grapes_css; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.websites.grapes_css IS 'Generated CSS from GrapeJS editor';
+
+
+--
+-- Name: COLUMN websites.grapes_js; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.websites.grapes_js IS 'Generated JavaScript from GrapeJS editor';
+
+
+--
+-- Name: websites_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.websites_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.websites_id_seq OWNER TO postgres;
+
+--
+-- Name: websites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.websites_id_seq OWNED BY public.websites.id;
+
+
+--
+-- Name: whatsapp_account_logs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.whatsapp_account_logs (
+    id integer NOT NULL,
+    account_id integer NOT NULL,
+    event_type text NOT NULL,
+    event_data jsonb,
+    message text,
+    severity text DEFAULT 'info'::text,
+    messages_sent_today integer DEFAULT 0,
+    health_score integer DEFAULT 100,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT whatsapp_account_logs_severity_check CHECK ((severity = ANY (ARRAY['info'::text, 'warning'::text, 'error'::text, 'critical'::text])))
+);
+
+
+ALTER TABLE public.whatsapp_account_logs OWNER TO postgres;
+
+--
+-- Name: whatsapp_account_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.whatsapp_account_logs_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.whatsapp_account_logs_id_seq OWNER TO postgres;
+
+--
+-- Name: whatsapp_account_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.whatsapp_account_logs_id_seq OWNED BY public.whatsapp_account_logs.id;
+
+
+--
+-- Name: whatsapp_accounts; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.whatsapp_accounts (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    channel_id integer,
+    account_name text NOT NULL,
+    phone_number text NOT NULL,
+    account_type text DEFAULT 'unofficial'::text NOT NULL,
+    session_data jsonb,
+    qr_code text,
+    connection_status text DEFAULT 'disconnected'::text,
+    last_activity_at timestamp without time zone,
+    message_count_today integer DEFAULT 0,
+    message_count_hour integer DEFAULT 0,
+    warning_count integer DEFAULT 0,
+    restriction_count integer DEFAULT 0,
+    rate_limits jsonb DEFAULT '{"cooldown_period": 300, "humanization_enabled": true, "max_messages_per_day": 1000, "max_messages_per_hour": 200, "max_messages_per_minute": 10}'::jsonb,
+    health_score integer DEFAULT 100,
+    last_health_check timestamp without time zone,
+    is_active boolean DEFAULT true,
+    rotation_group text,
+    priority integer DEFAULT 1,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT whatsapp_accounts_account_type_check CHECK ((account_type = ANY (ARRAY['official'::text, 'unofficial'::text]))),
+    CONSTRAINT whatsapp_accounts_connection_status_check CHECK ((connection_status = ANY (ARRAY['connected'::text, 'disconnected'::text, 'connecting'::text, 'error'::text, 'banned'::text])))
+);
+
+
+ALTER TABLE public.whatsapp_accounts OWNER TO postgres;
+
+--
+-- Name: whatsapp_accounts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.whatsapp_accounts_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.whatsapp_accounts_id_seq OWNER TO postgres;
+
+--
+-- Name: whatsapp_accounts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.whatsapp_accounts_id_seq OWNED BY public.whatsapp_accounts.id;
+
+
+--
+-- Name: whatsapp_proxy_servers; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.whatsapp_proxy_servers (
+    id integer NOT NULL,
+    company_id integer NOT NULL,
+    name text NOT NULL,
+    enabled boolean DEFAULT true NOT NULL,
+    type text NOT NULL,
+    host text NOT NULL,
+    port integer NOT NULL,
+    username text,
+    password text,
+    test_status text DEFAULT 'untested'::text,
+    last_tested timestamp without time zone,
+    description text,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL,
+    CONSTRAINT whatsapp_proxy_servers_port_check CHECK (((port > 0) AND (port <= 65535))),
+    CONSTRAINT whatsapp_proxy_servers_test_status_check CHECK ((test_status = ANY (ARRAY['untested'::text, 'working'::text, 'failed'::text]))),
+    CONSTRAINT whatsapp_proxy_servers_type_check CHECK ((type = ANY (ARRAY['http'::text, 'https'::text, 'socks5'::text])))
+);
+
+
+ALTER TABLE public.whatsapp_proxy_servers OWNER TO postgres;
+
+--
+-- Name: TABLE whatsapp_proxy_servers; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.whatsapp_proxy_servers IS 'Stores multiple proxy server configurations for WhatsApp Baileys connections';
+
+
+--
+-- Name: COLUMN whatsapp_proxy_servers.name; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.whatsapp_proxy_servers.name IS 'User-friendly name to identify the proxy (e.g., US Proxy, EU Proxy)';
+
+
+--
+-- Name: COLUMN whatsapp_proxy_servers.enabled; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.whatsapp_proxy_servers.enabled IS 'Whether this proxy is currently active and available for use';
+
+
+--
+-- Name: whatsapp_proxy_servers_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.whatsapp_proxy_servers_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.whatsapp_proxy_servers_id_seq OWNER TO postgres;
+
+--
+-- Name: whatsapp_proxy_servers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.whatsapp_proxy_servers_id_seq OWNED BY public.whatsapp_proxy_servers.id;
+
+
+--
+-- Name: zoho_calendar_tokens; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.zoho_calendar_tokens (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    company_id integer NOT NULL,
+    access_token text NOT NULL,
+    refresh_token text,
+    token_type text,
+    expires_in integer,
+    scope text,
+    created_at timestamp without time zone DEFAULT now() NOT NULL,
+    updated_at timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.zoho_calendar_tokens OWNER TO postgres;
+
+--
+-- Name: TABLE zoho_calendar_tokens; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON TABLE public.zoho_calendar_tokens IS 'Stores OAuth tokens for Zoho Calendar integration per user and company';
+
+
+--
+-- Name: COLUMN zoho_calendar_tokens.user_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.zoho_calendar_tokens.user_id IS 'Reference to the user who authenticated with Zoho Calendar';
+
+
+--
+-- Name: COLUMN zoho_calendar_tokens.company_id; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.zoho_calendar_tokens.company_id IS 'Reference to the company the user belongs to';
+
+
+--
+-- Name: COLUMN zoho_calendar_tokens.access_token; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.zoho_calendar_tokens.access_token IS 'Zoho OAuth access token for API calls';
+
+
+--
+-- Name: COLUMN zoho_calendar_tokens.refresh_token; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.zoho_calendar_tokens.refresh_token IS 'Zoho OAuth refresh token for token renewal';
+
+
+--
+-- Name: COLUMN zoho_calendar_tokens.token_type; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.zoho_calendar_tokens.token_type IS 'Type of token (usually "bearer")';
+
+
+--
+-- Name: COLUMN zoho_calendar_tokens.expires_in; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.zoho_calendar_tokens.expires_in IS 'Token expiry time in seconds';
+
+
+--
+-- Name: COLUMN zoho_calendar_tokens.scope; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON COLUMN public.zoho_calendar_tokens.scope IS 'OAuth scopes granted for this token';
+
+
+--
+-- Name: zoho_calendar_tokens_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.zoho_calendar_tokens_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.zoho_calendar_tokens_id_seq OWNER TO postgres;
+
+--
+-- Name: zoho_calendar_tokens_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.zoho_calendar_tokens_id_seq OWNED BY public.zoho_calendar_tokens.id;
+
+
+--
+-- Name: affiliate_analytics id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_analytics ALTER COLUMN id SET DEFAULT nextval('public.affiliate_analytics_id_seq'::regclass);
+
+
+--
+-- Name: affiliate_applications id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_applications ALTER COLUMN id SET DEFAULT nextval('public.affiliate_applications_id_seq'::regclass);
+
+
+--
+-- Name: affiliate_clicks id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_clicks ALTER COLUMN id SET DEFAULT nextval('public.affiliate_clicks_id_seq'::regclass);
+
+
+--
+-- Name: affiliate_commission_structures id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_commission_structures ALTER COLUMN id SET DEFAULT nextval('public.affiliate_commission_structures_id_seq'::regclass);
+
+
+--
+-- Name: affiliate_earnings_balance id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_earnings_balance ALTER COLUMN id SET DEFAULT nextval('public.affiliate_earnings_balance_id_seq'::regclass);
+
+
+--
+-- Name: affiliate_earnings_transactions id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_earnings_transactions ALTER COLUMN id SET DEFAULT nextval('public.affiliate_earnings_transactions_id_seq'::regclass);
+
+
+--
+-- Name: affiliate_payouts id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_payouts ALTER COLUMN id SET DEFAULT nextval('public.affiliate_payouts_id_seq'::regclass);
+
+
+--
+-- Name: affiliate_referrals id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_referrals ALTER COLUMN id SET DEFAULT nextval('public.affiliate_referrals_id_seq'::regclass);
+
+
+--
+-- Name: affiliate_relationships id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_relationships ALTER COLUMN id SET DEFAULT nextval('public.affiliate_relationships_id_seq'::regclass);
+
+
+--
+-- Name: affiliates id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliates ALTER COLUMN id SET DEFAULT nextval('public.affiliates_id_seq'::regclass);
+
+
+--
+-- Name: ai_credential_usage id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ai_credential_usage ALTER COLUMN id SET DEFAULT nextval('public.ai_credential_usage_id_seq'::regclass);
+
+
+--
+-- Name: api_keys id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.api_keys ALTER COLUMN id SET DEFAULT nextval('public.api_keys_id_seq'::regclass);
+
+
+--
+-- Name: api_rate_limits id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.api_rate_limits ALTER COLUMN id SET DEFAULT nextval('public.api_rate_limits_id_seq'::regclass);
+
+
+--
+-- Name: api_usage id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.api_usage ALTER COLUMN id SET DEFAULT nextval('public.api_usage_id_seq'::regclass);
+
+
+--
+-- Name: app_settings id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app_settings ALTER COLUMN id SET DEFAULT nextval('public.app_settings_id_seq'::regclass);
+
+
+--
+-- Name: backup_audit_logs id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.backup_audit_logs ALTER COLUMN id SET DEFAULT nextval('public.backup_audit_logs_id_seq'::regclass);
+
+
+--
+-- Name: backup_logs id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.backup_logs ALTER COLUMN id SET DEFAULT nextval('public.backup_logs_id_seq'::regclass);
+
+
+--
+-- Name: backup_schedules id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.backup_schedules ALTER COLUMN id SET DEFAULT nextval('public.backup_schedules_id_seq'::regclass);
+
+
+--
+-- Name: calendly_calendar_tokens id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.calendly_calendar_tokens ALTER COLUMN id SET DEFAULT nextval('public.calendly_calendar_tokens_id_seq'::regclass);
+
+
+--
+-- Name: calls id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.calls ALTER COLUMN id SET DEFAULT nextval('public.calls_id_seq'::regclass);
+
+
+--
+-- Name: campaign_analytics id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_analytics ALTER COLUMN id SET DEFAULT nextval('public.campaign_analytics_id_seq'::regclass);
+
+
+--
+-- Name: campaign_messages id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_messages ALTER COLUMN id SET DEFAULT nextval('public.campaign_messages_id_seq'::regclass);
+
+
+--
+-- Name: campaign_queue id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_queue ALTER COLUMN id SET DEFAULT nextval('public.campaign_queue_id_seq'::regclass);
+
+
+--
+-- Name: campaign_recipients id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_recipients ALTER COLUMN id SET DEFAULT nextval('public.campaign_recipients_id_seq'::regclass);
+
+
+--
+-- Name: campaign_templates id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_templates ALTER COLUMN id SET DEFAULT nextval('public.campaign_templates_id_seq'::regclass);
+
+
+--
+-- Name: campaigns id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaigns ALTER COLUMN id SET DEFAULT nextval('public.campaigns_id_seq'::regclass);
+
+
+--
+-- Name: channel_connections id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.channel_connections ALTER COLUMN id SET DEFAULT nextval('public.channel_connections_id_seq'::regclass);
+
+
+--
+-- Name: companies id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.companies ALTER COLUMN id SET DEFAULT nextval('public.companies_id_seq'::regclass);
+
+
+--
+-- Name: company_ai_credentials id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_ai_credentials ALTER COLUMN id SET DEFAULT nextval('public.company_ai_credentials_id_seq'::regclass);
+
+
+--
+-- Name: company_ai_preferences id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_ai_preferences ALTER COLUMN id SET DEFAULT nextval('public.company_ai_preferences_id_seq'::regclass);
+
+
+--
+-- Name: company_pages id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_pages ALTER COLUMN id SET DEFAULT nextval('public.company_pages_id_seq'::regclass);
+
+
+--
+-- Name: company_settings id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_settings ALTER COLUMN id SET DEFAULT nextval('public.company_settings_id_seq'::regclass);
+
+
+--
+-- Name: contact_appointments id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_appointments ALTER COLUMN id SET DEFAULT nextval('public.contact_appointments_id_seq'::regclass);
+
+
+--
+-- Name: contact_audit_logs id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_audit_logs ALTER COLUMN id SET DEFAULT nextval('public.contact_audit_logs_id_seq'::regclass);
+
+
+--
+-- Name: contact_documents id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_documents ALTER COLUMN id SET DEFAULT nextval('public.contact_documents_id_seq'::regclass);
+
+
+--
+-- Name: contact_segments id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_segments ALTER COLUMN id SET DEFAULT nextval('public.contact_segments_id_seq'::regclass);
+
+
+--
+-- Name: contact_tasks id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_tasks ALTER COLUMN id SET DEFAULT nextval('public.contact_tasks_id_seq'::regclass);
+
+
+--
+-- Name: contacts id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contacts ALTER COLUMN id SET DEFAULT nextval('public.contacts_id_seq'::regclass);
+
+
+--
+-- Name: conversations id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.conversations ALTER COLUMN id SET DEFAULT nextval('public.conversations_id_seq'::regclass);
+
+
+--
+-- Name: coupon_codes id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coupon_codes ALTER COLUMN id SET DEFAULT nextval('public.coupon_codes_id_seq'::regclass);
+
+
+--
+-- Name: coupon_usage id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coupon_usage ALTER COLUMN id SET DEFAULT nextval('public.coupon_usage_id_seq'::regclass);
+
+
+--
+-- Name: deal_activities id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.deal_activities ALTER COLUMN id SET DEFAULT nextval('public.deal_activities_id_seq'::regclass);
+
+
+--
+-- Name: deals id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.deals ALTER COLUMN id SET DEFAULT nextval('public.deals_id_seq'::regclass);
+
+
+--
+-- Name: dialog_360_channels id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.dialog_360_channels ALTER COLUMN id SET DEFAULT nextval('public.dialog_360_channels_id_seq'::regclass);
+
+
+--
+-- Name: dialog_360_clients id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.dialog_360_clients ALTER COLUMN id SET DEFAULT nextval('public.dialog_360_clients_id_seq'::regclass);
+
+
+--
+-- Name: dunning_management id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.dunning_management ALTER COLUMN id SET DEFAULT nextval('public.dunning_management_id_seq'::regclass);
+
+
+--
+-- Name: email_attachments id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.email_attachments ALTER COLUMN id SET DEFAULT nextval('public.email_attachments_id_seq'::regclass);
+
+
+--
+-- Name: email_configs id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.email_configs ALTER COLUMN id SET DEFAULT nextval('public.email_configs_id_seq'::regclass);
+
+
+--
+-- Name: flow_assignments id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_assignments ALTER COLUMN id SET DEFAULT nextval('public.flow_assignments_id_seq'::regclass);
+
+
+--
+-- Name: flow_executions id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_executions ALTER COLUMN id SET DEFAULT nextval('public.flow_executions_id_seq'::regclass);
+
+
+--
+-- Name: flow_session_cursors id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_session_cursors ALTER COLUMN id SET DEFAULT nextval('public.flow_session_cursors_id_seq'::regclass);
+
+
+--
+-- Name: flow_session_variables id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_session_variables ALTER COLUMN id SET DEFAULT nextval('public.flow_session_variables_id_seq'::regclass);
+
+
+--
+-- Name: flow_sessions id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_sessions ALTER COLUMN id SET DEFAULT nextval('public.flow_sessions_id_seq'::regclass);
+
+
+--
+-- Name: flow_step_executions id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_step_executions ALTER COLUMN id SET DEFAULT nextval('public.flow_step_executions_id_seq'::regclass);
+
+
+--
+-- Name: flows id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flows ALTER COLUMN id SET DEFAULT nextval('public.flows_id_seq'::regclass);
+
+
+--
+-- Name: follow_up_execution_log id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_execution_log ALTER COLUMN id SET DEFAULT nextval('public.follow_up_execution_log_id_seq'::regclass);
+
+
+--
+-- Name: follow_up_schedules id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_schedules ALTER COLUMN id SET DEFAULT nextval('public.follow_up_schedules_id_seq'::regclass);
+
+
+--
+-- Name: follow_up_templates id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_templates ALTER COLUMN id SET DEFAULT nextval('public.follow_up_templates_id_seq'::regclass);
+
+
+--
+-- Name: google_calendar_tokens id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.google_calendar_tokens ALTER COLUMN id SET DEFAULT nextval('public.google_calendar_tokens_id_seq'::regclass);
+
+
+--
+-- Name: group_participants id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.group_participants ALTER COLUMN id SET DEFAULT nextval('public.group_participants_id_seq'::regclass);
+
+
+--
+-- Name: history_sync_batches id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.history_sync_batches ALTER COLUMN id SET DEFAULT nextval('public.history_sync_batches_id_seq'::regclass);
+
+
+--
+-- Name: inbox_backups id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.inbox_backups ALTER COLUMN id SET DEFAULT nextval('public.inbox_backups_id_seq'::regclass);
+
+
+--
+-- Name: inbox_restores id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.inbox_restores ALTER COLUMN id SET DEFAULT nextval('public.inbox_restores_id_seq'::regclass);
+
+
+--
+-- Name: knowledge_base_chunks id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_chunks ALTER COLUMN id SET DEFAULT nextval('public.knowledge_base_chunks_id_seq'::regclass);
+
+
+--
+-- Name: knowledge_base_configs id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_configs ALTER COLUMN id SET DEFAULT nextval('public.knowledge_base_configs_id_seq'::regclass);
+
+
+--
+-- Name: knowledge_base_document_nodes id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_document_nodes ALTER COLUMN id SET DEFAULT nextval('public.knowledge_base_document_nodes_id_seq'::regclass);
+
+
+--
+-- Name: knowledge_base_documents id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_documents ALTER COLUMN id SET DEFAULT nextval('public.knowledge_base_documents_id_seq'::regclass);
+
+
+--
+-- Name: knowledge_base_usage id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_usage ALTER COLUMN id SET DEFAULT nextval('public.knowledge_base_usage_id_seq'::regclass);
+
+
+--
+-- Name: languages id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.languages ALTER COLUMN id SET DEFAULT nextval('public.languages_id_seq'::regclass);
+
+
+--
+-- Name: messages id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.messages ALTER COLUMN id SET DEFAULT nextval('public.messages_id_seq'::regclass);
+
+
+--
+-- Name: meta_whatsapp_clients id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.meta_whatsapp_clients ALTER COLUMN id SET DEFAULT nextval('public.meta_whatsapp_clients_id_seq'::regclass);
+
+
+--
+-- Name: meta_whatsapp_phone_numbers id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.meta_whatsapp_phone_numbers ALTER COLUMN id SET DEFAULT nextval('public.meta_whatsapp_phone_numbers_id_seq'::regclass);
+
+
+--
+-- Name: migration_log id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.migration_log ALTER COLUMN id SET DEFAULT nextval('public.migration_log_id_seq'::regclass);
+
+
+--
+-- Name: migrations id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.migrations ALTER COLUMN id SET DEFAULT nextval('public.migrations_id_seq'::regclass);
+
+
+--
+-- Name: notes id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.notes ALTER COLUMN id SET DEFAULT nextval('public.notes_id_seq'::regclass);
+
+
+--
+-- Name: partner_configurations id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.partner_configurations ALTER COLUMN id SET DEFAULT nextval('public.partner_configurations_id_seq'::regclass);
+
+
+--
+-- Name: password_reset_tokens id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.password_reset_tokens ALTER COLUMN id SET DEFAULT nextval('public.password_reset_tokens_id_seq'::regclass);
+
+
+--
+-- Name: payment_transactions id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.payment_transactions ALTER COLUMN id SET DEFAULT nextval('public.payment_transactions_id_seq'::regclass);
+
+
+--
+-- Name: pipeline_stages id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pipeline_stages ALTER COLUMN id SET DEFAULT nextval('public.pipeline_stages_id_seq'::regclass);
+
+
+--
+-- Name: plan_ai_billing_events id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.plan_ai_billing_events ALTER COLUMN id SET DEFAULT nextval('public.plan_ai_billing_events_id_seq'::regclass);
+
+
+--
+-- Name: plan_ai_provider_configs id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.plan_ai_provider_configs ALTER COLUMN id SET DEFAULT nextval('public.plan_ai_provider_configs_id_seq'::regclass);
+
+
+--
+-- Name: plan_ai_usage_tracking id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.plan_ai_usage_tracking ALTER COLUMN id SET DEFAULT nextval('public.plan_ai_usage_tracking_id_seq'::regclass);
+
+
+--
+-- Name: plans id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.plans ALTER COLUMN id SET DEFAULT nextval('public.plans_id_seq'::regclass);
+
+
+--
+-- Name: quick_reply_templates id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.quick_reply_templates ALTER COLUMN id SET DEFAULT nextval('public.quick_reply_templates_id_seq'::regclass);
+
+
+--
+-- Name: role_permissions id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.role_permissions ALTER COLUMN id SET DEFAULT nextval('public.role_permissions_id_seq'::regclass);
+
+
+--
+-- Name: scheduled_messages id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.scheduled_messages ALTER COLUMN id SET DEFAULT nextval('public.scheduled_messages_id_seq'::regclass);
+
+
+--
+-- Name: subscription_events id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscription_events ALTER COLUMN id SET DEFAULT nextval('public.subscription_events_id_seq'::regclass);
+
+
+--
+-- Name: subscription_notifications id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscription_notifications ALTER COLUMN id SET DEFAULT nextval('public.subscription_notifications_id_seq'::regclass);
+
+
+--
+-- Name: subscription_plan_changes id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscription_plan_changes ALTER COLUMN id SET DEFAULT nextval('public.subscription_plan_changes_id_seq'::regclass);
+
+
+--
+-- Name: subscription_usage_tracking id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscription_usage_tracking ALTER COLUMN id SET DEFAULT nextval('public.subscription_usage_tracking_id_seq'::regclass);
+
+
+--
+-- Name: system_ai_credentials id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.system_ai_credentials ALTER COLUMN id SET DEFAULT nextval('public.system_ai_credentials_id_seq'::regclass);
+
+
+--
+-- Name: system_updates id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.system_updates ALTER COLUMN id SET DEFAULT nextval('public.system_updates_id_seq'::regclass);
+
+
+--
+-- Name: task_categories id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.task_categories ALTER COLUMN id SET DEFAULT nextval('public.task_categories_id_seq'::regclass);
+
+
+--
+-- Name: team_invitations id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.team_invitations ALTER COLUMN id SET DEFAULT nextval('public.team_invitations_id_seq'::regclass);
+
+
+--
+-- Name: translation_keys id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.translation_keys ALTER COLUMN id SET DEFAULT nextval('public.translation_keys_id_seq'::regclass);
+
+
+--
+-- Name: translation_namespaces id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.translation_namespaces ALTER COLUMN id SET DEFAULT nextval('public.translation_namespaces_id_seq'::regclass);
+
+
+--
+-- Name: translations id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.translations ALTER COLUMN id SET DEFAULT nextval('public.translations_id_seq'::regclass);
+
+
+--
+-- Name: user_social_accounts id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_social_accounts ALTER COLUMN id SET DEFAULT nextval('public.user_social_accounts_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Name: website_assets id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.website_assets ALTER COLUMN id SET DEFAULT nextval('public.website_assets_id_seq'::regclass);
+
+
+--
+-- Name: website_templates id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.website_templates ALTER COLUMN id SET DEFAULT nextval('public.website_templates_id_seq'::regclass);
+
+
+--
+-- Name: websites id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.websites ALTER COLUMN id SET DEFAULT nextval('public.websites_id_seq'::regclass);
+
+
+--
+-- Name: whatsapp_account_logs id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.whatsapp_account_logs ALTER COLUMN id SET DEFAULT nextval('public.whatsapp_account_logs_id_seq'::regclass);
+
+
+--
+-- Name: whatsapp_accounts id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.whatsapp_accounts ALTER COLUMN id SET DEFAULT nextval('public.whatsapp_accounts_id_seq'::regclass);
+
+
+--
+-- Name: whatsapp_proxy_servers id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.whatsapp_proxy_servers ALTER COLUMN id SET DEFAULT nextval('public.whatsapp_proxy_servers_id_seq'::regclass);
+
+
+--
+-- Name: zoho_calendar_tokens id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.zoho_calendar_tokens ALTER COLUMN id SET DEFAULT nextval('public.zoho_calendar_tokens_id_seq'::regclass);
+
+
+--
+-- Data for Name: affiliate_analytics; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.affiliate_analytics (id, company_id, affiliate_id, date, period_type, clicks, unique_clicks, impressions, referrals, conversions, conversion_rate, revenue, commission_earned, average_order_value, top_countries, top_sources, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: affiliate_applications; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.affiliate_applications (id, first_name, last_name, email, phone, company, website, country, marketing_channels, expected_monthly_referrals, experience, motivation, status, agree_to_terms, reviewed_by, reviewed_at, review_notes, rejection_reason, submitted_at, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: affiliate_clicks; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.affiliate_clicks (id, company_id, affiliate_id, referral_id, clicked_url, landing_page, session_id, user_agent, ip_address, country_code, city, utm_source, utm_medium, utm_campaign, utm_content, utm_term, referrer_url, referrer_domain, device_type, browser, os, converted, converted_at, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: affiliate_commission_structures; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.affiliate_commission_structures (id, company_id, affiliate_id, plan_id, name, commission_type, commission_value, tier_rules, minimum_payout, maximum_payout, recurring_commission, recurring_months, valid_from, valid_until, is_active, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: affiliate_earnings_balance; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.affiliate_earnings_balance (id, company_id, affiliate_id, total_earned, available_balance, applied_to_plans, pending_payout, paid_out, last_updated, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: affiliate_earnings_transactions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.affiliate_earnings_transactions (id, company_id, affiliate_id, transaction_type, amount, balance_after, referral_id, payment_transaction_id, payout_id, description, metadata, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: affiliate_payouts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.affiliate_payouts (id, company_id, affiliate_id, amount, currency, status, payment_method, payment_reference, external_transaction_id, period_start, period_end, processed_by, processed_at, failure_reason, referral_ids, notes, metadata, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: affiliate_referrals; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.affiliate_referrals (id, company_id, affiliate_id, referral_code, referred_company_id, referred_user_id, referred_email, status, converted_at, conversion_value, commission_structure_id, commission_amount, commission_rate, source_url, utm_source, utm_medium, utm_campaign, utm_content, utm_term, user_agent, ip_address, country_code, expires_at, metadata, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: affiliate_relationships; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.affiliate_relationships (id, company_id, parent_affiliate_id, child_affiliate_id, level, commission_percentage, is_active, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: affiliates; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.affiliates (id, company_id, user_id, affiliate_code, name, email, phone, website, status, approved_by, approved_at, rejection_reason, default_commission_rate, commission_type, business_name, tax_id, address, payment_details, total_referrals, successful_referrals, total_earnings, pending_earnings, paid_earnings, notes, metadata, is_active, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: ai_credential_usage; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.ai_credential_usage (id, company_id, credential_type, credential_id, provider, model, tokens_input, tokens_output, tokens_total, cost_estimated, request_count, conversation_id, flow_id, node_id, usage_date, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: api_keys; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.api_keys (id, company_id, user_id, name, key_hash, key_prefix, permissions, is_active, last_used_at, expires_at, rate_limit_per_minute, rate_limit_per_hour, rate_limit_per_day, allowed_ips, webhook_url, metadata, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: api_rate_limits; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.api_rate_limits (id, api_key_id, window_type, window_start, request_count, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: api_usage; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.api_usage (id, api_key_id, company_id, endpoint, method, status_code, request_size, response_size, duration, ip_address, user_agent, request_id, error_message, metadata, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: app_settings; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.app_settings (id, key, value, created_at, updated_at) FROM stdin;
+1	social_login_google	{"enabled": false, "client_id": "", "callback_url": "/api/auth/google/callback", "client_secret": ""}	2025-11-05 15:06:41.994981	2025-11-05 15:06:41.994981
+2	social_login_facebook	{"app_id": "", "enabled": false, "app_secret": "", "callback_url": "/api/auth/facebook/callback"}	2025-11-05 15:06:41.994981	2025-11-05 15:06:41.994981
+3	social_login_apple	{"key_id": "", "enabled": false, "team_id": "", "client_id": "", "private_key": "", "callback_url": "/api/auth/apple/callback"}	2025-11-05 15:06:41.994981	2025-11-05 15:06:41.994981
+4	subdomain_authentication	false	2025-11-05 15:06:47.171477	2025-11-05 15:06:47.171477
+\.
+
+
+--
+-- Data for Name: backup_audit_logs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.backup_audit_logs (id, company_id, user_id, action, entity_type, entity_id, details, ip_address, user_agent, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: backup_logs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.backup_logs (id, log_id, schedule_id, backup_id, status, "timestamp", error_message, metadata) FROM stdin;
+\.
+
+
+--
+-- Data for Name: backup_schedules; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.backup_schedules (id, company_id, created_by_user_id, name, description, is_active, frequency, cron_expression, retention_days, include_contacts, include_conversations, include_messages, last_run_at, next_run_at, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: calendly_calendar_tokens; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.calendly_calendar_tokens (id, user_id, company_id, access_token, refresh_token, token_type, expires_in, scope, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: calls; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.calls (id, company_id, channel_id, contact_id, conversation_id, direction, status, "from", "to", duration_sec, started_at, ended_at, recording_url, recording_sid, twilio_call_sid, metadata, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: campaign_analytics; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.campaign_analytics (id, campaign_id, recorded_at, total_recipients, messages_sent, messages_delivered, messages_read, messages_failed, delivery_rate, read_rate, failure_rate, avg_delivery_time, avg_read_time, estimated_cost, metrics_data) FROM stdin;
+\.
+
+
+--
+-- Data for Name: campaign_messages; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.campaign_messages (id, campaign_id, recipient_id, message_id, content, media_urls, message_type, status, sent_at, delivered_at, read_at, failed_at, whatsapp_message_id, whatsapp_status, error_code, error_message, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: campaign_queue; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.campaign_queue (id, campaign_id, recipient_id, account_id, priority, scheduled_for, attempts, max_attempts, status, started_at, completed_at, error_message, last_error_at, metadata, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: campaign_recipients; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.campaign_recipients (id, campaign_id, contact_id, personalized_content, variables, status, scheduled_at, sent_at, delivered_at, read_at, failed_at, error_message, retry_count, max_retries, external_message_id, conversation_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: campaign_templates; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.campaign_templates (id, company_id, created_by_id, name, description, category, content, content_type, media_urls, media_metadata, variables, channel_type, is_active, usage_count, created_at, updated_at, whatsapp_channel_type, whatsapp_template_category, whatsapp_template_status, whatsapp_template_id, whatsapp_template_name, whatsapp_template_language, connection_id, media_handle) FROM stdin;
+\.
+
+
+--
+-- Data for Name: campaigns; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.campaigns (id, company_id, created_by_id, template_id, segment_id, name, description, channel_type, channel_id, channel_ids, content, media_urls, variables, campaign_type, scheduled_at, timezone, drip_settings, status, started_at, completed_at, paused_at, total_recipients, processed_recipients, successful_sends, failed_sends, rate_limit_settings, compliance_settings, anti_ban_settings, created_at, updated_at, whatsapp_channel_type) FROM stdin;
+\.
+
+
+--
+-- Data for Name: channel_connections; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.channel_connections (id, user_id, company_id, channel_type, account_id, account_name, access_token, status, connection_data, created_at, updated_at, history_sync_enabled, history_sync_status, history_sync_progress, history_sync_total, last_history_sync_at, history_sync_error, proxy_enabled, proxy_type, proxy_host, proxy_port, proxy_username, proxy_password, proxy_test_status, proxy_last_tested, proxy_server_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: companies; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.companies (id, name, slug, subdomain, logo, primary_color, active, plan, plan_id, subscription_status, subscription_start_date, subscription_end_date, trial_start_date, trial_end_date, is_in_trial, max_users, register_number, company_email, contact_person, iban, stripe_customer_id, stripe_subscription_id, billing_cycle_anchor, grace_period_end, pause_start_date, pause_end_date, auto_renewal, dunning_attempts, last_dunning_attempt, subscription_metadata, current_storage_used, current_bandwidth_used, files_count, last_usage_update, created_at, updated_at) FROM stdin;
+1	System	system	system	\N	#333235	t	enterprise	\N	inactive	\N	\N	\N	\N	f	999	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	t	0	\N	{}	0	0	0	2025-11-05 14:55:08.124819	2025-11-05 14:55:08.124819	2025-11-05 14:55:08.124819
+4	demo	demo	\N	\N	#333235	t	free	1	pending	\N	\N	\N	\N	f	3	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	t	0	\N	{}	0	0	0	2025-11-05 15:17:25.934586	2025-11-05 15:17:25.932	2025-11-05 15:17:25.932
+\.
+
+
+--
+-- Data for Name: company_ai_credentials; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.company_ai_credentials (id, company_id, provider, api_key_encrypted, display_name, description, is_active, usage_limit_monthly, usage_count_current, last_validated_at, validation_status, validation_error, metadata, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: company_ai_preferences; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.company_ai_preferences (id, company_id, default_provider, credential_preference, fallback_enabled, usage_alerts_enabled, usage_alert_threshold, metadata, created_at, updated_at) FROM stdin;
+1	1	openai	auto	t	t	80	{}	2025-11-05 15:06:42.667139	2025-11-05 15:06:43.175759
+\.
+
+
+--
+-- Data for Name: company_pages; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.company_pages (id, company_id, title, slug, content, meta_title, meta_description, meta_keywords, is_published, is_featured, template, custom_css, custom_js, author_id, published_at, created_at, updated_at) FROM stdin;
+1	1	Privacy Policy	privacy-policy	<h1>Privacy Policy</h1><p>This is a template privacy policy page. Please customize this content to match your company's privacy practices.</p><p>Last updated: November  05, 2025</p>	Privacy Policy	Our privacy policy explains how we collect, use, and protect your personal information.	\N	f	f	legal	\N	\N	\N	\N	2025-11-05 15:06:47.059903	2025-11-05 15:06:47.059903
+2	1	Terms of Service	terms-of-service	<h1>Terms of Service</h1><p>This is a template terms of service page. Please customize this content to match your company's terms and conditions.</p><p>Last updated: November  05, 2025</p>	Terms of Service	Our terms of service outline the rules and regulations for using our services.	\N	f	f	legal	\N	\N	\N	\N	2025-11-05 15:06:47.066237	2025-11-05 15:06:47.066237
+\.
+
+
+--
+-- Data for Name: company_settings; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.company_settings (id, company_id, key, value, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: contact_appointments; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.contact_appointments (id, contact_id, title, description, location, scheduled_at, duration_minutes, type, status, created_by, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: contact_audit_logs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.contact_audit_logs (id, company_id, contact_id, user_id, action_type, action_category, description, old_values, new_values, metadata, ip_address, user_agent, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: contact_documents; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.contact_documents (id, contact_id, filename, original_name, mime_type, file_size, file_path, file_url, category, description, uploaded_by, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: contact_segments; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.contact_segments (id, company_id, created_by_id, name, description, criteria, contact_count, last_updated_at, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: contact_tasks; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.contact_tasks (id, contact_id, company_id, title, description, priority, status, due_date, completed_at, assigned_to, category, tags, created_by, updated_by, created_at, updated_at, background_color) FROM stdin;
+\.
+
+
+--
+-- Data for Name: contacts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.contacts (id, company_id, name, avatar_url, email, phone, company, tags, is_active, identifier, identifier_type, source, notes, created_at, updated_at, is_history_sync, history_sync_batch_id, is_archived) FROM stdin;
+\.
+
+
+--
+-- Data for Name: conversations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.conversations (id, company_id, contact_id, channel_type, channel_id, status, assigned_to_user_id, last_message_at, unread_count, bot_disabled, disabled_at, disable_duration, disable_reason, is_group, group_jid, group_name, group_description, group_participant_count, group_created_at, group_metadata, created_at, updated_at, is_history_sync, history_sync_batch_id, is_starred, is_archived, archived_at, starred_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: coupon_codes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.coupon_codes (id, company_id, code, name, description, discount_type, discount_value, usage_limit, usage_limit_per_user, current_usage_count, start_date, end_date, applicable_plan_ids, minimum_plan_value, is_active, created_by, metadata, created_at, updated_at) FROM stdin;
+1	\N	WELCOME10	Welcome Discount	10% off for new customers	percentage	10.00	1000	1	0	2025-11-05 15:06:42.537964	2025-12-05 15:06:42.537964	\N	\N	t	\N	{}	2025-11-05 15:06:42.537964	2025-11-05 15:06:42.537964
+2	\N	SAVE50	Save $50	$50 off any plan	fixed_amount	50.00	500	1	0	2025-11-05 15:06:42.537964	2026-01-04 15:06:42.537964	\N	\N	t	\N	{}	2025-11-05 15:06:42.537964	2025-11-05 15:06:42.537964
+3	\N	FIRSTMONTH	First Month Free	100% off first month	percentage	100.00	\N	1	0	2025-11-05 15:06:42.537964	\N	\N	\N	t	\N	{}	2025-11-05 15:06:42.537964	2025-11-05 15:06:42.537964
+\.
+
+
+--
+-- Data for Name: coupon_usage; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.coupon_usage (id, coupon_id, company_id, user_id, plan_id, original_amount, discount_amount, final_amount, payment_transaction_id, usage_context, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: deal_activities; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.deal_activities (id, deal_id, user_id, type, content, metadata, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: deals; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.deals (id, company_id, contact_id, title, stage_id, stage, value, priority, due_date, assigned_to_user_id, description, tags, status, last_activity_at, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: dialog_360_channels; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.dialog_360_channels (id, client_id, channel_id, phone_number, display_name, status, api_key, webhook_url, quality_rating, messaging_limit, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: dialog_360_clients; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.dialog_360_clients (id, company_id, client_id, client_name, status, onboarded_at, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: dunning_management; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.dunning_management (id, company_id, payment_transaction_id, attempt_number, attempt_date, attempt_type, status, response_data, next_attempt_date, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: email_attachments; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.email_attachments (id, message_id, filename, content_type, size, content_id, is_inline, file_path, download_url, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: email_configs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.email_configs (id, channel_connection_id, imap_host, imap_port, imap_secure, imap_username, imap_password, smtp_host, smtp_port, smtp_secure, smtp_username, smtp_password, oauth_provider, oauth_client_id, oauth_client_secret, oauth_refresh_token, oauth_access_token, oauth_token_expiry, email_address, display_name, signature, sync_folder, sync_frequency, max_sync_messages, status, last_sync_at, last_error, connection_data, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: flow_assignments; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.flow_assignments (id, flow_id, channel_id, is_active, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: flow_executions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.flow_executions (id, execution_id, flow_id, conversation_id, contact_id, company_id, status, trigger_node_id, current_node_id, execution_path, context_data, started_at, completed_at, last_activity_at, total_duration_ms, completion_rate, error_message, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: flow_session_cursors; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.flow_session_cursors (id, session_id, current_node_id, previous_node_id, next_possible_nodes, branch_conditions, loop_state, waiting_for_input, input_expected_type, input_validation_rules, timeout_at, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: flow_session_variables; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.flow_session_variables (id, session_id, variable_key, variable_value, variable_type, scope, node_id, is_encrypted, expires_at, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: flow_sessions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.flow_sessions (id, session_id, flow_id, conversation_id, contact_id, company_id, status, current_node_id, trigger_node_id, execution_path, branching_history, session_data, node_states, waiting_context, started_at, last_activity_at, paused_at, resumed_at, completed_at, expires_at, total_duration_ms, node_execution_count, user_interaction_count, error_count, last_error_message, checkpoint_data, debug_info, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: flow_step_executions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.flow_step_executions (id, flow_execution_id, node_id, node_type, step_order, started_at, completed_at, duration_ms, status, input_data, output_data, error_message, created_at, session_id, retry_count, max_retries) FROM stdin;
+\.
+
+
+--
+-- Data for Name: flows; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.flows (id, user_id, company_id, name, description, status, nodes, edges, version, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: follow_up_execution_log; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.follow_up_execution_log (id, schedule_id, execution_attempt, status, message_id, error_message, execution_duration_ms, executed_at, response_received, response_at, response_content) FROM stdin;
+\.
+
+
+--
+-- Data for Name: follow_up_schedules; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.follow_up_schedules (id, schedule_id, session_id, flow_id, conversation_id, contact_id, company_id, node_id, message_type, message_content, media_url, caption, template_id, trigger_event, trigger_node_id, delay_amount, delay_unit, scheduled_for, specific_datetime, status, sent_at, failed_reason, retry_count, max_retries, channel_type, channel_connection_id, variables, execution_context, created_at, updated_at, expires_at, timezone) FROM stdin;
+\.
+
+
+--
+-- Data for Name: follow_up_templates; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.follow_up_templates (id, company_id, name, description, message_type, content, media_url, caption, default_delay_amount, default_delay_unit, variables, category, is_active, usage_count, created_by, created_at, updated_at) FROM stdin;
+1	1	Welcome Follow-up	A friendly welcome message sent 24 hours after first contact	text	Hi {{contact.name}}! 👋 Thank you for reaching out to us. We're excited to help you with your needs. Is there anything specific you'd like to know about our services?	\N	\N	24	hours	[]	welcome	t	0	\N	2025-11-05 15:06:41.017427	2025-11-05 15:06:41.017427
+2	1	Check-in Follow-up	A check-in message sent 3 days after initial contact	text	Hi {{contact.name}}! Just checking in to see if you have any questions about our previous conversation. We're here to help whenever you're ready! 😊	\N	\N	3	days	[]	check_in	t	0	\N	2025-11-05 15:06:41.021571	2025-11-05 15:06:41.021571
+3	1	Weekly Follow-up	A weekly follow-up message for ongoing engagement	text	Hello {{contact.name}}! Hope you're having a great week. We wanted to reach out and see if there's anything we can assist you with. Feel free to let us know! 🌟	\N	\N	1	weeks	[]	engagement	t	0	\N	2025-11-05 15:06:41.022925	2025-11-05 15:06:41.022925
+\.
+
+
+--
+-- Data for Name: google_calendar_tokens; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.google_calendar_tokens (id, user_id, company_id, access_token, refresh_token, id_token, token_type, expiry_date, scope, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: group_participants; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.group_participants (id, conversation_id, contact_id, participant_jid, participant_name, is_admin, is_super_admin, joined_at, left_at, is_active, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: history_sync_batches; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.history_sync_batches (id, connection_id, company_id, batch_id, sync_type, status, total_chats, processed_chats, total_messages, processed_messages, total_contacts, processed_contacts, error_message, started_at, completed_at, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: inbox_backups; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.inbox_backups (id, company_id, created_by_user_id, name, description, type, status, file_path, file_name, file_size, compressed_size, checksum, metadata, include_contacts, include_conversations, include_messages, date_range_start, date_range_end, total_contacts, total_conversations, total_messages, error_message, started_at, completed_at, expires_at, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: inbox_restores; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.inbox_restores (id, company_id, backup_id, restored_by_user_id, status, restore_type, conflict_resolution, date_range_start, date_range_end, restore_contacts, restore_conversations, restore_messages, total_items_to_restore, items_restored, items_skipped, items_errored, error_message, started_at, completed_at, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: knowledge_base_chunks; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.knowledge_base_chunks (id, document_id, content, chunk_index, token_count, start_position, end_position, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: knowledge_base_configs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.knowledge_base_configs (id, company_id, node_id, flow_id, enabled, max_retrieved_chunks, similarity_threshold, embedding_model, context_position, context_template, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: knowledge_base_document_nodes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.knowledge_base_document_nodes (id, document_id, company_id, node_id, flow_id, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: knowledge_base_documents; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.knowledge_base_documents (id, company_id, node_id, filename, original_name, mime_type, file_size, status, file_path, file_url, extracted_text, chunk_count, embedding_model, processing_error, processing_duration_ms, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: knowledge_base_usage; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.knowledge_base_usage (id, company_id, node_id, document_id, query_text, query_embedding, chunks_retrieved, chunks_used, similarity_scores, retrieval_duration_ms, embedding_duration_ms, context_injected, context_length, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: languages; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.languages (id, code, name, native_name, flag_icon, is_active, is_default, direction, created_at, updated_at) FROM stdin;
+1	en	English	English	🇺🇸	t	t	ltr	2025-11-05 14:55:08.12969	2025-11-05 14:55:08.12969
+2	es	Spanish	Español	🇪🇸	t	f	ltr	2025-11-05 14:55:08.12969	2025-11-05 14:55:08.12969
+\.
+
+
+--
+-- Data for Name: messages; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.messages (id, conversation_id, external_id, direction, type, content, metadata, sender_id, sender_type, status, sent_at, read_at, is_from_bot, media_url, group_participant_jid, group_participant_name, created_at, email_message_id, email_in_reply_to, email_references, email_subject, email_from, email_to, email_cc, email_bcc, email_html, email_plain_text, email_headers, is_history_sync, history_sync_batch_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: meta_whatsapp_clients; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.meta_whatsapp_clients (id, company_id, business_account_id, business_account_name, status, onboarded_at, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: meta_whatsapp_phone_numbers; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.meta_whatsapp_phone_numbers (id, client_id, phone_number_id, phone_number, display_name, status, quality_rating, messaging_limit, access_token, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: migration_log; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.migration_log (id, migration_name, executed_at, description) FROM stdin;
+1	005-follow-up-timezone-optimization	2025-11-05 15:06:41.167628	Added essential performance indexes for follow-up scheduling system. Fixes critical timing issues in Follow-up Node execution.
+\.
+
+
+--
+-- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.migrations (id, filename, executed_at, checksum, execution_time_ms, success) FROM stdin;
+1	001-initial-schema.sql	2025-11-05 14:47:13.675122	3cd8db97e0a7359a2139553cb3a99dd5026bbf6b21b5e28683751af4774a8970	\N	f
+\.
+
+
+--
+-- Data for Name: notes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.notes (id, contact_id, created_by_id, content, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: partner_configurations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.partner_configurations (id, provider, partner_api_key, partner_secret, partner_id, webhook_verify_token, access_token, partner_webhook_url, redirect_url, public_profile, is_active, created_at, updated_at, config_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: password_reset_tokens; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.password_reset_tokens (id, user_id, token, expires_at, used_at, created_at, ip_address, user_agent) FROM stdin;
+\.
+
+
+--
+-- Data for Name: payment_transactions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.payment_transactions (id, company_id, plan_id, amount, currency, status, payment_method, payment_intent_id, external_transaction_id, receipt_url, metadata, created_at, updated_at, original_amount, discount_amount, coupon_code_id, affiliate_credit_applied, discount_details, is_recurring, subscription_period_start, subscription_period_end, proration_amount, dunning_attempt) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pipeline_stages; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.pipeline_stages (id, company_id, name, color, order_num, created_at, updated_at) FROM stdin;
+1	1	Lead	#333235	1	2025-11-05 14:55:08.143124	2025-11-05 14:55:08.143124
+2	1	Qualified	#8B5CF6	2	2025-11-05 14:55:08.143124	2025-11-05 14:55:08.143124
+3	1	Contacted	#EC4899	3	2025-11-05 14:55:08.143124	2025-11-05 14:55:08.143124
+4	1	Demo Scheduled	#F59E0B	4	2025-11-05 14:55:08.143124	2025-11-05 14:55:08.143124
+5	1	Proposal	#10B981	5	2025-11-05 14:55:08.143124	2025-11-05 14:55:08.143124
+6	1	Negotiation	#3B82F6	6	2025-11-05 14:55:08.143124	2025-11-05 14:55:08.143124
+7	1	Closed Won	#059669	7	2025-11-05 14:55:08.143124	2025-11-05 14:55:08.143124
+8	1	Closed Lost	#DC2626	8	2025-11-05 14:55:08.143124	2025-11-05 14:55:08.143124
+9	4	Lead	#333235	1	2025-11-05 15:17:25.934586	2025-11-05 15:17:25.934586
+10	4	Qualified	#8B5CF6	2	2025-11-05 15:17:25.934586	2025-11-05 15:17:25.934586
+11	4	Contacted	#EC4899	3	2025-11-05 15:17:25.934586	2025-11-05 15:17:25.934586
+12	4	Demo Scheduled	#F59E0B	4	2025-11-05 15:17:25.934586	2025-11-05 15:17:25.934586
+13	4	Proposal	#10B981	5	2025-11-05 15:17:25.934586	2025-11-05 15:17:25.934586
+14	4	Negotiation	#3B82F6	6	2025-11-05 15:17:25.934586	2025-11-05 15:17:25.934586
+15	4	Closed Won	#059669	7	2025-11-05 15:17:25.934586	2025-11-05 15:17:25.934586
+16	4	Closed Lost	#DC2626	8	2025-11-05 15:17:25.934586	2025-11-05 15:17:25.934586
+\.
+
+
+--
+-- Data for Name: plan_ai_billing_events; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.plan_ai_billing_events (id, company_id, plan_id, provider, event_type, event_data, tokens_consumed, cost_amount, billing_period_start, billing_period_end, processed, processed_at, created_at, metadata) FROM stdin;
+\.
+
+
+--
+-- Data for Name: plan_ai_provider_configs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.plan_ai_provider_configs (id, plan_id, provider, tokens_monthly_limit, tokens_daily_limit, custom_pricing_enabled, input_token_rate, output_token_rate, enabled, priority, metadata, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: plan_ai_usage_tracking; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.plan_ai_usage_tracking (id, company_id, plan_id, provider, tokens_used_monthly, tokens_used_daily, requests_monthly, requests_daily, cost_monthly, cost_daily, overage_tokens_monthly, overage_cost_monthly, usage_month, usage_year, usage_date, monthly_limit_reached, daily_limit_reached, monthly_warning_sent, daily_warning_sent, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: plans; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.plans (id, name, description, price, max_users, max_contacts, max_channels, max_flows, max_campaigns, max_campaign_recipients, campaign_features, is_active, is_free, has_trial_period, trial_days, features, created_at, updated_at, discount_type, discount_value, discount_duration, discount_start_date, discount_end_date, original_price, ai_tokens_included, ai_tokens_monthly_limit, ai_tokens_daily_limit, ai_overage_enabled, ai_overage_rate, ai_overage_block_enabled, ai_billing_enabled, billing_interval, grace_period_days, max_dunning_attempts, soft_limit_percentage, allow_pausing, pause_max_days, storage_limit, bandwidth_limit, file_upload_limit, total_files_limit, custom_duration_days) FROM stdin;
+1	Free	Basic plan for small teams	0.00	3	500	2	1	2	100	["basic_campaigns"]	t	f	f	0	["Basic chat", "Contact management", "1 flow"]	2025-11-05 14:55:08.122193	2025-11-05 14:55:08.122193	none	0.00	permanent	\N	\N	\N	0	\N	\N	f	0.000000	f	f	monthly	3	3	80	t	90	512	5120	10	500	\N
+2	Starter	Perfect for growing businesses	29.00	10	2000	5	5	10	1000	["basic_campaigns", "templates", "segments"]	t	f	f	0	["Basic chat", "Contact management", "5 flows", "Email notifications", "Basic analytics"]	2025-11-05 14:55:08.122193	2025-11-05 14:55:08.122193	none	0.00	permanent	\N	\N	\N	0	\N	\N	f	0.000000	f	f	monthly	3	3	80	t	90	1024	10240	25	1000	\N
+3	Professional	Advanced features for established businesses	79.00	25	10000	10	999	50	5000	["basic_campaigns", "templates", "segments", "advanced_scheduling", "anti_ban_protection"]	t	f	f	0	["All Starter features", "Advanced analytics", "Priority support", "Custom integrations", "Team collaboration", "Unlimited flows"]	2025-11-05 14:55:08.122193	2025-11-05 14:55:08.122193	none	0.00	permanent	\N	\N	\N	0	\N	\N	f	0.000000	f	f	monthly	3	3	80	t	90	2048	20480	50	2000	\N
+4	Enterprise	Custom solution for large organizations	199.00	999	999999	999	999	200	25000	["basic_campaigns", "templates", "segments", "advanced_scheduling", "anti_ban_protection", "multi_account_support", "campaign_analytics"]	t	f	f	0	["All Professional features", "Custom branding", "Dedicated support", "SLA", "Advanced security", "Custom integrations"]	2025-11-05 14:55:08.122193	2025-11-05 14:55:08.122193	none	0.00	permanent	\N	\N	\N	0	\N	\N	f	0.000000	f	f	monthly	3	3	80	t	90	10240	102400	100	10000	\N
+\.
+
+
+--
+-- Data for Name: quick_reply_templates; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.quick_reply_templates (id, company_id, created_by_id, name, content, category, variables, is_active, usage_count, sort_order, created_at, updated_at) FROM stdin;
+1	1	1	Welcome Message	Hi {{contact.name}}! Welcome to our service. How can I help you today?	greeting	["contact.name"]	t	0	1	2025-11-05 15:06:43.945381	2025-11-05 15:06:43.945381
+2	1	1	Thank You	Thank you for contacting us, {{contact.name}}. We appreciate your business!	general	["contact.name"]	t	0	2	2025-11-05 15:06:43.950571	2025-11-05 15:06:43.950571
+3	1	1	Business Hours	Our business hours are Monday-Friday 9AM-5PM. We'll get back to you during business hours.	information	[]	t	0	3	2025-11-05 15:06:43.951919	2025-11-05 15:06:43.951919
+4	1	1	Follow Up	Hi {{contact.name}}, I wanted to follow up on our conversation. Do you have any questions?	follow-up	["contact.name"]	t	0	4	2025-11-05 15:06:43.953043	2025-11-05 15:06:43.953043
+5	1	1	Appointment Confirmation	Hi {{contact.name}}, this is to confirm your appointment on {{date.today}}. Please let us know if you need to reschedule.	appointment	["contact.name", "date.today"]	t	0	5	2025-11-05 15:06:43.954257	2025-11-05 15:06:43.954257
+6	1	1	Contact Information	You can reach us at {{contact.phone}} or email us at support@company.com. We're here to help!	information	["contact.phone"]	t	0	6	2025-11-05 15:06:43.955459	2025-11-05 15:06:43.955459
+\.
+
+
+--
+-- Data for Name: role_permissions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.role_permissions (id, company_id, role, permissions, created_at, updated_at) FROM stdin;
+1	1	admin	{"view_team": true, "view_flows": true, "view_tasks": true, "manage_team": true, "manage_flows": true, "manage_tasks": true, "view_calendar": true, "view_channels": true, "view_contacts": true, "view_pipeline": true, "view_settings": true, "edit_campaigns": true, "view_analytics": true, "view_campaigns": true, "manage_calendar": true, "manage_channels": true, "manage_contacts": true, "manage_pipeline": true, "manage_segments": true, "manage_settings": true, "create_campaigns": true, "delete_campaigns": true, "manage_templates": true, "configure_channels": true, "assign_conversations": true, "manage_conversations": true, "view_all_conversations": true, "view_campaign_analytics": true, "view_detailed_analytics": true, "manage_whatsapp_accounts": true, "view_assigned_conversations": true}	2025-11-05 14:55:08.134748	2025-11-05 15:06:47.321965
+2	1	agent	{"view_team": false, "view_flows": false, "view_tasks": true, "manage_team": false, "manage_flows": false, "manage_tasks": false, "view_calendar": true, "view_channels": false, "view_contacts": true, "view_pipeline": false, "view_settings": false, "edit_campaigns": false, "view_analytics": false, "view_campaigns": false, "manage_calendar": false, "manage_channels": false, "manage_contacts": false, "manage_pipeline": false, "manage_segments": false, "manage_settings": false, "create_campaigns": false, "delete_campaigns": false, "manage_templates": false, "configure_channels": false, "assign_conversations": false, "manage_conversations": true, "view_all_conversations": false, "view_campaign_analytics": false, "view_detailed_analytics": false, "manage_whatsapp_accounts": false, "view_assigned_conversations": true}	2025-11-05 14:55:08.134748	2025-11-05 15:06:47.321965
+21	4	admin	{"view_team": true, "view_flows": true, "view_tasks": true, "manage_team": true, "manage_flows": true, "manage_tasks": true, "view_calendar": true, "view_channels": true, "view_contacts": true, "view_pipeline": true, "view_settings": true, "edit_campaigns": true, "view_analytics": true, "view_campaigns": true, "manage_calendar": true, "manage_channels": true, "manage_contacts": true, "manage_pipeline": true, "manage_segments": true, "manage_settings": true, "create_campaigns": true, "delete_campaigns": true, "manage_templates": true, "configure_channels": true, "assign_conversations": true, "manage_conversations": true, "view_all_conversations": true, "view_campaign_analytics": true, "view_detailed_analytics": true, "manage_whatsapp_accounts": true, "view_assigned_conversations": true}	2025-11-05 15:17:25.934586	2025-11-05 15:17:25.934586
+22	4	agent	{"view_team": false, "view_flows": false, "view_tasks": true, "manage_team": false, "manage_flows": false, "manage_tasks": false, "view_calendar": true, "view_channels": false, "view_contacts": true, "view_pipeline": false, "view_settings": false, "edit_campaigns": false, "view_analytics": false, "view_campaigns": true, "manage_calendar": false, "manage_channels": false, "manage_contacts": false, "manage_pipeline": false, "manage_segments": false, "manage_settings": false, "create_campaigns": false, "delete_campaigns": false, "manage_templates": false, "configure_channels": false, "assign_conversations": false, "manage_conversations": true, "view_all_conversations": false, "view_campaign_analytics": true, "view_detailed_analytics": false, "manage_whatsapp_accounts": false, "view_assigned_conversations": true}	2025-11-05 15:17:25.934586	2025-11-05 15:17:25.934586
+\.
+
+
+--
+-- Data for Name: scheduled_messages; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.scheduled_messages (id, company_id, conversation_id, channel_id, channel_type, content, message_type, media_url, media_type, caption, scheduled_for, timezone, status, attempts, max_attempts, last_attempt_at, sent_at, failed_at, error_message, metadata, created_by, created_at, updated_at, media_file_path) FROM stdin;
+\.
+
+
+--
+-- Data for Name: session; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.session (sid, sess, expire) FROM stdin;
+_wPJSNbJws05mXMm8zjVYoX2OhY5tuf-	{"cookie":{"originalMaxAge":604800000,"expires":"2025-11-12T15:17:29.902Z","secure":false,"httpOnly":true,"path":"/","sameSite":"lax"},"passport":{"user":4}}	2025-11-12 15:20:27
+QYMRtyi7AieZ56GsJlWHaSX-NUCMxUvK	{"cookie":{"originalMaxAge":604800000,"expires":"2025-11-12T16:49:57.234Z","secure":false,"httpOnly":true,"path":"/","sameSite":"lax"},"passport":{"user":4}}	2025-11-12 16:50:50
+\.
+
+
+--
+-- Data for Name: subscription_events; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.subscription_events (id, company_id, event_type, event_data, previous_status, new_status, triggered_by, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: subscription_notifications; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.subscription_notifications (id, company_id, notification_type, status, scheduled_for, sent_at, notification_data, delivery_method, retry_count, max_retries, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: subscription_plan_changes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.subscription_plan_changes (id, company_id, from_plan_id, to_plan_id, change_type, effective_date, proration_amount, proration_days, billing_cycle_reset, change_reason, processed, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: subscription_usage_tracking; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.subscription_usage_tracking (id, company_id, metric_name, current_usage, limit_value, soft_limit_reached, hard_limit_reached, last_warning_sent, reset_period, last_reset, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: system_ai_credentials; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.system_ai_credentials (id, provider, api_key_encrypted, display_name, description, is_active, is_default, usage_limit_monthly, usage_count_current, last_validated_at, validation_status, validation_error, metadata, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: system_updates; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.system_updates (id, version, release_notes, download_url, package_hash, package_size, status, scheduled_at, started_at, completed_at, error_message, rollback_data, migration_scripts, backup_path, progress_percentage, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: task_categories; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.task_categories (id, company_id, name, color, icon, created_by, created_at, updated_at) FROM stdin;
+1	1	General	#6B7280	folder	\N	2025-11-05 15:06:46.28837	2025-11-05 15:06:46.28837
+2	1	Follow-up	#3B82F6	phone	\N	2025-11-05 15:06:46.290682	2025-11-05 15:06:46.290682
+3	1	Meeting	#8B5CF6	calendar	\N	2025-11-05 15:06:46.29177	2025-11-05 15:06:46.29177
+4	1	Support	#10B981	headphones	\N	2025-11-05 15:06:46.293276	2025-11-05 15:06:46.293276
+5	1	Sales	#F59E0B	shopping-cart	\N	2025-11-05 15:06:46.29497	2025-11-05 15:06:46.29497
+\.
+
+
+--
+-- Data for Name: team_invitations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.team_invitations (id, email, invited_by_user_id, company_id, role, token, status, expires_at, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: translation_keys; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.translation_keys (id, namespace_id, key, description, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: translation_namespaces; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.translation_namespaces (id, name, description, created_at, updated_at) FROM stdin;
+1	common	Common UI elements and messages	2025-11-05 14:55:08.13118	2025-11-05 14:55:08.13118
+2	auth	Authentication and authorization	2025-11-05 14:55:08.13118	2025-11-05 14:55:08.13118
+3	dashboard	Dashboard and main interface	2025-11-05 14:55:08.13118	2025-11-05 14:55:08.13118
+4	conversations	Conversation management	2025-11-05 14:55:08.13118	2025-11-05 14:55:08.13118
+5	contacts	Contact management	2025-11-05 14:55:08.13118	2025-11-05 14:55:08.13118
+6	flows	Flow builder and automation	2025-11-05 14:55:08.13118	2025-11-05 14:55:08.13118
+7	settings	Application settings	2025-11-05 14:55:08.13118	2025-11-05 14:55:08.13118
+8	admin	Admin panel	2025-11-05 14:55:08.13118	2025-11-05 14:55:08.13118
+9	errors	Error messages	2025-11-05 14:55:08.13118	2025-11-05 14:55:08.13118
+10	notifications	Notification messages	2025-11-05 14:55:08.13118	2025-11-05 14:55:08.13118
+\.
+
+
+--
+-- Data for Name: translations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.translations (id, key_id, language_id, value, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: user_social_accounts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.user_social_accounts (id, user_id, provider, provider_user_id, provider_email, provider_name, provider_avatar_url, access_token, refresh_token, token_expires_at, provider_data, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, username, password, full_name, email, avatar_url, role, company_id, is_super_admin, active, language_preference, permissions, created_at, updated_at) FROM stdin;
+1	admin	29afa0d245666f74f88337abf5f76577d07a99132f5d5d6cc7902ce2ef2df5d13b545b36c5e7efd5830eeb243bc4dbb3b68fe560a9c1ed2e3de9af548bc2f66d.aa1da567baf11c4a100b592c24bcb9a8	Admin User	admin@app.com	\N	super_admin	1	t	t	en	{}	2025-11-05 14:55:08.127251	2025-11-05 14:55:08.127251
+4	demo	53fc4e35e419cb66aac859f6e3aeaad853b60f0d0e61e57dd1cbcd98dbd4fa7731c5e89f26c857eeeed1df81568b7c2800bde9621eaf6a51e025d377d93ce711.6c8e3720a5d44ff30636a18193f34915	demo	demo@pointer.pk	\N	admin	4	f	t	en	{}	2025-11-05 15:17:26.021871	2025-11-05 16:50:15.983
+\.
+
+
+--
+-- Data for Name: website_assets; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.website_assets (id, website_id, filename, original_name, mime_type, size, path, url, alt, title, asset_type, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: website_templates; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.website_templates (id, name, description, category, preview_image, preview_url, grapes_data, grapes_html, grapes_css, grapes_js, is_active, is_premium, tags, usage_count, created_by_id, created_at, updated_at) FROM stdin;
+1	Blank Template	A blank template to start from scratch	general	\N	\N	{"pages": [{"frames": [{"component": {"type": "wrapper", "components": [{"type": "text", "content": "Welcome to your new website!"}]}}]}]}	<div>Welcome to your new website!</div>	body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }	\N	t	f	\N	0	1	2025-11-05 15:06:43.800994	2025-11-05 15:06:43.800994
+2	Landing Page Template	A simple landing page template with hero section	landing	\N	\N	{"pages": [{"frames": [{"component": {"type": "wrapper", "components": [{"type": "text", "content": "<h1>Your Amazing Product</h1><p>Transform your business with our innovative solution.</p><button>Get Started</button>"}]}}]}]}	<div style="text-align: center; padding: 50px;"><h1>Your Amazing Product</h1><p>Transform your business with our innovative solution.</p><button style="background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Get Started</button></div>	body { font-family: Arial, sans-serif; margin: 0; } h1 { color: #333; } button:hover { background: #0056b3; }	\N	t	f	\N	0	1	2025-11-05 15:06:43.80484	2025-11-05 15:06:43.80484
+\.
+
+
+--
+-- Data for Name: websites; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.websites (id, title, slug, description, meta_title, meta_description, meta_keywords, grapes_data, grapes_html, grapes_css, grapes_js, favicon, custom_css, custom_js, custom_head, status, published_at, google_analytics_id, facebook_pixel_id, template_id, theme, created_by_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: whatsapp_account_logs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.whatsapp_account_logs (id, account_id, event_type, event_data, message, severity, messages_sent_today, health_score, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: whatsapp_accounts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.whatsapp_accounts (id, company_id, channel_id, account_name, phone_number, account_type, session_data, qr_code, connection_status, last_activity_at, message_count_today, message_count_hour, warning_count, restriction_count, rate_limits, health_score, last_health_check, is_active, rotation_group, priority, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: whatsapp_proxy_servers; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.whatsapp_proxy_servers (id, company_id, name, enabled, type, host, port, username, password, test_status, last_tested, description, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: zoho_calendar_tokens; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.zoho_calendar_tokens (id, user_id, company_id, access_token, refresh_token, token_type, expires_in, scope, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: affiliate_analytics_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.affiliate_analytics_id_seq', 1, false);
+
+
+--
+-- Name: affiliate_applications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.affiliate_applications_id_seq', 1, false);
+
+
+--
+-- Name: affiliate_clicks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.affiliate_clicks_id_seq', 1, false);
+
+
+--
+-- Name: affiliate_commission_structures_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.affiliate_commission_structures_id_seq', 1, false);
+
+
+--
+-- Name: affiliate_earnings_balance_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.affiliate_earnings_balance_id_seq', 1, false);
+
+
+--
+-- Name: affiliate_earnings_transactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.affiliate_earnings_transactions_id_seq', 1, false);
+
+
+--
+-- Name: affiliate_payouts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.affiliate_payouts_id_seq', 1, false);
+
+
+--
+-- Name: affiliate_referrals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.affiliate_referrals_id_seq', 1, false);
+
+
+--
+-- Name: affiliate_relationships_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.affiliate_relationships_id_seq', 1, false);
+
+
+--
+-- Name: affiliates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.affiliates_id_seq', 1, false);
+
+
+--
+-- Name: ai_credential_usage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.ai_credential_usage_id_seq', 1, false);
+
+
+--
+-- Name: api_keys_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.api_keys_id_seq', 1, false);
+
+
+--
+-- Name: api_rate_limits_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.api_rate_limits_id_seq', 1, false);
+
+
+--
+-- Name: api_usage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.api_usage_id_seq', 1, false);
+
+
+--
+-- Name: app_settings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.app_settings_id_seq', 4, true);
+
+
+--
+-- Name: backup_audit_logs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.backup_audit_logs_id_seq', 1, false);
+
+
+--
+-- Name: backup_logs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.backup_logs_id_seq', 1, false);
+
+
+--
+-- Name: backup_schedules_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.backup_schedules_id_seq', 1, false);
+
+
+--
+-- Name: calendly_calendar_tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.calendly_calendar_tokens_id_seq', 1, false);
+
+
+--
+-- Name: calls_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.calls_id_seq', 1, false);
+
+
+--
+-- Name: campaign_analytics_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.campaign_analytics_id_seq', 1, false);
+
+
+--
+-- Name: campaign_messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.campaign_messages_id_seq', 1, false);
+
+
+--
+-- Name: campaign_queue_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.campaign_queue_id_seq', 1, false);
+
+
+--
+-- Name: campaign_recipients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.campaign_recipients_id_seq', 1, false);
+
+
+--
+-- Name: campaign_templates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.campaign_templates_id_seq', 1, false);
+
+
+--
+-- Name: campaigns_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.campaigns_id_seq', 1, false);
+
+
+--
+-- Name: channel_connections_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.channel_connections_id_seq', 1, true);
+
+
+--
+-- Name: companies_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.companies_id_seq', 4, true);
+
+
+--
+-- Name: company_ai_credentials_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.company_ai_credentials_id_seq', 1, false);
+
+
+--
+-- Name: company_ai_preferences_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.company_ai_preferences_id_seq', 1, true);
+
+
+--
+-- Name: company_pages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.company_pages_id_seq', 2, true);
+
+
+--
+-- Name: company_settings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.company_settings_id_seq', 1, false);
+
+
+--
+-- Name: contact_appointments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.contact_appointments_id_seq', 1, false);
+
+
+--
+-- Name: contact_audit_logs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.contact_audit_logs_id_seq', 1, false);
+
+
+--
+-- Name: contact_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.contact_documents_id_seq', 1, false);
+
+
+--
+-- Name: contact_segments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.contact_segments_id_seq', 1, false);
+
+
+--
+-- Name: contact_tasks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.contact_tasks_id_seq', 1, false);
+
+
+--
+-- Name: contacts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.contacts_id_seq', 2, true);
+
+
+--
+-- Name: conversations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.conversations_id_seq', 1, true);
+
+
+--
+-- Name: coupon_codes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.coupon_codes_id_seq', 3, true);
+
+
+--
+-- Name: coupon_usage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.coupon_usage_id_seq', 1, false);
+
+
+--
+-- Name: deal_activities_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.deal_activities_id_seq', 1, false);
+
+
+--
+-- Name: deals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.deals_id_seq', 1, false);
+
+
+--
+-- Name: dialog_360_channels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.dialog_360_channels_id_seq', 1, false);
+
+
+--
+-- Name: dialog_360_clients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.dialog_360_clients_id_seq', 1, false);
+
+
+--
+-- Name: dunning_management_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.dunning_management_id_seq', 1, false);
+
+
+--
+-- Name: email_attachments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.email_attachments_id_seq', 1, false);
+
+
+--
+-- Name: email_configs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.email_configs_id_seq', 1, false);
+
+
+--
+-- Name: flow_assignments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.flow_assignments_id_seq', 1, false);
+
+
+--
+-- Name: flow_executions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.flow_executions_id_seq', 1, false);
+
+
+--
+-- Name: flow_session_cursors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.flow_session_cursors_id_seq', 1, false);
+
+
+--
+-- Name: flow_session_variables_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.flow_session_variables_id_seq', 1, false);
+
+
+--
+-- Name: flow_sessions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.flow_sessions_id_seq', 1, false);
+
+
+--
+-- Name: flow_step_executions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.flow_step_executions_id_seq', 1, false);
+
+
+--
+-- Name: flows_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.flows_id_seq', 1, false);
+
+
+--
+-- Name: follow_up_execution_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.follow_up_execution_log_id_seq', 1, false);
+
+
+--
+-- Name: follow_up_schedules_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.follow_up_schedules_id_seq', 1, false);
+
+
+--
+-- Name: follow_up_templates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.follow_up_templates_id_seq', 3, true);
+
+
+--
+-- Name: google_calendar_tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.google_calendar_tokens_id_seq', 1, false);
+
+
+--
+-- Name: group_participants_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.group_participants_id_seq', 1, false);
+
+
+--
+-- Name: history_sync_batches_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.history_sync_batches_id_seq', 1, false);
+
+
+--
+-- Name: inbox_backups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.inbox_backups_id_seq', 1, false);
+
+
+--
+-- Name: inbox_restores_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.inbox_restores_id_seq', 1, false);
+
+
+--
+-- Name: knowledge_base_chunks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.knowledge_base_chunks_id_seq', 1, false);
+
+
+--
+-- Name: knowledge_base_configs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.knowledge_base_configs_id_seq', 1, false);
+
+
+--
+-- Name: knowledge_base_document_nodes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.knowledge_base_document_nodes_id_seq', 1, false);
+
+
+--
+-- Name: knowledge_base_documents_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.knowledge_base_documents_id_seq', 1, false);
+
+
+--
+-- Name: knowledge_base_usage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.knowledge_base_usage_id_seq', 1, false);
+
+
+--
+-- Name: languages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.languages_id_seq', 6, true);
+
+
+--
+-- Name: messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.messages_id_seq', 7, true);
+
+
+--
+-- Name: meta_whatsapp_clients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.meta_whatsapp_clients_id_seq', 1, false);
+
+
+--
+-- Name: meta_whatsapp_phone_numbers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.meta_whatsapp_phone_numbers_id_seq', 1, false);
+
+
+--
+-- Name: migration_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.migration_log_id_seq', 1, true);
+
+
+--
+-- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.migrations_id_seq', 4, true);
+
+
+--
+-- Name: notes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.notes_id_seq', 1, false);
+
+
+--
+-- Name: partner_configurations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.partner_configurations_id_seq', 1, false);
+
+
+--
+-- Name: password_reset_tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.password_reset_tokens_id_seq', 1, false);
+
+
+--
+-- Name: payment_transactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.payment_transactions_id_seq', 1, false);
+
+
+--
+-- Name: pipeline_stages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.pipeline_stages_id_seq', 16, true);
+
+
+--
+-- Name: plan_ai_billing_events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.plan_ai_billing_events_id_seq', 1, false);
+
+
+--
+-- Name: plan_ai_provider_configs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.plan_ai_provider_configs_id_seq', 1, false);
+
+
+--
+-- Name: plan_ai_usage_tracking_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.plan_ai_usage_tracking_id_seq', 1, false);
+
+
+--
+-- Name: plans_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.plans_id_seq', 4, true);
+
+
+--
+-- Name: quick_reply_templates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.quick_reply_templates_id_seq', 6, true);
+
+
+--
+-- Name: role_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.role_permissions_id_seq', 22, true);
+
+
+--
+-- Name: scheduled_messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.scheduled_messages_id_seq', 1, false);
+
+
+--
+-- Name: subscription_events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.subscription_events_id_seq', 1, false);
+
+
+--
+-- Name: subscription_notifications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.subscription_notifications_id_seq', 1, false);
+
+
+--
+-- Name: subscription_plan_changes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.subscription_plan_changes_id_seq', 1, false);
+
+
+--
+-- Name: subscription_usage_tracking_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.subscription_usage_tracking_id_seq', 1, false);
+
+
+--
+-- Name: system_ai_credentials_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.system_ai_credentials_id_seq', 1, false);
+
+
+--
+-- Name: system_updates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.system_updates_id_seq', 1, false);
+
+
+--
+-- Name: task_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.task_categories_id_seq', 5, true);
+
+
+--
+-- Name: team_invitations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.team_invitations_id_seq', 1, false);
+
+
+--
+-- Name: translation_keys_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.translation_keys_id_seq', 1, false);
+
+
+--
+-- Name: translation_namespaces_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.translation_namespaces_id_seq', 10, true);
+
+
+--
+-- Name: translations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.translations_id_seq', 1, false);
+
+
+--
+-- Name: user_social_accounts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.user_social_accounts_id_seq', 1, false);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 4, true);
+
+
+--
+-- Name: website_assets_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.website_assets_id_seq', 1, false);
+
+
+--
+-- Name: website_templates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.website_templates_id_seq', 2, true);
+
+
+--
+-- Name: websites_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.websites_id_seq', 1, false);
+
+
+--
+-- Name: whatsapp_account_logs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.whatsapp_account_logs_id_seq', 1, false);
+
+
+--
+-- Name: whatsapp_accounts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.whatsapp_accounts_id_seq', 1, false);
+
+
+--
+-- Name: whatsapp_proxy_servers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.whatsapp_proxy_servers_id_seq', 1, false);
+
+
+--
+-- Name: zoho_calendar_tokens_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.zoho_calendar_tokens_id_seq', 1, false);
+
+
+--
+-- Name: affiliate_analytics affiliate_analytics_company_id_affiliate_id_date_period_typ_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_analytics
+    ADD CONSTRAINT affiliate_analytics_company_id_affiliate_id_date_period_typ_key UNIQUE (company_id, affiliate_id, date, period_type);
+
+
+--
+-- Name: affiliate_analytics affiliate_analytics_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_analytics
+    ADD CONSTRAINT affiliate_analytics_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: affiliate_applications affiliate_applications_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_applications
+    ADD CONSTRAINT affiliate_applications_email_key UNIQUE (email);
+
+
+--
+-- Name: affiliate_applications affiliate_applications_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_applications
+    ADD CONSTRAINT affiliate_applications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: affiliate_clicks affiliate_clicks_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_clicks
+    ADD CONSTRAINT affiliate_clicks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: affiliate_commission_structures affiliate_commission_structures_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_commission_structures
+    ADD CONSTRAINT affiliate_commission_structures_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: affiliate_earnings_balance affiliate_earnings_balance_company_id_affiliate_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_earnings_balance
+    ADD CONSTRAINT affiliate_earnings_balance_company_id_affiliate_id_key UNIQUE (company_id, affiliate_id);
+
+
+--
+-- Name: affiliate_earnings_balance affiliate_earnings_balance_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_earnings_balance
+    ADD CONSTRAINT affiliate_earnings_balance_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: affiliate_earnings_transactions affiliate_earnings_transactions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_earnings_transactions
+    ADD CONSTRAINT affiliate_earnings_transactions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: affiliate_payouts affiliate_payouts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_payouts
+    ADD CONSTRAINT affiliate_payouts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: affiliate_referrals affiliate_referrals_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_referrals
+    ADD CONSTRAINT affiliate_referrals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: affiliate_relationships affiliate_relationships_company_id_parent_affiliate_id_chil_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_relationships
+    ADD CONSTRAINT affiliate_relationships_company_id_parent_affiliate_id_chil_key UNIQUE (company_id, parent_affiliate_id, child_affiliate_id);
+
+
+--
+-- Name: affiliate_relationships affiliate_relationships_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_relationships
+    ADD CONSTRAINT affiliate_relationships_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: affiliates affiliates_affiliate_code_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliates
+    ADD CONSTRAINT affiliates_affiliate_code_key UNIQUE (affiliate_code);
+
+
+--
+-- Name: affiliates affiliates_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliates
+    ADD CONSTRAINT affiliates_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ai_credential_usage ai_credential_usage_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ai_credential_usage
+    ADD CONSTRAINT ai_credential_usage_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: api_keys api_keys_key_hash_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.api_keys
+    ADD CONSTRAINT api_keys_key_hash_key UNIQUE (key_hash);
+
+
+--
+-- Name: api_keys api_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.api_keys
+    ADD CONSTRAINT api_keys_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: api_rate_limits api_rate_limits_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.api_rate_limits
+    ADD CONSTRAINT api_rate_limits_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: api_usage api_usage_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.api_usage
+    ADD CONSTRAINT api_usage_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: api_usage api_usage_request_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.api_usage
+    ADD CONSTRAINT api_usage_request_id_key UNIQUE (request_id);
+
+
+--
+-- Name: app_settings app_settings_key_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app_settings
+    ADD CONSTRAINT app_settings_key_key UNIQUE (key);
+
+
+--
+-- Name: app_settings app_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.app_settings
+    ADD CONSTRAINT app_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: backup_audit_logs backup_audit_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.backup_audit_logs
+    ADD CONSTRAINT backup_audit_logs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: backup_logs backup_logs_log_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.backup_logs
+    ADD CONSTRAINT backup_logs_log_id_key UNIQUE (log_id);
+
+
+--
+-- Name: backup_logs backup_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.backup_logs
+    ADD CONSTRAINT backup_logs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: backup_schedules backup_schedules_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.backup_schedules
+    ADD CONSTRAINT backup_schedules_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: calendly_calendar_tokens calendly_calendar_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.calendly_calendar_tokens
+    ADD CONSTRAINT calendly_calendar_tokens_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: calendly_calendar_tokens calendly_calendar_tokens_user_id_company_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.calendly_calendar_tokens
+    ADD CONSTRAINT calendly_calendar_tokens_user_id_company_id_key UNIQUE (user_id, company_id);
+
+
+--
+-- Name: calls calls_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.calls
+    ADD CONSTRAINT calls_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_analytics campaign_analytics_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_analytics
+    ADD CONSTRAINT campaign_analytics_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_messages campaign_messages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_messages
+    ADD CONSTRAINT campaign_messages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_queue campaign_queue_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_queue
+    ADD CONSTRAINT campaign_queue_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_recipients campaign_recipients_campaign_id_contact_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_recipients
+    ADD CONSTRAINT campaign_recipients_campaign_id_contact_id_key UNIQUE (campaign_id, contact_id);
+
+
+--
+-- Name: campaign_recipients campaign_recipients_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_recipients
+    ADD CONSTRAINT campaign_recipients_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_templates campaign_templates_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_templates
+    ADD CONSTRAINT campaign_templates_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaigns campaigns_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaigns
+    ADD CONSTRAINT campaigns_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: channel_connections channel_connections_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.channel_connections
+    ADD CONSTRAINT channel_connections_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: companies companies_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.companies
+    ADD CONSTRAINT companies_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: companies companies_slug_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.companies
+    ADD CONSTRAINT companies_slug_key UNIQUE (slug);
+
+
+--
+-- Name: companies companies_subdomain_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.companies
+    ADD CONSTRAINT companies_subdomain_key UNIQUE (subdomain);
+
+
+--
+-- Name: company_ai_credentials company_ai_credentials_company_id_provider_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_ai_credentials
+    ADD CONSTRAINT company_ai_credentials_company_id_provider_key UNIQUE (company_id, provider);
+
+
+--
+-- Name: company_ai_credentials company_ai_credentials_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_ai_credentials
+    ADD CONSTRAINT company_ai_credentials_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: company_ai_preferences company_ai_preferences_company_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_ai_preferences
+    ADD CONSTRAINT company_ai_preferences_company_id_key UNIQUE (company_id);
+
+
+--
+-- Name: company_ai_preferences company_ai_preferences_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_ai_preferences
+    ADD CONSTRAINT company_ai_preferences_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: company_pages company_pages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_pages
+    ADD CONSTRAINT company_pages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: company_settings company_settings_company_id_key_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_settings
+    ADD CONSTRAINT company_settings_company_id_key_key UNIQUE (company_id, key);
+
+
+--
+-- Name: company_settings company_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_settings
+    ADD CONSTRAINT company_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: contact_appointments contact_appointments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_appointments
+    ADD CONSTRAINT contact_appointments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: contact_audit_logs contact_audit_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_audit_logs
+    ADD CONSTRAINT contact_audit_logs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: contact_documents contact_documents_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_documents
+    ADD CONSTRAINT contact_documents_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: contact_segments contact_segments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_segments
+    ADD CONSTRAINT contact_segments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: contact_tasks contact_tasks_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_tasks
+    ADD CONSTRAINT contact_tasks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: contacts contacts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contacts
+    ADD CONSTRAINT contacts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: conversations conversations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.conversations
+    ADD CONSTRAINT conversations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: coupon_codes coupon_codes_code_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coupon_codes
+    ADD CONSTRAINT coupon_codes_code_key UNIQUE (code);
+
+
+--
+-- Name: coupon_codes coupon_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coupon_codes
+    ADD CONSTRAINT coupon_codes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: coupon_usage coupon_usage_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coupon_usage
+    ADD CONSTRAINT coupon_usage_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: deal_activities deal_activities_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.deal_activities
+    ADD CONSTRAINT deal_activities_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: deals deals_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.deals
+    ADD CONSTRAINT deals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: dialog_360_channels dialog_360_channels_channel_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.dialog_360_channels
+    ADD CONSTRAINT dialog_360_channels_channel_id_key UNIQUE (channel_id);
+
+
+--
+-- Name: dialog_360_channels dialog_360_channels_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.dialog_360_channels
+    ADD CONSTRAINT dialog_360_channels_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: dialog_360_clients dialog_360_clients_client_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.dialog_360_clients
+    ADD CONSTRAINT dialog_360_clients_client_id_key UNIQUE (client_id);
+
+
+--
+-- Name: dialog_360_clients dialog_360_clients_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.dialog_360_clients
+    ADD CONSTRAINT dialog_360_clients_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: dunning_management dunning_management_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.dunning_management
+    ADD CONSTRAINT dunning_management_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: email_attachments email_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.email_attachments
+    ADD CONSTRAINT email_attachments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: email_configs email_configs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.email_configs
+    ADD CONSTRAINT email_configs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: flow_assignments flow_assignments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_assignments
+    ADD CONSTRAINT flow_assignments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: flow_executions flow_executions_execution_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_executions
+    ADD CONSTRAINT flow_executions_execution_id_key UNIQUE (execution_id);
+
+
+--
+-- Name: flow_executions flow_executions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_executions
+    ADD CONSTRAINT flow_executions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: flow_session_cursors flow_session_cursors_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_session_cursors
+    ADD CONSTRAINT flow_session_cursors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: flow_session_cursors flow_session_cursors_session_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_session_cursors
+    ADD CONSTRAINT flow_session_cursors_session_id_key UNIQUE (session_id);
+
+
+--
+-- Name: flow_session_variables flow_session_variables_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_session_variables
+    ADD CONSTRAINT flow_session_variables_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: flow_session_variables flow_session_variables_session_id_variable_key_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_session_variables
+    ADD CONSTRAINT flow_session_variables_session_id_variable_key_key UNIQUE (session_id, variable_key);
+
+
+--
+-- Name: flow_sessions flow_sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_sessions
+    ADD CONSTRAINT flow_sessions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: flow_sessions flow_sessions_session_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_sessions
+    ADD CONSTRAINT flow_sessions_session_id_key UNIQUE (session_id);
+
+
+--
+-- Name: flow_step_executions flow_step_executions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_step_executions
+    ADD CONSTRAINT flow_step_executions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: flows flows_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flows
+    ADD CONSTRAINT flows_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: follow_up_execution_log follow_up_execution_log_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_execution_log
+    ADD CONSTRAINT follow_up_execution_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: follow_up_schedules follow_up_schedules_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_schedules
+    ADD CONSTRAINT follow_up_schedules_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: follow_up_schedules follow_up_schedules_schedule_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_schedules
+    ADD CONSTRAINT follow_up_schedules_schedule_id_key UNIQUE (schedule_id);
+
+
+--
+-- Name: follow_up_templates follow_up_templates_company_id_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_templates
+    ADD CONSTRAINT follow_up_templates_company_id_name_key UNIQUE (company_id, name);
+
+
+--
+-- Name: follow_up_templates follow_up_templates_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_templates
+    ADD CONSTRAINT follow_up_templates_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: google_calendar_tokens google_calendar_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.google_calendar_tokens
+    ADD CONSTRAINT google_calendar_tokens_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: google_calendar_tokens google_calendar_tokens_user_id_company_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.google_calendar_tokens
+    ADD CONSTRAINT google_calendar_tokens_user_id_company_id_key UNIQUE (user_id, company_id);
+
+
+--
+-- Name: group_participants group_participants_conversation_id_participant_jid_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.group_participants
+    ADD CONSTRAINT group_participants_conversation_id_participant_jid_key UNIQUE (conversation_id, participant_jid);
+
+
+--
+-- Name: group_participants group_participants_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.group_participants
+    ADD CONSTRAINT group_participants_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: history_sync_batches history_sync_batches_batch_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.history_sync_batches
+    ADD CONSTRAINT history_sync_batches_batch_id_key UNIQUE (batch_id);
+
+
+--
+-- Name: history_sync_batches history_sync_batches_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.history_sync_batches
+    ADD CONSTRAINT history_sync_batches_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: inbox_backups inbox_backups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.inbox_backups
+    ADD CONSTRAINT inbox_backups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: inbox_restores inbox_restores_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.inbox_restores
+    ADD CONSTRAINT inbox_restores_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: knowledge_base_chunks knowledge_base_chunks_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_chunks
+    ADD CONSTRAINT knowledge_base_chunks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: knowledge_base_configs knowledge_base_configs_company_id_node_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_configs
+    ADD CONSTRAINT knowledge_base_configs_company_id_node_id_key UNIQUE (company_id, node_id);
+
+
+--
+-- Name: knowledge_base_configs knowledge_base_configs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_configs
+    ADD CONSTRAINT knowledge_base_configs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: knowledge_base_document_nodes knowledge_base_document_nodes_document_id_node_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_document_nodes
+    ADD CONSTRAINT knowledge_base_document_nodes_document_id_node_id_key UNIQUE (document_id, node_id);
+
+
+--
+-- Name: knowledge_base_document_nodes knowledge_base_document_nodes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_document_nodes
+    ADD CONSTRAINT knowledge_base_document_nodes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: knowledge_base_documents knowledge_base_documents_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_documents
+    ADD CONSTRAINT knowledge_base_documents_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: knowledge_base_usage knowledge_base_usage_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_usage
+    ADD CONSTRAINT knowledge_base_usage_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: languages languages_code_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.languages
+    ADD CONSTRAINT languages_code_key UNIQUE (code);
+
+
+--
+-- Name: languages languages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.languages
+    ADD CONSTRAINT languages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: messages messages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.messages
+    ADD CONSTRAINT messages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: meta_whatsapp_clients meta_whatsapp_clients_business_account_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.meta_whatsapp_clients
+    ADD CONSTRAINT meta_whatsapp_clients_business_account_id_key UNIQUE (business_account_id);
+
+
+--
+-- Name: meta_whatsapp_clients meta_whatsapp_clients_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.meta_whatsapp_clients
+    ADD CONSTRAINT meta_whatsapp_clients_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: meta_whatsapp_phone_numbers meta_whatsapp_phone_numbers_phone_number_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.meta_whatsapp_phone_numbers
+    ADD CONSTRAINT meta_whatsapp_phone_numbers_phone_number_id_key UNIQUE (phone_number_id);
+
+
+--
+-- Name: meta_whatsapp_phone_numbers meta_whatsapp_phone_numbers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.meta_whatsapp_phone_numbers
+    ADD CONSTRAINT meta_whatsapp_phone_numbers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: migration_log migration_log_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.migration_log
+    ADD CONSTRAINT migration_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: migrations migrations_filename_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.migrations
+    ADD CONSTRAINT migrations_filename_key UNIQUE (filename);
+
+
+--
+-- Name: migrations migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.migrations
+    ADD CONSTRAINT migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: notes notes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.notes
+    ADD CONSTRAINT notes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: partner_configurations partner_configurations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.partner_configurations
+    ADD CONSTRAINT partner_configurations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: partner_configurations partner_configurations_provider_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.partner_configurations
+    ADD CONSTRAINT partner_configurations_provider_key UNIQUE (provider);
+
+
+--
+-- Name: password_reset_tokens password_reset_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.password_reset_tokens
+    ADD CONSTRAINT password_reset_tokens_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: password_reset_tokens password_reset_tokens_token_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.password_reset_tokens
+    ADD CONSTRAINT password_reset_tokens_token_key UNIQUE (token);
+
+
+--
+-- Name: payment_transactions payment_transactions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.payment_transactions
+    ADD CONSTRAINT payment_transactions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pipeline_stages pipeline_stages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pipeline_stages
+    ADD CONSTRAINT pipeline_stages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: plan_ai_billing_events plan_ai_billing_events_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.plan_ai_billing_events
+    ADD CONSTRAINT plan_ai_billing_events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: plan_ai_provider_configs plan_ai_provider_configs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.plan_ai_provider_configs
+    ADD CONSTRAINT plan_ai_provider_configs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: plan_ai_provider_configs plan_ai_provider_configs_plan_id_provider_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.plan_ai_provider_configs
+    ADD CONSTRAINT plan_ai_provider_configs_plan_id_provider_key UNIQUE (plan_id, provider);
+
+
+--
+-- Name: plan_ai_usage_tracking plan_ai_usage_tracking_company_id_plan_id_provider_usage_ye_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.plan_ai_usage_tracking
+    ADD CONSTRAINT plan_ai_usage_tracking_company_id_plan_id_provider_usage_ye_key UNIQUE (company_id, plan_id, provider, usage_year, usage_month, usage_date);
+
+
+--
+-- Name: plan_ai_usage_tracking plan_ai_usage_tracking_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.plan_ai_usage_tracking
+    ADD CONSTRAINT plan_ai_usage_tracking_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: plans plans_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.plans
+    ADD CONSTRAINT plans_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: quick_reply_templates quick_reply_templates_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.quick_reply_templates
+    ADD CONSTRAINT quick_reply_templates_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: role_permissions role_permissions_company_id_role_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.role_permissions
+    ADD CONSTRAINT role_permissions_company_id_role_key UNIQUE (company_id, role);
+
+
+--
+-- Name: role_permissions role_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.role_permissions
+    ADD CONSTRAINT role_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: scheduled_messages scheduled_messages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.scheduled_messages
+    ADD CONSTRAINT scheduled_messages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: session session_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.session
+    ADD CONSTRAINT session_pkey PRIMARY KEY (sid);
+
+
+--
+-- Name: subscription_events subscription_events_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscription_events
+    ADD CONSTRAINT subscription_events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: subscription_notifications subscription_notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscription_notifications
+    ADD CONSTRAINT subscription_notifications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: subscription_plan_changes subscription_plan_changes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscription_plan_changes
+    ADD CONSTRAINT subscription_plan_changes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: subscription_usage_tracking subscription_usage_tracking_company_id_metric_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscription_usage_tracking
+    ADD CONSTRAINT subscription_usage_tracking_company_id_metric_name_key UNIQUE (company_id, metric_name);
+
+
+--
+-- Name: subscription_usage_tracking subscription_usage_tracking_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscription_usage_tracking
+    ADD CONSTRAINT subscription_usage_tracking_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: system_ai_credentials system_ai_credentials_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.system_ai_credentials
+    ADD CONSTRAINT system_ai_credentials_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: system_ai_credentials system_ai_credentials_provider_is_default_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.system_ai_credentials
+    ADD CONSTRAINT system_ai_credentials_provider_is_default_key UNIQUE (provider, is_default) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: system_updates system_updates_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.system_updates
+    ADD CONSTRAINT system_updates_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: task_categories task_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.task_categories
+    ADD CONSTRAINT task_categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: team_invitations team_invitations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.team_invitations
+    ADD CONSTRAINT team_invitations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: team_invitations team_invitations_token_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.team_invitations
+    ADD CONSTRAINT team_invitations_token_key UNIQUE (token);
+
+
+--
+-- Name: translation_keys translation_keys_namespace_id_key_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.translation_keys
+    ADD CONSTRAINT translation_keys_namespace_id_key_key UNIQUE (namespace_id, key);
+
+
+--
+-- Name: translation_keys translation_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.translation_keys
+    ADD CONSTRAINT translation_keys_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: translation_namespaces translation_namespaces_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.translation_namespaces
+    ADD CONSTRAINT translation_namespaces_name_key UNIQUE (name);
+
+
+--
+-- Name: translation_namespaces translation_namespaces_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.translation_namespaces
+    ADD CONSTRAINT translation_namespaces_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: translations translations_key_id_language_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.translations
+    ADD CONSTRAINT translations_key_id_language_id_key UNIQUE (key_id, language_id);
+
+
+--
+-- Name: translations translations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.translations
+    ADD CONSTRAINT translations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: company_pages unique_company_page_slug; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_pages
+    ADD CONSTRAINT unique_company_page_slug UNIQUE (company_id, slug);
+
+
+--
+-- Name: user_social_accounts user_social_accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_social_accounts
+    ADD CONSTRAINT user_social_accounts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_social_accounts user_social_accounts_provider_provider_user_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_social_accounts
+    ADD CONSTRAINT user_social_accounts_provider_provider_user_id_key UNIQUE (provider, provider_user_id);
+
+
+--
+-- Name: user_social_accounts user_social_accounts_user_id_provider_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_social_accounts
+    ADD CONSTRAINT user_social_accounts_user_id_provider_key UNIQUE (user_id, provider);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_username_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_username_key UNIQUE (username);
+
+
+--
+-- Name: website_assets website_assets_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.website_assets
+    ADD CONSTRAINT website_assets_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: website_templates website_templates_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.website_templates
+    ADD CONSTRAINT website_templates_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: websites websites_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.websites
+    ADD CONSTRAINT websites_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: websites websites_slug_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.websites
+    ADD CONSTRAINT websites_slug_key UNIQUE (slug);
+
+
+--
+-- Name: whatsapp_account_logs whatsapp_account_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.whatsapp_account_logs
+    ADD CONSTRAINT whatsapp_account_logs_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: whatsapp_accounts whatsapp_accounts_company_id_phone_number_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.whatsapp_accounts
+    ADD CONSTRAINT whatsapp_accounts_company_id_phone_number_key UNIQUE (company_id, phone_number);
+
+
+--
+-- Name: whatsapp_accounts whatsapp_accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.whatsapp_accounts
+    ADD CONSTRAINT whatsapp_accounts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: whatsapp_proxy_servers whatsapp_proxy_servers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.whatsapp_proxy_servers
+    ADD CONSTRAINT whatsapp_proxy_servers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: zoho_calendar_tokens zoho_calendar_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.zoho_calendar_tokens
+    ADD CONSTRAINT zoho_calendar_tokens_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: zoho_calendar_tokens zoho_calendar_tokens_user_id_company_id_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.zoho_calendar_tokens
+    ADD CONSTRAINT zoho_calendar_tokens_user_id_company_id_key UNIQUE (user_id, company_id);
+
+
+--
+-- Name: IDX_session_expire; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "IDX_session_expire" ON public.session USING btree (expire);
+
+
+--
+-- Name: idx_affiliate_analytics_affiliate_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_analytics_affiliate_id ON public.affiliate_analytics USING btree (affiliate_id);
+
+
+--
+-- Name: idx_affiliate_analytics_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_analytics_company_id ON public.affiliate_analytics USING btree (company_id);
+
+
+--
+-- Name: idx_affiliate_analytics_date; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_analytics_date ON public.affiliate_analytics USING btree (date DESC);
+
+
+--
+-- Name: idx_affiliate_analytics_period_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_analytics_period_type ON public.affiliate_analytics USING btree (period_type);
+
+
+--
+-- Name: idx_affiliate_applications_email; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_applications_email ON public.affiliate_applications USING btree (email);
+
+
+--
+-- Name: idx_affiliate_applications_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_applications_status ON public.affiliate_applications USING btree (status);
+
+
+--
+-- Name: idx_affiliate_applications_submitted_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_applications_submitted_at ON public.affiliate_applications USING btree (submitted_at);
+
+
+--
+-- Name: idx_affiliate_clicks_affiliate_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_clicks_affiliate_id ON public.affiliate_clicks USING btree (affiliate_id);
+
+
+--
+-- Name: idx_affiliate_clicks_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_clicks_company_id ON public.affiliate_clicks USING btree (company_id);
+
+
+--
+-- Name: idx_affiliate_clicks_converted; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_clicks_converted ON public.affiliate_clicks USING btree (converted);
+
+
+--
+-- Name: idx_affiliate_clicks_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_clicks_created_at ON public.affiliate_clicks USING btree (created_at DESC);
+
+
+--
+-- Name: idx_affiliate_clicks_ip_address; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_clicks_ip_address ON public.affiliate_clicks USING btree (ip_address);
+
+
+--
+-- Name: idx_affiliate_commission_structures_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_commission_structures_active ON public.affiliate_commission_structures USING btree (is_active);
+
+
+--
+-- Name: idx_affiliate_commission_structures_affiliate_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_commission_structures_affiliate_id ON public.affiliate_commission_structures USING btree (affiliate_id);
+
+
+--
+-- Name: idx_affiliate_commission_structures_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_commission_structures_company_id ON public.affiliate_commission_structures USING btree (company_id);
+
+
+--
+-- Name: idx_affiliate_commission_structures_plan_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_commission_structures_plan_id ON public.affiliate_commission_structures USING btree (plan_id);
+
+
+--
+-- Name: idx_affiliate_earnings_balance_company_affiliate; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_earnings_balance_company_affiliate ON public.affiliate_earnings_balance USING btree (company_id, affiliate_id);
+
+
+--
+-- Name: idx_affiliate_earnings_transactions_affiliate; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_earnings_transactions_affiliate ON public.affiliate_earnings_transactions USING btree (affiliate_id);
+
+
+--
+-- Name: idx_affiliate_earnings_transactions_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_earnings_transactions_type ON public.affiliate_earnings_transactions USING btree (transaction_type);
+
+
+--
+-- Name: idx_affiliate_payouts_affiliate_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_payouts_affiliate_id ON public.affiliate_payouts USING btree (affiliate_id);
+
+
+--
+-- Name: idx_affiliate_payouts_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_payouts_company_id ON public.affiliate_payouts USING btree (company_id);
+
+
+--
+-- Name: idx_affiliate_payouts_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_payouts_created_at ON public.affiliate_payouts USING btree (created_at DESC);
+
+
+--
+-- Name: idx_affiliate_payouts_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_payouts_status ON public.affiliate_payouts USING btree (status);
+
+
+--
+-- Name: idx_affiliate_referrals_affiliate_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_referrals_affiliate_id ON public.affiliate_referrals USING btree (affiliate_id);
+
+
+--
+-- Name: idx_affiliate_referrals_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_referrals_company_id ON public.affiliate_referrals USING btree (company_id);
+
+
+--
+-- Name: idx_affiliate_referrals_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_referrals_created_at ON public.affiliate_referrals USING btree (created_at DESC);
+
+
+--
+-- Name: idx_affiliate_referrals_referral_code; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_referrals_referral_code ON public.affiliate_referrals USING btree (referral_code);
+
+
+--
+-- Name: idx_affiliate_referrals_referred_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_referrals_referred_company_id ON public.affiliate_referrals USING btree (referred_company_id);
+
+
+--
+-- Name: idx_affiliate_referrals_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_referrals_status ON public.affiliate_referrals USING btree (status);
+
+
+--
+-- Name: idx_affiliate_relationships_child_affiliate_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_relationships_child_affiliate_id ON public.affiliate_relationships USING btree (child_affiliate_id);
+
+
+--
+-- Name: idx_affiliate_relationships_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_relationships_company_id ON public.affiliate_relationships USING btree (company_id);
+
+
+--
+-- Name: idx_affiliate_relationships_level; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_relationships_level ON public.affiliate_relationships USING btree (level);
+
+
+--
+-- Name: idx_affiliate_relationships_parent_affiliate_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliate_relationships_parent_affiliate_id ON public.affiliate_relationships USING btree (parent_affiliate_id);
+
+
+--
+-- Name: idx_affiliates_affiliate_code; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliates_affiliate_code ON public.affiliates USING btree (affiliate_code);
+
+
+--
+-- Name: idx_affiliates_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliates_company_id ON public.affiliates USING btree (company_id);
+
+
+--
+-- Name: idx_affiliates_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliates_created_at ON public.affiliates USING btree (created_at DESC);
+
+
+--
+-- Name: idx_affiliates_email; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliates_email ON public.affiliates USING btree (email);
+
+
+--
+-- Name: idx_affiliates_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_affiliates_status ON public.affiliates USING btree (status);
+
+
+--
+-- Name: idx_ai_usage_company_date; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_ai_usage_company_date ON public.ai_credential_usage USING btree (company_id, usage_date);
+
+
+--
+-- Name: idx_ai_usage_credential; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_ai_usage_credential ON public.ai_credential_usage USING btree (credential_type, credential_id);
+
+
+--
+-- Name: idx_ai_usage_monthly; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_ai_usage_monthly ON public.ai_credential_usage USING btree (company_id, provider, usage_date);
+
+
+--
+-- Name: idx_ai_usage_provider; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_ai_usage_provider ON public.ai_credential_usage USING btree (provider, usage_date);
+
+
+--
+-- Name: idx_api_keys_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_api_keys_company_id ON public.api_keys USING btree (company_id);
+
+
+--
+-- Name: idx_api_keys_expires_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_api_keys_expires_at ON public.api_keys USING btree (expires_at);
+
+
+--
+-- Name: idx_api_keys_is_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_api_keys_is_active ON public.api_keys USING btree (is_active);
+
+
+--
+-- Name: idx_api_keys_key_hash; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_api_keys_key_hash ON public.api_keys USING btree (key_hash);
+
+
+--
+-- Name: idx_api_keys_user_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_api_keys_user_id ON public.api_keys USING btree (user_id);
+
+
+--
+-- Name: idx_api_rate_limits_api_key_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_api_rate_limits_api_key_id ON public.api_rate_limits USING btree (api_key_id);
+
+
+--
+-- Name: idx_api_rate_limits_unique; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX idx_api_rate_limits_unique ON public.api_rate_limits USING btree (api_key_id, window_type, window_start);
+
+
+--
+-- Name: idx_api_rate_limits_window_start; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_api_rate_limits_window_start ON public.api_rate_limits USING btree (window_start);
+
+
+--
+-- Name: idx_api_rate_limits_window_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_api_rate_limits_window_type ON public.api_rate_limits USING btree (window_type);
+
+
+--
+-- Name: idx_api_usage_api_key_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_api_usage_api_key_id ON public.api_usage USING btree (api_key_id);
+
+
+--
+-- Name: idx_api_usage_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_api_usage_company_id ON public.api_usage USING btree (company_id);
+
+
+--
+-- Name: idx_api_usage_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_api_usage_created_at ON public.api_usage USING btree (created_at);
+
+
+--
+-- Name: idx_api_usage_endpoint; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_api_usage_endpoint ON public.api_usage USING btree (endpoint);
+
+
+--
+-- Name: idx_api_usage_request_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_api_usage_request_id ON public.api_usage USING btree (request_id);
+
+
+--
+-- Name: idx_api_usage_status_code; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_api_usage_status_code ON public.api_usage USING btree (status_code);
+
+
+--
+-- Name: idx_backup_audit_logs_action; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_backup_audit_logs_action ON public.backup_audit_logs USING btree (action);
+
+
+--
+-- Name: idx_backup_audit_logs_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_backup_audit_logs_company_id ON public.backup_audit_logs USING btree (company_id);
+
+
+--
+-- Name: idx_backup_audit_logs_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_backup_audit_logs_created_at ON public.backup_audit_logs USING btree (created_at);
+
+
+--
+-- Name: idx_backup_audit_logs_user_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_backup_audit_logs_user_id ON public.backup_audit_logs USING btree (user_id);
+
+
+--
+-- Name: idx_backup_logs_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_backup_logs_status ON public.backup_logs USING btree (status);
+
+
+--
+-- Name: idx_backup_logs_timestamp; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_backup_logs_timestamp ON public.backup_logs USING btree ("timestamp" DESC);
+
+
+--
+-- Name: idx_backup_schedules_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_backup_schedules_company_id ON public.backup_schedules USING btree (company_id);
+
+
+--
+-- Name: idx_backup_schedules_is_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_backup_schedules_is_active ON public.backup_schedules USING btree (is_active);
+
+
+--
+-- Name: idx_backup_schedules_next_run_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_backup_schedules_next_run_at ON public.backup_schedules USING btree (next_run_at);
+
+
+--
+-- Name: idx_calendly_calendar_tokens_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_calendly_calendar_tokens_company ON public.calendly_calendar_tokens USING btree (company_id);
+
+
+--
+-- Name: idx_calendly_calendar_tokens_user_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_calendly_calendar_tokens_user_company ON public.calendly_calendar_tokens USING btree (user_id, company_id);
+
+
+--
+-- Name: idx_campaign_analytics_campaign_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_analytics_campaign_id ON public.campaign_analytics USING btree (campaign_id);
+
+
+--
+-- Name: idx_campaign_analytics_recorded_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_analytics_recorded_at ON public.campaign_analytics USING btree (recorded_at DESC);
+
+
+--
+-- Name: idx_campaign_messages_campaign_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_messages_campaign_id ON public.campaign_messages USING btree (campaign_id);
+
+
+--
+-- Name: idx_campaign_messages_recipient_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_messages_recipient_id ON public.campaign_messages USING btree (recipient_id);
+
+
+--
+-- Name: idx_campaign_messages_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_messages_status ON public.campaign_messages USING btree (status);
+
+
+--
+-- Name: idx_campaign_messages_whatsapp_message_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_messages_whatsapp_message_id ON public.campaign_messages USING btree (whatsapp_message_id);
+
+
+--
+-- Name: idx_campaign_queue_account_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_queue_account_id ON public.campaign_queue USING btree (account_id);
+
+
+--
+-- Name: idx_campaign_queue_campaign_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_queue_campaign_id ON public.campaign_queue USING btree (campaign_id);
+
+
+--
+-- Name: idx_campaign_queue_campaign_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_queue_campaign_status ON public.campaign_queue USING btree (campaign_id, status);
+
+
+--
+-- Name: idx_campaign_queue_priority; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_queue_priority ON public.campaign_queue USING btree (priority DESC);
+
+
+--
+-- Name: idx_campaign_queue_processing; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_queue_processing ON public.campaign_queue USING btree (status, scheduled_for, priority) WHERE (status = 'pending'::text);
+
+
+--
+-- Name: INDEX idx_campaign_queue_processing; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON INDEX public.idx_campaign_queue_processing IS 'Optimizes campaign queue processing queries';
+
+
+--
+-- Name: idx_campaign_queue_scheduled_for; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_queue_scheduled_for ON public.campaign_queue USING btree (scheduled_for);
+
+
+--
+-- Name: idx_campaign_queue_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_queue_status ON public.campaign_queue USING btree (status);
+
+
+--
+-- Name: idx_campaign_queue_status_scheduled; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_queue_status_scheduled ON public.campaign_queue USING btree (status, scheduled_for);
+
+
+--
+-- Name: idx_campaign_recipients_campaign_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_recipients_campaign_id ON public.campaign_recipients USING btree (campaign_id);
+
+
+--
+-- Name: idx_campaign_recipients_campaign_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_recipients_campaign_status ON public.campaign_recipients USING btree (campaign_id, status);
+
+
+--
+-- Name: idx_campaign_recipients_contact_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_recipients_contact_id ON public.campaign_recipients USING btree (contact_id);
+
+
+--
+-- Name: idx_campaign_recipients_scheduled_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_recipients_scheduled_at ON public.campaign_recipients USING btree (scheduled_at);
+
+
+--
+-- Name: idx_campaign_recipients_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_recipients_status ON public.campaign_recipients USING btree (status);
+
+
+--
+-- Name: idx_campaign_templates_category; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_templates_category ON public.campaign_templates USING btree (category);
+
+
+--
+-- Name: idx_campaign_templates_channel_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_templates_channel_type ON public.campaign_templates USING btree (channel_type);
+
+
+--
+-- Name: idx_campaign_templates_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_templates_company_id ON public.campaign_templates USING btree (company_id);
+
+
+--
+-- Name: idx_campaign_templates_connection_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_templates_connection_id ON public.campaign_templates USING btree (connection_id);
+
+
+--
+-- Name: idx_campaign_templates_whatsapp_channel_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_templates_whatsapp_channel_type ON public.campaign_templates USING btree (whatsapp_channel_type);
+
+
+--
+-- Name: idx_campaign_templates_whatsapp_template_category; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_templates_whatsapp_template_category ON public.campaign_templates USING btree (whatsapp_template_category);
+
+
+--
+-- Name: idx_campaign_templates_whatsapp_template_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaign_templates_whatsapp_template_status ON public.campaign_templates USING btree (whatsapp_template_status);
+
+
+--
+-- Name: idx_campaigns_channel_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaigns_channel_type ON public.campaigns USING btree (channel_type);
+
+
+--
+-- Name: idx_campaigns_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaigns_company_id ON public.campaigns USING btree (company_id);
+
+
+--
+-- Name: idx_campaigns_company_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaigns_company_status ON public.campaigns USING btree (company_id, status);
+
+
+--
+-- Name: idx_campaigns_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaigns_created_at ON public.campaigns USING btree (created_at DESC);
+
+
+--
+-- Name: idx_campaigns_created_by_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaigns_created_by_id ON public.campaigns USING btree (created_by_id);
+
+
+--
+-- Name: idx_campaigns_running; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaigns_running ON public.campaigns USING btree (company_id, created_at DESC) WHERE (status = ANY (ARRAY['running'::text, 'scheduled'::text]));
+
+
+--
+-- Name: idx_campaigns_scheduled_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaigns_scheduled_at ON public.campaigns USING btree (scheduled_at);
+
+
+--
+-- Name: idx_campaigns_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaigns_status ON public.campaigns USING btree (status);
+
+
+--
+-- Name: idx_campaigns_whatsapp_channel_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_campaigns_whatsapp_channel_type ON public.campaigns USING btree (whatsapp_channel_type);
+
+
+--
+-- Name: idx_channel_connections_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_channel_connections_company_id ON public.channel_connections USING btree (company_id);
+
+
+--
+-- Name: idx_channel_connections_company_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_channel_connections_company_status ON public.channel_connections USING btree (company_id, status);
+
+
+--
+-- Name: idx_channel_connections_history_sync; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_channel_connections_history_sync ON public.channel_connections USING btree (history_sync_enabled, history_sync_status);
+
+
+--
+-- Name: idx_channel_connections_proxy; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_channel_connections_proxy ON public.channel_connections USING btree (proxy_enabled, proxy_test_status);
+
+
+--
+-- Name: idx_channel_connections_proxy_server; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_channel_connections_proxy_server ON public.channel_connections USING btree (proxy_server_id);
+
+
+--
+-- Name: idx_channel_connections_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_channel_connections_type ON public.channel_connections USING btree (channel_type);
+
+
+--
+-- Name: idx_channel_connections_type_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_channel_connections_type_status ON public.channel_connections USING btree (channel_type, status) WHERE (status = 'active'::text);
+
+
+--
+-- Name: idx_channel_connections_user_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_channel_connections_user_id ON public.channel_connections USING btree (user_id);
+
+
+--
+-- Name: idx_channel_connections_user_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_channel_connections_user_type ON public.channel_connections USING btree (user_id, channel_type);
+
+
+--
+-- Name: idx_channel_connections_webchat; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_channel_connections_webchat ON public.channel_connections USING btree (channel_type) WHERE (channel_type = 'webchat'::text);
+
+
+--
+-- Name: idx_companies_grace_period_end; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_companies_grace_period_end ON public.companies USING btree (grace_period_end);
+
+
+--
+-- Name: idx_companies_last_usage_update; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_companies_last_usage_update ON public.companies USING btree (last_usage_update);
+
+
+--
+-- Name: idx_companies_plan_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_companies_plan_id ON public.companies USING btree (plan_id);
+
+
+--
+-- Name: idx_companies_stripe_customer_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_companies_stripe_customer_id ON public.companies USING btree (stripe_customer_id);
+
+
+--
+-- Name: idx_companies_stripe_subscription_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_companies_stripe_subscription_id ON public.companies USING btree (stripe_subscription_id);
+
+
+--
+-- Name: idx_companies_subdomain; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_companies_subdomain ON public.companies USING btree (subdomain);
+
+
+--
+-- Name: idx_companies_subscription_end_date; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_companies_subscription_end_date ON public.companies USING btree (subscription_end_date);
+
+
+--
+-- Name: idx_companies_subscription_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_companies_subscription_status ON public.companies USING btree (subscription_status);
+
+
+--
+-- Name: INDEX idx_companies_subscription_status; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON INDEX public.idx_companies_subscription_status IS 'Optimizes payment management queries by subscription status';
+
+
+--
+-- Name: idx_companies_usage; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_companies_usage ON public.companies USING btree (current_storage_used, current_bandwidth_used, files_count);
+
+
+--
+-- Name: idx_company_ai_credentials_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_company_ai_credentials_company ON public.company_ai_credentials USING btree (company_id, provider, is_active);
+
+
+--
+-- Name: idx_company_pages_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_company_pages_company_id ON public.company_pages USING btree (company_id);
+
+
+--
+-- Name: idx_company_pages_featured; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_company_pages_featured ON public.company_pages USING btree (is_featured);
+
+
+--
+-- Name: idx_company_pages_published; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_company_pages_published ON public.company_pages USING btree (is_published);
+
+
+--
+-- Name: idx_company_pages_published_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_company_pages_published_at ON public.company_pages USING btree (published_at);
+
+
+--
+-- Name: idx_company_pages_slug; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_company_pages_slug ON public.company_pages USING btree (slug);
+
+
+--
+-- Name: idx_company_settings_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_company_settings_company_id ON public.company_settings USING btree (company_id);
+
+
+--
+-- Name: idx_company_settings_key; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_company_settings_key ON public.company_settings USING btree (key);
+
+
+--
+-- Name: idx_contact_appointments_contact_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_appointments_contact_id ON public.contact_appointments USING btree (contact_id);
+
+
+--
+-- Name: idx_contact_appointments_scheduled_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_appointments_scheduled_at ON public.contact_appointments USING btree (scheduled_at);
+
+
+--
+-- Name: idx_contact_appointments_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_appointments_status ON public.contact_appointments USING btree (status);
+
+
+--
+-- Name: idx_contact_appointments_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_appointments_type ON public.contact_appointments USING btree (type);
+
+
+--
+-- Name: idx_contact_audit_logs_action_category; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_audit_logs_action_category ON public.contact_audit_logs USING btree (action_category);
+
+
+--
+-- Name: idx_contact_audit_logs_action_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_audit_logs_action_type ON public.contact_audit_logs USING btree (action_type);
+
+
+--
+-- Name: idx_contact_audit_logs_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_audit_logs_company_id ON public.contact_audit_logs USING btree (company_id);
+
+
+--
+-- Name: idx_contact_audit_logs_contact_created; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_audit_logs_contact_created ON public.contact_audit_logs USING btree (contact_id, created_at DESC);
+
+
+--
+-- Name: idx_contact_audit_logs_contact_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_audit_logs_contact_id ON public.contact_audit_logs USING btree (contact_id);
+
+
+--
+-- Name: idx_contact_audit_logs_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_audit_logs_created_at ON public.contact_audit_logs USING btree (created_at DESC);
+
+
+--
+-- Name: idx_contact_audit_logs_user_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_audit_logs_user_id ON public.contact_audit_logs USING btree (user_id);
+
+
+--
+-- Name: idx_contact_documents_category; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_documents_category ON public.contact_documents USING btree (category);
+
+
+--
+-- Name: idx_contact_documents_contact_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_documents_contact_id ON public.contact_documents USING btree (contact_id);
+
+
+--
+-- Name: idx_contact_documents_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_documents_created_at ON public.contact_documents USING btree (created_at);
+
+
+--
+-- Name: idx_contact_segments_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_segments_company_id ON public.contact_segments USING btree (company_id);
+
+
+--
+-- Name: idx_contact_tasks_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_tasks_company_id ON public.contact_tasks USING btree (company_id);
+
+
+--
+-- Name: idx_contact_tasks_company_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_tasks_company_status ON public.contact_tasks USING btree (company_id, status);
+
+
+--
+-- Name: idx_contact_tasks_contact_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_tasks_contact_company ON public.contact_tasks USING btree (contact_id, company_id);
+
+
+--
+-- Name: idx_contact_tasks_contact_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_tasks_contact_id ON public.contact_tasks USING btree (contact_id);
+
+
+--
+-- Name: idx_contact_tasks_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_tasks_created_at ON public.contact_tasks USING btree (created_at);
+
+
+--
+-- Name: idx_contact_tasks_due_date; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_tasks_due_date ON public.contact_tasks USING btree (due_date);
+
+
+--
+-- Name: idx_contact_tasks_priority; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_tasks_priority ON public.contact_tasks USING btree (priority);
+
+
+--
+-- Name: idx_contact_tasks_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_tasks_status ON public.contact_tasks USING btree (status);
+
+
+--
+-- Name: idx_contact_tasks_status_priority; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contact_tasks_status_priority ON public.contact_tasks USING btree (status, priority);
+
+
+--
+-- Name: idx_contacts_active_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_active_company ON public.contacts USING btree (company_id, created_at DESC) WHERE (is_active = true);
+
+
+--
+-- Name: idx_contacts_company_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_company_active ON public.contacts USING btree (company_id, is_active);
+
+
+--
+-- Name: idx_contacts_company_archived; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_company_archived ON public.contacts USING btree (company_id, is_archived);
+
+
+--
+-- Name: idx_contacts_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_company_id ON public.contacts USING btree (company_id);
+
+
+--
+-- Name: idx_contacts_company_lower; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_company_lower ON public.contacts USING btree (lower(company)) WHERE ((is_active = true) AND (identifier_type IS NOT NULL) AND (identifier_type <> 'email'::text));
+
+
+--
+-- Name: idx_contacts_email; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_email ON public.contacts USING btree (email);
+
+
+--
+-- Name: idx_contacts_email_lower; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_email_lower ON public.contacts USING btree (lower(email)) WHERE ((is_active = true) AND (identifier_type IS NOT NULL) AND (identifier_type <> 'email'::text));
+
+
+--
+-- Name: idx_contacts_history_sync; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_history_sync ON public.contacts USING btree (is_history_sync, history_sync_batch_id);
+
+
+--
+-- Name: idx_contacts_identifier; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_identifier ON public.contacts USING btree (identifier);
+
+
+--
+-- Name: idx_contacts_identifier_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_identifier_type ON public.contacts USING btree (identifier, identifier_type);
+
+
+--
+-- Name: idx_contacts_is_archived; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_is_archived ON public.contacts USING btree (is_archived);
+
+
+--
+-- Name: idx_contacts_name_lower; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_name_lower ON public.contacts USING btree (lower(name)) WHERE ((is_active = true) AND (identifier_type IS NOT NULL) AND (identifier_type <> 'email'::text));
+
+
+--
+-- Name: idx_contacts_normalized_phone; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_normalized_phone ON public.contacts USING btree (company_id, regexp_replace(phone, '[^0-9+]'::text, ''::text, 'g'::text)) WHERE ((phone IS NOT NULL) AND (phone <> ''::text));
+
+
+--
+-- Name: INDEX idx_contacts_normalized_phone; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON INDEX public.idx_contacts_normalized_phone IS 'Enables efficient phone number deduplication in campaigns';
+
+
+--
+-- Name: idx_contacts_phone; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_phone ON public.contacts USING btree (phone);
+
+
+--
+-- Name: idx_contacts_phone_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_phone_company ON public.contacts USING btree (phone, company_id) WHERE ((phone IS NOT NULL) AND (phone <> ''::text));
+
+
+--
+-- Name: idx_contacts_unique_email_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX idx_contacts_unique_email_company ON public.contacts USING btree (company_id, email) WHERE ((email IS NOT NULL) AND (email <> ''::text) AND (is_active = true));
+
+
+--
+-- Name: INDEX idx_contacts_unique_email_company; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON INDEX public.idx_contacts_unique_email_company IS 'Ensures unique email addresses per company for active contacts';
+
+
+--
+-- Name: idx_contacts_unique_identifier_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX idx_contacts_unique_identifier_company ON public.contacts USING btree (company_id, identifier, identifier_type) WHERE ((identifier IS NOT NULL) AND (identifier <> ''::text) AND (is_active = true));
+
+
+--
+-- Name: INDEX idx_contacts_unique_identifier_company; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON INDEX public.idx_contacts_unique_identifier_company IS 'Ensures unique identifiers per company and type for active contacts';
+
+
+--
+-- Name: idx_contacts_unique_phone_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX idx_contacts_unique_phone_company ON public.contacts USING btree (company_id, phone) WHERE ((phone IS NOT NULL) AND (phone <> ''::text) AND (is_active = true));
+
+
+--
+-- Name: INDEX idx_contacts_unique_phone_company; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON INDEX public.idx_contacts_unique_phone_company IS 'Ensures unique phone numbers per company for active contacts';
+
+
+--
+-- Name: idx_contacts_webchat_identifier; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_webchat_identifier ON public.contacts USING btree (identifier, identifier_type) WHERE (identifier_type = 'webchat'::text);
+
+
+--
+-- Name: idx_contacts_without_conversations; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_contacts_without_conversations ON public.contacts USING btree (company_id, is_active, identifier_type, created_at DESC) WHERE ((is_active = true) AND (identifier_type IS NOT NULL) AND (identifier_type <> 'email'::text));
+
+
+--
+-- Name: idx_conversations_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_active ON public.conversations USING btree (channel_id, status, last_message_at DESC) WHERE (status = 'open'::text);
+
+
+--
+-- Name: idx_conversations_active_non_archived; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_active_non_archived ON public.conversations USING btree (channel_id, is_archived, last_message_at DESC) WHERE (is_archived = false);
+
+
+--
+-- Name: idx_conversations_archived; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_archived ON public.conversations USING btree (is_archived, company_id, archived_at DESC) WHERE (is_archived = true);
+
+
+--
+-- Name: idx_conversations_assigned_to_user_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_assigned_to_user_id ON public.conversations USING btree (assigned_to_user_id);
+
+
+--
+-- Name: idx_conversations_channel_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_channel_company ON public.conversations USING btree (channel_id, company_id);
+
+
+--
+-- Name: idx_conversations_channel_last_message; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_channel_last_message ON public.conversations USING btree (channel_id, last_message_at DESC);
+
+
+--
+-- Name: idx_conversations_channel_starred; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_channel_starred ON public.conversations USING btree (channel_id, is_starred, last_message_at DESC) WHERE (is_starred = true);
+
+
+--
+-- Name: idx_conversations_channel_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_channel_type ON public.conversations USING btree (channel_type, channel_id);
+
+
+--
+-- Name: idx_conversations_channel_unread; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_channel_unread ON public.conversations USING btree (channel_id, unread_count) WHERE (unread_count > 0);
+
+
+--
+-- Name: idx_conversations_company_channel_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_company_channel_type ON public.conversations USING btree (company_id, channel_type);
+
+
+--
+-- Name: idx_conversations_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_company_id ON public.conversations USING btree (company_id);
+
+
+--
+-- Name: idx_conversations_company_last_message; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_company_last_message ON public.conversations USING btree (company_id, last_message_at DESC);
+
+
+--
+-- Name: INDEX idx_conversations_company_last_message; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON INDEX public.idx_conversations_company_last_message IS 'Optimizes conversation listing by company with latest message first';
+
+
+--
+-- Name: idx_conversations_contact; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_contact ON public.conversations USING btree (contact_id);
+
+
+--
+-- Name: idx_conversations_contact_channel; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_contact_channel ON public.conversations USING btree (contact_id, channel_id);
+
+
+--
+-- Name: idx_conversations_contact_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_contact_id ON public.conversations USING btree (contact_id);
+
+
+--
+-- Name: idx_conversations_group_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_group_company ON public.conversations USING btree (company_id, is_group);
+
+
+--
+-- Name: idx_conversations_group_jid; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_group_jid ON public.conversations USING btree (group_jid) WHERE (is_group = true);
+
+
+--
+-- Name: INDEX idx_conversations_group_jid; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON INDEX public.idx_conversations_group_jid IS 'Optimizes group conversation lookups by WhatsApp group JID';
+
+
+--
+-- Name: idx_conversations_history_sync; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_history_sync ON public.conversations USING btree (is_history_sync, history_sync_batch_id);
+
+
+--
+-- Name: idx_conversations_is_group; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_is_group ON public.conversations USING btree (is_group);
+
+
+--
+-- Name: idx_conversations_last_message_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_last_message_at ON public.conversations USING btree (last_message_at DESC);
+
+
+--
+-- Name: idx_conversations_starred; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_starred ON public.conversations USING btree (is_starred, company_id, last_message_at DESC) WHERE (is_starred = true);
+
+
+--
+-- Name: idx_conversations_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_status ON public.conversations USING btree (status);
+
+
+--
+-- Name: idx_conversations_status_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_status_company ON public.conversations USING btree (status, company_id);
+
+
+--
+-- Name: idx_conversations_unread_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_unread_company ON public.conversations USING btree (company_id, unread_count) WHERE (unread_count > 0);
+
+
+--
+-- Name: idx_conversations_unread_count; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_unread_count ON public.conversations USING btree (unread_count) WHERE (unread_count > 0);
+
+
+--
+-- Name: idx_conversations_webchat; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_conversations_webchat ON public.conversations USING btree (channel_type) WHERE (channel_type = 'webchat'::text);
+
+
+--
+-- Name: idx_coupon_codes_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_coupon_codes_active ON public.coupon_codes USING btree (is_active, start_date, end_date);
+
+
+--
+-- Name: idx_coupon_codes_code; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_coupon_codes_code ON public.coupon_codes USING btree (code);
+
+
+--
+-- Name: idx_coupon_usage_company_user; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_coupon_usage_company_user ON public.coupon_usage USING btree (company_id, user_id);
+
+
+--
+-- Name: idx_coupon_usage_coupon_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_coupon_usage_coupon_id ON public.coupon_usage USING btree (coupon_id);
+
+
+--
+-- Name: idx_deal_activities_deal_created; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_deal_activities_deal_created ON public.deal_activities USING btree (deal_id, created_at DESC);
+
+
+--
+-- Name: idx_deals_assigned_to_user_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_deals_assigned_to_user_id ON public.deals USING btree (assigned_to_user_id);
+
+
+--
+-- Name: idx_deals_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_deals_company_id ON public.deals USING btree (company_id);
+
+
+--
+-- Name: idx_deals_contact_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_deals_contact_id ON public.deals USING btree (contact_id);
+
+
+--
+-- Name: idx_deals_contact_phone_lookup; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_deals_contact_phone_lookup ON public.deals USING btree (company_id, status, contact_id, id, stage_id, title, value, priority);
+
+
+--
+-- Name: idx_deals_contact_status_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_deals_contact_status_company ON public.deals USING btree (contact_id, status, company_id, last_activity_at DESC);
+
+
+--
+-- Name: idx_deals_stage_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_deals_stage_id ON public.deals USING btree (stage_id);
+
+
+--
+-- Name: idx_deals_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_deals_status ON public.deals USING btree (status);
+
+
+--
+-- Name: idx_dialog_360_channels_channel_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_dialog_360_channels_channel_id ON public.dialog_360_channels USING btree (channel_id);
+
+
+--
+-- Name: idx_dialog_360_channels_client_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_dialog_360_channels_client_id ON public.dialog_360_channels USING btree (client_id);
+
+
+--
+-- Name: idx_dialog_360_channels_phone_number; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_dialog_360_channels_phone_number ON public.dialog_360_channels USING btree (phone_number);
+
+
+--
+-- Name: idx_dialog_360_channels_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_dialog_360_channels_status ON public.dialog_360_channels USING btree (status);
+
+
+--
+-- Name: idx_dialog_360_clients_client_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_dialog_360_clients_client_id ON public.dialog_360_clients USING btree (client_id);
+
+
+--
+-- Name: idx_dialog_360_clients_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_dialog_360_clients_company_id ON public.dialog_360_clients USING btree (company_id);
+
+
+--
+-- Name: idx_dialog_360_clients_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_dialog_360_clients_status ON public.dialog_360_clients USING btree (status);
+
+
+--
+-- Name: idx_dunning_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_dunning_company_id ON public.dunning_management USING btree (company_id);
+
+
+--
+-- Name: idx_dunning_next_attempt; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_dunning_next_attempt ON public.dunning_management USING btree (next_attempt_date);
+
+
+--
+-- Name: idx_dunning_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_dunning_status ON public.dunning_management USING btree (status);
+
+
+--
+-- Name: idx_email_attachments_content_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_email_attachments_content_id ON public.email_attachments USING btree (content_id);
+
+
+--
+-- Name: idx_email_attachments_message_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_email_attachments_message_id ON public.email_attachments USING btree (message_id);
+
+
+--
+-- Name: idx_email_configs_channel_connection_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_email_configs_channel_connection_id ON public.email_configs USING btree (channel_connection_id);
+
+
+--
+-- Name: idx_email_configs_email_address; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_email_configs_email_address ON public.email_configs USING btree (email_address);
+
+
+--
+-- Name: idx_email_configs_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_email_configs_status ON public.email_configs USING btree (status);
+
+
+--
+-- Name: idx_email_configs_unique_channel; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX idx_email_configs_unique_channel ON public.email_configs USING btree (channel_connection_id);
+
+
+--
+-- Name: idx_flow_assignments_channel_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_assignments_channel_active ON public.flow_assignments USING btree (channel_id, is_active);
+
+
+--
+-- Name: idx_flow_executions_company_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_executions_company_status ON public.flow_executions USING btree (company_id, status);
+
+
+--
+-- Name: idx_flow_executions_conversation_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_executions_conversation_id ON public.flow_executions USING btree (conversation_id);
+
+
+--
+-- Name: idx_flow_executions_execution_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_executions_execution_id ON public.flow_executions USING btree (execution_id);
+
+
+--
+-- Name: idx_flow_executions_flow_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_executions_flow_id ON public.flow_executions USING btree (flow_id);
+
+
+--
+-- Name: idx_flow_executions_started_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_executions_started_at ON public.flow_executions USING btree (started_at);
+
+
+--
+-- Name: idx_flow_session_cursors_session_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_session_cursors_session_id ON public.flow_session_cursors USING btree (session_id);
+
+
+--
+-- Name: idx_flow_session_cursors_timeout; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_session_cursors_timeout ON public.flow_session_cursors USING btree (timeout_at);
+
+
+--
+-- Name: idx_flow_session_cursors_waiting; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_session_cursors_waiting ON public.flow_session_cursors USING btree (waiting_for_input);
+
+
+--
+-- Name: idx_flow_session_variables_expires_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_session_variables_expires_at ON public.flow_session_variables USING btree (expires_at);
+
+
+--
+-- Name: idx_flow_session_variables_scope; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_session_variables_scope ON public.flow_session_variables USING btree (scope);
+
+
+--
+-- Name: idx_flow_session_variables_session_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_session_variables_session_id ON public.flow_session_variables USING btree (session_id);
+
+
+--
+-- Name: idx_flow_sessions_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_sessions_company_id ON public.flow_sessions USING btree (company_id);
+
+
+--
+-- Name: idx_flow_sessions_contact_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_sessions_contact_id ON public.flow_sessions USING btree (contact_id);
+
+
+--
+-- Name: idx_flow_sessions_conversation_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_sessions_conversation_status ON public.flow_sessions USING btree (conversation_id, status);
+
+
+--
+-- Name: idx_flow_sessions_expires_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_sessions_expires_at ON public.flow_sessions USING btree (expires_at);
+
+
+--
+-- Name: idx_flow_sessions_last_activity; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_sessions_last_activity ON public.flow_sessions USING btree (last_activity_at);
+
+
+--
+-- Name: idx_flow_sessions_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_sessions_status ON public.flow_sessions USING btree (status);
+
+
+--
+-- Name: idx_flow_step_executions_flow_execution_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_step_executions_flow_execution_id ON public.flow_step_executions USING btree (flow_execution_id);
+
+
+--
+-- Name: idx_flow_step_executions_node_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_step_executions_node_id ON public.flow_step_executions USING btree (node_id, status);
+
+
+--
+-- Name: idx_flow_step_executions_session_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flow_step_executions_session_id ON public.flow_step_executions USING btree (session_id);
+
+
+--
+-- Name: idx_flows_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flows_company_id ON public.flows USING btree (company_id);
+
+
+--
+-- Name: idx_flows_company_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flows_company_status ON public.flows USING btree (company_id, status);
+
+
+--
+-- Name: idx_flows_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flows_status ON public.flows USING btree (status);
+
+
+--
+-- Name: idx_flows_user_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_flows_user_id ON public.flows USING btree (user_id);
+
+
+--
+-- Name: idx_follow_up_execution_log_executed_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_execution_log_executed_at ON public.follow_up_execution_log USING btree (executed_at);
+
+
+--
+-- Name: idx_follow_up_execution_log_schedule; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_execution_log_schedule ON public.follow_up_execution_log USING btree (schedule_id, executed_at DESC);
+
+
+--
+-- Name: idx_follow_up_execution_log_schedule_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_execution_log_schedule_id ON public.follow_up_execution_log USING btree (schedule_id);
+
+
+--
+-- Name: idx_follow_up_execution_log_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_execution_log_status ON public.follow_up_execution_log USING btree (status, executed_at);
+
+
+--
+-- Name: idx_follow_up_schedules_company_execution; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_schedules_company_execution ON public.follow_up_schedules USING btree (company_id, status, scheduled_for) WHERE (status = 'scheduled'::text);
+
+
+--
+-- Name: idx_follow_up_schedules_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_schedules_company_id ON public.follow_up_schedules USING btree (company_id);
+
+
+--
+-- Name: idx_follow_up_schedules_contact_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_schedules_contact_id ON public.follow_up_schedules USING btree (contact_id);
+
+
+--
+-- Name: idx_follow_up_schedules_conversation_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_schedules_conversation_id ON public.follow_up_schedules USING btree (conversation_id);
+
+
+--
+-- Name: idx_follow_up_schedules_execution; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_schedules_execution ON public.follow_up_schedules USING btree (status, scheduled_for) WHERE (status = 'scheduled'::text);
+
+
+--
+-- Name: idx_follow_up_schedules_expires_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_schedules_expires_at ON public.follow_up_schedules USING btree (expires_at);
+
+
+--
+-- Name: idx_follow_up_schedules_scheduled_for; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_schedules_scheduled_for ON public.follow_up_schedules USING btree (scheduled_for);
+
+
+--
+-- Name: idx_follow_up_schedules_session_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_schedules_session_id ON public.follow_up_schedules USING btree (session_id);
+
+
+--
+-- Name: idx_follow_up_schedules_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_schedules_status ON public.follow_up_schedules USING btree (status);
+
+
+--
+-- Name: idx_follow_up_schedules_timezone; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_schedules_timezone ON public.follow_up_schedules USING btree (timezone, scheduled_for, status) WHERE (status = ANY (ARRAY['scheduled'::text, 'sent'::text, 'failed'::text]));
+
+
+--
+-- Name: idx_follow_up_schedules_trigger_event; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_schedules_trigger_event ON public.follow_up_schedules USING btree (trigger_event);
+
+
+--
+-- Name: idx_follow_up_templates_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_templates_active ON public.follow_up_templates USING btree (company_id, is_active) WHERE (is_active = true);
+
+
+--
+-- Name: idx_follow_up_templates_category; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_templates_category ON public.follow_up_templates USING btree (company_id, category);
+
+
+--
+-- Name: idx_follow_up_templates_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_templates_company_id ON public.follow_up_templates USING btree (company_id);
+
+
+--
+-- Name: idx_follow_up_templates_is_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_follow_up_templates_is_active ON public.follow_up_templates USING btree (is_active);
+
+
+--
+-- Name: idx_group_participants_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_group_participants_active ON public.group_participants USING btree (conversation_id, is_active);
+
+
+--
+-- Name: INDEX idx_group_participants_active; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON INDEX public.idx_group_participants_active IS 'Optimizes active group participant lookups';
+
+
+--
+-- Name: idx_group_participants_admin; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_group_participants_admin ON public.group_participants USING btree (conversation_id, is_admin);
+
+
+--
+-- Name: idx_group_participants_contact; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_group_participants_contact ON public.group_participants USING btree (contact_id);
+
+
+--
+-- Name: idx_group_participants_conversation; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_group_participants_conversation ON public.group_participants USING btree (conversation_id);
+
+
+--
+-- Name: INDEX idx_group_participants_conversation; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON INDEX public.idx_group_participants_conversation IS 'Optimizes group participant queries by conversation';
+
+
+--
+-- Name: idx_group_participants_jid; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_group_participants_jid ON public.group_participants USING btree (participant_jid);
+
+
+--
+-- Name: idx_history_sync_batches_batch_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_history_sync_batches_batch_id ON public.history_sync_batches USING btree (batch_id);
+
+
+--
+-- Name: idx_history_sync_batches_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_history_sync_batches_company ON public.history_sync_batches USING btree (company_id);
+
+
+--
+-- Name: idx_history_sync_batches_connection; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_history_sync_batches_connection ON public.history_sync_batches USING btree (connection_id);
+
+
+--
+-- Name: idx_history_sync_batches_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_history_sync_batches_status ON public.history_sync_batches USING btree (status);
+
+
+--
+-- Name: idx_inbox_backups_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_inbox_backups_company_id ON public.inbox_backups USING btree (company_id);
+
+
+--
+-- Name: idx_inbox_backups_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_inbox_backups_created_at ON public.inbox_backups USING btree (created_at);
+
+
+--
+-- Name: idx_inbox_backups_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_inbox_backups_status ON public.inbox_backups USING btree (status);
+
+
+--
+-- Name: idx_inbox_backups_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_inbox_backups_type ON public.inbox_backups USING btree (type);
+
+
+--
+-- Name: idx_inbox_restores_backup_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_inbox_restores_backup_id ON public.inbox_restores USING btree (backup_id);
+
+
+--
+-- Name: idx_inbox_restores_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_inbox_restores_company_id ON public.inbox_restores USING btree (company_id);
+
+
+--
+-- Name: idx_inbox_restores_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_inbox_restores_created_at ON public.inbox_restores USING btree (created_at);
+
+
+--
+-- Name: idx_inbox_restores_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_inbox_restores_status ON public.inbox_restores USING btree (status);
+
+
+--
+-- Name: idx_knowledge_base_chunks_chunk_index; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_knowledge_base_chunks_chunk_index ON public.knowledge_base_chunks USING btree (chunk_index);
+
+
+--
+-- Name: idx_knowledge_base_chunks_document_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_knowledge_base_chunks_document_id ON public.knowledge_base_chunks USING btree (document_id);
+
+
+--
+-- Name: idx_knowledge_base_configs_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_knowledge_base_configs_company_id ON public.knowledge_base_configs USING btree (company_id);
+
+
+--
+-- Name: idx_knowledge_base_configs_node_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_knowledge_base_configs_node_id ON public.knowledge_base_configs USING btree (node_id);
+
+
+--
+-- Name: idx_knowledge_base_document_nodes_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_knowledge_base_document_nodes_company_id ON public.knowledge_base_document_nodes USING btree (company_id);
+
+
+--
+-- Name: idx_knowledge_base_document_nodes_document_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_knowledge_base_document_nodes_document_id ON public.knowledge_base_document_nodes USING btree (document_id);
+
+
+--
+-- Name: idx_knowledge_base_document_nodes_node_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_knowledge_base_document_nodes_node_id ON public.knowledge_base_document_nodes USING btree (node_id);
+
+
+--
+-- Name: idx_knowledge_base_documents_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_knowledge_base_documents_company_id ON public.knowledge_base_documents USING btree (company_id);
+
+
+--
+-- Name: idx_knowledge_base_documents_node_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_knowledge_base_documents_node_id ON public.knowledge_base_documents USING btree (node_id);
+
+
+--
+-- Name: idx_knowledge_base_documents_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_knowledge_base_documents_status ON public.knowledge_base_documents USING btree (status);
+
+
+--
+-- Name: idx_knowledge_base_usage_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_knowledge_base_usage_company_id ON public.knowledge_base_usage USING btree (company_id);
+
+
+--
+-- Name: idx_knowledge_base_usage_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_knowledge_base_usage_created_at ON public.knowledge_base_usage USING btree (created_at);
+
+
+--
+-- Name: idx_knowledge_base_usage_node_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_knowledge_base_usage_node_id ON public.knowledge_base_usage USING btree (node_id);
+
+
+--
+-- Name: idx_messages_content_search; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_content_search ON public.messages USING gin (to_tsvector('english'::regconfig, content)) WHERE ((content IS NOT NULL) AND (content <> ''::text));
+
+
+--
+-- Name: idx_messages_conversation_created; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_conversation_created ON public.messages USING btree (conversation_id, created_at DESC);
+
+
+--
+-- Name: idx_messages_conversation_direction; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_conversation_direction ON public.messages USING btree (conversation_id, direction);
+
+
+--
+-- Name: idx_messages_conversation_direction_created; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_conversation_direction_created ON public.messages USING btree (conversation_id, direction, created_at DESC);
+
+
+--
+-- Name: idx_messages_conversation_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_conversation_id ON public.messages USING btree (conversation_id);
+
+
+--
+-- Name: idx_messages_conversation_sent; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_conversation_sent ON public.messages USING btree (conversation_id, sent_at DESC, created_at DESC);
+
+
+--
+-- Name: idx_messages_conversation_timestamp; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_conversation_timestamp ON public.messages USING btree (conversation_id, created_at DESC);
+
+
+--
+-- Name: idx_messages_conversation_unread; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_conversation_unread ON public.messages USING btree (conversation_id, direction, read_at) WHERE ((direction = 'inbound'::text) AND (read_at IS NULL));
+
+
+--
+-- Name: INDEX idx_messages_conversation_unread; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON INDEX public.idx_messages_conversation_unread IS 'Optimizes unread message count calculations';
+
+
+--
+-- Name: idx_messages_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_created_at ON public.messages USING btree (created_at DESC);
+
+
+--
+-- Name: idx_messages_direction; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_direction ON public.messages USING btree (direction);
+
+
+--
+-- Name: idx_messages_direction_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_direction_status ON public.messages USING btree (direction, status);
+
+
+--
+-- Name: idx_messages_email_in_reply_to; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_email_in_reply_to ON public.messages USING btree (email_in_reply_to);
+
+
+--
+-- Name: idx_messages_email_message_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_email_message_id ON public.messages USING btree (email_message_id);
+
+
+--
+-- Name: idx_messages_external_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_external_id ON public.messages USING btree (external_id) WHERE (external_id IS NOT NULL);
+
+
+--
+-- Name: idx_messages_group_participant; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_group_participant ON public.messages USING btree (group_participant_jid) WHERE (group_participant_jid IS NOT NULL);
+
+
+--
+-- Name: INDEX idx_messages_group_participant; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON INDEX public.idx_messages_group_participant IS 'Optimizes group message queries by sender JID';
+
+
+--
+-- Name: idx_messages_history_sync; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_history_sync ON public.messages USING btree (is_history_sync, history_sync_batch_id);
+
+
+--
+-- Name: idx_messages_metadata_message_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_metadata_message_id ON public.messages USING gin (((metadata -> 'messageId'::text))) WHERE ((metadata -> 'messageId'::text) IS NOT NULL);
+
+
+--
+-- Name: idx_messages_outbound_recent; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_outbound_recent ON public.messages USING btree (conversation_id, direction, created_at DESC) WHERE (direction = 'outbound'::text);
+
+
+--
+-- Name: idx_messages_reaction_conversation; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_reaction_conversation ON public.messages USING btree (conversation_id, type) WHERE (type = 'reaction'::text);
+
+
+--
+-- Name: idx_messages_read_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_read_status ON public.messages USING btree (conversation_id, direction, read_at) WHERE ((direction = 'inbound'::text) AND (read_at IS NULL));
+
+
+--
+-- Name: idx_messages_sender; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_sender ON public.messages USING btree (sender_id, sender_type);
+
+
+--
+-- Name: idx_messages_type_reaction; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_messages_type_reaction ON public.messages USING btree (type) WHERE (type = 'reaction'::text);
+
+
+--
+-- Name: idx_meta_whatsapp_clients_business_account_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_meta_whatsapp_clients_business_account_id ON public.meta_whatsapp_clients USING btree (business_account_id);
+
+
+--
+-- Name: idx_meta_whatsapp_clients_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_meta_whatsapp_clients_company_id ON public.meta_whatsapp_clients USING btree (company_id);
+
+
+--
+-- Name: idx_meta_whatsapp_clients_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_meta_whatsapp_clients_status ON public.meta_whatsapp_clients USING btree (status);
+
+
+--
+-- Name: idx_meta_whatsapp_phone_numbers_client_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_meta_whatsapp_phone_numbers_client_id ON public.meta_whatsapp_phone_numbers USING btree (client_id);
+
+
+--
+-- Name: idx_meta_whatsapp_phone_numbers_phone_number; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_meta_whatsapp_phone_numbers_phone_number ON public.meta_whatsapp_phone_numbers USING btree (phone_number);
+
+
+--
+-- Name: idx_meta_whatsapp_phone_numbers_phone_number_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_meta_whatsapp_phone_numbers_phone_number_id ON public.meta_whatsapp_phone_numbers USING btree (phone_number_id);
+
+
+--
+-- Name: idx_meta_whatsapp_phone_numbers_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_meta_whatsapp_phone_numbers_status ON public.meta_whatsapp_phone_numbers USING btree (status);
+
+
+--
+-- Name: idx_notes_contact_created; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_notes_contact_created ON public.notes USING btree (contact_id, created_at DESC);
+
+
+--
+-- Name: idx_notifications_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_notifications_company_id ON public.subscription_notifications USING btree (company_id);
+
+
+--
+-- Name: idx_notifications_scheduled_for; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_notifications_scheduled_for ON public.subscription_notifications USING btree (scheduled_for);
+
+
+--
+-- Name: idx_notifications_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_notifications_status ON public.subscription_notifications USING btree (status);
+
+
+--
+-- Name: idx_partner_configurations_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_partner_configurations_active ON public.partner_configurations USING btree (is_active);
+
+
+--
+-- Name: idx_partner_configurations_provider; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_partner_configurations_provider ON public.partner_configurations USING btree (provider);
+
+
+--
+-- Name: idx_password_reset_tokens_expires_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_password_reset_tokens_expires_at ON public.password_reset_tokens USING btree (expires_at);
+
+
+--
+-- Name: idx_password_reset_tokens_token; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_password_reset_tokens_token ON public.password_reset_tokens USING btree (token);
+
+
+--
+-- Name: idx_password_reset_tokens_user_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_password_reset_tokens_user_id ON public.password_reset_tokens USING btree (user_id);
+
+
+--
+-- Name: idx_payment_transactions_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_payment_transactions_company_id ON public.payment_transactions USING btree (company_id);
+
+
+--
+-- Name: idx_payment_transactions_company_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_payment_transactions_company_status ON public.payment_transactions USING btree (company_id, status);
+
+
+--
+-- Name: INDEX idx_payment_transactions_company_status; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON INDEX public.idx_payment_transactions_company_status IS 'Optimizes payment transaction queries by company and status';
+
+
+--
+-- Name: idx_payment_transactions_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_payment_transactions_created_at ON public.payment_transactions USING btree (created_at DESC);
+
+
+--
+-- Name: idx_payment_transactions_payment_method; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_payment_transactions_payment_method ON public.payment_transactions USING btree (payment_method);
+
+
+--
+-- Name: idx_payment_transactions_period; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_payment_transactions_period ON public.payment_transactions USING btree (subscription_period_start, subscription_period_end);
+
+
+--
+-- Name: idx_payment_transactions_recurring; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_payment_transactions_recurring ON public.payment_transactions USING btree (is_recurring);
+
+
+--
+-- Name: idx_payment_transactions_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_payment_transactions_status ON public.payment_transactions USING btree (status);
+
+
+--
+-- Name: idx_pipeline_stages_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_pipeline_stages_company_id ON public.pipeline_stages USING btree (company_id);
+
+
+--
+-- Name: idx_pipeline_stages_order; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_pipeline_stages_order ON public.pipeline_stages USING btree (order_num);
+
+
+--
+-- Name: idx_plan_ai_billing_events_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_plan_ai_billing_events_company_id ON public.plan_ai_billing_events USING btree (company_id);
+
+
+--
+-- Name: idx_plan_ai_billing_events_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_plan_ai_billing_events_created_at ON public.plan_ai_billing_events USING btree (created_at);
+
+
+--
+-- Name: idx_plan_ai_billing_events_plan_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_plan_ai_billing_events_plan_id ON public.plan_ai_billing_events USING btree (plan_id);
+
+
+--
+-- Name: idx_plan_ai_billing_events_processed; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_plan_ai_billing_events_processed ON public.plan_ai_billing_events USING btree (processed);
+
+
+--
+-- Name: idx_plan_ai_billing_events_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_plan_ai_billing_events_type ON public.plan_ai_billing_events USING btree (event_type);
+
+
+--
+-- Name: idx_plan_ai_provider_configs_plan_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_plan_ai_provider_configs_plan_id ON public.plan_ai_provider_configs USING btree (plan_id);
+
+
+--
+-- Name: idx_plan_ai_provider_configs_provider; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_plan_ai_provider_configs_provider ON public.plan_ai_provider_configs USING btree (provider);
+
+
+--
+-- Name: idx_plan_ai_usage_tracking_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_plan_ai_usage_tracking_company_id ON public.plan_ai_usage_tracking USING btree (company_id);
+
+
+--
+-- Name: idx_plan_ai_usage_tracking_date; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_plan_ai_usage_tracking_date ON public.plan_ai_usage_tracking USING btree (usage_date);
+
+
+--
+-- Name: idx_plan_ai_usage_tracking_month_year; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_plan_ai_usage_tracking_month_year ON public.plan_ai_usage_tracking USING btree (usage_year, usage_month);
+
+
+--
+-- Name: idx_plan_ai_usage_tracking_plan_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_plan_ai_usage_tracking_plan_id ON public.plan_ai_usage_tracking USING btree (plan_id);
+
+
+--
+-- Name: idx_plan_ai_usage_tracking_provider; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_plan_ai_usage_tracking_provider ON public.plan_ai_usage_tracking USING btree (provider);
+
+
+--
+-- Name: idx_plan_changes_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_plan_changes_company_id ON public.subscription_plan_changes USING btree (company_id);
+
+
+--
+-- Name: idx_plan_changes_effective_date; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_plan_changes_effective_date ON public.subscription_plan_changes USING btree (effective_date);
+
+
+--
+-- Name: idx_plan_changes_processed; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_plan_changes_processed ON public.subscription_plan_changes USING btree (processed);
+
+
+--
+-- Name: idx_plans_billing_interval; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_plans_billing_interval ON public.plans USING btree (billing_interval);
+
+
+--
+-- Name: idx_quick_reply_templates_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_quick_reply_templates_active ON public.quick_reply_templates USING btree (is_active);
+
+
+--
+-- Name: idx_quick_reply_templates_category; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_quick_reply_templates_category ON public.quick_reply_templates USING btree (category);
+
+
+--
+-- Name: idx_quick_reply_templates_company_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_quick_reply_templates_company_active ON public.quick_reply_templates USING btree (company_id, is_active);
+
+
+--
+-- Name: idx_quick_reply_templates_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_quick_reply_templates_company_id ON public.quick_reply_templates USING btree (company_id);
+
+
+--
+-- Name: idx_quick_reply_templates_created_by; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_quick_reply_templates_created_by ON public.quick_reply_templates USING btree (created_by_id);
+
+
+--
+-- Name: idx_quick_reply_templates_sort_order; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_quick_reply_templates_sort_order ON public.quick_reply_templates USING btree (sort_order);
+
+
+--
+-- Name: idx_quick_reply_templates_usage_count; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_quick_reply_templates_usage_count ON public.quick_reply_templates USING btree (usage_count);
+
+
+--
+-- Name: idx_scheduled_messages_channel_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_scheduled_messages_channel_id ON public.scheduled_messages USING btree (channel_id);
+
+
+--
+-- Name: idx_scheduled_messages_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_scheduled_messages_company_id ON public.scheduled_messages USING btree (company_id);
+
+
+--
+-- Name: idx_scheduled_messages_conversation_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_scheduled_messages_conversation_id ON public.scheduled_messages USING btree (conversation_id);
+
+
+--
+-- Name: idx_scheduled_messages_created_by; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_scheduled_messages_created_by ON public.scheduled_messages USING btree (created_by);
+
+
+--
+-- Name: idx_scheduled_messages_scheduled_for; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_scheduled_messages_scheduled_for ON public.scheduled_messages USING btree (scheduled_for);
+
+
+--
+-- Name: idx_scheduled_messages_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_scheduled_messages_status ON public.scheduled_messages USING btree (status);
+
+
+--
+-- Name: idx_subscription_events_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_subscription_events_company_id ON public.subscription_events USING btree (company_id);
+
+
+--
+-- Name: idx_subscription_events_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_subscription_events_created_at ON public.subscription_events USING btree (created_at);
+
+
+--
+-- Name: idx_subscription_events_event_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_subscription_events_event_type ON public.subscription_events USING btree (event_type);
+
+
+--
+-- Name: idx_system_ai_credentials_default; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_system_ai_credentials_default ON public.system_ai_credentials USING btree (provider, is_default) WHERE (is_default = true);
+
+
+--
+-- Name: idx_system_ai_credentials_provider; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_system_ai_credentials_provider ON public.system_ai_credentials USING btree (provider, is_active);
+
+
+--
+-- Name: idx_system_updates_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_system_updates_created_at ON public.system_updates USING btree (created_at DESC);
+
+
+--
+-- Name: idx_system_updates_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_system_updates_status ON public.system_updates USING btree (status);
+
+
+--
+-- Name: idx_system_updates_version; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_system_updates_version ON public.system_updates USING btree (version);
+
+
+--
+-- Name: idx_task_categories_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_task_categories_company_id ON public.task_categories USING btree (company_id);
+
+
+--
+-- Name: idx_team_invitations_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_team_invitations_company_id ON public.team_invitations USING btree (company_id);
+
+
+--
+-- Name: idx_team_invitations_email; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_team_invitations_email ON public.team_invitations USING btree (email);
+
+
+--
+-- Name: idx_team_invitations_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_team_invitations_status ON public.team_invitations USING btree (status);
+
+
+--
+-- Name: idx_team_invitations_token; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_team_invitations_token ON public.team_invitations USING btree (token);
+
+
+--
+-- Name: idx_translation_keys_namespace; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_translation_keys_namespace ON public.translation_keys USING btree (namespace_id);
+
+
+--
+-- Name: idx_translations_key_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_translations_key_id ON public.translations USING btree (key_id);
+
+
+--
+-- Name: idx_translations_language_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_translations_language_id ON public.translations USING btree (language_id);
+
+
+--
+-- Name: idx_unique_active_contact_deal; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX idx_unique_active_contact_deal ON public.deals USING btree (company_id, contact_id) WHERE (status = 'active'::text);
+
+
+--
+-- Name: INDEX idx_unique_active_contact_deal; Type: COMMENT; Schema: public; Owner: postgres
+--
+
+COMMENT ON INDEX public.idx_unique_active_contact_deal IS 'Ensures only one active deal per contact per company to prevent duplicates';
+
+
+--
+-- Name: idx_usage_tracking_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_usage_tracking_company_id ON public.subscription_usage_tracking USING btree (company_id);
+
+
+--
+-- Name: idx_usage_tracking_hard_limit; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_usage_tracking_hard_limit ON public.subscription_usage_tracking USING btree (hard_limit_reached);
+
+
+--
+-- Name: idx_usage_tracking_metric_name; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_usage_tracking_metric_name ON public.subscription_usage_tracking USING btree (metric_name);
+
+
+--
+-- Name: idx_usage_tracking_soft_limit; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_usage_tracking_soft_limit ON public.subscription_usage_tracking USING btree (soft_limit_reached);
+
+
+--
+-- Name: idx_user_social_accounts_provider; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_user_social_accounts_provider ON public.user_social_accounts USING btree (provider);
+
+
+--
+-- Name: idx_user_social_accounts_provider_email; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_user_social_accounts_provider_email ON public.user_social_accounts USING btree (provider_email);
+
+
+--
+-- Name: idx_user_social_accounts_provider_user_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_user_social_accounts_provider_user_id ON public.user_social_accounts USING btree (provider_user_id);
+
+
+--
+-- Name: idx_user_social_accounts_user_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_user_social_accounts_user_id ON public.user_social_accounts USING btree (user_id);
+
+
+--
+-- Name: idx_users_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_users_active ON public.users USING btree (active);
+
+
+--
+-- Name: idx_users_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_users_company_id ON public.users USING btree (company_id);
+
+
+--
+-- Name: idx_users_company_role; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_users_company_role ON public.users USING btree (company_id, role);
+
+
+--
+-- Name: idx_users_email; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_users_email ON public.users USING btree (email);
+
+
+--
+-- Name: idx_users_language_preference; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_users_language_preference ON public.users USING btree (language_preference);
+
+
+--
+-- Name: idx_users_role; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_users_role ON public.users USING btree (role);
+
+
+--
+-- Name: idx_users_username_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_users_username_active ON public.users USING btree (username) WHERE (is_super_admin = false);
+
+
+--
+-- Name: idx_website_assets_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_website_assets_type ON public.website_assets USING btree (asset_type);
+
+
+--
+-- Name: idx_website_assets_website_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_website_assets_website_id ON public.website_assets USING btree (website_id);
+
+
+--
+-- Name: idx_website_templates_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_website_templates_active ON public.website_templates USING btree (is_active);
+
+
+--
+-- Name: idx_website_templates_category; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_website_templates_category ON public.website_templates USING btree (category);
+
+
+--
+-- Name: idx_website_templates_created_by; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_website_templates_created_by ON public.website_templates USING btree (created_by_id);
+
+
+--
+-- Name: idx_websites_created_by; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_websites_created_by ON public.websites USING btree (created_by_id);
+
+
+--
+-- Name: idx_websites_published_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_websites_published_at ON public.websites USING btree (published_at);
+
+
+--
+-- Name: idx_websites_slug; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_websites_slug ON public.websites USING btree (slug);
+
+
+--
+-- Name: idx_websites_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_websites_status ON public.websites USING btree (status);
+
+
+--
+-- Name: idx_whatsapp_account_logs_account_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_whatsapp_account_logs_account_id ON public.whatsapp_account_logs USING btree (account_id);
+
+
+--
+-- Name: idx_whatsapp_account_logs_created_at; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_whatsapp_account_logs_created_at ON public.whatsapp_account_logs USING btree (created_at DESC);
+
+
+--
+-- Name: idx_whatsapp_account_logs_event_type; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_whatsapp_account_logs_event_type ON public.whatsapp_account_logs USING btree (event_type);
+
+
+--
+-- Name: idx_whatsapp_account_logs_severity; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_whatsapp_account_logs_severity ON public.whatsapp_account_logs USING btree (severity);
+
+
+--
+-- Name: idx_whatsapp_accounts_company_active; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_whatsapp_accounts_company_active ON public.whatsapp_accounts USING btree (company_id, is_active);
+
+
+--
+-- Name: idx_whatsapp_accounts_company_id; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_whatsapp_accounts_company_id ON public.whatsapp_accounts USING btree (company_id);
+
+
+--
+-- Name: idx_whatsapp_accounts_connection_status; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_whatsapp_accounts_connection_status ON public.whatsapp_accounts USING btree (connection_status);
+
+
+--
+-- Name: idx_whatsapp_accounts_health_activity; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_whatsapp_accounts_health_activity ON public.whatsapp_accounts USING btree (health_score, last_activity_at);
+
+
+--
+-- Name: idx_whatsapp_accounts_health_score; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_whatsapp_accounts_health_score ON public.whatsapp_accounts USING btree (health_score);
+
+
+--
+-- Name: idx_whatsapp_accounts_message_counts; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_whatsapp_accounts_message_counts ON public.whatsapp_accounts USING btree (message_count_today, message_count_hour);
+
+
+--
+-- Name: idx_whatsapp_accounts_rotation_group; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_whatsapp_accounts_rotation_group ON public.whatsapp_accounts USING btree (rotation_group);
+
+
+--
+-- Name: idx_whatsapp_proxy_servers_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_whatsapp_proxy_servers_company ON public.whatsapp_proxy_servers USING btree (company_id);
+
+
+--
+-- Name: idx_whatsapp_proxy_servers_enabled; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_whatsapp_proxy_servers_enabled ON public.whatsapp_proxy_servers USING btree (company_id, enabled);
+
+
+--
+-- Name: idx_zoho_calendar_tokens_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_zoho_calendar_tokens_company ON public.zoho_calendar_tokens USING btree (company_id);
+
+
+--
+-- Name: idx_zoho_calendar_tokens_user_company; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX idx_zoho_calendar_tokens_user_company ON public.zoho_calendar_tokens USING btree (user_id, company_id);
+
+
+--
+-- Name: companies subscription_consistency_trigger; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER subscription_consistency_trigger BEFORE INSERT OR UPDATE ON public.companies FOR EACH ROW EXECUTE FUNCTION public.validate_subscription_consistency();
+
+
+--
+-- Name: campaign_queue trigger_campaign_queue_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_campaign_queue_updated_at BEFORE UPDATE ON public.campaign_queue FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+
+--
+-- Name: campaign_recipients trigger_campaign_recipients_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_campaign_recipients_updated_at BEFORE UPDATE ON public.campaign_recipients FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+
+--
+-- Name: campaign_templates trigger_campaign_templates_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_campaign_templates_updated_at BEFORE UPDATE ON public.campaign_templates FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+
+--
+-- Name: campaigns trigger_campaigns_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_campaigns_updated_at BEFORE UPDATE ON public.campaigns FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+
+--
+-- Name: deals trigger_check_deal_stage_company_match; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_check_deal_stage_company_match BEFORE INSERT OR UPDATE ON public.deals FOR EACH ROW EXECUTE FUNCTION public.check_deal_stage_company_match();
+
+
+--
+-- Name: contact_segments trigger_contact_segments_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_contact_segments_updated_at BEFORE UPDATE ON public.contact_segments FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+
+--
+-- Name: companies trigger_create_company_pipeline_stages; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_create_company_pipeline_stages AFTER INSERT ON public.companies FOR EACH ROW EXECUTE FUNCTION public.create_company_pipeline_stages();
+
+
+--
+-- Name: companies trigger_create_company_role_permissions; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_create_company_role_permissions AFTER INSERT ON public.companies FOR EACH ROW EXECUTE FUNCTION public.create_company_role_permissions();
+
+
+--
+-- Name: coupon_usage trigger_log_coupon_usage; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_log_coupon_usage AFTER INSERT ON public.coupon_usage FOR EACH ROW EXECUTE FUNCTION public.log_coupon_usage();
+
+
+--
+-- Name: messages trigger_messages_unread_count; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_messages_unread_count AFTER INSERT OR DELETE OR UPDATE ON public.messages FOR EACH ROW EXECUTE FUNCTION public.trigger_update_unread_count();
+
+
+--
+-- Name: company_pages trigger_set_company_pages_published_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_set_company_pages_published_at BEFORE UPDATE ON public.company_pages FOR EACH ROW EXECUTE FUNCTION public.set_company_pages_published_at();
+
+
+--
+-- Name: affiliate_earnings_transactions trigger_update_affiliate_earnings_balance; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_update_affiliate_earnings_balance AFTER INSERT ON public.affiliate_earnings_transactions FOR EACH ROW EXECUTE FUNCTION public.update_affiliate_earnings_balance();
+
+
+--
+-- Name: campaign_recipients trigger_update_campaign_stats; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_update_campaign_stats AFTER INSERT OR DELETE OR UPDATE ON public.campaign_recipients FOR EACH ROW EXECUTE FUNCTION public.update_campaign_stats();
+
+
+--
+-- Name: company_pages trigger_update_company_pages_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_update_company_pages_updated_at BEFORE UPDATE ON public.company_pages FOR EACH ROW EXECUTE FUNCTION public.update_company_pages_updated_at();
+
+
+--
+-- Name: contacts trigger_update_segment_count; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_update_segment_count AFTER INSERT OR DELETE OR UPDATE ON public.contacts FOR EACH ROW EXECUTE FUNCTION public.update_segment_count();
+
+
+--
+-- Name: campaigns trigger_update_template_usage; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_update_template_usage AFTER INSERT ON public.campaigns FOR EACH ROW EXECUTE FUNCTION public.update_template_usage();
+
+
+--
+-- Name: companies trigger_update_usage_timestamp; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_update_usage_timestamp BEFORE UPDATE ON public.companies FOR EACH ROW EXECUTE FUNCTION public.update_usage_timestamp();
+
+
+--
+-- Name: user_social_accounts trigger_update_user_social_accounts_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_update_user_social_accounts_updated_at BEFORE UPDATE ON public.user_social_accounts FOR EACH ROW EXECUTE FUNCTION public.update_user_social_accounts_updated_at();
+
+
+--
+-- Name: whatsapp_accounts trigger_update_whatsapp_account_health; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_update_whatsapp_account_health AFTER UPDATE OF warning_count, restriction_count ON public.whatsapp_accounts FOR EACH ROW EXECUTE FUNCTION public.update_whatsapp_account_health();
+
+
+--
+-- Name: whatsapp_accounts trigger_whatsapp_accounts_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER trigger_whatsapp_accounts_updated_at BEFORE UPDATE ON public.whatsapp_accounts FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+
+--
+-- Name: backup_schedules update_backup_schedules_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER update_backup_schedules_updated_at BEFORE UPDATE ON public.backup_schedules FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+
+--
+-- Name: company_ai_credentials update_company_ai_credentials_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER update_company_ai_credentials_updated_at BEFORE UPDATE ON public.company_ai_credentials FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+
+--
+-- Name: company_ai_preferences update_company_ai_preferences_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER update_company_ai_preferences_updated_at BEFORE UPDATE ON public.company_ai_preferences FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+
+--
+-- Name: coupon_codes update_coupon_codes_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER update_coupon_codes_updated_at BEFORE UPDATE ON public.coupon_codes FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+
+--
+-- Name: inbox_backups update_inbox_backups_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER update_inbox_backups_updated_at BEFORE UPDATE ON public.inbox_backups FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+
+--
+-- Name: inbox_restores update_inbox_restores_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER update_inbox_restores_updated_at BEFORE UPDATE ON public.inbox_restores FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+
+--
+-- Name: system_ai_credentials update_system_ai_credentials_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER update_system_ai_credentials_updated_at BEFORE UPDATE ON public.system_ai_credentials FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+
+--
+-- Name: system_updates update_system_updates_updated_at; Type: TRIGGER; Schema: public; Owner: postgres
+--
+
+CREATE TRIGGER update_system_updates_updated_at BEFORE UPDATE ON public.system_updates FOR EACH ROW EXECUTE FUNCTION public.update_updated_at_column();
+
+
+--
+-- Name: affiliate_analytics affiliate_analytics_affiliate_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_analytics
+    ADD CONSTRAINT affiliate_analytics_affiliate_id_fkey FOREIGN KEY (affiliate_id) REFERENCES public.affiliates(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_analytics affiliate_analytics_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_analytics
+    ADD CONSTRAINT affiliate_analytics_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_applications affiliate_applications_reviewed_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_applications
+    ADD CONSTRAINT affiliate_applications_reviewed_by_fkey FOREIGN KEY (reviewed_by) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: affiliate_clicks affiliate_clicks_affiliate_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_clicks
+    ADD CONSTRAINT affiliate_clicks_affiliate_id_fkey FOREIGN KEY (affiliate_id) REFERENCES public.affiliates(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_clicks affiliate_clicks_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_clicks
+    ADD CONSTRAINT affiliate_clicks_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_clicks affiliate_clicks_referral_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_clicks
+    ADD CONSTRAINT affiliate_clicks_referral_id_fkey FOREIGN KEY (referral_id) REFERENCES public.affiliate_referrals(id) ON DELETE SET NULL;
+
+
+--
+-- Name: affiliate_commission_structures affiliate_commission_structures_affiliate_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_commission_structures
+    ADD CONSTRAINT affiliate_commission_structures_affiliate_id_fkey FOREIGN KEY (affiliate_id) REFERENCES public.affiliates(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_commission_structures affiliate_commission_structures_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_commission_structures
+    ADD CONSTRAINT affiliate_commission_structures_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_commission_structures affiliate_commission_structures_plan_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_commission_structures
+    ADD CONSTRAINT affiliate_commission_structures_plan_id_fkey FOREIGN KEY (plan_id) REFERENCES public.plans(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_earnings_balance affiliate_earnings_balance_affiliate_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_earnings_balance
+    ADD CONSTRAINT affiliate_earnings_balance_affiliate_id_fkey FOREIGN KEY (affiliate_id) REFERENCES public.affiliates(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_earnings_balance affiliate_earnings_balance_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_earnings_balance
+    ADD CONSTRAINT affiliate_earnings_balance_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_earnings_transactions affiliate_earnings_transactions_affiliate_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_earnings_transactions
+    ADD CONSTRAINT affiliate_earnings_transactions_affiliate_id_fkey FOREIGN KEY (affiliate_id) REFERENCES public.affiliates(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_earnings_transactions affiliate_earnings_transactions_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_earnings_transactions
+    ADD CONSTRAINT affiliate_earnings_transactions_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_earnings_transactions affiliate_earnings_transactions_payment_transaction_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_earnings_transactions
+    ADD CONSTRAINT affiliate_earnings_transactions_payment_transaction_id_fkey FOREIGN KEY (payment_transaction_id) REFERENCES public.payment_transactions(id) ON DELETE SET NULL;
+
+
+--
+-- Name: affiliate_earnings_transactions affiliate_earnings_transactions_payout_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_earnings_transactions
+    ADD CONSTRAINT affiliate_earnings_transactions_payout_id_fkey FOREIGN KEY (payout_id) REFERENCES public.affiliate_payouts(id) ON DELETE SET NULL;
+
+
+--
+-- Name: affiliate_earnings_transactions affiliate_earnings_transactions_referral_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_earnings_transactions
+    ADD CONSTRAINT affiliate_earnings_transactions_referral_id_fkey FOREIGN KEY (referral_id) REFERENCES public.affiliate_referrals(id) ON DELETE SET NULL;
+
+
+--
+-- Name: affiliate_payouts affiliate_payouts_affiliate_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_payouts
+    ADD CONSTRAINT affiliate_payouts_affiliate_id_fkey FOREIGN KEY (affiliate_id) REFERENCES public.affiliates(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_payouts affiliate_payouts_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_payouts
+    ADD CONSTRAINT affiliate_payouts_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_payouts affiliate_payouts_processed_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_payouts
+    ADD CONSTRAINT affiliate_payouts_processed_by_fkey FOREIGN KEY (processed_by) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: affiliate_referrals affiliate_referrals_affiliate_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_referrals
+    ADD CONSTRAINT affiliate_referrals_affiliate_id_fkey FOREIGN KEY (affiliate_id) REFERENCES public.affiliates(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_referrals affiliate_referrals_commission_structure_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_referrals
+    ADD CONSTRAINT affiliate_referrals_commission_structure_id_fkey FOREIGN KEY (commission_structure_id) REFERENCES public.affiliate_commission_structures(id) ON DELETE SET NULL;
+
+
+--
+-- Name: affiliate_referrals affiliate_referrals_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_referrals
+    ADD CONSTRAINT affiliate_referrals_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_referrals affiliate_referrals_referred_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_referrals
+    ADD CONSTRAINT affiliate_referrals_referred_company_id_fkey FOREIGN KEY (referred_company_id) REFERENCES public.companies(id) ON DELETE SET NULL;
+
+
+--
+-- Name: affiliate_referrals affiliate_referrals_referred_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_referrals
+    ADD CONSTRAINT affiliate_referrals_referred_user_id_fkey FOREIGN KEY (referred_user_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: affiliate_relationships affiliate_relationships_child_affiliate_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_relationships
+    ADD CONSTRAINT affiliate_relationships_child_affiliate_id_fkey FOREIGN KEY (child_affiliate_id) REFERENCES public.affiliates(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_relationships affiliate_relationships_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_relationships
+    ADD CONSTRAINT affiliate_relationships_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliate_relationships affiliate_relationships_parent_affiliate_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliate_relationships
+    ADD CONSTRAINT affiliate_relationships_parent_affiliate_id_fkey FOREIGN KEY (parent_affiliate_id) REFERENCES public.affiliates(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliates affiliates_approved_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliates
+    ADD CONSTRAINT affiliates_approved_by_fkey FOREIGN KEY (approved_by) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: affiliates affiliates_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliates
+    ADD CONSTRAINT affiliates_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: affiliates affiliates_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.affiliates
+    ADD CONSTRAINT affiliates_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: ai_credential_usage ai_credential_usage_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ai_credential_usage
+    ADD CONSTRAINT ai_credential_usage_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: ai_credential_usage ai_credential_usage_conversation_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ai_credential_usage
+    ADD CONSTRAINT ai_credential_usage_conversation_id_fkey FOREIGN KEY (conversation_id) REFERENCES public.conversations(id) ON DELETE SET NULL;
+
+
+--
+-- Name: ai_credential_usage ai_credential_usage_flow_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.ai_credential_usage
+    ADD CONSTRAINT ai_credential_usage_flow_id_fkey FOREIGN KEY (flow_id) REFERENCES public.flows(id) ON DELETE SET NULL;
+
+
+--
+-- Name: api_keys api_keys_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.api_keys
+    ADD CONSTRAINT api_keys_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: api_keys api_keys_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.api_keys
+    ADD CONSTRAINT api_keys_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: api_rate_limits api_rate_limits_api_key_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.api_rate_limits
+    ADD CONSTRAINT api_rate_limits_api_key_id_fkey FOREIGN KEY (api_key_id) REFERENCES public.api_keys(id) ON DELETE CASCADE;
+
+
+--
+-- Name: api_usage api_usage_api_key_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.api_usage
+    ADD CONSTRAINT api_usage_api_key_id_fkey FOREIGN KEY (api_key_id) REFERENCES public.api_keys(id) ON DELETE CASCADE;
+
+
+--
+-- Name: api_usage api_usage_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.api_usage
+    ADD CONSTRAINT api_usage_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: backup_audit_logs backup_audit_logs_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.backup_audit_logs
+    ADD CONSTRAINT backup_audit_logs_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: backup_audit_logs backup_audit_logs_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.backup_audit_logs
+    ADD CONSTRAINT backup_audit_logs_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: backup_schedules backup_schedules_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.backup_schedules
+    ADD CONSTRAINT backup_schedules_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: backup_schedules backup_schedules_created_by_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.backup_schedules
+    ADD CONSTRAINT backup_schedules_created_by_user_id_fkey FOREIGN KEY (created_by_user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: calendly_calendar_tokens calendly_calendar_tokens_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.calendly_calendar_tokens
+    ADD CONSTRAINT calendly_calendar_tokens_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: calendly_calendar_tokens calendly_calendar_tokens_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.calendly_calendar_tokens
+    ADD CONSTRAINT calendly_calendar_tokens_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: calls calls_channel_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.calls
+    ADD CONSTRAINT calls_channel_id_fkey FOREIGN KEY (channel_id) REFERENCES public.channel_connections(id);
+
+
+--
+-- Name: calls calls_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.calls
+    ADD CONSTRAINT calls_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id);
+
+
+--
+-- Name: calls calls_contact_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.calls
+    ADD CONSTRAINT calls_contact_id_fkey FOREIGN KEY (contact_id) REFERENCES public.contacts(id);
+
+
+--
+-- Name: calls calls_conversation_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.calls
+    ADD CONSTRAINT calls_conversation_id_fkey FOREIGN KEY (conversation_id) REFERENCES public.conversations(id);
+
+
+--
+-- Name: campaign_analytics campaign_analytics_campaign_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_analytics
+    ADD CONSTRAINT campaign_analytics_campaign_id_fkey FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_messages campaign_messages_campaign_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_messages
+    ADD CONSTRAINT campaign_messages_campaign_id_fkey FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_messages campaign_messages_message_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_messages
+    ADD CONSTRAINT campaign_messages_message_id_fkey FOREIGN KEY (message_id) REFERENCES public.messages(id) ON DELETE SET NULL;
+
+
+--
+-- Name: campaign_messages campaign_messages_recipient_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_messages
+    ADD CONSTRAINT campaign_messages_recipient_id_fkey FOREIGN KEY (recipient_id) REFERENCES public.campaign_recipients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_queue campaign_queue_account_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_queue
+    ADD CONSTRAINT campaign_queue_account_id_fkey FOREIGN KEY (account_id) REFERENCES public.channel_connections(id) ON DELETE SET NULL;
+
+
+--
+-- Name: campaign_queue campaign_queue_campaign_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_queue
+    ADD CONSTRAINT campaign_queue_campaign_id_fkey FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_queue campaign_queue_recipient_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_queue
+    ADD CONSTRAINT campaign_queue_recipient_id_fkey FOREIGN KEY (recipient_id) REFERENCES public.campaign_recipients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_recipients campaign_recipients_campaign_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_recipients
+    ADD CONSTRAINT campaign_recipients_campaign_id_fkey FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_recipients campaign_recipients_contact_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_recipients
+    ADD CONSTRAINT campaign_recipients_contact_id_fkey FOREIGN KEY (contact_id) REFERENCES public.contacts(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_recipients campaign_recipients_conversation_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_recipients
+    ADD CONSTRAINT campaign_recipients_conversation_id_fkey FOREIGN KEY (conversation_id) REFERENCES public.conversations(id) ON DELETE SET NULL;
+
+
+--
+-- Name: campaign_templates campaign_templates_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_templates
+    ADD CONSTRAINT campaign_templates_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_templates campaign_templates_connection_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_templates
+    ADD CONSTRAINT campaign_templates_connection_id_fkey FOREIGN KEY (connection_id) REFERENCES public.channel_connections(id);
+
+
+--
+-- Name: campaign_templates campaign_templates_created_by_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaign_templates
+    ADD CONSTRAINT campaign_templates_created_by_id_fkey FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaigns campaigns_channel_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaigns
+    ADD CONSTRAINT campaigns_channel_id_fkey FOREIGN KEY (channel_id) REFERENCES public.channel_connections(id) ON DELETE SET NULL;
+
+
+--
+-- Name: campaigns campaigns_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaigns
+    ADD CONSTRAINT campaigns_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaigns campaigns_created_by_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaigns
+    ADD CONSTRAINT campaigns_created_by_id_fkey FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaigns campaigns_segment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaigns
+    ADD CONSTRAINT campaigns_segment_id_fkey FOREIGN KEY (segment_id) REFERENCES public.contact_segments(id) ON DELETE SET NULL;
+
+
+--
+-- Name: campaigns campaigns_template_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.campaigns
+    ADD CONSTRAINT campaigns_template_id_fkey FOREIGN KEY (template_id) REFERENCES public.campaign_templates(id) ON DELETE SET NULL;
+
+
+--
+-- Name: channel_connections channel_connections_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.channel_connections
+    ADD CONSTRAINT channel_connections_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: channel_connections channel_connections_proxy_server_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.channel_connections
+    ADD CONSTRAINT channel_connections_proxy_server_id_fkey FOREIGN KEY (proxy_server_id) REFERENCES public.whatsapp_proxy_servers(id) ON DELETE SET NULL;
+
+
+--
+-- Name: channel_connections channel_connections_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.channel_connections
+    ADD CONSTRAINT channel_connections_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: companies companies_plan_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.companies
+    ADD CONSTRAINT companies_plan_id_fkey FOREIGN KEY (plan_id) REFERENCES public.plans(id) ON DELETE SET NULL;
+
+
+--
+-- Name: company_ai_credentials company_ai_credentials_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_ai_credentials
+    ADD CONSTRAINT company_ai_credentials_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: company_ai_preferences company_ai_preferences_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_ai_preferences
+    ADD CONSTRAINT company_ai_preferences_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: company_pages company_pages_author_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_pages
+    ADD CONSTRAINT company_pages_author_id_fkey FOREIGN KEY (author_id) REFERENCES public.users(id);
+
+
+--
+-- Name: company_pages company_pages_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_pages
+    ADD CONSTRAINT company_pages_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: company_settings company_settings_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.company_settings
+    ADD CONSTRAINT company_settings_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: contact_appointments contact_appointments_contact_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_appointments
+    ADD CONSTRAINT contact_appointments_contact_id_fkey FOREIGN KEY (contact_id) REFERENCES public.contacts(id) ON DELETE CASCADE;
+
+
+--
+-- Name: contact_appointments contact_appointments_created_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_appointments
+    ADD CONSTRAINT contact_appointments_created_by_fkey FOREIGN KEY (created_by) REFERENCES public.users(id);
+
+
+--
+-- Name: contact_audit_logs contact_audit_logs_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_audit_logs
+    ADD CONSTRAINT contact_audit_logs_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: contact_audit_logs contact_audit_logs_contact_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_audit_logs
+    ADD CONSTRAINT contact_audit_logs_contact_id_fkey FOREIGN KEY (contact_id) REFERENCES public.contacts(id) ON DELETE CASCADE;
+
+
+--
+-- Name: contact_audit_logs contact_audit_logs_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_audit_logs
+    ADD CONSTRAINT contact_audit_logs_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: contact_documents contact_documents_contact_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_documents
+    ADD CONSTRAINT contact_documents_contact_id_fkey FOREIGN KEY (contact_id) REFERENCES public.contacts(id) ON DELETE CASCADE;
+
+
+--
+-- Name: contact_documents contact_documents_uploaded_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_documents
+    ADD CONSTRAINT contact_documents_uploaded_by_fkey FOREIGN KEY (uploaded_by) REFERENCES public.users(id);
+
+
+--
+-- Name: contact_segments contact_segments_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_segments
+    ADD CONSTRAINT contact_segments_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: contact_segments contact_segments_created_by_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_segments
+    ADD CONSTRAINT contact_segments_created_by_id_fkey FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: contact_tasks contact_tasks_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_tasks
+    ADD CONSTRAINT contact_tasks_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: contact_tasks contact_tasks_contact_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_tasks
+    ADD CONSTRAINT contact_tasks_contact_id_fkey FOREIGN KEY (contact_id) REFERENCES public.contacts(id) ON DELETE CASCADE;
+
+
+--
+-- Name: contact_tasks contact_tasks_created_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_tasks
+    ADD CONSTRAINT contact_tasks_created_by_fkey FOREIGN KEY (created_by) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: contact_tasks contact_tasks_updated_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contact_tasks
+    ADD CONSTRAINT contact_tasks_updated_by_fkey FOREIGN KEY (updated_by) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: contacts contacts_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contacts
+    ADD CONSTRAINT contacts_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: conversations conversations_assigned_to_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.conversations
+    ADD CONSTRAINT conversations_assigned_to_user_id_fkey FOREIGN KEY (assigned_to_user_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: conversations conversations_channel_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.conversations
+    ADD CONSTRAINT conversations_channel_id_fkey FOREIGN KEY (channel_id) REFERENCES public.channel_connections(id) ON DELETE CASCADE;
+
+
+--
+-- Name: conversations conversations_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.conversations
+    ADD CONSTRAINT conversations_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: conversations conversations_contact_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.conversations
+    ADD CONSTRAINT conversations_contact_id_fkey FOREIGN KEY (contact_id) REFERENCES public.contacts(id) ON DELETE CASCADE;
+
+
+--
+-- Name: coupon_codes coupon_codes_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coupon_codes
+    ADD CONSTRAINT coupon_codes_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: coupon_codes coupon_codes_created_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coupon_codes
+    ADD CONSTRAINT coupon_codes_created_by_fkey FOREIGN KEY (created_by) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: coupon_usage coupon_usage_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coupon_usage
+    ADD CONSTRAINT coupon_usage_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: coupon_usage coupon_usage_coupon_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coupon_usage
+    ADD CONSTRAINT coupon_usage_coupon_id_fkey FOREIGN KEY (coupon_id) REFERENCES public.coupon_codes(id) ON DELETE CASCADE;
+
+
+--
+-- Name: coupon_usage coupon_usage_payment_transaction_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coupon_usage
+    ADD CONSTRAINT coupon_usage_payment_transaction_id_fkey FOREIGN KEY (payment_transaction_id) REFERENCES public.payment_transactions(id) ON DELETE SET NULL;
+
+
+--
+-- Name: coupon_usage coupon_usage_plan_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coupon_usage
+    ADD CONSTRAINT coupon_usage_plan_id_fkey FOREIGN KEY (plan_id) REFERENCES public.plans(id) ON DELETE SET NULL;
+
+
+--
+-- Name: coupon_usage coupon_usage_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.coupon_usage
+    ADD CONSTRAINT coupon_usage_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: deal_activities deal_activities_deal_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.deal_activities
+    ADD CONSTRAINT deal_activities_deal_id_fkey FOREIGN KEY (deal_id) REFERENCES public.deals(id) ON DELETE CASCADE;
+
+
+--
+-- Name: deal_activities deal_activities_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.deal_activities
+    ADD CONSTRAINT deal_activities_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: deals deals_assigned_to_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.deals
+    ADD CONSTRAINT deals_assigned_to_user_id_fkey FOREIGN KEY (assigned_to_user_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: deals deals_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.deals
+    ADD CONSTRAINT deals_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: deals deals_contact_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.deals
+    ADD CONSTRAINT deals_contact_id_fkey FOREIGN KEY (contact_id) REFERENCES public.contacts(id) ON DELETE CASCADE;
+
+
+--
+-- Name: deals deals_stage_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.deals
+    ADD CONSTRAINT deals_stage_id_fkey FOREIGN KEY (stage_id) REFERENCES public.pipeline_stages(id) ON DELETE SET NULL;
+
+
+--
+-- Name: dialog_360_channels dialog_360_channels_client_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.dialog_360_channels
+    ADD CONSTRAINT dialog_360_channels_client_id_fkey FOREIGN KEY (client_id) REFERENCES public.dialog_360_clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: dialog_360_clients dialog_360_clients_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.dialog_360_clients
+    ADD CONSTRAINT dialog_360_clients_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: dunning_management dunning_management_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.dunning_management
+    ADD CONSTRAINT dunning_management_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: dunning_management dunning_management_payment_transaction_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.dunning_management
+    ADD CONSTRAINT dunning_management_payment_transaction_id_fkey FOREIGN KEY (payment_transaction_id) REFERENCES public.payment_transactions(id);
+
+
+--
+-- Name: email_attachments email_attachments_message_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.email_attachments
+    ADD CONSTRAINT email_attachments_message_id_fkey FOREIGN KEY (message_id) REFERENCES public.messages(id) ON DELETE CASCADE;
+
+
+--
+-- Name: email_configs email_configs_channel_connection_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.email_configs
+    ADD CONSTRAINT email_configs_channel_connection_id_fkey FOREIGN KEY (channel_connection_id) REFERENCES public.channel_connections(id) ON DELETE CASCADE;
+
+
+--
+-- Name: scheduled_messages fk_scheduled_messages_channel_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.scheduled_messages
+    ADD CONSTRAINT fk_scheduled_messages_channel_id FOREIGN KEY (channel_id) REFERENCES public.channel_connections(id) ON DELETE CASCADE;
+
+
+--
+-- Name: scheduled_messages fk_scheduled_messages_company_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.scheduled_messages
+    ADD CONSTRAINT fk_scheduled_messages_company_id FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: scheduled_messages fk_scheduled_messages_conversation_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.scheduled_messages
+    ADD CONSTRAINT fk_scheduled_messages_conversation_id FOREIGN KEY (conversation_id) REFERENCES public.conversations(id) ON DELETE CASCADE;
+
+
+--
+-- Name: scheduled_messages fk_scheduled_messages_created_by; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.scheduled_messages
+    ADD CONSTRAINT fk_scheduled_messages_created_by FOREIGN KEY (created_by) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: flow_assignments flow_assignments_channel_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_assignments
+    ADD CONSTRAINT flow_assignments_channel_id_fkey FOREIGN KEY (channel_id) REFERENCES public.channel_connections(id) ON DELETE CASCADE;
+
+
+--
+-- Name: flow_assignments flow_assignments_flow_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_assignments
+    ADD CONSTRAINT flow_assignments_flow_id_fkey FOREIGN KEY (flow_id) REFERENCES public.flows(id) ON DELETE CASCADE;
+
+
+--
+-- Name: flow_executions flow_executions_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_executions
+    ADD CONSTRAINT flow_executions_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: flow_executions flow_executions_contact_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_executions
+    ADD CONSTRAINT flow_executions_contact_id_fkey FOREIGN KEY (contact_id) REFERENCES public.contacts(id) ON DELETE CASCADE;
+
+
+--
+-- Name: flow_executions flow_executions_conversation_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_executions
+    ADD CONSTRAINT flow_executions_conversation_id_fkey FOREIGN KEY (conversation_id) REFERENCES public.conversations(id) ON DELETE CASCADE;
+
+
+--
+-- Name: flow_executions flow_executions_flow_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_executions
+    ADD CONSTRAINT flow_executions_flow_id_fkey FOREIGN KEY (flow_id) REFERENCES public.flows(id) ON DELETE CASCADE;
+
+
+--
+-- Name: flow_session_cursors flow_session_cursors_session_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_session_cursors
+    ADD CONSTRAINT flow_session_cursors_session_id_fkey FOREIGN KEY (session_id) REFERENCES public.flow_sessions(session_id) ON DELETE CASCADE;
+
+
+--
+-- Name: flow_session_variables flow_session_variables_session_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_session_variables
+    ADD CONSTRAINT flow_session_variables_session_id_fkey FOREIGN KEY (session_id) REFERENCES public.flow_sessions(session_id) ON DELETE CASCADE;
+
+
+--
+-- Name: flow_sessions flow_sessions_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_sessions
+    ADD CONSTRAINT flow_sessions_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: flow_sessions flow_sessions_contact_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_sessions
+    ADD CONSTRAINT flow_sessions_contact_id_fkey FOREIGN KEY (contact_id) REFERENCES public.contacts(id) ON DELETE CASCADE;
+
+
+--
+-- Name: flow_sessions flow_sessions_conversation_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_sessions
+    ADD CONSTRAINT flow_sessions_conversation_id_fkey FOREIGN KEY (conversation_id) REFERENCES public.conversations(id) ON DELETE CASCADE;
+
+
+--
+-- Name: flow_sessions flow_sessions_flow_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_sessions
+    ADD CONSTRAINT flow_sessions_flow_id_fkey FOREIGN KEY (flow_id) REFERENCES public.flows(id) ON DELETE CASCADE;
+
+
+--
+-- Name: flow_step_executions flow_step_executions_flow_execution_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_step_executions
+    ADD CONSTRAINT flow_step_executions_flow_execution_id_fkey FOREIGN KEY (flow_execution_id) REFERENCES public.flow_executions(id) ON DELETE CASCADE;
+
+
+--
+-- Name: flow_step_executions flow_step_executions_session_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flow_step_executions
+    ADD CONSTRAINT flow_step_executions_session_id_fkey FOREIGN KEY (session_id) REFERENCES public.flow_sessions(session_id) ON DELETE CASCADE;
+
+
+--
+-- Name: flows flows_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flows
+    ADD CONSTRAINT flows_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: flows flows_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.flows
+    ADD CONSTRAINT flows_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: follow_up_execution_log follow_up_execution_log_schedule_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_execution_log
+    ADD CONSTRAINT follow_up_execution_log_schedule_id_fkey FOREIGN KEY (schedule_id) REFERENCES public.follow_up_schedules(schedule_id) ON DELETE CASCADE;
+
+
+--
+-- Name: follow_up_schedules follow_up_schedules_channel_connection_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_schedules
+    ADD CONSTRAINT follow_up_schedules_channel_connection_id_fkey FOREIGN KEY (channel_connection_id) REFERENCES public.channel_connections(id);
+
+
+--
+-- Name: follow_up_schedules follow_up_schedules_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_schedules
+    ADD CONSTRAINT follow_up_schedules_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: follow_up_schedules follow_up_schedules_contact_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_schedules
+    ADD CONSTRAINT follow_up_schedules_contact_id_fkey FOREIGN KEY (contact_id) REFERENCES public.contacts(id) ON DELETE CASCADE;
+
+
+--
+-- Name: follow_up_schedules follow_up_schedules_conversation_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_schedules
+    ADD CONSTRAINT follow_up_schedules_conversation_id_fkey FOREIGN KEY (conversation_id) REFERENCES public.conversations(id) ON DELETE CASCADE;
+
+
+--
+-- Name: follow_up_schedules follow_up_schedules_flow_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_schedules
+    ADD CONSTRAINT follow_up_schedules_flow_id_fkey FOREIGN KEY (flow_id) REFERENCES public.flows(id) ON DELETE CASCADE;
+
+
+--
+-- Name: follow_up_schedules follow_up_schedules_session_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_schedules
+    ADD CONSTRAINT follow_up_schedules_session_id_fkey FOREIGN KEY (session_id) REFERENCES public.flow_sessions(session_id) ON DELETE CASCADE;
+
+
+--
+-- Name: follow_up_templates follow_up_templates_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_templates
+    ADD CONSTRAINT follow_up_templates_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: follow_up_templates follow_up_templates_created_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.follow_up_templates
+    ADD CONSTRAINT follow_up_templates_created_by_fkey FOREIGN KEY (created_by) REFERENCES public.users(id);
+
+
+--
+-- Name: google_calendar_tokens google_calendar_tokens_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.google_calendar_tokens
+    ADD CONSTRAINT google_calendar_tokens_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: google_calendar_tokens google_calendar_tokens_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.google_calendar_tokens
+    ADD CONSTRAINT google_calendar_tokens_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: group_participants group_participants_contact_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.group_participants
+    ADD CONSTRAINT group_participants_contact_id_fkey FOREIGN KEY (contact_id) REFERENCES public.contacts(id) ON DELETE CASCADE;
+
+
+--
+-- Name: group_participants group_participants_conversation_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.group_participants
+    ADD CONSTRAINT group_participants_conversation_id_fkey FOREIGN KEY (conversation_id) REFERENCES public.conversations(id) ON DELETE CASCADE;
+
+
+--
+-- Name: history_sync_batches history_sync_batches_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.history_sync_batches
+    ADD CONSTRAINT history_sync_batches_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: history_sync_batches history_sync_batches_connection_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.history_sync_batches
+    ADD CONSTRAINT history_sync_batches_connection_id_fkey FOREIGN KEY (connection_id) REFERENCES public.channel_connections(id) ON DELETE CASCADE;
+
+
+--
+-- Name: inbox_backups inbox_backups_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.inbox_backups
+    ADD CONSTRAINT inbox_backups_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: inbox_backups inbox_backups_created_by_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.inbox_backups
+    ADD CONSTRAINT inbox_backups_created_by_user_id_fkey FOREIGN KEY (created_by_user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: inbox_restores inbox_restores_backup_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.inbox_restores
+    ADD CONSTRAINT inbox_restores_backup_id_fkey FOREIGN KEY (backup_id) REFERENCES public.inbox_backups(id);
+
+
+--
+-- Name: inbox_restores inbox_restores_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.inbox_restores
+    ADD CONSTRAINT inbox_restores_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: inbox_restores inbox_restores_restored_by_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.inbox_restores
+    ADD CONSTRAINT inbox_restores_restored_by_user_id_fkey FOREIGN KEY (restored_by_user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: knowledge_base_chunks knowledge_base_chunks_document_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_chunks
+    ADD CONSTRAINT knowledge_base_chunks_document_id_fkey FOREIGN KEY (document_id) REFERENCES public.knowledge_base_documents(id) ON DELETE CASCADE;
+
+
+--
+-- Name: knowledge_base_configs knowledge_base_configs_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_configs
+    ADD CONSTRAINT knowledge_base_configs_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: knowledge_base_configs knowledge_base_configs_flow_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_configs
+    ADD CONSTRAINT knowledge_base_configs_flow_id_fkey FOREIGN KEY (flow_id) REFERENCES public.flows(id) ON DELETE CASCADE;
+
+
+--
+-- Name: knowledge_base_document_nodes knowledge_base_document_nodes_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_document_nodes
+    ADD CONSTRAINT knowledge_base_document_nodes_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: knowledge_base_document_nodes knowledge_base_document_nodes_document_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_document_nodes
+    ADD CONSTRAINT knowledge_base_document_nodes_document_id_fkey FOREIGN KEY (document_id) REFERENCES public.knowledge_base_documents(id) ON DELETE CASCADE;
+
+
+--
+-- Name: knowledge_base_document_nodes knowledge_base_document_nodes_flow_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_document_nodes
+    ADD CONSTRAINT knowledge_base_document_nodes_flow_id_fkey FOREIGN KEY (flow_id) REFERENCES public.flows(id) ON DELETE CASCADE;
+
+
+--
+-- Name: knowledge_base_documents knowledge_base_documents_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_documents
+    ADD CONSTRAINT knowledge_base_documents_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: knowledge_base_usage knowledge_base_usage_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_usage
+    ADD CONSTRAINT knowledge_base_usage_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: knowledge_base_usage knowledge_base_usage_document_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.knowledge_base_usage
+    ADD CONSTRAINT knowledge_base_usage_document_id_fkey FOREIGN KEY (document_id) REFERENCES public.knowledge_base_documents(id) ON DELETE SET NULL;
+
+
+--
+-- Name: messages messages_conversation_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.messages
+    ADD CONSTRAINT messages_conversation_id_fkey FOREIGN KEY (conversation_id) REFERENCES public.conversations(id) ON DELETE CASCADE;
+
+
+--
+-- Name: meta_whatsapp_clients meta_whatsapp_clients_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.meta_whatsapp_clients
+    ADD CONSTRAINT meta_whatsapp_clients_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: meta_whatsapp_phone_numbers meta_whatsapp_phone_numbers_client_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.meta_whatsapp_phone_numbers
+    ADD CONSTRAINT meta_whatsapp_phone_numbers_client_id_fkey FOREIGN KEY (client_id) REFERENCES public.meta_whatsapp_clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: notes notes_contact_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.notes
+    ADD CONSTRAINT notes_contact_id_fkey FOREIGN KEY (contact_id) REFERENCES public.contacts(id) ON DELETE CASCADE;
+
+
+--
+-- Name: notes notes_created_by_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.notes
+    ADD CONSTRAINT notes_created_by_id_fkey FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: password_reset_tokens password_reset_tokens_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.password_reset_tokens
+    ADD CONSTRAINT password_reset_tokens_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: payment_transactions payment_transactions_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.payment_transactions
+    ADD CONSTRAINT payment_transactions_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: payment_transactions payment_transactions_coupon_code_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.payment_transactions
+    ADD CONSTRAINT payment_transactions_coupon_code_id_fkey FOREIGN KEY (coupon_code_id) REFERENCES public.coupon_codes(id) ON DELETE SET NULL;
+
+
+--
+-- Name: payment_transactions payment_transactions_plan_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.payment_transactions
+    ADD CONSTRAINT payment_transactions_plan_id_fkey FOREIGN KEY (plan_id) REFERENCES public.plans(id) ON DELETE SET NULL;
+
+
+--
+-- Name: pipeline_stages pipeline_stages_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pipeline_stages
+    ADD CONSTRAINT pipeline_stages_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: plan_ai_billing_events plan_ai_billing_events_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.plan_ai_billing_events
+    ADD CONSTRAINT plan_ai_billing_events_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: plan_ai_billing_events plan_ai_billing_events_plan_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.plan_ai_billing_events
+    ADD CONSTRAINT plan_ai_billing_events_plan_id_fkey FOREIGN KEY (plan_id) REFERENCES public.plans(id) ON DELETE CASCADE;
+
+
+--
+-- Name: plan_ai_provider_configs plan_ai_provider_configs_plan_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.plan_ai_provider_configs
+    ADD CONSTRAINT plan_ai_provider_configs_plan_id_fkey FOREIGN KEY (plan_id) REFERENCES public.plans(id) ON DELETE CASCADE;
+
+
+--
+-- Name: plan_ai_usage_tracking plan_ai_usage_tracking_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.plan_ai_usage_tracking
+    ADD CONSTRAINT plan_ai_usage_tracking_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: plan_ai_usage_tracking plan_ai_usage_tracking_plan_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.plan_ai_usage_tracking
+    ADD CONSTRAINT plan_ai_usage_tracking_plan_id_fkey FOREIGN KEY (plan_id) REFERENCES public.plans(id) ON DELETE CASCADE;
+
+
+--
+-- Name: quick_reply_templates quick_reply_templates_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.quick_reply_templates
+    ADD CONSTRAINT quick_reply_templates_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: quick_reply_templates quick_reply_templates_created_by_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.quick_reply_templates
+    ADD CONSTRAINT quick_reply_templates_created_by_id_fkey FOREIGN KEY (created_by_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: role_permissions role_permissions_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.role_permissions
+    ADD CONSTRAINT role_permissions_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: subscription_events subscription_events_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscription_events
+    ADD CONSTRAINT subscription_events_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: subscription_notifications subscription_notifications_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscription_notifications
+    ADD CONSTRAINT subscription_notifications_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: subscription_plan_changes subscription_plan_changes_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscription_plan_changes
+    ADD CONSTRAINT subscription_plan_changes_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: subscription_plan_changes subscription_plan_changes_from_plan_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscription_plan_changes
+    ADD CONSTRAINT subscription_plan_changes_from_plan_id_fkey FOREIGN KEY (from_plan_id) REFERENCES public.plans(id);
+
+
+--
+-- Name: subscription_plan_changes subscription_plan_changes_to_plan_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscription_plan_changes
+    ADD CONSTRAINT subscription_plan_changes_to_plan_id_fkey FOREIGN KEY (to_plan_id) REFERENCES public.plans(id);
+
+
+--
+-- Name: subscription_usage_tracking subscription_usage_tracking_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.subscription_usage_tracking
+    ADD CONSTRAINT subscription_usage_tracking_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: task_categories task_categories_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.task_categories
+    ADD CONSTRAINT task_categories_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: task_categories task_categories_created_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.task_categories
+    ADD CONSTRAINT task_categories_created_by_fkey FOREIGN KEY (created_by) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: team_invitations team_invitations_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.team_invitations
+    ADD CONSTRAINT team_invitations_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: team_invitations team_invitations_invited_by_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.team_invitations
+    ADD CONSTRAINT team_invitations_invited_by_user_id_fkey FOREIGN KEY (invited_by_user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: translation_keys translation_keys_namespace_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.translation_keys
+    ADD CONSTRAINT translation_keys_namespace_id_fkey FOREIGN KEY (namespace_id) REFERENCES public.translation_namespaces(id) ON DELETE CASCADE;
+
+
+--
+-- Name: translations translations_key_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.translations
+    ADD CONSTRAINT translations_key_id_fkey FOREIGN KEY (key_id) REFERENCES public.translation_keys(id) ON DELETE CASCADE;
+
+
+--
+-- Name: translations translations_language_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.translations
+    ADD CONSTRAINT translations_language_id_fkey FOREIGN KEY (language_id) REFERENCES public.languages(id) ON DELETE CASCADE;
+
+
+--
+-- Name: user_social_accounts user_social_accounts_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.user_social_accounts
+    ADD CONSTRAINT user_social_accounts_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: users users_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: website_assets website_assets_website_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.website_assets
+    ADD CONSTRAINT website_assets_website_id_fkey FOREIGN KEY (website_id) REFERENCES public.websites(id) ON DELETE CASCADE;
+
+
+--
+-- Name: website_templates website_templates_created_by_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.website_templates
+    ADD CONSTRAINT website_templates_created_by_id_fkey FOREIGN KEY (created_by_id) REFERENCES public.users(id);
+
+
+--
+-- Name: websites websites_created_by_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.websites
+    ADD CONSTRAINT websites_created_by_id_fkey FOREIGN KEY (created_by_id) REFERENCES public.users(id);
+
+
+--
+-- Name: websites websites_template_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.websites
+    ADD CONSTRAINT websites_template_id_fkey FOREIGN KEY (template_id) REFERENCES public.website_templates(id);
+
+
+--
+-- Name: whatsapp_account_logs whatsapp_account_logs_account_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.whatsapp_account_logs
+    ADD CONSTRAINT whatsapp_account_logs_account_id_fkey FOREIGN KEY (account_id) REFERENCES public.whatsapp_accounts(id) ON DELETE CASCADE;
+
+
+--
+-- Name: whatsapp_accounts whatsapp_accounts_channel_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.whatsapp_accounts
+    ADD CONSTRAINT whatsapp_accounts_channel_id_fkey FOREIGN KEY (channel_id) REFERENCES public.channel_connections(id) ON DELETE SET NULL;
+
+
+--
+-- Name: whatsapp_accounts whatsapp_accounts_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.whatsapp_accounts
+    ADD CONSTRAINT whatsapp_accounts_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: whatsapp_proxy_servers whatsapp_proxy_servers_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.whatsapp_proxy_servers
+    ADD CONSTRAINT whatsapp_proxy_servers_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: zoho_calendar_tokens zoho_calendar_tokens_company_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.zoho_calendar_tokens
+    ADD CONSTRAINT zoho_calendar_tokens_company_id_fkey FOREIGN KEY (company_id) REFERENCES public.companies(id) ON DELETE CASCADE;
+
+
+--
+-- Name: zoho_calendar_tokens zoho_calendar_tokens_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.zoho_calendar_tokens
+    ADD CONSTRAINT zoho_calendar_tokens_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: pg_database_owner
+--
+
+GRANT ALL ON SCHEMA public TO abid;
+GRANT ALL ON SCHEMA public TO postgres;
+
+
+--
+-- Name: TABLE affiliate_analytics; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.affiliate_analytics TO abid;
+
+
+--
+-- Name: TABLE affiliate_applications; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.affiliate_applications TO abid;
+
+
+--
+-- Name: TABLE affiliate_clicks; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.affiliate_clicks TO abid;
+
+
+--
+-- Name: TABLE affiliate_commission_structures; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.affiliate_commission_structures TO abid;
+
+
+--
+-- Name: TABLE affiliate_earnings_balance; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.affiliate_earnings_balance TO abid;
+
+
+--
+-- Name: TABLE affiliate_earnings_transactions; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.affiliate_earnings_transactions TO abid;
+
+
+--
+-- Name: TABLE affiliate_payouts; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.affiliate_payouts TO abid;
+
+
+--
+-- Name: TABLE affiliate_referrals; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.affiliate_referrals TO abid;
+
+
+--
+-- Name: TABLE affiliate_relationships; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.affiliate_relationships TO abid;
+
+
+--
+-- Name: TABLE affiliates; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.affiliates TO abid;
+
+
+--
+-- Name: TABLE ai_credential_usage; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.ai_credential_usage TO abid;
+
+
+--
+-- Name: TABLE api_keys; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.api_keys TO abid;
+
+
+--
+-- Name: TABLE api_rate_limits; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.api_rate_limits TO abid;
+
+
+--
+-- Name: TABLE api_usage; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.api_usage TO abid;
+
+
+--
+-- Name: TABLE app_settings; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.app_settings TO abid;
+
+
+--
+-- Name: TABLE backup_audit_logs; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.backup_audit_logs TO abid;
+
+
+--
+-- Name: TABLE backup_logs; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.backup_logs TO abid;
+
+
+--
+-- Name: TABLE backup_schedules; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.backup_schedules TO abid;
+
+
+--
+-- Name: TABLE calendly_calendar_tokens; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.calendly_calendar_tokens TO abid;
+
+
+--
+-- Name: TABLE calls; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.calls TO abid;
+
+
+--
+-- Name: TABLE campaign_analytics; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.campaign_analytics TO abid;
+
+
+--
+-- Name: TABLE campaign_messages; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.campaign_messages TO abid;
+
+
+--
+-- Name: TABLE campaign_queue; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.campaign_queue TO abid;
+
+
+--
+-- Name: TABLE campaign_recipients; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.campaign_recipients TO abid;
+
+
+--
+-- Name: TABLE campaign_templates; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.campaign_templates TO abid;
+
+
+--
+-- Name: TABLE campaigns; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.campaigns TO abid;
+
+
+--
+-- Name: TABLE channel_connections; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.channel_connections TO abid;
+
+
+--
+-- Name: TABLE companies; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.companies TO abid;
+
+
+--
+-- Name: TABLE company_ai_credentials; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.company_ai_credentials TO abid;
+
+
+--
+-- Name: TABLE company_ai_preferences; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.company_ai_preferences TO abid;
+
+
+--
+-- Name: TABLE company_pages; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.company_pages TO abid;
+
+
+--
+-- Name: TABLE company_settings; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.company_settings TO abid;
+
+
+--
+-- Name: TABLE plans; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.plans TO abid;
+
+
+--
+-- Name: TABLE company_usage_overview; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.company_usage_overview TO abid;
+
+
+--
+-- Name: TABLE contact_appointments; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.contact_appointments TO abid;
+
+
+--
+-- Name: TABLE contact_audit_logs; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.contact_audit_logs TO abid;
+
+
+--
+-- Name: TABLE contact_documents; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.contact_documents TO abid;
+
+
+--
+-- Name: TABLE contact_segments; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.contact_segments TO abid;
+
+
+--
+-- Name: TABLE contact_tasks; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.contact_tasks TO abid;
+
+
+--
+-- Name: TABLE contacts; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.contacts TO abid;
+
+
+--
+-- Name: TABLE conversations; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.conversations TO abid;
+
+
+--
+-- Name: TABLE coupon_codes; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.coupon_codes TO abid;
+
+
+--
+-- Name: TABLE coupon_usage; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.coupon_usage TO abid;
+
+
+--
+-- Name: TABLE deal_activities; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.deal_activities TO abid;
+
+
+--
+-- Name: TABLE deals; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.deals TO abid;
+
+
+--
+-- Name: TABLE dialog_360_channels; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.dialog_360_channels TO abid;
+
+
+--
+-- Name: TABLE dialog_360_clients; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.dialog_360_clients TO abid;
+
+
+--
+-- Name: TABLE dunning_management; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.dunning_management TO abid;
+
+
+--
+-- Name: TABLE email_attachments; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.email_attachments TO abid;
+
+
+--
+-- Name: TABLE email_configs; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.email_configs TO abid;
+
+
+--
+-- Name: TABLE flow_assignments; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.flow_assignments TO abid;
+
+
+--
+-- Name: TABLE flow_executions; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.flow_executions TO abid;
+
+
+--
+-- Name: TABLE flow_session_cursors; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.flow_session_cursors TO abid;
+
+
+--
+-- Name: TABLE flow_session_variables; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.flow_session_variables TO abid;
+
+
+--
+-- Name: TABLE flow_sessions; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.flow_sessions TO abid;
+
+
+--
+-- Name: TABLE flow_step_executions; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.flow_step_executions TO abid;
+
+
+--
+-- Name: TABLE flows; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.flows TO abid;
+
+
+--
+-- Name: TABLE follow_up_execution_log; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.follow_up_execution_log TO abid;
+
+
+--
+-- Name: TABLE follow_up_schedules; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.follow_up_schedules TO abid;
+
+
+--
+-- Name: TABLE follow_up_templates; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.follow_up_templates TO abid;
+
+
+--
+-- Name: TABLE google_calendar_tokens; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.google_calendar_tokens TO abid;
+
+
+--
+-- Name: TABLE group_participants; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.group_participants TO abid;
+
+
+--
+-- Name: TABLE history_sync_batches; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.history_sync_batches TO abid;
+
+
+--
+-- Name: TABLE inbox_backups; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.inbox_backups TO abid;
+
+
+--
+-- Name: TABLE inbox_restores; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.inbox_restores TO abid;
+
+
+--
+-- Name: TABLE knowledge_base_chunks; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.knowledge_base_chunks TO abid;
+
+
+--
+-- Name: TABLE knowledge_base_configs; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.knowledge_base_configs TO abid;
+
+
+--
+-- Name: TABLE knowledge_base_document_nodes; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.knowledge_base_document_nodes TO abid;
+
+
+--
+-- Name: TABLE knowledge_base_documents; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.knowledge_base_documents TO abid;
+
+
+--
+-- Name: TABLE knowledge_base_usage; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.knowledge_base_usage TO abid;
+
+
+--
+-- Name: TABLE languages; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.languages TO abid;
+
+
+--
+-- Name: TABLE messages; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.messages TO abid;
+
+
+--
+-- Name: TABLE meta_whatsapp_clients; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.meta_whatsapp_clients TO abid;
+
+
+--
+-- Name: TABLE meta_whatsapp_phone_numbers; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.meta_whatsapp_phone_numbers TO abid;
+
+
+--
+-- Name: TABLE migration_log; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.migration_log TO abid;
+
+
+--
+-- Name: TABLE migrations; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.migrations TO abid;
+
+
+--
+-- Name: TABLE notes; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.notes TO abid;
+
+
+--
+-- Name: TABLE partner_configurations; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.partner_configurations TO abid;
+
+
+--
+-- Name: TABLE password_reset_tokens; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.password_reset_tokens TO abid;
+
+
+--
+-- Name: TABLE payment_transactions; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.payment_transactions TO abid;
+
+
+--
+-- Name: TABLE pipeline_stages; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.pipeline_stages TO abid;
+
+
+--
+-- Name: TABLE plan_ai_billing_events; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.plan_ai_billing_events TO abid;
+
+
+--
+-- Name: TABLE plan_ai_provider_configs; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.plan_ai_provider_configs TO abid;
+
+
+--
+-- Name: TABLE plan_ai_usage_tracking; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.plan_ai_usage_tracking TO abid;
+
+
+--
+-- Name: TABLE quick_reply_templates; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.quick_reply_templates TO abid;
+
+
+--
+-- Name: TABLE role_permissions; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.role_permissions TO abid;
+
+
+--
+-- Name: TABLE scheduled_messages; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.scheduled_messages TO abid;
+
+
+--
+-- Name: TABLE session; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.session TO abid;
+
+
+--
+-- Name: TABLE subscription_events; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.subscription_events TO abid;
+
+
+--
+-- Name: TABLE subscription_notifications; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.subscription_notifications TO abid;
+
+
+--
+-- Name: TABLE subscription_plan_changes; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.subscription_plan_changes TO abid;
+
+
+--
+-- Name: TABLE subscription_usage_tracking; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.subscription_usage_tracking TO abid;
+
+
+--
+-- Name: TABLE system_ai_credentials; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.system_ai_credentials TO abid;
+
+
+--
+-- Name: TABLE system_updates; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.system_updates TO abid;
+
+
+--
+-- Name: TABLE task_categories; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.task_categories TO abid;
+
+
+--
+-- Name: TABLE team_invitations; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.team_invitations TO abid;
+
+
+--
+-- Name: TABLE translation_keys; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.translation_keys TO abid;
+
+
+--
+-- Name: TABLE translation_namespaces; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.translation_namespaces TO abid;
+
+
+--
+-- Name: TABLE translations; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.translations TO abid;
+
+
+--
+-- Name: TABLE user_social_accounts; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.user_social_accounts TO abid;
+
+
+--
+-- Name: TABLE users; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.users TO abid;
+
+
+--
+-- Name: TABLE website_assets; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.website_assets TO abid;
+
+
+--
+-- Name: TABLE website_templates; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.website_templates TO abid;
+
+
+--
+-- Name: TABLE websites; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.websites TO abid;
+
+
+--
+-- Name: TABLE whatsapp_account_logs; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.whatsapp_account_logs TO abid;
+
+
+--
+-- Name: TABLE whatsapp_accounts; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.whatsapp_accounts TO abid;
+
+
+--
+-- Name: TABLE whatsapp_proxy_servers; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.whatsapp_proxy_servers TO abid;
+
+
+--
+-- Name: TABLE zoho_calendar_tokens; Type: ACL; Schema: public; Owner: postgres
+--
+
+GRANT ALL ON TABLE public.zoho_calendar_tokens TO abid;
+
+
+--
+-- Name: DEFAULT PRIVILEGES FOR TABLES; Type: DEFAULT ACL; Schema: public; Owner: postgres
+--
+
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON TABLES TO postgres;
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA public GRANT ALL ON TABLES TO abid;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
