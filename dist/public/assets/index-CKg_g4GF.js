@@ -1,0 +1,1 @@
+import{an as s,aF as a,r as n,j as r,b6 as e}from"./index-W60Gr5v9.js";function i(){const{user:i,isLoading:d}=s(),[o,t]=a();return n.useEffect((()=>{d||(i&&i.isSuperAdmin?t("/admin/dashboard"):i&&t("/"))}),[i,d,t]),d||!i?r.jsx(e,{}):null}export{i as default};

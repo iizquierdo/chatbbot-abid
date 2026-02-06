@@ -1,0 +1,1 @@
+import{aJ as a,ad as s,r as n,j as r,aK as d}from"./index-Cnb3_ZrZ.js";function e(){const{user:e,isLoading:i}=a(),[o,t]=s();return n.useEffect(()=>{i||(e&&e.isSuperAdmin?t("/admin/dashboard"):e&&t("/"))},[e,i,t]),i||!e?r.jsx(d,{}):null}export{e as default};

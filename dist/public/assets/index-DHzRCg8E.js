@@ -1,0 +1,1 @@
+import{a2 as a,am as s,r as n,j as r,aP as e}from"./index-B-smJPPR.js";function i(){const{user:i,isLoading:d}=a(),[o,t]=s();return n.useEffect(()=>{d||(i&&i.isSuperAdmin?t("/admin/dashboard"):i&&t("/"))},[i,d,t]),d||!i?r.jsx(e,{}):null}export{i as default};
