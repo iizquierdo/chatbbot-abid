@@ -21,6 +21,7 @@ RUN npm ci --omit=dev --include=optional
 # Copy the pre-built application
 COPY dist/ ./dist/
 COPY migrations/ ./migrations/
+COPY translations/ ./translations/
 
 # Create necessary directories
 RUN mkdir -p /app/data/uploads /app/data/whatsapp-sessions /app/data/backups /app/volumes/backups /app/temp/backups

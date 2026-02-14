@@ -26,6 +26,7 @@ RUN npm install --omit=dev --include=optional
 # Copy app files
 COPY dist/ ./dist/
 COPY migrations/ ./migrations/
+COPY translations/ ./translations/
 
 # Create directories
 RUN mkdir -p /app/data/uploads /app/data/whatsapp-sessions /app/data/backups /app/volumes/backups /app/temp/backups

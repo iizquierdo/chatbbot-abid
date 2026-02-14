@@ -1,0 +1,17 @@
+{
+  "name": "chatbbot-abid",
+  "version": "1.0.0",
+  "description": "PowerChat Plus",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "drizzle-orm": "^0.36.0",
+    "pg": "^8.13.0"
+  }
+}
