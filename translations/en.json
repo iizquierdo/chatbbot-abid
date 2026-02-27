@@ -774,6 +774,10 @@
         "value": "Close"
     },
     {
+        "key": "common.of",
+        "value": "of"
+    },
+    {
         "key": "common.hide",
         "value": "Hide"
     },
@@ -832,6 +836,26 @@
     {
         "key": "flow_builder.error_loading_flow",
         "value": "Error loading flow"
+    },
+    {
+        "key": "flow_builder.templates.title",
+        "value": "Flow Templates"
+    },
+    {
+        "key": "flow_builder.templates.description",
+        "value": "Choose a template to apply to your flow. It will replace the current nodes and edges."
+    },
+    {
+        "key": "flow_builder.templates.load_error",
+        "value": "Failed to load templates"
+    },
+    {
+        "key": "flow_builder.templates.no_templates",
+        "value": "No templates available."
+    },
+    {
+        "key": "flow_builder.templates.apply",
+        "value": "Apply template"
     },
     {
         "key": "flow_builder.parse_error",
@@ -1148,6 +1172,110 @@
     {
         "key": "flow_builder.webhook_password",
         "value": "Password"
+    },
+    {
+        "key": "flow_builder.webhook_url_tooltip",
+        "value": "This is the endpoint where external systems send webhook events. Copy this URL and configure it in your external platform (Shopify, Stripe, etc.)."
+    },
+    {
+        "key": "flow_builder.webhook_custom_path_tooltip",
+        "value": "Enable to use a memorable path like '/shopify-orders' instead of auto-generated URL. Custom paths must be unique across all flows."
+    },
+    {
+        "key": "flow_builder.webhook_custom_path_example",
+        "value": "Example: shopify-orders, stripe-payments, crm-events. Only letters, numbers, hyphens, and underscores allowed."
+    },
+    {
+        "key": "flow_builder.webhook_regenerate_token_tooltip",
+        "value": "Generate a new security token. You'll need to update the webhook URL in your external system after regenerating."
+    },
+    {
+        "key": "flow_builder.webhook_contact_association_tooltip",
+        "value": "Determines how to identify or create contacts when webhooks arrive. Choose based on your use case."
+    },
+    {
+        "key": "flow_builder.webhook_extract_tooltip",
+        "value": "Extract contact identifier (email or phone) from webhook payload using a field path. Best for webhooks that include customer data."
+    },
+    {
+        "key": "flow_builder.webhook_create_tooltip",
+        "value": "Automatically create a new contact using data from the webhook payload. Useful for lead generation or new customer webhooks."
+    },
+    {
+        "key": "flow_builder.webhook_system_tooltip",
+        "value": "Run flow without associating to a contact. Use for background tasks, notifications, or system events."
+    },
+    {
+        "key": "flow_builder.webhook_extract_field_help",
+        "value": "Use dot notation to access nested fields. Examples: 'customer.email', 'data.user.phone', 'email'"
+    },
+    {
+        "key": "flow_builder.webhook_create_fields_help",
+        "value": "Map webhook payload fields to contact properties. Leave empty to skip that field."
+    },
+    {
+        "key": "flow_builder.webhook_filters_tooltip",
+        "value": "Optional conditions to filter which webhooks trigger this flow. All conditions must match (AND logic)."
+    },
+    {
+        "key": "flow_builder.webhook_filters_example",
+        "value": "Example: Filter by event type ('event_type' equals 'order.created') or order value ('total_price' greater than '100')"
+    },
+    {
+        "key": "flow_builder.webhook_field_path_tooltip",
+        "value": "Path to the field in webhook payload. Use dot notation for nested fields (e.g., 'order.status', 'data.customer.tier')"
+    },
+    {
+        "key": "flow_builder.webhook_operator_tooltip",
+        "value": "Comparison operator. Use 'exists' to check if field is present, 'regex' for pattern matching."
+    },
+    {
+        "key": "flow_builder.webhook_case_sensitive_tooltip",
+        "value": "Enable for case-sensitive string comparisons. Disable to ignore case differences."
+    },
+    {
+        "key": "flow_builder.webhook_response_config_tooltip",
+        "value": "Configure what the webhook endpoint returns to the external system after receiving the webhook."
+    },
+    {
+        "key": "flow_builder.webhook_status_code_tooltip",
+        "value": "HTTP status code to return. 200 = success, 202 = accepted, 400 = bad request, 404 = not found."
+    },
+    {
+        "key": "flow_builder.webhook_body_template_tooltip",
+        "value": "Response body with variable interpolation. Use {{webhook.payload.field}} to access webhook data, {{flow.id}} for flow ID."
+    },
+    {
+        "key": "flow_builder.webhook_headers_help",
+        "value": "Custom HTTP headers to include in response. Example: 'X-Request-ID' with value '{{webhook.requestId}}'"
+    },
+    {
+        "key": "flow_builder.webhook_test_tooltip",
+        "value": "Send a test webhook request to verify configuration, filters, and contact mapping before going live."
+    },
+    {
+        "key": "flow_builder.webhook_sample_payload_help",
+        "value": "Select a pre-built sample or paste your own JSON payload to test the webhook trigger."
+    },
+    {
+        "key": "flow_builder.webhook_send_test_tooltip",
+        "value": "Sends the sample payload to your webhook URL and shows detailed results including filter evaluation and contact resolution."
+    },
+    {
+        "key": "flow_builder.webhook_php_example",
+        "value": "PHP"
+    },
+    {
+        "key": "flow_builder.webhook_docs_tooltip",
+        "value": "View webhook trigger documentation"
+    },
+    {
+        "key": "flow_builder.webhook_async_tooltip",
+        "value": "Returns 202 Accepted immediately without waiting for flow completion. Recommended for most use cases and long-running flows."
+    },
+    {
+        "key": "flow_builder.webhook_sync_tooltip",
+        "value": "Waits for flow to complete (max 30s) before responding. Use when external system requires immediate confirmation (e.g., payment gateways, validation webhooks)."
     },
     {
         "key": "flow_builder.contact_notification",
@@ -2638,6 +2766,30 @@
         "value": "Close conversations"
     },
     {
+        "key": "inbox.pinned",
+        "value": "Pinned"
+    },
+    {
+        "key": "inbox.pin_conversation",
+        "value": "Pin conversation to top"
+    },
+    {
+        "key": "inbox.unpin_conversation",
+        "value": "Unpin conversation"
+    },
+    {
+        "key": "inbox.pin_failed",
+        "value": "Pin failed"
+    },
+    {
+        "key": "inbox.max_pins_reached",
+        "value": "Maximum pins reached"
+    },
+    {
+        "key": "inbox.max_pins_description",
+        "value": "You can pin up to 7 conversations. Unpin one to pin another."
+    },
+    {
         "key": "inbox.new_lead",
         "value": "New Lead"
     },
@@ -2684,6 +2836,14 @@
     {
         "key": "contacts.search_placeholder",
         "value": "Search contacts..."
+    },
+    {
+        "key": "contacts.pin_title",
+        "value": "Pin contact to top"
+    },
+    {
+        "key": "contacts.unpin_title",
+        "value": "Unpin contact"
     },
     {
         "key": "contacts.all_channels",
@@ -7838,6 +7998,10 @@
         "value": "No tags added"
     },
     {
+        "key": "contacts.details.custom_fields",
+        "value": "Custom Fields"
+    },
+    {
         "key": "contacts.details.conversation_details",
         "value": "Conversation Details"
     },
@@ -8124,6 +8288,26 @@
     {
         "key": "conversations.view.more_options",
         "value": "More options"
+    },
+    {
+        "key": "conversations.view.search_messages",
+        "value": "Search messages"
+    },
+    {
+        "key": "conversations.view.search_messages_placeholder",
+        "value": "Search messages..."
+    },
+    {
+        "key": "conversations.view.no_results",
+        "value": "No results found"
+    },
+    {
+        "key": "conversations.view.previous_result",
+        "value": "Previous result"
+    },
+    {
+        "key": "conversations.view.next_result",
+        "value": "Next result"
     },
     {
         "key": "contacts.edit_dialog.contact_id_missing",
@@ -11276,7 +11460,7 @@
     },
     {
         "key": "flow_builder.node_types.documind_pdf_chat",
-        "value": "ChatPDF-API PDF Chat"
+        "value": "Documind PDF Chat"
     },
     {
         "key": "flow_builder.node_types.chat_pdf_ai",
@@ -11285,6 +11469,10 @@
     {
         "key": "flow_builder.node_types.call_agent",
         "value": "Call Agent"
+    },
+    {
+        "key": "flow_builder.node_types.webhook_trigger",
+        "value": "Webhook Trigger"
     },
     {
         "key": "flow_builder.sections.triggers",
@@ -12612,6 +12800,150 @@
         "value": "Platform"
     },
     {
+        "key": "settings.tabs.whatsapp_proxy",
+        "value": "WhatsApp Proxy"
+    },
+    {
+        "key": "settings.tabs.proxy",
+        "value": "Proxy"
+    },
+    {
+        "key": "settings.tabs.general_settings",
+        "value": "General Settings"
+    },
+    {
+        "key": "settings.tabs.general",
+        "value": "General"
+    },
+    {
+        "key": "settings.tabs.contact_custom_fields",
+        "value": "Custom Fields"
+    },
+    {
+        "key": "settings.tabs.custom_fields",
+        "value": "Custom Fields"
+    },
+    {
+        "key": "settings.custom_fields.title",
+        "value": "Contact Custom Fields"
+    },
+    {
+        "key": "settings.custom_fields.description",
+        "value": "Define custom fields for your contacts. These fields will appear in the Add Contact and Edit Contact forms."
+    },
+    {
+        "key": "settings.custom_fields.add_field",
+        "value": "Add Custom Field"
+    },
+    {
+        "key": "settings.custom_fields.created",
+        "value": "Custom field created"
+    },
+    {
+        "key": "settings.custom_fields.created_desc",
+        "value": "The field will appear in contact forms."
+    },
+    {
+        "key": "settings.custom_fields.updated",
+        "value": "Custom field updated"
+    },
+    {
+        "key": "settings.custom_fields.reordered",
+        "value": "Custom fields reordered"
+    },
+    {
+        "key": "settings.custom_fields.deleted",
+        "value": "Custom field deleted"
+    },
+    {
+        "key": "settings.custom_fields.error",
+        "value": "Error"
+    },
+    {
+        "key": "settings.custom_fields.label_required",
+        "value": "Label is required"
+    },
+    {
+        "key": "settings.custom_fields.no_fields",
+        "value": "No custom fields yet"
+    },
+    {
+        "key": "settings.custom_fields.no_fields_desc",
+        "value": "Add custom fields to capture additional contact information like industry, lead source, or budget."
+    },
+    {
+        "key": "settings.custom_fields.add_first",
+        "value": "Add your first field"
+    },
+    {
+        "key": "settings.custom_fields.add_desc",
+        "value": "Create a new custom field for contacts."
+    },
+    {
+        "key": "settings.custom_fields.label",
+        "value": "Field Label"
+    },
+    {
+        "key": "settings.custom_fields.label_placeholder",
+        "value": "e.g. Industry"
+    },
+    {
+        "key": "settings.custom_fields.type",
+        "value": "Field Type"
+    },
+    {
+        "key": "settings.custom_fields.options",
+        "value": "Options"
+    },
+    {
+        "key": "settings.custom_fields.options_placeholder",
+        "value": "One per line. Use \"Label: value\" for display, or just the value."
+    },
+    {
+        "key": "settings.custom_fields.boolean_true_label",
+        "value": "Label when checked"
+    },
+    {
+        "key": "settings.custom_fields.boolean_false_label",
+        "value": "Label when unchecked"
+    },
+    {
+        "key": "settings.custom_fields.contacts",
+        "value": "Contacts"
+    },
+    {
+        "key": "settings.custom_fields.deals",
+        "value": "Deals"
+    },
+    {
+        "key": "settings.custom_fields.no_fields_desc_deals",
+        "value": "Add custom fields for deals like expected close date, decision maker, or contract type."
+    },
+    {
+        "key": "settings.custom_fields.add_desc_contact",
+        "value": "Create a new custom field for contacts."
+    },
+    {
+        "key": "settings.custom_fields.add_desc_deal",
+        "value": "Create a new custom field for deals."
+    },
+    {
+        "key": "settings.custom_fields.edit_field",
+        "value": "Edit Custom Field"
+    },
+    {
+        "key": "settings.custom_fields.edit_desc",
+        "value": "Update the field configuration."
+    },
+    {
+        "key": "settings.custom_fields.delete_title",
+        "value": "Delete Custom Field"
+    },
+    {
+        "key": "settings.custom_fields.delete_desc",
+        "value": "Are you sure? Existing contact data for this field will be preserved but no longer visible in forms."
+    },
+    {
         "key": "settings.channel_connections.title",
         "value": "Channel Connections"
     },
@@ -12725,15 +13057,207 @@
     },
     {
         "key": "flow_builder.ai_elevenlabs_stability",
-        "value": "Stability ({{value}})"
+        "value": "Stability"
     },
     {
         "key": "flow_builder.ai_elevenlabs_similarity",
-        "value": "Similarity ({{value}})"
+        "value": "Similarity"
     },
     {
         "key": "flow_builder.ai_elevenlabs_speaker_boost",
         "value": "Speaker Boost"
+    },
+    {
+        "key": "flow_builder.ai_elevenlabs_v3_features",
+        "value": "v3 Advanced Features"
+    },
+    {
+        "key": "flow_builder.ai_elevenlabs_prompt_influence",
+        "value": "Prompt Influence"
+    },
+    {
+        "key": "flow_builder.ai_elevenlabs_prompt_influence_help",
+        "value": "Controls how much the text prompt influences voice expression (0 = minimal, 1 = maximum)"
+    },
+    {
+        "key": "flow_builder.ai_elevenlabs_audio_tags",
+        "value": "Enable Audio Tags"
+    },
+    {
+        "key": "flow_builder.ai_elevenlabs_audio_tags_help",
+        "value": "Use tags like [excited], [whispers], [laughs] for emotional control"
+    },
+    {
+        "key": "flow_builder.ai_elevenlabs_audio_tags_instructions",
+        "value": "Audio Tags Instructions"
+    },
+    {
+        "key": "flow_builder.ai_elevenlabs_audio_tags_instructions_help",
+        "value": "Custom instructions for when and how to use audio tags in responses"
+    },
+    {
+        "key": "flow_builder.ai_elevenlabs_audio_tags_help_reference",
+        "value": "Click the help icon above for comprehensive audio tags documentation and examples"
+    },
+    {
+        "key": "flow_builder.ai_elevenlabs_v3_tip_label",
+        "value": "💡 v3 Tips:"
+    },
+    {
+        "key": "flow_builder.ai_elevenlabs_v3_tip",
+        "value": "Use prompts longer than 250 characters for best consistency. Combine tags for nuanced performances: [excited, whispers] for enthusiastic whispering."
+    },
+    {
+        "key": "flow_builder.ai_elevenlabs_v3_tip_help_reference",
+        "value": "📚 Click the help icon for complete audio tags documentation, examples, and best practices"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_tooltip",
+        "value": "Audio Tags Help & Documentation"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_dialog_title",
+        "value": "ElevenLabs v3 Audio Tags - Help & Documentation"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_dialog_subtitle",
+        "value": "Learn how to use audio tags for expressive and emotional voice control"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_overview_title",
+        "value": "What are Audio Tags?"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_overview_content",
+        "value": "Audio tags are square-bracketed commands embedded in text that control voice expression and emotion. They allow you to add excitement, whispers, laughter, and other emotional cues directly in the AI response text."
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_overview_v3",
+        "value": "These are v3-specific capabilities. Effectiveness varies by voice—test tags with your chosen ElevenLabs voice for best results."
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_categories_title",
+        "value": "Audio Tag Categories"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_category_emotions",
+        "value": "Emotions"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_category_delivery",
+        "value": "Delivery Direction"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_category_delivery_desc",
+        "value": "Volume and energy control"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_category_reactions",
+        "value": "Human Reactions"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_category_sfx",
+        "value": "Sound Effects"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_category_pacing",
+        "value": "Pacing & Rhythm"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_advanced_title",
+        "value": "Advanced Techniques"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_advanced_content",
+        "value": "Combine tags for nuanced performances. Use comma-separated tags within brackets for layered emotional delivery."
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_advanced_example",
+        "value": "Example"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_advanced_example_desc",
+        "value": "creates enthusiastic whispering—perfect for sharing a secret with excitement."
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_advanced_combinations",
+        "value": "Other effective combinations: [sad, whispers] for somber intimacy, [angry, shouts] for intense emphasis."
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_best_practices_title",
+        "value": "Best Practices"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_best_practice_1",
+        "value": "Use prompts longer than 250 characters for consistency"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_best_practice_2",
+        "value": "Test tags with your chosen voice—effectiveness varies by voice"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_best_practice_3",
+        "value": "Combine tags for nuanced emotional delivery"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_best_practice_4",
+        "value": "Place tags at natural speech boundaries"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_best_practice_5",
+        "value": "Don't overuse tags—maintain natural flow"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_best_practice_6",
+        "value": "Use the Audio Tags Instructions field to guide the AI on when and how to use tags"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_examples_title",
+        "value": "Examples"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_example_1_title",
+        "value": "Example 1: Customer service"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_example_1_desc",
+        "value": "Warm, approachable tone for support interactions"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_example_2_title",
+        "value": "Example 2: Storytelling"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_example_2_desc",
+        "value": "Build tension with whispers, peak with excitement, pause for dramatic effect"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_example_3_title",
+        "value": "Example 3: Educational content"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_example_3_desc",
+        "value": "Engaging delivery for tutorials and explanations"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_integration_title",
+        "value": "Integration with AI Assistant"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_integration_content",
+        "value": "The Audio Tags Instructions field guides the AI on when and how to embed audio tags in its responses. Write clear, specific instructions for best results."
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_integration_example_label",
+        "value": "Example instruction"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_integration_example",
+        "value": "Use [excited] when discussing features, [whispers] for confidential information, [pause] before important points"
+    },
+    {
+        "key": "flow_builder.ai_audio_tags_help_flow_title",
+        "value": "Data Flow"
     },
     {
         "key": "flow_builder.ai_voice_response_mode_placeholder",
@@ -12868,6 +13392,18 @@
         "value": "💡 Tip: Each active task creates an output handle for flow routing. Use specific descriptions to prevent false triggers."
     },
     {
+        "key": "flow_builder.ai_task_templates",
+        "value": "Task Templates"
+    },
+    {
+        "key": "flow_builder.ai_select_template",
+        "value": "Select a template..."
+    },
+    {
+        "key": "flow_builder.ai_task_templates_help",
+        "value": "Select a template to quickly create a pre-configured task"
+    },
+    {
         "key": "flow_builder.ai_task_execution_disabled_help",
         "value": "Enable task execution to allow AI function calling and advanced flow routing"
     },
@@ -12948,6 +13484,502 @@
         "value": "Enable knowledge base to enhance AI responses with document-based context using RAG (Retrieval-Augmented Generation)"
     },
     {
+        "key": "flow_builder.ai_knowledge_base_setup_hint",
+        "value": "To get started: Enable the toggle above, then configure your Pinecone credentials"
+    },
+    {
+        "key": "flow_builder.ai_mcp_server_name",
+        "value": "Server Name"
+    },
+    {
+        "key": "flow_builder.ai_mcp_server_name_placeholder",
+        "value": "e.g., Bright Data"
+    },
+    {
+        "key": "flow_builder.ai_mcp_server_config_json",
+        "value": "Server Configuration (JSON)"
+    },
+    {
+        "key": "flow_builder.ai_mcp_json_error_object",
+        "value": "JSON must be an object"
+    },
+    {
+        "key": "flow_builder.ai_mcp_json_error_command_url",
+        "value": "Must have either \"command\" (stdio) or \"url\" (http)"
+    },
+    {
+        "key": "flow_builder.ai_mcp_json_error_invalid",
+        "value": "Invalid JSON: {{message}}"
+    },
+    {
+        "key": "flow_builder.ai_mcp_server_default_name",
+        "value": "MCP Server {{n}}"
+    },
+    {
+        "key": "flow_builder.ai_task_fallback",
+        "value": "Task {{n}}"
+    },
+    {
+        "key": "flow_builder.ai_share_document_name",
+        "value": "Share Document"
+    },
+    {
+        "key": "flow_builder.ai_provider_fallback",
+        "value": "AI Provider"
+    },
+    {
+        "key": "flow_builder.ai_pinecone_config",
+        "value": "Pinecone Configuration"
+    },
+    {
+        "key": "flow_builder.ai_pinecone_api_key",
+        "value": "Pinecone API Key"
+    },
+    {
+        "key": "flow_builder.ai_pinecone_api_key_placeholder",
+        "value": "pc-xxxxxxxxxxxxxxxxxxxxxxxx"
+    },
+    {
+        "key": "flow_builder.ai_pinecone_get_key",
+        "value": "Get your API key from Pinecone Console"
+    },
+    {
+        "key": "flow_builder.ai_pinecone_environment_region",
+        "value": "Environment/Region"
+    },
+    {
+        "key": "flow_builder.ai_pinecone_select_region",
+        "value": "Select region"
+    },
+    {
+        "key": "flow_builder.ai_pinecone_index_name",
+        "value": "Index Name"
+    },
+    {
+        "key": "flow_builder.ai_pinecone_index_placeholder",
+        "value": "my-knowledge-base (optional)"
+    },
+    {
+        "key": "flow_builder.ai_pinecone_index_optional",
+        "value": "Optional. If not provided, a default index name will be generated. The index will be created automatically if it doesn't exist."
+    },
+    {
+        "key": "flow_builder.ai_pinecone_key_required",
+        "value": "Pinecone API Key is required for Knowledge Base to work"
+    },
+    {
+        "key": "flow_builder.ai_knowledge_base_openrouter_warning",
+        "value": "OpenRouter is selected but no OpenRouter credentials are configured. Configure OpenRouter in AI settings above, or switch to OpenAI as an alternative for embeddings."
+    },
+    {
+        "key": "knowledge_base.config.save_success",
+        "value": "Configuration saved"
+    },
+    {
+        "key": "knowledge_base.config.save_success_desc",
+        "value": "RAG settings have been updated successfully"
+    },
+    {
+        "key": "knowledge_base.config.save_error",
+        "value": "Save failed"
+    },
+    {
+        "key": "knowledge_base.config.title",
+        "value": "RAG Configuration"
+    },
+    {
+        "key": "knowledge_base.config.description",
+        "value": "Configure how the knowledge base retrieves and injects context into AI responses"
+    },
+    {
+        "key": "knowledge_base.config.enabled",
+        "value": "Enable Knowledge Base"
+    },
+    {
+        "key": "knowledge_base.config.enabled_desc",
+        "value": "Use knowledge base for context-aware responses"
+    },
+    {
+        "key": "knowledge_base.config.retrieval_title",
+        "value": "Retrieval Settings"
+    },
+    {
+        "key": "knowledge_base.config.max_chunks",
+        "value": "Maximum Retrieved Chunks"
+    },
+    {
+        "key": "knowledge_base.config.max_chunks_tooltip",
+        "value": "Number of most relevant document chunks to retrieve for each query. More chunks provide more context but increase token usage."
+    },
+    {
+        "key": "knowledge_base.config.similarity_threshold",
+        "value": "Similarity Threshold"
+    },
+    {
+        "key": "knowledge_base.config.similarity_threshold_tooltip",
+        "value": "Minimum similarity score (0-1) for chunks to be included. Higher values return more relevant but fewer results."
+    },
+    {
+        "key": "knowledge_base.config.embedding_model",
+        "value": "Embedding Model"
+    },
+    {
+        "key": "knowledge_base.config.embedding_model_tooltip",
+        "value": "Embedding model is fixed to ensure compatibility with Pinecone vector database (1536 dimensions)."
+    },
+    {
+        "key": "knowledge_base.config.context_title",
+        "value": "Context Injection"
+    },
+    {
+        "key": "knowledge_base.config.context_position",
+        "value": "Context Position"
+    },
+    {
+        "key": "knowledge_base.config.context_position_before_system",
+        "value": "Before System Prompt"
+    },
+    {
+        "key": "knowledge_base.config.context_position_before_system_desc",
+        "value": "Context appears before the system prompt. Use when your system prompt is flexible and doesn't restrict the AI's capabilities."
+    },
+    {
+        "key": "knowledge_base.config.context_position_after_system",
+        "value": "After System Prompt"
+    },
+    {
+        "key": "knowledge_base.config.context_position_after_system_desc",
+        "value": "Context appears after the system prompt (RECOMMENDED). Use when your system prompt is restrictive or specific to a particular role."
+    },
+    {
+        "key": "knowledge_base.config.context_position_before_user",
+        "value": "Before User Message"
+    },
+    {
+        "key": "knowledge_base.config.context_position_before_user_desc",
+        "value": "Context is injected before each user message. Most flexible but uses more tokens."
+    },
+    {
+        "key": "knowledge_base.config.context_template",
+        "value": "Context Template"
+    },
+    {
+        "key": "knowledge_base.config.context_template_tooltip",
+        "value": "Template for injecting retrieved context. Use {context} placeholder where the retrieved chunks should be inserted."
+    },
+    {
+        "key": "knowledge_base.config.context_placeholder_warning",
+        "value": "Template should include {context} placeholder"
+    },
+    {
+        "key": "knowledge_base.config.unsaved_changes",
+        "value": "You have unsaved changes"
+    },
+    {
+        "key": "knowledge_base.config.before_system_warning",
+        "value": "May not work well with restrictive system prompts (e.g., \"focused on scheduling\"). Consider using \"After System Prompt\" for better results."
+    },
+    {
+        "key": "knowledge_base.config.prompt_preview",
+        "value": "Prompt Structure Preview"
+    },
+    {
+        "key": "knowledge_base.processor.checking",
+        "value": "Checking processor capabilities..."
+    },
+    {
+        "key": "knowledge_base.processor.error",
+        "value": "Failed to check capabilities"
+    },
+    {
+        "key": "knowledge_base.processor.formats_supported",
+        "value": "formats supported"
+    },
+    {
+        "key": "knowledge_base.processor.title",
+        "value": "Document Processor Status"
+    },
+    {
+        "key": "knowledge_base.processor.description",
+        "value": "Available document processing capabilities"
+    },
+    {
+        "key": "knowledge_base.processor.supported_formats",
+        "value": "Supported File Formats"
+    },
+    {
+        "key": "knowledge_base.processor.processors",
+        "value": "Document Processors"
+    },
+    {
+        "key": "knowledge_base.processor.install_instructions",
+        "value": "Installation Instructions"
+    },
+    {
+        "key": "knowledge_base.processor.install_desc",
+        "value": "To enable additional document processing capabilities, install the following packages:"
+    },
+    {
+        "key": "knowledge_base.test.search_error",
+        "value": "Search failed"
+    },
+    {
+        "key": "knowledge_base.test.test_error",
+        "value": "Test failed"
+    },
+    {
+        "key": "knowledge_base.test.prompt_copied",
+        "value": "Enhanced prompt copied to clipboard"
+    },
+    {
+        "key": "knowledge_base.test.title",
+        "value": "Knowledge Base Tester"
+    },
+    {
+        "key": "knowledge_base.test.description",
+        "value": "Test how your knowledge base retrieves and enhances responses for different queries"
+    },
+    {
+        "key": "knowledge_base.test.query_label",
+        "value": "Test Query"
+    },
+    {
+        "key": "knowledge_base.test.query_placeholder",
+        "value": "Enter a question or query to test against your knowledge base..."
+    },
+    {
+        "key": "knowledge_base.test.search_button",
+        "value": "Search Only"
+    },
+    {
+        "key": "knowledge_base.test.test_button",
+        "value": "Test RAG Enhancement"
+    },
+    {
+        "key": "knowledge_base.test.search_results",
+        "value": "Search Results"
+    },
+    {
+        "key": "knowledge_base.test.chunks_found",
+        "value": "relevant chunks found"
+    },
+    {
+        "key": "knowledge_base.test.view_content",
+        "value": "View content"
+    },
+    {
+        "key": "knowledge_base.test.enhancement_results",
+        "value": "RAG Enhancement Results"
+    },
+    {
+        "key": "knowledge_base.test.chunks_retrieved",
+        "value": "Chunks Retrieved"
+    },
+    {
+        "key": "knowledge_base.test.chunks_used",
+        "value": "Chunks Used"
+    },
+    {
+        "key": "knowledge_base.test.avg_similarity",
+        "value": "Avg Similarity"
+    },
+    {
+        "key": "knowledge_base.test.retrieval_time",
+        "value": "Retrieval Time"
+    },
+    {
+        "key": "knowledge_base.test.prompt_comparison",
+        "value": "Prompt Comparison"
+    },
+    {
+        "key": "knowledge_base.test.original_prompt",
+        "value": "Original System Prompt"
+    },
+    {
+        "key": "knowledge_base.test.enhanced_prompt",
+        "value": "Enhanced System Prompt"
+    },
+    {
+        "key": "knowledge_base.test.context_used",
+        "value": "Context Chunks Used"
+    },
+    {
+        "key": "knowledge_base.upload.too_many_files",
+        "value": "Too many files"
+    },
+    {
+        "key": "knowledge_base.upload.max_files_exceeded",
+        "value": "Maximum {{maxFiles}} files allowed"
+    },
+    {
+        "key": "knowledge_base.upload.file_rejected",
+        "value": "File rejected"
+    },
+    {
+        "key": "knowledge_base.upload.invalid_type",
+        "value": "File type not supported"
+    },
+    {
+        "key": "knowledge_base.upload.file_too_large",
+        "value": "File is too large (max 50MB)"
+    },
+    {
+        "key": "knowledge_base.upload.success",
+        "value": "Upload successful"
+    },
+    {
+        "key": "knowledge_base.upload.file_processed",
+        "value": "{{fileName}} has been processed successfully"
+    },
+    {
+        "key": "knowledge_base.upload.file_uploaded",
+        "value": "Document uploaded and processing started"
+    },
+    {
+        "key": "knowledge_base.upload.error",
+        "value": "Upload failed"
+    },
+    {
+        "key": "knowledge_base.upload.title",
+        "value": "Upload Documents"
+    },
+    {
+        "key": "knowledge_base.upload.description",
+        "value": "Upload PDF, Word documents, or text files to enhance your AI assistant with knowledge base capabilities."
+    },
+    {
+        "key": "knowledge_base.upload.select_files",
+        "value": "Select files to upload"
+    },
+    {
+        "key": "knowledge_base.upload.supported_formats",
+        "value": "Supports PDF, Word documents, and text files (max 50MB each)"
+    },
+    {
+        "key": "knowledge_base.upload.choose_files",
+        "value": "Choose Files"
+    },
+    {
+        "key": "knowledge_base.upload.upload_button",
+        "value": "Upload"
+    },
+    {
+        "key": "knowledge_base.upload.uploading_files",
+        "value": "Uploading Files"
+    },
+    {
+        "key": "knowledge_base.status.uploading",
+        "value": "Uploading"
+    },
+    {
+        "key": "knowledge_base.status.processing",
+        "value": "Processing"
+    },
+    {
+        "key": "knowledge_base.status.completed",
+        "value": "Completed"
+    },
+    {
+        "key": "knowledge_base.status.failed",
+        "value": "Failed"
+    },
+    {
+        "key": "knowledge_base.status.error",
+        "value": "Error"
+    },
+    {
+        "key": "knowledge_base.document.delete_success",
+        "value": "Document deleted"
+    },
+    {
+        "key": "knowledge_base.document.delete_success_desc",
+        "value": "Document has been removed from knowledge base"
+    },
+    {
+        "key": "knowledge_base.document.delete_error",
+        "value": "Delete failed"
+    },
+    {
+        "key": "knowledge_base.document.load_error",
+        "value": "Failed to load documents"
+    },
+    {
+        "key": "knowledge_base.document.title",
+        "value": "Knowledge Base Documents"
+    },
+    {
+        "key": "knowledge_base.document.count",
+        "value": "documents"
+    },
+    {
+        "key": "knowledge_base.document.no_documents",
+        "value": "No documents uploaded yet"
+    },
+    {
+        "key": "knowledge_base.document.upload_first",
+        "value": "Upload your first document to get started"
+    },
+    {
+        "key": "knowledge_base.document.preview",
+        "value": "Preview document"
+    },
+    {
+        "key": "knowledge_base.document.delete_confirm_title",
+        "value": "Delete Document"
+    },
+    {
+        "key": "knowledge_base.document.delete_confirm_desc",
+        "value": "Are you sure you want to delete this document? This action cannot be undone and will remove all associated chunks from the knowledge base."
+    },
+    {
+        "key": "knowledge_base.document.open_file",
+        "value": "Open File"
+    },
+    {
+        "key": "knowledge_base.document.download",
+        "value": "Download"
+    },
+    {
+        "key": "knowledge_base.document.preview_note",
+        "value": "This document has been processed and chunked for the knowledge base. Use the \"Open File\" button to view the original document content."
+    },
+    {
+        "key": "knowledge_base.document.download_chunks",
+        "value": "Download Chunks"
+    },
+    {
+        "key": "knowledge_base.document.chunks_downloaded",
+        "value": "Chunks downloaded"
+    },
+    {
+        "key": "knowledge_base.document.chunks_downloaded_desc",
+        "value": "{{count}} chunks exported successfully"
+    },
+    {
+        "key": "knowledge_base.document.chunks_download_error",
+        "value": "Download failed"
+    },
+    {
+        "key": "flow_builder.ai_mcp_servers",
+        "value": "MCP Servers"
+    },
+    {
+        "key": "flow_builder.ai_mcp_servers_tooltip",
+        "value": "MCP (Model Context Protocol) servers provide additional tools and capabilities to the AI assistant."
+    },
+    {
+        "key": "flow_builder.ai_mcp_learn_more",
+        "value": "Learn more"
+    },
+    {
+        "key": "flow_builder.ai_mcp_add_server",
+        "value": "Add another MCP Server"
+    },
+    {
+        "key": "flow_builder.ai_mcp_no_servers",
+        "value": "No MCP servers configured. Click \"Add another MCP Server\" to get started."
+    },
+    {
         "key": "flow_builder.ai_google_calendar_disabled_help",
         "value": "Enable Google Calendar integration to allow AI to manage appointments and check availability"
     },
@@ -13008,6 +14040,30 @@
         "value": "Voice Processing:"
     },
     {
+        "key": "flow_builder.ai_voice_processing",
+        "value": "Voice Processing"
+    },
+    {
+        "key": "flow_builder.ai_tts_stt",
+        "value": "TTS & STT"
+    },
+    {
+        "key": "flow_builder.ai_voice_provider_config",
+        "value": "Voice Provider Configuration"
+    },
+    {
+        "key": "flow_builder.ai_elevenlabs_config",
+        "value": "ElevenLabs Configuration"
+    },
+    {
+        "key": "flow_builder.ai_reset_to_default",
+        "value": "Reset to Default"
+    },
+    {
+        "key": "flow_builder.ai_tts_enable_hint",
+        "value": "Enable the toggle above to configure text-to-speech and voice response settings"
+    },
+    {
         "key": "flow_builder.ai_audio_limits",
         "value": "Audio Processing Limits"
     },
@@ -13034,6 +14090,170 @@
     {
         "key": "flow_builder.ai_task_execution",
         "value": "Task Execution"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_tooltip",
+        "value": "Help & Documentation"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_title",
+        "value": "Task Execution - Help & Documentation"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_subtitle",
+        "value": "Learn how to use AI function calling and dynamic flow routing"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_overview_title",
+        "value": "What is Task Execution?"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_overview_content",
+        "value": "Task execution enables AI function calling, allowing the AI to trigger specific actions and route conversations to different flow paths based on user intent."
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_overview_benefits",
+        "value": "Key benefits: dynamic routing, automated actions, context-aware responses, and integration with external systems."
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_usecases_title",
+        "value": "Use Cases"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_usecase_1",
+        "value": "Sharing documents/brochures when users request specific information"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_usecase_2",
+        "value": "Booking appointments or scheduling callbacks"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_usecase_3",
+        "value": "Collecting structured data through conversational forms"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_usecase_4",
+        "value": "Routing to different flow paths based on user intent"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_usecase_5",
+        "value": "Triggering external API calls or webhooks"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_config_title",
+        "value": "Configuration Fields"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_field_task_name",
+        "value": "Task Name"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_field_task_name_desc",
+        "value": "User-friendly name for identification"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_field_function_name",
+        "value": "Function Name"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_field_function_name_desc",
+        "value": "Technical identifier (lowercase, underscores only) used by AI"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_field_task_description",
+        "value": "Task Description"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_field_task_description_desc",
+        "value": "Internal notes about the task purpose"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_field_ai_description",
+        "value": "AI Function Description"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_field_ai_description_desc",
+        "value": "Critical field - detailed instructions for when AI should call this function. Emphasize specificity to prevent false triggers."
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_field_output_handle",
+        "value": "Output Handle ID"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_field_output_handle_desc",
+        "value": "Unique identifier for the flow connection point"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_field_enabled",
+        "value": "Enabled Toggle"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_field_enabled_desc",
+        "value": "Activate/deactivate without deleting"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_best_practices_title",
+        "value": "Best Practices"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_best_practice_1",
+        "value": "Use specific trigger phrases in AI Function Description (e.g., \"ONLY call when user explicitly requests...\")"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_best_practice_2",
+        "value": "Keep function names descriptive but concise"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_best_practice_3",
+        "value": "Test tasks thoroughly to avoid false triggers"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_best_practice_4",
+        "value": "Use output handles to create clear flow paths"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_best_practice_5",
+        "value": "Disable unused tasks instead of deleting them"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_examples_title",
+        "value": "Examples"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_example_1_title",
+        "value": "Example 1: Document sharing task"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_example_1_desc",
+        "value": "Call when user asks for product information or brochure"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_example_2_title",
+        "value": "Example 2: Appointment booking task"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_example_2_desc",
+        "value": "Call when user wants to schedule a meeting or appointment"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_example_function",
+        "value": "Function"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_example_description",
+        "value": "Description"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_flow_title",
+        "value": "Flow Routing"
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_flow_content",
+        "value": "Each enabled task creates a dynamic output handle. Connect output handles to different flow nodes. The AI automatically routes to the appropriate path when the function is called."
+    },
+    {
+        "key": "flow_builder.ai_task_execution_help_flow_diagram",
+        "value": "Task execution flow:"
     },
     {
         "key": "flow_builder.ai_voice_processing_openai",
@@ -13610,6 +14830,302 @@
     {
         "key": "flow_builder.trigger_delete_node",
         "value": "Delete node"
+    },
+    {
+        "key": "flow_builder.webhook_trigger_title",
+        "value": "Webhook Trigger"
+    },
+    {
+        "key": "flow_builder.webhook_url_label",
+        "value": "Webhook URL"
+    },
+    {
+        "key": "flow_builder.webhook_custom_path",
+        "value": "Custom Path"
+    },
+    {
+        "key": "flow_builder.webhook_use_custom_path",
+        "value": "Use Custom Path"
+    },
+    {
+        "key": "flow_builder.webhook_regenerate_token",
+        "value": "Regenerate Token"
+    },
+    {
+        "key": "flow_builder.webhook_regenerate_confirm",
+        "value": "Regenerating the token will invalidate the current webhook URL. External systems will need to be updated. Continue?"
+    },
+    {
+        "key": "flow_builder.webhook_token_regenerated",
+        "value": "Token regenerated"
+    },
+    {
+        "key": "flow_builder.webhook_new_url_ready",
+        "value": "New URL is ready. Update your external systems."
+    },
+    {
+        "key": "flow_builder.webhook_save_flow_first",
+        "value": "Save the flow to get the new URL."
+    },
+    {
+        "key": "flow_builder.webhook_contact_mapping",
+        "value": "Contact Association"
+    },
+    {
+        "key": "flow_builder.webhook_extract_from_payload",
+        "value": "Extract from Payload"
+    },
+    {
+        "key": "flow_builder.webhook_create_new_contact",
+        "value": "Create New Contact"
+    },
+    {
+        "key": "flow_builder.webhook_system_level",
+        "value": "System-Level (No Contact)"
+    },
+    {
+        "key": "flow_builder.webhook_payload_filters",
+        "value": "Payload Filters"
+    },
+    {
+        "key": "flow_builder.webhook_add_filter",
+        "value": "Add Filter"
+    },
+    {
+        "key": "flow_builder.webhook_response_config",
+        "value": "Response Configuration"
+    },
+    {
+        "key": "flow_builder.webhook_response_mode",
+        "value": "Response Mode"
+    },
+    {
+        "key": "flow_builder.webhook_sync_mode",
+        "value": "Synchronous"
+    },
+    {
+        "key": "flow_builder.webhook_async_mode",
+        "value": "Asynchronous"
+    },
+    {
+        "key": "flow_builder.webhook_status_code",
+        "value": "Status Code"
+    },
+    {
+        "key": "flow_builder.webhook_response_body",
+        "value": "Response Body Template"
+    },
+    {
+        "key": "flow_builder.webhook_test_webhook",
+        "value": "Test Webhook"
+    },
+    {
+        "key": "flow_builder.webhook_url_copied",
+        "value": "Webhook URL copied to clipboard"
+    },
+    {
+        "key": "flow_builder.webhook_copy_url",
+        "value": "Copy URL"
+    },
+    {
+        "key": "flow_builder.webhook_path_invalid",
+        "value": "Use only letters, numbers, hyphens and underscores"
+    },
+    {
+        "key": "flow_builder.webhook_path_duplicate",
+        "value": "This path is already used by another webhook trigger"
+    },
+    {
+        "key": "flow_builder.webhook_path_help",
+        "value": "Letters, numbers, hyphens and underscores only. Must be unique per flow."
+    },
+    {
+        "key": "flow_builder.webhook_active_url",
+        "value": "Active URL"
+    },
+    {
+        "key": "flow_builder.webhook_extract_field",
+        "value": "Field path (e.g. customer.email, phone)"
+    },
+    {
+        "key": "flow_builder.webhook_field_name",
+        "value": "Name field path"
+    },
+    {
+        "key": "flow_builder.webhook_field_email",
+        "value": "Email field path"
+    },
+    {
+        "key": "flow_builder.webhook_field_phone",
+        "value": "Phone field path"
+    },
+    {
+        "key": "flow_builder.webhook_extract_help",
+        "value": "Use a dot-separated path into the JSON payload to identify the contact (e.g. customer.email)."
+    },
+    {
+        "key": "flow_builder.webhook_create_help",
+        "value": "Specify payload field paths for name, email, and/or phone to create a new contact when the webhook fires."
+    },
+    {
+        "key": "flow_builder.webhook_system_help",
+        "value": "No contact is associated; flow runs at system level."
+    },
+    {
+        "key": "flow_builder.webhook_filters_help",
+        "value": "Flow triggers only if all conditions match"
+    },
+    {
+        "key": "flow_builder.webhook_timeout_seconds",
+        "value": "Timeout (s)"
+    },
+    {
+        "key": "flow_builder.webhook_response_vars",
+        "value": "Variables: {{flow.id}}, {{flow.name}}, {{webhook.requestId}}, {{contact.id}}, {{contact.name}}, {{contact.email}}, {{contact.phone}}"
+    },
+    {
+        "key": "flow_builder.webhook_send_test",
+        "value": "Send Test"
+    },
+    {
+        "key": "flow_builder.webhook_invalid_json",
+        "value": "Invalid JSON in sample payload"
+    },
+    {
+        "key": "flow_builder.webhook_test_error",
+        "value": "Test failed"
+    },
+    {
+        "key": "flow_builder.webhook_filters",
+        "value": "Filters"
+    },
+    {
+        "key": "flow_builder.webhook_contact_result",
+        "value": "Contact"
+    },
+    {
+        "key": "flow_builder.webhook_url_tooltip",
+        "value": "This is the endpoint where external systems send webhook events. Copy this URL and configure it in your external platform (Shopify, Stripe, etc.)."
+    },
+    {
+        "key": "flow_builder.webhook_custom_path_tooltip",
+        "value": "Enable to use a memorable path like '/shopify-orders' instead of auto-generated URL. Custom paths must be unique across all flows."
+    },
+    {
+        "key": "flow_builder.webhook_custom_path_example",
+        "value": "Example: shopify-orders, stripe-payments, crm-events. Only letters, numbers, hyphens, and underscores allowed."
+    },
+    {
+        "key": "flow_builder.webhook_regenerate_token_tooltip",
+        "value": "Generate a new security token. You'll need to update the webhook URL in your external system after regenerating."
+    },
+    {
+        "key": "flow_builder.webhook_contact_association_tooltip",
+        "value": "Determines how to identify or create contacts when webhooks arrive. Choose based on your use case."
+    },
+    {
+        "key": "flow_builder.webhook_extract_tooltip",
+        "value": "Extract contact identifier (email or phone) from webhook payload using a field path. Best for webhooks that include customer data."
+    },
+    {
+        "key": "flow_builder.webhook_create_tooltip",
+        "value": "Automatically create a new contact using data from the webhook payload. Useful for lead generation or new customer webhooks."
+    },
+    {
+        "key": "flow_builder.webhook_system_tooltip",
+        "value": "Run flow without associating to a contact. Use for background tasks, notifications, or system events."
+    },
+    {
+        "key": "flow_builder.webhook_extract_field_help",
+        "value": "Use dot notation to access nested fields. Examples: 'customer.email', 'data.user.phone', 'email'"
+    },
+    {
+        "key": "flow_builder.webhook_create_fields_help",
+        "value": "Map webhook payload fields to contact properties. Leave empty to skip that field."
+    },
+    {
+        "key": "flow_builder.webhook_filters_tooltip",
+        "value": "Optional conditions to filter which webhooks trigger this flow. All conditions must match (AND logic)."
+    },
+    {
+        "key": "flow_builder.webhook_filters_example",
+        "value": "Example: Filter by event type ('event_type' equals 'order.created') or order value ('total_price' greater than '100')"
+    },
+    {
+        "key": "flow_builder.webhook_field_path_tooltip",
+        "value": "Path to the field in webhook payload. Use dot notation for nested fields (e.g., 'order.status', 'data.customer.tier')"
+    },
+    {
+        "key": "flow_builder.webhook_operator_tooltip",
+        "value": "Comparison operator. Use 'exists' to check if field is present, 'regex' for pattern matching."
+    },
+    {
+        "key": "flow_builder.webhook_case_sensitive_tooltip",
+        "value": "Enable for case-sensitive string comparisons. Disable to ignore case differences."
+    },
+    {
+        "key": "flow_builder.webhook_response_config_tooltip",
+        "value": "Configure what the webhook endpoint returns to the external system after receiving the webhook."
+    },
+    {
+        "key": "flow_builder.webhook_async_tooltip",
+        "value": "Returns 202 Accepted immediately without waiting for flow completion. Recommended for most use cases and long-running flows."
+    },
+    {
+        "key": "flow_builder.webhook_sync_tooltip",
+        "value": "Waits for flow to complete (max 30s) before responding. Use when external system requires immediate confirmation (e.g., payment gateways, validation webhooks)."
+    },
+    {
+        "key": "flow_builder.webhook_status_code_tooltip",
+        "value": "HTTP status code to return. 200 = success, 202 = accepted, 400 = bad request, 404 = not found."
+    },
+    {
+        "key": "flow_builder.webhook_body_template_tooltip",
+        "value": "Response body with variable interpolation. Use {{webhook.payload.field}} to access webhook data, {{flow.id}} for flow ID."
+    },
+    {
+        "key": "flow_builder.webhook_headers_help",
+        "value": "Custom HTTP headers to include in response. Example: 'X-Request-ID' with value '{{webhook.requestId}}'"
+    },
+    {
+        "key": "flow_builder.webhook_test_tooltip",
+        "value": "Send a test webhook request to verify configuration, filters, and contact mapping before going live."
+    },
+    {
+        "key": "flow_builder.webhook_sample_payload_help",
+        "value": "Select a pre-built sample or paste your own JSON payload to test the webhook trigger."
+    },
+    {
+        "key": "flow_builder.webhook_send_test_tooltip",
+        "value": "Sends the sample payload to your webhook URL and shows detailed results including filter evaluation and contact resolution."
+    },
+    {
+        "key": "flow_builder.webhook_php_example",
+        "value": "PHP"
+    },
+    {
+        "key": "flow_builder.webhook_docs_tooltip",
+        "value": "View webhook trigger documentation"
+    },
+    {
+        "key": "flow_builder.webhook_click_to_copy",
+        "value": "Click to copy"
+    },
+    {
+        "key": "flow_builder.webhook_copied",
+        "value": "Copied!"
+    },
+    {
+        "key": "flow_builder.webhook_view_logs",
+        "value": "Logs"
+    },
+    {
+        "key": "flow_builder.webhook_view_logs_tooltip",
+        "value": "View webhook logs"
+    },
+    {
+        "key": "flow_builder.webhook_test_http_error",
+        "value": "HTTP error"
     },
     {
         "key": "flow_builder.trigger_channel_whatsapp_unofficial",
@@ -14869,7 +16385,7 @@
     },
     {
         "key": "flow_builder.documind_node_title",
-        "value": "ChatPDF-API AI"
+        "value": "Documind AI"
     },
     {
         "key": "flow_builder.documind_duplicate_node",
@@ -14978,6 +16494,418 @@
     {
         "key": "flow_builder.followup_default_text_template",
         "value": "Thank you for your interest! How can we help you further?"
+    },
+    {
+        "key": "flow_builder.followup_help_title",
+        "value": "Follow-Up Node - Help & Documentation"
+    },
+    {
+        "key": "flow_builder.followup_help_description",
+        "value": "Learn how to effectively schedule and manage automated follow-up messages"
+    },
+    {
+        "key": "flow_builder.followup_help_overview_title",
+        "value": "Node Overview"
+    },
+    {
+        "key": "flow_builder.followup_help_timing_title",
+        "value": "Timing Strategies"
+    },
+    {
+        "key": "flow_builder.followup_help_message_types_title",
+        "value": "Message Types"
+    },
+    {
+        "key": "flow_builder.followup_help_cancellation_title",
+        "value": "Cancellation Logic"
+    },
+    {
+        "key": "flow_builder.followup_help_variables_title",
+        "value": "Variable System"
+    },
+    {
+        "key": "flow_builder.followup_help_examples_title",
+        "value": "Practical Examples"
+    },
+    {
+        "key": "flow_builder.followup_help_best_practices_title",
+        "value": "Best Practices & Tips"
+    },
+    {
+        "key": "flow_builder.help_documentation",
+        "value": "Help & Documentation"
+    },
+    {
+        "key": "flow_builder.message_type_tooltip",
+        "value": "Choose the type of content to send in the follow-up message"
+    },
+    {
+        "key": "flow_builder.template_tooltip",
+        "value": "Apply a pre-configured message template for quick setup"
+    },
+    {
+        "key": "flow_builder.message_content_tooltip",
+        "value": "Compose your follow-up message. Use {{variable}} syntax to insert dynamic content"
+    },
+    {
+        "key": "flow_builder.insert_variable_tooltip",
+        "value": "Click any variable to insert it at cursor position in your message"
+    },
+    {
+        "key": "flow_builder.upload_media_tooltip",
+        "value": "Upload media files (max 30MB). Supported formats vary by type"
+    },
+    {
+        "key": "flow_builder.trigger_event_tooltip",
+        "value": "Choose when the follow-up should be scheduled relative to this node's execution"
+    },
+    {
+        "key": "flow_builder.conversation_start_tooltip",
+        "value": "Schedule immediately when flow reaches this node"
+    },
+    {
+        "key": "flow_builder.relative_delay_tooltip",
+        "value": "Schedule based on time elapsed from node execution"
+    },
+    {
+        "key": "flow_builder.specific_datetime_tooltip",
+        "value": "Schedule for an exact date and time in a specific timezone"
+    },
+    {
+        "key": "flow_builder.date_and_time_tooltip",
+        "value": "Enter the exact date and time when the follow-up should be sent"
+    },
+    {
+        "key": "flow_builder.timezone_tooltip",
+        "value": "Select the timezone for scheduling. Message will be sent at the specified time in this timezone"
+    },
+    {
+        "key": "flow_builder.delay_amount_tooltip",
+        "value": "How long to wait before sending the follow-up"
+    },
+    {
+        "key": "flow_builder.delay_unit_tooltip",
+        "value": "Time unit for the delay period"
+    },
+    {
+        "key": "flow_builder.calculated_send_time",
+        "value": "Will send approximately at:"
+    },
+    {
+        "key": "flow_builder.cancel_on_user_response_tooltip",
+        "value": "Enable smart cancellation to avoid sending follow-ups when users have already responded"
+    },
+    {
+        "key": "flow_builder.cancel_condition_tooltip",
+        "value": "Define the specific condition that will trigger automatic cancellation"
+    },
+    {
+        "key": "flow_builder.cancel_any_message_tooltip",
+        "value": "Most responsive - cancels as soon as user sends any message"
+    },
+    {
+        "key": "flow_builder.cancel_no_response_tooltip",
+        "value": "Balanced - sends only if user hasn't engaged after the delay"
+    },
+    {
+        "key": "flow_builder.cancel_never_tooltip",
+        "value": "Guaranteed delivery - always sends at scheduled time"
+    },
+    {
+        "key": "flow_builder.cancellation_behavior_any_message",
+        "value": "The follow-up will be automatically cancelled as soon as the user sends any message before the scheduled send time. This is the most responsive option."
+    },
+    {
+        "key": "flow_builder.cancellation_behavior_no_response",
+        "value": "The follow-up will only be sent if the user has not responded after the delay period. If they respond, it will be cancelled."
+    },
+    {
+        "key": "flow_builder.cancellation_behavior_never",
+        "value": "The follow-up will always be sent at the scheduled time, regardless of any user activity. Use this for critical announcements or appointment reminders."
+    },
+    {
+        "key": "flow_builder.max_retries_tooltip",
+        "value": "Number of automatic retry attempts if message delivery fails (0-10)"
+    },
+    {
+        "key": "flow_builder.high_retry_warning",
+        "value": "High retry count may delay failure detection"
+    },
+    {
+        "key": "flow_builder.summary_message_type",
+        "value": "Message Type"
+    },
+    {
+        "key": "flow_builder.summary_timing_strategy",
+        "value": "Timing Strategy"
+    },
+    {
+        "key": "flow_builder.summary_cancellation_any",
+        "value": "Will cancel if user sends any message"
+    },
+    {
+        "key": "flow_builder.summary_cancellation_no_response",
+        "value": "Will send only if no user response"
+    },
+    {
+        "key": "flow_builder.summary_cancellation_never",
+        "value": "Will always send regardless of activity"
+    },
+    {
+        "key": "flow_builder.summary_cancellation_disabled",
+        "value": "Cancellation is disabled"
+    },
+    {
+        "key": "flow_builder.summary_retries",
+        "value": "Maximum retry attempts"
+    },
+    {
+        "key": "flow_builder.cancel_any_message_short",
+        "value": "Cancel on Reply"
+    },
+    {
+        "key": "flow_builder.cancel_no_response_short",
+        "value": "Cancel if No Response"
+    },
+    {
+        "key": "flow_builder.cancel_never_short",
+        "value": "Never Cancel"
+    },
+    {
+        "key": "flow_builder.cancellation_disabled",
+        "value": "No Cancellation"
+    },
+    {
+        "key": "flow_builder.retries",
+        "value": "Retries"
+    },
+    {
+        "key": "common.hide",
+        "value": "Hide"
+    },
+    {
+        "key": "common.edit",
+        "value": "Edit"
+    },
+    {
+        "key": "flow_builder.max_file_size",
+        "value": "Max 30MB"
+    },
+    {
+        "key": "flow_builder.image_formats",
+        "value": "JPG, PNG, GIF"
+    },
+    {
+        "key": "flow_builder.video_formats",
+        "value": "MP4, MOV, AVI"
+    },
+    {
+        "key": "flow_builder.audio_formats",
+        "value": "MP3, WAV, OGG"
+    },
+    {
+        "key": "flow_builder.document_formats",
+        "value": "PDF, DOC, XLS, PPT"
+    },
+    {
+        "key": "flow_builder.scheduled_time_preview",
+        "value": "Scheduled Time Preview:"
+    },
+    {
+        "key": "flow_builder.local_time",
+        "value": "Local"
+    },
+    {
+        "key": "flow_builder.utc_time",
+        "value": "UTC"
+    },
+    {
+        "key": "flow_builder.followup_help_overview_desc",
+        "value": "The Follow-Up Node enables automated re-engagement by scheduling messages to be sent at specific times or after delays. It helps you maintain conversations, send reminders, and create drip campaigns without manual intervention."
+    },
+    {
+        "key": "flow_builder.key_benefits",
+        "value": "Key Benefits"
+    },
+    {
+        "key": "flow_builder.followup_key_benefits",
+        "value": "Automated re-engagement, scheduled reminders, drip campaigns, timezone-aware scheduling, and smart cancellation based on user activity."
+    },
+    {
+        "key": "flow_builder.conversation_start_help_desc",
+        "value": "Schedule immediately when the flow reaches this node. Perfect for instant follow-ups or immediate responses."
+    },
+    {
+        "key": "flow_builder.conversation_start_flow",
+        "value": "Flow reaches node → Message scheduled immediately → Sent right away"
+    },
+    {
+        "key": "flow_builder.relative_delay_help_desc",
+        "value": "Schedule based on time elapsed from node execution. Choose minutes, hours, days, or weeks."
+    },
+    {
+        "key": "flow_builder.example",
+        "value": "Example"
+    },
+    {
+        "key": "flow_builder.relative_delay_example",
+        "value": "24 hours delay"
+    },
+    {
+        "key": "flow_builder.relative_delay_flow",
+        "value": "Node executes at 2:00 PM → Message scheduled for 2:00 PM next day"
+    },
+    {
+        "key": "flow_builder.specific_datetime_help_desc",
+        "value": "Schedule for an exact date and time in a specific timezone. Ideal for appointment reminders and scheduled announcements."
+    },
+    {
+        "key": "flow_builder.specific_datetime_example",
+        "value": "January 15, 2026 at 3:00 PM (America/New_York)"
+    },
+    {
+        "key": "flow_builder.specific_datetime_flow",
+        "value": "Message will be sent at exactly 3:00 PM EST on that date"
+    },
+    {
+        "key": "flow_builder.text_message_help_desc",
+        "value": "Simple text messages with variable substitution support"
+    },
+    {
+        "key": "flow_builder.image_help_desc",
+        "value": "Visual content with optional captions"
+    },
+    {
+        "key": "flow_builder.video_help_desc",
+        "value": "Video messages for tutorials and demos"
+    },
+    {
+        "key": "flow_builder.audio_help_desc",
+        "value": "Voice messages (no caption support)"
+    },
+    {
+        "key": "flow_builder.document_help_desc",
+        "value": "File attachments (PDFs, docs, spreadsheets, etc.) with optional captions"
+    },
+    {
+        "key": "flow_builder.cancel_any_message_help_desc",
+        "value": "Most responsive option - cancels as soon as the user sends any message before the scheduled time. Best for flows where any user engagement indicates they're active."
+    },
+    {
+        "key": "flow_builder.cancel_any_message_flow",
+        "value": "Scheduled for 3:00 PM → User sends message at 2:30 PM → Follow-up cancelled"
+    },
+    {
+        "key": "flow_builder.cancel_no_response_help_desc",
+        "value": "Balanced approach - sends only if the user hasn't engaged after the delay period. Perfect for re-engagement campaigns where you want to reach inactive users."
+    },
+    {
+        "key": "flow_builder.cancel_no_response_flow_1",
+        "value": "Delay: 24 hours → User hasn't responded → Follow-up sent"
+    },
+    {
+        "key": "flow_builder.cancel_no_response_flow_2",
+        "value": "Delay: 24 hours → User responded → Follow-up cancelled"
+    },
+    {
+        "key": "flow_builder.cancel_never_help_desc",
+        "value": "Guaranteed delivery - always sends at the scheduled time regardless of user activity. Use for critical announcements, appointment reminders, or time-sensitive information."
+    },
+    {
+        "key": "flow_builder.cancel_never_flow",
+        "value": "Scheduled for 3:00 PM → Always sent at 3:00 PM regardless of user activity"
+    },
+    {
+        "key": "flow_builder.how_variables_work",
+        "value": "How Variables Work"
+    },
+    {
+        "key": "flow_builder.variables_work_desc",
+        "value": "Use {{variable_name}} syntax to insert dynamic content into your follow-up messages. Variables are replaced with actual values when the message is sent."
+    },
+    {
+        "key": "flow_builder.variables_example",
+        "value": "Message: \"Hello {{contact.name}}, your appointment is on {{date.today}}\""
+    },
+    {
+        "key": "flow_builder.variables_result",
+        "value": "Result: \"Hello John, your appointment is on January 15, 2026\""
+    },
+    {
+        "key": "flow_builder.available_variables",
+        "value": "Available Variables"
+    },
+    {
+        "key": "flow_builder.example_1_title",
+        "value": "Example 1: Appointment Reminder"
+    },
+    {
+        "key": "flow_builder.scenario",
+        "value": "Scenario"
+    },
+    {
+        "key": "flow_builder.example_1_scenario",
+        "value": "Remind user about appointment scheduled for January 20, 2026 at 2:00 PM EST"
+    },
+    {
+        "key": "flow_builder.configuration",
+        "value": "Configuration"
+    },
+    {
+        "key": "flow_builder.example_1_config_trigger",
+        "value": "Trigger: Specific Date/Time"
+    },
+    {
+        "key": "flow_builder.example_1_config_datetime",
+        "value": "Date/Time: January 20, 2026, 2:00 PM"
+    },
+    {
+        "key": "flow_builder.example_1_config_timezone",
+        "value": "Timezone: America/New_York"
+    },
+    {
+        "key": "flow_builder.example_1_config_message",
+        "value": "Message: \"Hi {{contact.name}}, this is a reminder about your appointment tomorrow at 2:00 PM EST.\""
+    },
+    {
+        "key": "flow_builder.example_1_config_cancellation",
+        "value": "Cancellation: Never Cancel"
+    },
+    {
+        "key": "flow_builder.result",
+        "value": "Result"
+    },
+    {
+        "key": "flow_builder.example_1_result",
+        "value": "User receives reminder exactly at 2:00 PM EST on January 20, 2026"
+    },
+    {
+        "key": "flow_builder.example_2_title",
+        "value": "Example 2: Re-engagement After 24 Hours"
+    },
+    {
+        "key": "flow_builder.example_2_scenario",
+        "value": "Send follow-up if user hasn't responded after 24 hours"
+    },
+    {
+        "key": "flow_builder.example_2_config_trigger",
+        "value": "Trigger: Relative Delay"
+    },
+    {
+        "key": "flow_builder.example_2_config_delay",
+        "value": "Delay: 24 hours"
+    },
+    {
+        "key": "flow_builder.example_2_config_message",
+        "value": "Message: \"Hi {{contact.name}}, we noticed you haven't responded. Is there anything we can help with?\""
+    },
+    {
+        "key": "flow_builder.example_2_config_cancellation",
+        "value": "Cancellation: No Response (only send if user hasn't responded)"
+    },
+    {
+        "key": "flow_builder.example_2_result",
+        "value": "If user responds within 24 hours, follow-up is cancelled. Otherwise, sent after 24 hours."
     },
     {
         "key": "flow_builder.woocommerce_orders",
@@ -18208,6 +20136,290 @@
         "value": "Stop on error"
     },
     {
+        "key": "flow_builder.manage_contact_help_title",
+        "value": "Manage Contact Node - Help & Documentation"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_description",
+        "value": "Learn how to update or delete contact information in your flows"
+    },
+    {
+        "key": "flow_builder.help_documentation",
+        "value": "Help & Documentation"
+    },
+    {
+        "key": "flow_builder.hide",
+        "value": "Hide"
+    },
+    {
+        "key": "flow_builder.edit",
+        "value": "Edit"
+    },
+    {
+        "key": "flow_builder.configuration_progress",
+        "value": "Configuration Progress"
+    },
+    {
+        "key": "flow_builder.fully_configured_ready",
+        "value": "Fully configured and ready"
+    },
+    {
+        "key": "flow_builder.complete_configuration",
+        "value": "Complete configuration for full functionality"
+    },
+    {
+        "key": "flow_builder.hide_configuration_options",
+        "value": "Hide configuration options"
+    },
+    {
+        "key": "flow_builder.show_configuration_options",
+        "value": "Show configuration options"
+    },
+    {
+        "key": "flow_builder.contact_id_variable_target",
+        "value": "Variable containing the contact ID or phone number to target"
+    },
+    {
+        "key": "flow_builder.ready",
+        "value": "Ready"
+    },
+    {
+        "key": "flow_builder.setup_required",
+        "value": "Setup required"
+    },
+    {
+        "key": "flow_builder.confirmation_required",
+        "value": "Confirmation required"
+    },
+    {
+        "key": "flow_builder.configured_with_fields",
+        "value": "Configured with {{count}} field(s)"
+    },
+    {
+        "key": "flow_builder.configure_fields_to_update",
+        "value": "Configure fields to update"
+    },
+    {
+        "key": "flow_builder.enable_delete_confirmation",
+        "value": "Enable delete confirmation"
+    },
+    {
+        "key": "flow_builder.badge_update",
+        "value": "📝 Update"
+    },
+    {
+        "key": "flow_builder.badge_delete",
+        "value": "🗑️ Delete"
+    },
+    {
+        "key": "flow_builder.configured_fields",
+        "value": "Configured fields"
+    },
+    {
+        "key": "flow_builder.badge_skip_empty",
+        "value": "⏭️ Skip empty"
+    },
+    {
+        "key": "flow_builder.skip_empty_values_enabled",
+        "value": "Skip empty values enabled"
+    },
+    {
+        "key": "flow_builder.skip_empty_values_help",
+        "value": "Prevents overwriting with empty data"
+    },
+    {
+        "key": "flow_builder.badge_confirmed",
+        "value": "✅ Confirmed"
+    },
+    {
+        "key": "flow_builder.delete_confirmation_enabled",
+        "value": "Delete confirmation enabled"
+    },
+    {
+        "key": "flow_builder.placeholder_number_or_variable",
+        "value": "0 or {{variable}}"
+    },
+    {
+        "key": "flow_builder.placeholder_date_or_variable",
+        "value": "YYYY-MM-DD or {{date.today}}"
+    },
+    {
+        "key": "flow_builder.select_multiple",
+        "value": " (select multiple)"
+    },
+    {
+        "key": "flow_builder.manage_contact_inline_help",
+        "value": "The Manage Contact node updates or deletes contact information when reached in the flow. Use variables like {{contact.id}} to dynamically target contacts. Changes are applied immediately and persist across all flows."
+    },
+    {
+        "key": "flow_builder.manage_contact_help_node_overview",
+        "value": "Node Overview"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_overview_desc",
+        "value": "The Manage Contact Node allows you to update or delete contact information when reached in your flow. It enables you to maintain contact data, manage the contact lifecycle, and update custom fields dynamically."
+    },
+    {
+        "key": "flow_builder.manage_contact_help_key_benefits",
+        "value": "Key Benefits: Maintain contact data accuracy, manage contact lifecycle (archive/activate), update custom fields from captured data, add or manage tags, and optionally delete contacts with confirmation."
+    },
+    {
+        "key": "flow_builder.manage_contact_help_operations",
+        "value": "Operations"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_update_desc",
+        "value": "Updates contact fields with new values. Supports standard fields (name, email, phone, company, notes), custom fields based on your schema, tags management, and boolean flags (isActive, isArchived)."
+    },
+    {
+        "key": "flow_builder.manage_contact_help_delete_desc",
+        "value": "Permanently deletes the contact and all associated data (conversations, messages, notes, deals). Requires explicit confirmation to prevent accidental deletions. This action cannot be undone."
+    },
+    {
+        "key": "flow_builder.manage_contact_help_delete_enable",
+        "value": "Enable \"I understand this will permanently delete the contact\" before the node can execute."
+    },
+    {
+        "key": "flow_builder.manage_contact_help_field_types",
+        "value": "Field Types"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_standard_fields",
+        "value": "Standard Fields"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_standard_fields_list",
+        "value": "name, email, phone, company, notes"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_boolean_fields",
+        "value": "Boolean Fields"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_boolean_fields_list",
+        "value": "isActive, isArchived"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_tags_desc",
+        "value": "Array of strings, add/remove tags"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_custom_fields_desc",
+        "value": "Dynamic based on your schema"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_variable_system",
+        "value": "Variable System"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_using_variables",
+        "value": "Using Variables"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_variables_desc",
+        "value": "Use {{contact.id}}, {{contact.phone}}, etc. to dynamically target contacts. The contactIdVariable specifies which contact to update or delete."
+    },
+    {
+        "key": "flow_builder.manage_contact_help_examples",
+        "value": "Examples"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_config_options",
+        "value": "Configuration Options"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_skip_empty_desc",
+        "value": "When enabled, prevents overwriting existing contact data with empty values. Only non-empty values will be applied to the contact."
+    },
+    {
+        "key": "flow_builder.manage_contact_help_error_handling_desc",
+        "value": "Continue on error: Flow proceeds even if update/delete fails. Stop on error: Flow halts on failure."
+    },
+    {
+        "key": "flow_builder.manage_contact_help_delete_confirmation",
+        "value": "Delete Confirmation"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_delete_confirm_desc",
+        "value": "Safety mechanism for delete operations. Must be enabled before the node can execute a delete."
+    },
+    {
+        "key": "flow_builder.manage_contact_help_practical_examples",
+        "value": "Practical Examples"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_example1_title",
+        "value": "Example 1: Update contact name and email from captured data"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_example1_desc",
+        "value": "Use after a Data Capture node that collected user_name and user_email."
+    },
+    {
+        "key": "flow_builder.manage_contact_help_example2_title",
+        "value": "Example 2: Add tags to a contact"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_example2_desc",
+        "value": "Tags are added to existing tags. Use for segmentation and filtering."
+    },
+    {
+        "key": "flow_builder.manage_contact_help_example3_title",
+        "value": "Example 3: Archive inactive contacts"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_example3_desc",
+        "value": "Use in a flow that identifies inactive contacts to archive them."
+    },
+    {
+        "key": "flow_builder.manage_contact_help_example4_title",
+        "value": "Example 4: Delete contact with confirmation"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_example4_desc",
+        "value": "Always enable confirmation. Consider adding a condition to prevent accidental deletion."
+    },
+    {
+        "key": "flow_builder.manage_contact_help_best_practices",
+        "value": "Best Practices"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_dos",
+        "value": "Do's"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_do1",
+        "value": "Use variables for dynamic updates ({{contact.id}}, {{user_name}})"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_do2",
+        "value": "Enable skip empty values to prevent overwriting with empty data"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_do3",
+        "value": "Test with sample data before deploying to production"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_do4",
+        "value": "Always enable delete confirmation for delete operations"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_donts",
+        "value": "❌ Don'ts"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_dont1",
+        "value": "Don't hardcode values when variables are available"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_dont2",
+        "value": "Don't skip delete confirmation in production flows"
+    },
+    {
+        "key": "flow_builder.manage_contact_help_dont3",
+        "value": "Don't update without validating the contact exists"
+    },
+    {
         "key": "nav.call_logs",
         "value": "Call Logs"
     },
@@ -20034,5 +22246,685 @@
     {
         "key": "common.cancel",
         "value": "Cancel"
+    },
+    {
+        "key": "nav.pages",
+        "value": "Pages Management"
+    },
+    {
+        "key": "pages.dashboard_description",
+        "value": "Create and manage public-facing pages for your company"
+    },
+    {
+        "key": "pages.create",
+        "value": "Create Page"
+    },
+    {
+        "key": "pages.total_pages",
+        "value": "Total Pages"
+    },
+    {
+        "key": "pages.published_pages",
+        "value": "Published Pages"
+    },
+    {
+        "key": "pages.draft_pages",
+        "value": "Draft Pages"
+    },
+    {
+        "key": "pages.featured_pages",
+        "value": "Featured Pages"
+    },
+    {
+        "key": "pages.empty.title",
+        "value": "No pages created yet"
+    },
+    {
+        "key": "pages.empty.description",
+        "value": "Create your first page to start building your public-facing content like Terms of Service, Privacy Policy, or custom pages."
+    },
+    {
+        "key": "pages.updated",
+        "value": "Updated"
+    },
+    {
+        "key": "pages.published",
+        "value": "Published"
+    },
+    {
+        "key": "pages.draft",
+        "value": "Draft"
+    },
+    {
+        "key": "pages.featured",
+        "value": "Featured"
+    },
+    {
+        "key": "pages.view_public",
+        "value": "View Public Page"
+    },
+    {
+        "key": "pages.preview",
+        "value": "Preview"
+    },
+    {
+        "key": "pages.edit",
+        "value": "Edit"
+    },
+    {
+        "key": "pages.unpublish",
+        "value": "Unpublish"
+    },
+    {
+        "key": "pages.publish",
+        "value": "Publish"
+    },
+    {
+        "key": "pages.delete.title",
+        "value": "Delete Page"
+    },
+    {
+        "key": "pages.delete.description",
+        "value": "Are you sure you want to delete this page? This action cannot be undone and the page will no longer be accessible to the public."
+    },
+    {
+        "key": "pages.created_success",
+        "value": "Page created successfully"
+    },
+    {
+        "key": "pages.updated_success",
+        "value": "Page updated successfully"
+    },
+    {
+        "key": "pages.deleted_success",
+        "value": "Page deleted successfully"
+    },
+    {
+        "key": "pages.publish_success",
+        "value": "Page published successfully"
+    },
+    {
+        "key": "pages.unpublish_success",
+        "value": "Page unpublished successfully"
+    },
+    {
+        "key": "pages.create_error",
+        "value": "Failed to create page"
+    },
+    {
+        "key": "pages.update_error",
+        "value": "Failed to update page"
+    },
+    {
+        "key": "pages.delete_error",
+        "value": "Failed to delete page"
+    },
+    {
+        "key": "pages.preview_description",
+        "value": "Preview how your page will appear to visitors"
+    },
+    {
+        "key": "pages.view_live",
+        "value": "View Live"
+    },
+    {
+        "key": "pages.seo_preview",
+        "value": "SEO Preview"
+    },
+    {
+        "key": "pages.template_suffix",
+        "value": "Template"
+    },
+    {
+        "key": "pages.page_info",
+        "value": "Page Information"
+    },
+    {
+        "key": "pages.template",
+        "value": "Template"
+    },
+    {
+        "key": "pages.status",
+        "value": "Status"
+    },
+    {
+        "key": "pages.created",
+        "value": "Created"
+    },
+    {
+        "key": "pages.published_at",
+        "value": "Published At"
+    },
+    {
+        "key": "pages.seo_info",
+        "value": "SEO Information"
+    },
+    {
+        "key": "pages.meta_title",
+        "value": "Meta Title"
+    },
+    {
+        "key": "pages.meta_description",
+        "value": "Meta Description"
+    },
+    {
+        "key": "pages.meta_keywords",
+        "value": "Meta Keywords"
+    },
+    {
+        "key": "pages.public_url",
+        "value": "Public URL"
+    },
+    {
+        "key": "pages.edit_page",
+        "value": "Edit Page"
+    },
+    {
+        "key": "pages.create_page",
+        "value": "Create Page"
+    },
+    {
+        "key": "pages.edit_description",
+        "value": "Update your page content and settings"
+    },
+    {
+        "key": "pages.create_description",
+        "value": "Create a new public-facing page"
+    },
+    {
+        "key": "pages.content",
+        "value": "Content"
+    },
+    {
+        "key": "pages.seo",
+        "value": "SEO"
+    },
+    {
+        "key": "pages.advanced",
+        "value": "Advanced"
+    },
+    {
+        "key": "pages.basic_info",
+        "value": "Basic Information"
+    },
+    {
+        "key": "pages.basic_info_description",
+        "value": "Configure the basic details of your page"
+    },
+    {
+        "key": "pages.title",
+        "value": "Page Title"
+    },
+    {
+        "key": "pages.title_placeholder",
+        "value": "Enter page title"
+    },
+    {
+        "key": "pages.slug",
+        "value": "URL Slug"
+    },
+    {
+        "key": "pages.slug_placeholder",
+        "value": "page-url-slug"
+    },
+    {
+        "key": "pages.slug_help",
+        "value": "This will be the URL path for your page"
+    },
+    {
+        "key": "pages.content_description",
+        "value": "Create your page content using the rich text editor"
+    },
+    {
+        "key": "pages.content_placeholder",
+        "value": "Start writing your page content..."
+    },
+    {
+        "key": "pages.settings",
+        "value": "Page Settings"
+    },
+    {
+        "key": "pages.seo_settings",
+        "value": "SEO Settings"
+    },
+    {
+        "key": "pages.seo_description",
+        "value": "Optimize your page for search engines"
+    },
+    {
+        "key": "pages.meta_title_placeholder",
+        "value": "SEO title for search engines"
+    },
+    {
+        "key": "pages.meta_title_help",
+        "value": "Recommended length: 50-60 characters"
+    },
+    {
+        "key": "pages.meta_description_placeholder",
+        "value": "Brief description for search results"
+    },
+    {
+        "key": "pages.meta_description_help",
+        "value": "Recommended length: 150-160 characters"
+    },
+    {
+        "key": "pages.meta_keywords_placeholder",
+        "value": "keyword1, keyword2, keyword3"
+    },
+    {
+        "key": "pages.meta_keywords_help",
+        "value": "Separate keywords with commas"
+    },
+    {
+        "key": "pages.advanced_settings",
+        "value": "Advanced Settings"
+    },
+    {
+        "key": "pages.advanced_description",
+        "value": "Custom CSS and JavaScript for advanced customization"
+    },
+    {
+        "key": "pages.custom_css",
+        "value": "Custom CSS"
+    },
+    {
+        "key": "pages.custom_css_placeholder",
+        "value": "/* Add your custom CSS here */"
+    },
+    {
+        "key": "pages.custom_js",
+        "value": "Custom JavaScript"
+    },
+    {
+        "key": "pages.custom_js_placeholder",
+        "value": "// Add your custom JavaScript here"
+    },
+    {
+        "key": "pages.untitled",
+        "value": "Untitled Page"
+    },
+    {
+        "key": "pages.load_template",
+        "value": "Load Template"
+    },
+    {
+        "key": "pages.load_template_description",
+        "value": "You have existing content in this page. Loading a template will replace your current title, content, and SEO settings. This action cannot be undone."
+    },
+    {
+        "key": "pages.template_privacy_policy",
+        "value": "Privacy Policy"
+    },
+    {
+        "key": "pages.template_terms_of_service",
+        "value": "Terms of Service"
+    },
+    {
+        "key": "pages.template_about_us",
+        "value": "About Us"
+    },
+    {
+        "key": "pages.code_view_placeholder",
+        "value": "Enter HTML code here..."
+    },
+    {
+        "key": "emailCampaign.step_basic_info",
+        "value": "Basic Info"
+    },
+    {
+        "key": "emailCampaign.step_audience",
+        "value": "Audience"
+    },
+    {
+        "key": "emailCampaign.step_content",
+        "value": "Content"
+    },
+    {
+        "key": "emailCampaign.step_settings",
+        "value": "Settings"
+    },
+    {
+        "key": "emailCampaign.step_review",
+        "value": "Review"
+    },
+    {
+        "key": "emailCampaign.desc_basic",
+        "value": "Set campaign name, email subject, and choose SMTP or Amazon SES"
+    },
+    {
+        "key": "emailCampaign.desc_audience",
+        "value": "Choose your target audience segment"
+    },
+    {
+        "key": "emailCampaign.desc_content",
+        "value": "Write your email content in plain text or visual HTML"
+    },
+    {
+        "key": "emailCampaign.desc_settings",
+        "value": "Send immediately or schedule for later"
+    },
+    {
+        "key": "emailCampaign.desc_review",
+        "value": "Review all settings and launch"
+    },
+    {
+        "key": "emailCampaign.load_failed",
+        "value": "Failed to load campaign data"
+    },
+    {
+        "key": "emailCampaign.confirm_delete_segment",
+        "value": "Are you sure you want to delete this segment?"
+    },
+    {
+        "key": "emailCampaign.delete_segment_failed",
+        "value": "Failed to delete segment"
+    },
+    {
+        "key": "emailCampaign.enter_name",
+        "value": "Please enter a campaign name."
+    },
+    {
+        "key": "emailCampaign.enter_subject",
+        "value": "Please enter an email subject."
+    },
+    {
+        "key": "emailCampaign.select_smtp_channel",
+        "value": "Please select an SMTP email channel."
+    },
+    {
+        "key": "emailCampaign.select_segment",
+        "value": "Please select a segment."
+    },
+    {
+        "key": "emailCampaign.add_content",
+        "value": "Please add email content."
+    },
+    {
+        "key": "emailCampaign.campaign_updated",
+        "value": "Campaign updated."
+    },
+    {
+        "key": "emailCampaign.saved_draft",
+        "value": "Campaign saved as draft."
+    },
+    {
+        "key": "emailCampaign.save_failed",
+        "value": "Failed to save campaign."
+    },
+    {
+        "key": "emailCampaign.validation_error",
+        "value": "Validation Error"
+    },
+    {
+        "key": "emailCampaign.name_required",
+        "value": "Campaign name is required."
+    },
+    {
+        "key": "emailCampaign.subject_required",
+        "value": "Email subject is required."
+    },
+    {
+        "key": "emailCampaign.select_smtp",
+        "value": "Select an SMTP channel."
+    },
+    {
+        "key": "emailCampaign.select_segment_required",
+        "value": "Select a segment."
+    },
+    {
+        "key": "emailCampaign.content_required",
+        "value": "Email content is required."
+    },
+    {
+        "key": "emailCampaign.launched_title",
+        "value": "Campaign Launched"
+    },
+    {
+        "key": "emailCampaign.launched_desc",
+        "value": "{{name}} is now running."
+    },
+    {
+        "key": "emailCampaign.launch_failed_title",
+        "value": "Launch Failed"
+    },
+    {
+        "key": "emailCampaign.launch_failed_desc",
+        "value": "Failed to launch."
+    },
+    {
+        "key": "emailCampaign.campaign_name",
+        "value": "Campaign Name"
+    },
+    {
+        "key": "emailCampaign.placeholder_name",
+        "value": "My Email Campaign"
+    },
+    {
+        "key": "emailCampaign.description",
+        "value": "Description"
+    },
+    {
+        "key": "emailCampaign.placeholder_description",
+        "value": "Optional description"
+    },
+    {
+        "key": "emailCampaign.email_subject",
+        "value": "Email Subject"
+    },
+    {
+        "key": "emailCampaign.placeholder_subject",
+        "value": "Subject line"
+    },
+    {
+        "key": "emailCampaign.email_provider",
+        "value": "Email Provider"
+    },
+    {
+        "key": "emailCampaign.provider_smtp",
+        "value": "Existing SMTP Email Channel"
+    },
+    {
+        "key": "emailCampaign.no_email_connections",
+        "value": "No email connections found."
+    },
+    {
+        "key": "emailCampaign.go_to_email_settings",
+        "value": "Go to Settings → Email Settings"
+    },
+    {
+        "key": "emailCampaign.to_add_one",
+        "value": "to add one."
+    },
+    {
+        "key": "emailCampaign.placeholder_select_smtp",
+        "value": "Select SMTP channel"
+    },
+    {
+        "key": "emailCampaign.provider_ses",
+        "value": "Amazon SES"
+    },
+    {
+        "key": "emailCampaign.ses_credentials_note",
+        "value": "SES credentials configured in Settings → Email Settings will be used."
+    },
+    {
+        "key": "emailCampaign.choose_segment",
+        "value": "Choose a contact segment to target."
+    },
+    {
+        "key": "emailCampaign.create_segment",
+        "value": "Create New Segment"
+    },
+    {
+        "key": "emailCampaign.search_segments",
+        "value": "Search segments..."
+    },
+    {
+        "key": "emailCampaign.no_segments",
+        "value": "No segments found."
+    },
+    {
+        "key": "emailCampaign.create_first_segment",
+        "value": "Create your first segment"
+    },
+    {
+        "key": "emailCampaign.placeholder_template",
+        "value": "Choose a template (optional)"
+    },
+    {
+        "key": "emailCampaign.create_template",
+        "value": "Create template"
+    },
+    {
+        "key": "emailCampaign.edit_template",
+        "value": "Edit template"
+    },
+    {
+        "key": "emailCampaign.plain_text",
+        "value": "Plain Text"
+    },
+    {
+        "key": "emailCampaign.visual_html",
+        "value": "Visual HTML"
+    },
+    {
+        "key": "emailCampaign.placeholder_body",
+        "value": "Email body..."
+    },
+    {
+        "key": "emailCampaign.html_note",
+        "value": "HTML content will be sent as the email body."
+    },
+    {
+        "key": "emailCampaign.campaign_type",
+        "value": "Campaign Type"
+    },
+    {
+        "key": "emailCampaign.send_immediately",
+        "value": "Send Immediately"
+    },
+    {
+        "key": "emailCampaign.schedule_later",
+        "value": "Schedule for Later"
+    },
+    {
+        "key": "emailCampaign.scheduled_datetime",
+        "value": "Scheduled Date & Time"
+    },
+    {
+        "key": "emailCampaign.scheduled",
+        "value": "Scheduled"
+    },
+    {
+        "key": "emailCampaign.warn_name_required",
+        "value": "Campaign name is required."
+    },
+    {
+        "key": "emailCampaign.warn_subject_required",
+        "value": "Email subject is required."
+    },
+    {
+        "key": "emailCampaign.warn_smtp_required",
+        "value": "SMTP channel is required."
+    },
+    {
+        "key": "emailCampaign.warn_segment_required",
+        "value": "Segment is required."
+    },
+    {
+        "key": "emailCampaign.warn_content_required",
+        "value": "Content is required."
+    },
+    {
+        "key": "emailCampaign.fix_before_launch",
+        "value": "Please fix before launching:"
+    },
+    {
+        "key": "emailCampaign.label_name",
+        "value": "Name"
+    },
+    {
+        "key": "emailCampaign.label_subject",
+        "value": "Subject"
+    },
+    {
+        "key": "emailCampaign.label_provider",
+        "value": "Provider"
+    },
+    {
+        "key": "emailCampaign.label_channel",
+        "value": "Channel"
+    },
+    {
+        "key": "emailCampaign.label_segment",
+        "value": "Segment"
+    },
+    {
+        "key": "emailCampaign.label_type",
+        "value": "Type"
+    },
+    {
+        "key": "emailCampaign.ses_settings",
+        "value": "SES (Settings)"
+    },
+    {
+        "key": "emailCampaign.contacts",
+        "value": "contacts"
+    },
+    {
+        "key": "emailCampaign.content_preview",
+        "value": "Content preview"
+    },
+    {
+        "key": "emailCampaign.edit_title",
+        "value": "Edit Email Campaign"
+    },
+    {
+        "key": "emailCampaign.create_title",
+        "value": "Create Email Campaign"
+    },
+    {
+        "key": "emailCampaign.step_of",
+        "value": "Step {{current}} of {{total}}"
+    },
+    {
+        "key": "emailCampaign.complete",
+        "value": "Complete"
+    },
+    {
+        "key": "emailCampaign.previous",
+        "value": "Previous"
+    },
+    {
+        "key": "emailCampaign.save_draft",
+        "value": "Save Draft"
+    },
+    {
+        "key": "emailCampaign.launching",
+        "value": "Launching..."
+    },
+    {
+        "key": "emailCampaign.launch_campaign",
+        "value": "Launch Campaign"
+    },
+    {
+        "key": "emailCampaign.next",
+        "value": "Next"
+    },
+    {
+        "key": "emailCampaign.quick_save",
+        "value": "Quick Save"
+    },
+    {
+        "key": "emailCampaign.launch_confirm_title",
+        "value": "Launch Email Campaign"
+    },
+    {
+        "key": "emailCampaign.launch_confirm_desc",
+        "value": "Are you sure you want to launch this campaign? It will start sending emails to the selected segment."
+    },
+    {
+        "key": "emailCampaign.launch",
+        "value": "Launch"
     }
 ]

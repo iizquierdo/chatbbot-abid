@@ -50,6 +50,16 @@ services:
       - powerchat_backups:/app/volumes/backups
       - powerchat_app_updates:/app/volumes/app-updates
       - powerchat_restart_signals:/app/volumes
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    sysctls:
+      net.ipv4.tcp_keepalive_time: 60
+    deploy:
+      resources:
+        reservations:
+          cpus: "1.0"
+          memory: 512m
     restart: unless-stopped
 
 volumes:

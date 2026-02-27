@@ -598,12 +598,7 @@ services:
       - app_whatsapp_sessions_$INSTANCE_NAME:/app/whatsapp-sessions
       - app_data_$INSTANCE_NAME:/app/data
       - ../../migrations:/app/migrations
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/api/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 60s
+   
 
 # Use shared network to avoid subnet exhaustion
 networks:

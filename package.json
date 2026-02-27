@@ -31,10 +31,12 @@
     "db:migrate:create": "node scripts/migrate.js create",
     "test:fixes": "node test-all-fixes.js",
     "test:migration": "node test-migration-system.js",
+    "test:whatsapp": "node --import tsx --test tests/whatsapp-improvements.test.ts tests/whatsapp-auth-state.integration.test.ts tests/whatsapp-reconnect.integration.test.ts",
     "verify:fixes": "node verify-fixes.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.37.0",
+    "@aws-sdk/client-ses": "^3.x",
     "@dagrejs/dagre": "^1.1.5",
     "@elevenlabs/elevenlabs-js": "^2.28.0",
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
@@ -89,7 +91,7 @@
     "@types/qrcode": "^1.5.5",
     "@types/tar": "^6.1.13",
     "axios": "^1.7.9",
-    "baileys": "^7.0.0-rc.6",
+    "baileys": "^7.0.0-rc.9",
     "bcrypt": "^5.1.1",
     "big-integer": "^1.6.52",
     "class-variance-authority": "^0.7.1",
@@ -166,7 +168,6 @@
     "vaul": "^1.1.2",
     "wouter": "^3.3.5",
     "ws": "^8.18.0",
-    "xlsx": "^0.18.5",
     "zod": "^3.24.2",
     "zod-validation-error": "^3.4.0",
     "zustand": "^5.0.3"
