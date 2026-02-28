@@ -1,1 +1,0 @@
-import{aL as a,ag as s,r as n,j as r,aM as e}from"./index-DWfp_g31.js";function i(){const{user:i,isLoading:d}=a(),[o,t]=s();return n.useEffect(()=>{d||(i&&i.isSuperAdmin?t("/admin/dashboard"):i&&t("/"))},[i,d,t]),d||!i?r.jsx(e,{}):null}export{i as default};
