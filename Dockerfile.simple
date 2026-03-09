@@ -1,38 +1,35 @@
 # PowerChat Plus - Production Docker Image (Node.js 20.19.1)
-# Stage 1: build frontend + backend so dist/public/assets exists (fixes MIME/JS module error)
+#
+# - If client/ exists in the repo: frontend+backend are built in the builder stage.
+# - If client/ is missing: dist/ must be present in the build context (pre-built, e.g. with assets).
 FROM node:20.19.1-slim AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci --include=optional || npm install --include=optional
 COPY . .
-RUN npm run build
-# Ensure assets were created (Vite outputs to dist/public/assets/)
-RUN test -d dist/public/assets || (echo "Warning: dist/public/assets missing" && mkdir -p dist/public/assets)
+# Only run full build when client/index.html exists (Vite entry); otherwise use existing dist/
+RUN if [ -f client/index.html ]; then npm run build; else echo "No client/: using dist/ from context"; fi
+RUN test -d dist || (echo "ERROR: need either client/ or pre-built dist/" && exit 1)
 
-# Stage 2: production image
 FROM node:20.19.1-slim
 
 WORKDIR /app
 
-# Install PostgreSQL 16 client tools and git (required for npm packages that use git)
 RUN apt-get update && apt-get install -y curl gnupg git && \
     echo "deb http://apt.postgresql.org/pub/repos/apt/ bookworm-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
     curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
     apt-get update && apt-get install -y postgresql-client-16 && \
     rm -rf /var/lib/apt/lists/*
 
-# Default environment variables
 ENV PGUSER=postgres
 ENV PGPASSWORD=root
 ENV PGHOST=postgres
 ENV PGDATABASE=powerchat
 ENV APP_PORT=9000
 
-# Copy and install production dependencies only
 COPY package*.json ./
 RUN npm install --omit=dev --include=optional
 
-# Copy built output from builder (includes dist/public/assets for correct JS/CSS MIME)
 COPY --from=builder /app/dist ./dist
 COPY migrations/ ./migrations/
 
