@@ -2,8 +2,8 @@ FROM node:20-slim
 
 WORKDIR /app
 
-# Install PostgreSQL client, Git, Nginx, and other dependencies
-RUN apt-get update && apt-get install -y lsb-release curl gnupg git nginx \
+# Install PostgreSQL client, Git, and other dependencies
+RUN apt-get update && apt-get install -y lsb-release curl gnupg git \
     # Download and add the PostgreSQL GPG key
     && curl -sSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | tee /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg > /dev/null \
     # Add the PostgreSQL APT repository for Debian Bookworm (node:20-slim base)
@@ -21,8 +21,6 @@ ENV PGPASSWORD=root
 ENV PGHOST=postgres
 ENV PGDATABASE=powerchat
 ENV APP_PORT=9000
-# Force the Node app to listen on 9000 for Nginx to proxy to it
-ENV PORT=9000
 
 # Copy package files and install dependencies
 COPY package*.json ./
@@ -31,11 +29,11 @@ RUN npm ci --include=optional
 # Copy the rest of the application
 COPY . .
 
-# Copy Nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
-
 # Fix Rollup optional dependency issue
 RUN npm install @rollup/rollup-linux-x64-gnu --save-optional
+
+# Create migrations directory (will be overridden by instance-specific migrations)
+
 
 # Copy and make entrypoint script executable (for database readiness check only)
 COPY docker-entrypoint-simple.sh /usr/local/bin/docker-entrypoint.sh
@@ -61,13 +59,9 @@ RUN find dist -type f \( -name "*.js" -o -name "*.html" -o -name "*.css" \) -exe
 # Create directories for instance-specific data
 RUN mkdir -p /app/data/uploads /app/data/whatsapp-sessions /app/data/backups /app/volumes/backups /app/temp/backups
 
-# Expose configurable ports
-# Railway will use the first exposed port (80) or the $PORT env var.
-# Nginx is configured to listen on 80.
-EXPOSE 80
-EXPOSE 9000
+# Expose configurable port
+EXPOSE $APP_PORT
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
-# Start Nginx in background and Node app in foreground
-CMD ["sh", "-c", "nginx && node dist/index.js"]
+CMD ["node", "dist/index.js"]
