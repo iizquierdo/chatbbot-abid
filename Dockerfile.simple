@@ -1,4 +1,15 @@
 # PowerChat Plus - Production Docker Image (Node.js 20.19.1)
+# Stage 1: build frontend + backend so dist/public/assets exists (fixes MIME/JS module error)
+FROM node:20.19.1-slim AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --include=optional || npm install --include=optional
+COPY . .
+RUN npm run build
+# Ensure assets were created (Vite outputs to dist/public/assets/)
+RUN test -d dist/public/assets || (echo "Warning: dist/public/assets missing" && mkdir -p dist/public/assets)
+
+# Stage 2: production image
 FROM node:20.19.1-slim
 
 WORKDIR /app
@@ -17,20 +28,13 @@ ENV PGHOST=postgres
 ENV PGDATABASE=powerchat
 ENV APP_PORT=9000
 
-# Copy and install dependencies
+# Copy and install production dependencies only
 COPY package*.json ./
-# Use npm install instead of npm ci since package-lock.json may not exist
-# npm install works with or without package-lock.json
 RUN npm install --omit=dev --include=optional
 
-# Copy app files
-COPY dist/ ./dist/
+# Copy built output from builder (includes dist/public/assets for correct JS/CSS MIME)
+COPY --from=builder /app/dist ./dist
 COPY migrations/ ./migrations/
-
-# License: app expects a file at /app/dist/license (or .license).
-# If you have a license file, add it to the repo and use: COPY license ./dist/license
-# Otherwise we create an empty placeholder so the path exists (may still require valid license content).
-RUN touch /app/dist/license
 
 # Create directories
 RUN mkdir -p /app/data/uploads /app/data/whatsapp-sessions /app/data/backups /app/volumes/backups /app/temp/backups
