@@ -27,6 +27,11 @@ RUN npm install --omit=dev --include=optional
 COPY dist/ ./dist/
 COPY migrations/ ./migrations/
 
+# License: app expects a file at /app/dist/license (or .license).
+# If you have a license file, add it to the repo and use: COPY license ./dist/license
+# Otherwise we create an empty placeholder so the path exists (may still require valid license content).
+RUN touch /app/dist/license
+
 # Create directories
 RUN mkdir -p /app/data/uploads /app/data/whatsapp-sessions /app/data/backups /app/volumes/backups /app/temp/backups
 
